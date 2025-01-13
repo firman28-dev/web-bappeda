@@ -6,14 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "barryvdh/laravel-elfinder": "^0.5.3",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "realrashid/sweet-alert": "^7.2",
         "spatie/laravel-permission": "^6.10",
-        "studio-42/elfinder": "^2.1",
         "tinymce/tinymce": "^7.6"
     },
     "require-dev": {
