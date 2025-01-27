@@ -45,4 +45,10 @@ Route::get('/get-category-bidang/{id}', [Guest_News_Controller::class, 'getAllCa
 Route::get('/show-news/{id}', [Guest_News_Controller::class, 'news'])->name('guest.news');
 Route::get('/pages/{id}', [Guest_Page_System_Controller::class, 'show'])->name('guest.page-system');
 
-
+Route::get('/link-storage', function () {
+    // Menjalankan perintah storage:link
+    Artisan::call('storage:link');
+    
+    // Menampilkan pesan sukses
+    return 'Storage linked successfully!';
+});
