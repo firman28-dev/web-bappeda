@@ -1,13 +1,12 @@
 @extends('partials.guest.index')
 @section('content')
-    {{-- <div class="curve-bg">
+    <div class="curve-bg">
         <video autoplay muted loop class="top-0 h-100 w-100 z-index-1" style="object-fit: cover">
             <source src="{{asset('assets/video/MASJID RAYA.mp4')}}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        
-    </div> --}}
-    <div class="curve-bg">
+    </div>
+    {{-- <div class="curve-bg">
         <video autoplay muted loop class="video-bg">
             <source src="{{asset('assets/video/MASJID RAYA.mp4')}}" type="video/mp4">
             Your browser does not support the video tag.
@@ -18,7 +17,7 @@
                 ></path>
             </svg>
         </div>
-    </div>
+    </div> --}}
 
     <div data-aos="fade-up"
         data-aos-anchor-placement="bottom-bottom"
