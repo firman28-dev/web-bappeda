@@ -24,8 +24,7 @@ class Bidang_Controller extends Controller
         $sent = [
             'status' => $status
         ];
-        return view('admin.bidang.create', $sent);
-
+        return view('admin.bidang.create', $sent);    
     }
 
     public function store(Request $request){

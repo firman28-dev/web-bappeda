@@ -47,7 +47,7 @@ Route::get('/pages/{id}', [Guest_Page_System_Controller::class, 'show'])->name('
 
 Route::get('/link-storage', function () {
     // Menjalankan perintah storage:link
-    Artisan::call('storage:link');
+    Artisan::call(command: 'storage:link');
     
     // Menampilkan pesan sukses
     return 'Storage linked successfully!';

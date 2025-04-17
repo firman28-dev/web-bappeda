@@ -15,7 +15,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link rel="icon" type="image/png" href="{{ asset('assets/img/swastisaba.png') }}" sizes="32x32">
 		<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700;800;900&family=Poppins:wght@400;500&display=swap" rel="stylesheet"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"> --}}
 		{{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 		{{-- @notifyCss --}}
 		{{-- @toastifyCss --}}
@@ -83,9 +83,10 @@
 		<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
 		<script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
 		<script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+
         @yield('script')
 		{{-- @toastifyJs --}}
 		{{-- @notifyJs --}}
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</body>
 </html>

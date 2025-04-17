@@ -8,7 +8,7 @@
         
     </div> --}}
     <div class="curve-bg">
-        {{-- <video autoplay muted loop class="video-bg">
+        <video autoplay muted loop class="video-bg">
             <source src="{{asset('assets/video/MASJID RAYA.mp4')}}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -17,7 +17,7 @@
                 <path fill="#fff" fill-opacity="1" d="M0,192L120,208C240,224,480,256,720,256C960,256,1200,224,1320,208L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
                 ></path>
             </svg>
-        </div> --}}
+        </div>
     </div>
 
     <div data-aos="fade-up"
