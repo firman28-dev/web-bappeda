@@ -24,15 +24,21 @@ class Guest_News_Controller extends Controller
 
     public function news($id){
         $news = News::find($id);
-        $newsAll = News::where('bidang_id', $news->bidang_id)
-        ->get();
-        // return $news;
-        $sent = [
-            'news' => $news,
-            'newsAll' => $newsAll
-        ];
+        if($news){
+            $newsAll = News::where('bidang_id', $news->bidang_id)
+            ->get();
+            // return $news;
+            $sent = [
+                'news' => $news,
+                'newsAll' => $newsAll
+            ];
 
-        return view('guest.news.show', $sent);
+            return view('guest.news.show', $sent);
+        }
+        else{
+            return view('error.index');
+        }
+        
 
     }
 }
