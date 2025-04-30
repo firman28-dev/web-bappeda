@@ -21,6 +21,7 @@
 	{{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 	<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
+	@yield('css')
 	
 </head>
 
@@ -36,10 +37,8 @@
       <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
         <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
           <div class="d-flex flex-column flex-column-fluid">
-            <div id="kt_app_content" class="app-content flex-column-fluid bg-white">
-				
+            <div id="kt_app_content" class="app-content flex-column-fluid bg-white pb-0">
 				@yield('content')
-				
             </div>
           </div>
           <div id="kt_app_footer" class="footer justify-content-center bg-custom-orange">
@@ -67,7 +66,6 @@
   	<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
 	<script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
 	<script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
-	
 	@yield('script')
 </body>
 

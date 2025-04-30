@@ -2,28 +2,57 @@
 @section('content') 
 
     <div class="bg-content-page py-20 justify-content-center text-center">
+        {{-- <h1 class="display-6 text-white">{{$nama_kategori}}</h1> --}}
         <h1 class="display-6 text-white text-center fw-bold position-relative d-inline-block"
             style="padding-bottom: 0.5rem;">
-            {{ $page_system->title }}
+            PPID {{ $nama_kategori }}
             <span class="span-custom"></span>
         </h1>
     </div>
-    <div class="content py-6 bg-custom-secondary">
+    <div class="content py-6 mb-0 bg-custom-secondary">
         <div class="container mb-20">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="card rounded-custom mb-5 border-0">
-                        <div class="card-body p-8">
-                            <div class="page-content text-custom">
-                                @if ($page_system->image)
-                                    <img src="{{ asset('uploads/page_system/'.$page_system->image) }}" class="card-img-top" alt="News Image" style="object-fit: cover;">
-                                @endif
-                                {!! $page_system->description !!}
+                    <h1 class="display 6">Dokumen PPID</h1>
+                    <div class="card rounded-custom">
+                        <div class="card-body">
+                            <div class="table-responsive mt-3">
+                                <table id="tableMenu" class="table table-striped table-row-bordered border rounded">
+                                    <thead>
+                                        <tr class="fw-semibold fs-6 text-muted">
+                                            <th class="w-30px text-center border border-1">No.</th>
+                                            <th class="w-100px border border-1">Instansi</th>
+                                            <th class="border w-100px border-1">Judul</th>
+                                            <th class="text-center w-100px border border-1">Tahun</th>
+                                            <th class="text-center w-100px border border-1">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse($data as $index => $item)
+                                            <tr>
+                                                <td class="text-center border border-1">{{ $index + 1 }}</td>
+                                                <td class="border border-1">{{ $item['nama_instansi'] ?? '-' }}</td>
+                                                <td class="border border-1">{{ $item['title_content'] ?? '-' }}</td>
+                                                <td class="text-center border border-1">{{ $item['tahun'] ?? '-' }}</td>
+                                                <td class="text-center border border-1">
+                                                    <a href="{{$item['downloads1']}}" target="_blank"
+                                                        class="btn btn-primary btn-sm">Download</a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center">Tidak ada data ditemukan</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="col-lg-4">
+                    <h1 class="display 6">Berita Bappeda</h1>
                     @foreach ($news as $item)
                         <div class="col-lg-12 mb-5">
                             <div class="card shadow-sm rounded-4 overflow-hidden mb-4 h-100 border-0 d-flex flex-column mb-3" >
@@ -83,6 +112,7 @@
                 </div>
             </div>
             
+           
         </div>
         <div class="container">
             <div class="card rounded-custom bg-about">
@@ -138,10 +168,30 @@
             </div>
         </div>
     </div>
+
+
     
 
 @endsection
 
 @section('script')
-    
+<script>
+    $("#tableMenu").DataTable({
+        "language": {
+            "lengthMenu": "Show _MENU_",
+        },
+        "dom":
+            "<'row'" +
+            "<'col-sm-6 d-flex align-items-center justify-content-start'l>" +
+            "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+            ">" +
+
+            "<'table-responsive'tr>" +
+
+            "<'row'" +
+            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+            ">"
+    });
+</script>
 @endsection

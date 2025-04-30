@@ -50,7 +50,7 @@
       </div>
     </div> --}}
     <div class="fw-bolder text-lg-center">
-      <span>&copy; {{ date('Y') }}</span> BAPPEDA Pemerintah Provinsi Sumatera Barat All Rights Reserved
+      <span>&copy; {{ date('Y') }}</span> BAPPEDA Pemerintah Provinsi Sumatera Barat
     </div>
 
   </div>

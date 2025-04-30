@@ -1,7 +1,8 @@
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
-    <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
-        <a href="#">
-            <img alt="Logo" src="{{asset('assets/img/sumbar.png')}}" class=" app-sidebar-logo-default w-50px" />
+    {{-- border bottom 0 --}}
+    <div class="app-sidebar-logo px-6 border-bottom-0" id="kt_app_sidebar_logo">
+        <a href="{{route('dashboard.index')}}">
+            <img alt="Logo" src="{{asset('assets/img/about-sumbar.png')}}" class=" app-sidebar-logo-default w-150px" />
         </a>
         <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary body-bg h-30px w-30px position-absolute top-50 start-100 translate-middle rotate" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="app-sidebar-minimize">
             <span class="svg-icon svg-icon-2 rotate-180">
@@ -12,18 +13,20 @@
             </span>
         </div>
     </div>
+    
     <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
         <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer" data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
             <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
                 
                 <div class="menu-item">
-                    <a class="menu-link " href="">
+                    <a class="menu-link {{ Route::is('dashboard.index') ? 'active' : '' }}" href="{{route('dashboard.index')}}">
                         <span class="menu-icon">
                             <i class="fa-solid fa-house fs-3"></i>
                         </span>
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </div>
+                @if(Auth::user()->group_id == 4)
                 <div class="menu-item">
                     <a class="menu-link {{ Route::is('menu-public.*') ? 'active' : '' }}" href="{{route('menu-public.index')}}">
                         <span class="menu-icon">
@@ -72,6 +75,37 @@
                         <span class="menu-title">Halaman Informasi</span>
                     </a>
                 </div>
+                <div class="menu-item">
+                    <a class="menu-link {{ Route::is('user.*') ? 'active' : '' }}" href="{{route('user.index')}}">
+                        <span class="menu-icon">
+                            <i class="fa-solid fa-newspaper fs-3"></i>
+                        </span>
+                        <span class="menu-title">User</span>
+                    </a>
+                </div>
+                @endif
+                
+                @if(Auth::user()->group_id == 3)
+                <div class="menu-item">
+                    <a class="menu-link {{ Route::is('op-news.*') ? 'active' : '' }}" href="{{route('op-news.index')}}">
+                        <span class="menu-icon">
+                            <i class="fa-solid fa-newspaper fs-3"></i>
+                        </span>
+                        <span class="menu-title">Berita</span>
+                    </a>
+                </div>
+                @endif
+
+                @if(Auth::user()->group_id == 1)
+                <div class="menu-item">
+                    <a class="menu-link {{ Route::is('k-news.*') ? 'active' : '' }}" href="{{route('k-news.index')}}">
+                        <span class="menu-icon">
+                            <i class="fa-solid fa-newspaper fs-3"></i>
+                        </span>
+                        <span class="menu-title">Berita</span>
+                    </a>
+                </div>
+                @endif
             </div>
         </div>
     </div>

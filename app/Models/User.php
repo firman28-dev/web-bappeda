@@ -18,8 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'group_id',
+        'bidang_id',
+        'username',
         'password',
     ];
 
@@ -41,4 +42,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function _group()
+    {
+        return $this->belongsTo(Group::class, 'group_id', 'id');
+    }
+
+    public function _bidang()
+    {
+        return $this->belongsTo(Bidang::class, 'bidang_id', 'id');
+    }
+
+    protected $table = 'users';
+
 }

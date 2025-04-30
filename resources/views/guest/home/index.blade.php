@@ -13,8 +13,7 @@
         </video>
         <div class="svg-curve d-lg-block d-none">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 350">
-                <path fill="#fff" fill-opacity="1" d="M0,192L120,208C240,224,480,256,720,256C960,256,1200,224,1320,208L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
-                ></path>
+                <path fill="#fff" fill-opacity="1" d="M0,192L120,208C240,224,480,256,720,256C960,256,1200,224,1320,208L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
             </svg>
         </div> --}}
     </div>
@@ -22,7 +21,7 @@
     <div data-aos="fade-up"
         data-aos-anchor-placement="bottom-bottom"
         data-aos-duration="1000">
-        <div class="container mb-15 mt-20">
+        <div class="container  bg-white p-20">
             <div class="row align-items-center ">
                 <div class="col-lg-6 mb-lg-0 mb-4 flex-column justify-content-center">
                     <h1 class="display-5">BADAN PERENCANAAN PEMBANGUNAN DAERAH <span class="text-custom-warning">SUMATERA BARAT</span> </h1>
@@ -41,33 +40,72 @@
     <div data-aos="fade-up"
         data-aos-duration="2000">
         <div class="container">
-            <div class="row align-items-stretch d-flex">
+            <div class="row align-items-stretch d-flex flex-row">
                 <div class="col-lg-6">
-                    <h1 class="display-6 text-center">Berita Terbaru</h1>
+                    <h1 class="display-6 text-center mb-2">Berita Terbaru</h1>
                     @foreach ($news as $item)
-                        <div class="card rounded-custom2 shadow-sm w-100 h-100" style="max-height: 500px">
-                            <a href="{{route('guest.news', $item->id)}}" class="text-decoration-none text-dark">
-                                <div class="card-header p-5 justify-content-center">
-                                    <img src="{{ asset('uploads/news/' . $item->image) }}" alt="File Image" class="rounded-custom2 w-100" style="max-height: 150px">
+                        <div class="card shadow-sm rounded-4 overflow-hidden h-100 border-0" >
+                            <div class="position-relative">
+                                @php
+                                    $allowedExtensions = ['png', 'jpg', 'jpeg'];
+                                    $imagePath = public_path('uploads/news/' . $item->image);
+                                    $extension = strtolower(pathinfo($item->image, PATHINFO_EXTENSION));
+                                    $imageUrl = (isset($item->image) &&
+                                                file_exists($imagePath) &&
+                                                in_array($extension, $allowedExtensions))
+                                                ? asset('uploads/news/' . $item->image)
+                                                : asset('uploads/news/default.jpg');
+                                @endphp
+
+                                <img src="{{ $imageUrl }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 250px; object-fit: cover;">
+                        
+                                <div class="position-absolute top-0 start-0 bg-orange text-white p-2 text-center" style="width: 60px;">
+                                    @php
+                                        $date = \Carbon\Carbon::parse($item->created_at);
+                                    @endphp
+                                    <div class="fw-bold fs-6">{{ $date->format('d') }}</div>
+                                    <div class="small">{{ $date->format('M') }}</div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="d-flex flex-row justify-content-between mb-4"> 
-                                        <div class="badge badge-light-danger">{{$item->_bidang->label}}</div>
-                                        <span>{{ \Carbon\Carbon::parse($item->created_at)->format('j M Y') }}</span>
-                                    </div>
-                                    <p class="lead">
-                                        {{ $item->title }}
-                                    </p>
-                                    <div class="content">
-                                        {!! Str::limit($item->description, 250) !!}
-                                    </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="d-flex justify-content-between text-muted small mb-2">
+                                    <span><i class="fa-solid fa-eye"></i> {{$item->hits}} Viewers</span>
+                                    <span>{{ $item->_user->username ?? ' Admin' }}</span>
                                 </div>
-                            </a>
+                                @php
+                                    preg_match('/<img[^>]+src="([^">]+)"/', $item->description, $matches);
+                                    $firstImage = $matches[1] ?? null;
+                                    $plainText = strip_tags($item->description);
+                                    $shortText = Str::limit($plainText, 300);
+                                @endphp
+                                <p class="card-title fw-bold mb-3">
+                                    {{ $item->title }}
+                                </p>
+                                @if ($firstImage)
+                                    <img src="{{ $firstImage }}" alt="Gambar" class="img-fluid mb-3" style="max-height: 200px; object-fit: cover;">
+                                @endif
+
+                                <div class="content">
+                                    {{ $shortText }}
+                                </div>          
+                            
+                                <!-- Tombol baca selengkapnya dipaksa ke bawah -->
+                                <div class="mt-auto">
+                                    <a href="{{ route('guest.news', $item->id) }}" class="text-decoration-none d-inline-flex align-items-center text-orange fw-semibold">
+                                        <span>Baca Selengkapnya</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right ms-2" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M10.146 3.646a.5.5 0 0 1 .708 0L14.207 7.5H1.5a.5.5 0 0 1 0 1h12.707l-3.353 3.854a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.646a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            
                         </div>
+                       
                     @endforeach
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-6 text-center">Realisasi Bappeda</h1>
+                    <h1 class="display-6 text-center mb-2">Realisasi Bappeda</h1>
                     <div class="card h-100 shadow-sm" style="max-height: 500px">
                         <div class="card-body">
                             <div class="d-flex flex-column">
@@ -121,6 +159,7 @@
             <div class="col-lg-8">
                 <h1 class="display-6 text-center">Berita BAPPEDA</h1>
                 <ul class="nav nav-pills nav-pills-custom mb-5 mt-5 justify-content-center">
+                    
                     @foreach($bidang as $item)
                     <li class="nav-item mb-3 me-3 me-lg-6">
                         <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 {{ $loop->first ? 'active' : '' }}" 
@@ -128,7 +167,7 @@
                             data-bs-toggle="pill" 
                             href="#news_{{ $item->id }}">
                             <div class="nav-icon mb-3">
-                                <i class="fa-solid fa-newspaper fs-2"></i>
+                                <i class="{{ $item->icon ?? 'fa-solid fa-newspaper' }} fs-2"></i>
                             </div>
                             <span class="nav-text text-gray-800 fw-bold fs-6 lh-1 text-uppercase">{{ $item->label }}</span>
                             <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-orange"></span>
@@ -141,30 +180,86 @@
                     <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="news_{{ $item->id }}">
                         @if ($item->_news->count() > 3)
                             <div class="text-end mb-3">
-                                <a href="{{route('guest.get-category',$item->id)}}" class="btn btn-primary btn-sm">Lainnya</a>
+                                <a href="{{ route('guest.get-category', $item->id) }}" class="d-inline-flex align-items-center">
+                                    <i class="fa-solid fa-share me-2 fs-4"></i>
+                                    <span>Lebih banyak berita</span>
+                                </a>
                             </div>
                         @endif
-                        <div class="row d-flex align-items-stretch">
+                        <div class="row d-flex align-items-stretch mb-4">
                             @forelse ($item->_news->slice(0, 3) as $dataNews)
                             <div class="col-lg-4 d-flex align-items-stretch mb-5">
-                                <div class="card rounded-custom2 shadow-sm w-100">
+                                
+                                <div class="card shadow-sm rounded-4 overflow-hidden mb-4 h-100 border-0 d-flex flex-column mb-3" >
+                                    <div class="position-relative">
+                                        @php
+                                            $allowedExtensions = ['png', 'jpg', 'jpeg'];
+                                            $imagePath = public_path('uploads/news/' . $dataNews->image);
+                                            $extension = strtolower(pathinfo($dataNews->image, PATHINFO_EXTENSION));
+                                            $imageUrl = (isset($dataNews->image) &&
+                                                        file_exists($imagePath) &&
+                                                        in_array($extension, $allowedExtensions))
+                                                        ? asset('uploads/news/' . $dataNews->image)
+                                                        : asset('uploads/news/default.jpg');
+                                        @endphp
+            
+                                        <img src="{{ $imageUrl }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 200px; object-fit: cover;">
+                                
+                                        <div class="position-absolute top-0 start-0 bg-orange text-white p-2 text-center" style="width: 80px;">
+                                            @php
+                                                $date = \Carbon\Carbon::parse($dataNews->created_at);
+                                            @endphp
+                                            <div class="fw-bold fs-6">{{ $date->format('d') }}</div>
+                                            <div class="small">{{ $date->format('M') }} {{ $date->format('Y') }}</div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="card-body d-flex flex-column">
+                                        <div class="d-flex justify-content-between text-muted small mb-2">
+                                            <span><i class="fa-solid fa-eye"></i> {{$dataNews->hits}} Viewers</span>
+                                            <span>{{ $dataNews->_user->username ?? ' Admin' }}</span>
+                                        </div>
+                                    
+                                        <p class="card-title fw-bold mb-3">
+                                            {{ $dataNews->title }}
+                                        </p>
+                                    
+                                        <!-- Tombol baca selengkapnya dipaksa ke bawah -->
+                                        <div class="mt-auto">
+                                            <a href="{{ route('guest.news', $dataNews->id) }}" class="text-decoration-none d-inline-flex align-items-center text-orange fw-semibold">
+                                                <span>Baca Selengkapnya</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right ms-2" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M10.146 3.646a.5.5 0 0 1 .708 0L14.207 7.5H1.5a.5.5 0 0 1 0 1h12.707l-3.353 3.854a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.646a.5.5 0 0 1 0-.708z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                {{-- <div class="card rounded-custom2 shadow-sm w-100">
                                     <a href="{{route('guest.news', $dataNews->id)}}" class="text-decoration-none text-dark" >
                                         <div class="card-header p-5 justify-content-center">
-                                            <img src="{{ asset('uploads/news/' . $dataNews->image) }}" alt="File Image" class="w-100 h-150px rounded-custom2">
+                                            @php
+                                            $imagePath = public_path('uploads/news/' . $dataNews->image);
+                                            $imageUrl = ($dataNews->image && file_exists($imagePath))
+                                                        ? asset('uploads/news/' . $dataNews->image)
+                                                        : asset('uploads/news/default.jpg');
+                                        @endphp
+                                        
+                                        <img src="{{ $imageUrl }}" alt="File Image" class="w-100 h-150px rounded-custom2">
                                         </div>
                                         <div class="card-body">
                                             <div class="d-flex flex-row justify-content-between mb-4">
                                                 <div class="badge badge-light-danger">{{$item->label}}</div>
                                                 <span>{{ \Carbon\Carbon::parse($dataNews->created_at)->format('j M Y') }}</span>
                                             </div>
-                                            <p class="lead">
+                                            <p>
                                                 {{ $dataNews->title }}
-                                                {{-- Bappeda : Lembah Anai butuh flyover antisipasi jatuhnya korban nyawa saat bencana --}}
                                             </p>
                                         </div>
 
                                     </a>
-                                </div>
+                                </div> --}}
                             </div>
                             @empty
                                 <p class="text-muted text-center">Belum ada berita untuk bidang ini.</p>
@@ -307,10 +402,10 @@
             {{-- <h1 class="display-6 pb-10">Link Terkait</h1> --}}
             {{-- <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span> --}}
             @foreach ($list_link as $item)
-                <div class="col-xl-3 col-md-6 mb-4 aos-init aos-animate d-flex align-items-stretch" data-aos="fade-up" data-aos-duration="1000">
-                    <a href="{{$item->url}}" target="_blank" class="d-flex align-items-stretch">
-                        <div class="card w-100 d-flex align-items-center hover-scale">
-                            <div class="card-body d-flex align-items-center justify-content-center card-custom">
+                <div class="col-xl-4 col-md-6 mb-4 aos-init aos-animate d-flex align-items-stretch" data-aos="fade-up" data-aos-duration="1000">
+                    <a href="{{$item->url}}" target="_blank" class="d-flex align-items-stretch w-100">
+                        <div class="card w-100 d-flex align-items-center shadow-sm">
+                            <div class="card-body d-flex align-items-center justify-content-center">
                                 <img src="{{ asset('uploads/list_link/' . $item->path) }}" alt="File Image" class="w-25">
                             </div>
                         </div>
@@ -388,7 +483,7 @@
                 method: "GET",
                 dataType: "json",
                 success: function (response) {
-                    console.log(response); // Tampilkan data di console
+                    // console.log(response); 
                     
                 },
                 error: function (xhr, status, error) {
@@ -422,7 +517,7 @@
                     
                     // console.log(response); 
                     const data = response.pencapaian_opd;
-                    console.log(data);
+                    // console.log(data);
                     const pagu = data.pagu;
                     const realisasiKeuangan = data.rp_realisasi_keuangan;
                     const persenKeuangan = data.persen_realisasi_keuangan;
@@ -448,7 +543,7 @@
                    
                 },
                 error: function (xhr, status, error) {
-                    console.error("Error: ", error);
+                    // console.error("Error: ", error);
                     alert("Gagal mengambil data.");
                 }
             });

@@ -11,13 +11,25 @@ class Guest_News_Controller extends Controller
 {
     public function getAllCategory($id){
         $bidang = Bidang::find($id);
-        $categoryNews = News::where('bidang_id',$id)->get();
-
-        $sent = [
-            'categoryNews' => $categoryNews,
-            'bidang' => $bidang
-        ];
-        return view('guest.news.index', $sent);
+        if($bidang){
+            $categoryNews = News::where('bidang_id', $id)
+                ->orderBy('id', 'desc')
+                ->paginate(9);
+            $allBidang = Bidang::whereNot('id', $id)->get();
+            if (request('page') > $categoryNews->lastPage()) {
+                return redirect()->route('guest.get-category', ['id' => $id, 'page' => $categoryNews->lastPage()]);
+            }
+            $sent = [
+                'categoryNews' => $categoryNews,
+                'bidang' => $bidang,
+                'allBidang' => $allBidang
+            ];
+            return view('guest.news.index', $sent);
+        }
+        else{
+            return view('error.index');
+        }
+        
 
         // return $categoryNews;
     }
@@ -26,6 +38,7 @@ class Guest_News_Controller extends Controller
         $news = News::find($id);
         if($news){
             $newsAll = News::where('bidang_id', $news->bidang_id)
+            ->whereNot('id', $news->id)
             ->get();
             // return $news;
             $sent = [
@@ -38,7 +51,6 @@ class Guest_News_Controller extends Controller
         else{
             return view('error.index');
         }
-        
 
     }
 }

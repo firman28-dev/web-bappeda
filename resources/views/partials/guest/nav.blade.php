@@ -2,7 +2,7 @@
     id="kt_app_header_container">
     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
         <a href="#">
-            <img alt="Logo" src="{{asset('assets/img/sumbar.png')}}"
+            <img alt="Logo" src="{{asset('assets/img/about-sumbar.png')}}"
             class="text-black h-50px app-sidebar-logo-default theme-light-show" />
         </a>
     </div>
@@ -132,20 +132,21 @@
                 </div>
             @endforeach
 
-                <div class="d-lg-none py-3 px-4">
-                    <button type="button" class="btn rounded-4 btn-outline-primary btn-outline py-4">
+            <div class="d-lg-none py-3 px-4">
+                <a href="{{ route('login.show') }}" class="btn rounded-4 btn-outline-primary btn-outline py-4">
                     Masuk
-                    </button>
-                </div>
+                </a>
+            </div>
+            
             </div>
         </div>
 
         <div class="app-navbar">
             <div class="app-navbar-item ms-1 ms-lg-3 d-none d-lg-block d-md-block d-sm-block m-auto"
             id="kt_app_header_menu">
-                <button type="button" class="btn btn-primary rounded-4 btn-outline-primary btn-outline py-4">
+                <a href="{{ route('login.show') }}" class="btn rounded-4 btn-outline-primary btn-outline py-4">
                     Masuk
-                </button>
+                </a>
             </div>
 
             <div class="app-navbar-item d-lg-none ms-2 me-n3" title="Show header menu">

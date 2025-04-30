@@ -135,25 +135,6 @@
 
 @section('script')
     <script>
-        //  $(document).ready(function () {
-        //     const url = "https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/2024";
-        //     $.ajax({
-        //         url: url,
-        //         method: "GET",
-        //         dataType: "json",
-        //         success: function (response) {
-        //             // console.log(response); 
-        //             const data = response.result.pencapaian_opd;
-        //             console.log(data);
-                   
-        //         },
-        //         error: function (xhr, status, error) {
-        //             console.error("Error: ", error);
-        //             alert("Gagal mengambil data.");
-        //         }
-        //     });
-        // });
-
         $(document).ready(function () {
             
             const url = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/detail_data_opd_pengelompokan/72?tahun=2024";

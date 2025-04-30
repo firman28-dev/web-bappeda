@@ -1,19 +1,17 @@
 @extends('partials.admin.index')
 @section('heading')
-Halaman Informasi
+    Berita Bappeda
 @endsection
 @section('page')
-Halaman Informasi
+    Berita Bappeda
 @endsection
-
 
 @section('content')
     <div class="card shadow-sm rounded-4">
-        <form action="{{ route('page-system.update', $page_system->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('op-news.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
             <div class="card-header">
-                <h3 class="card-title">Edit Halaman Informasi</h3>
+                <h3 class="card-title">Input Berita Bappeda</h3>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -27,7 +25,6 @@ Halaman Informasi
                                 name="title"
                                 id="title"
                                 autocomplete="title"
-                                value="{{$page_system->title}}"
                             >
                             @error('title')
                                 <div class="is-invalid">
@@ -38,7 +35,26 @@ Halaman Informasi
                             @enderror
                         </div>
                     </div>
-                   
+                    <div class="col-lg-6 mb-4">
+                        <div class="form-group">
+                            <label for="bidang_id" class="form-label">Bidang Bappeda</label>
+                            <input type="text"
+                                class="form-control form-control-solid rounded rounded-4"
+                                required
+                                id="bidang_id"
+                                value="{{$bidang->name}}"
+                                readonly
+                            >
+                            <input type="text" name="bidang_id" value="{{$bidang->id}}" hidden>
+                            @error('bidang_id')
+                                <div class="is-invalid">
+                                    <span class="text-danger">
+                                        {{$message}}
+                                    </span>
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="col-lg-6 mb-4">
                         <div class="form-group">
                             <label for="image" class="form-label">Unggah Foto</label>
@@ -47,7 +63,6 @@ Halaman Informasi
                                 name="image" 
                                 class="form-control form-control-solid" 
                                 accept="image/*"
-                                
                                 autocomplete="image"
                                 id="image"
                             >
@@ -69,7 +84,7 @@ Halaman Informasi
                             >
                                 <option value="" disabled selected>Pilih Status</option>
                                 @foreach($status as $data)
-                                    <option value="{{ $data->id }}" {{ $data->id == $page_system->status_id ? 'selected' : '' }}>
+                                    <option value="{{ $data->id }}" >
                                         {{ $data->name }}
                                     </option>
                                 @endforeach
@@ -83,18 +98,33 @@ Halaman Informasi
                             @enderror
                         </div>
                     </div>
-                    <div class="col-lg-12 mb-4">
+                    {{-- <div class="col-lg-12 mb-4">
                         <div class="form-group">
-                            <label for="desc" class="form-label">Konten Berita</label>
-                            <textarea id="description" name="description" class="form-control form-control-solid" rows="10">{!! $page_system->description !!}</textarea>
-                            {{-- @error('desc')
+                            <label for="description" class="form-label">Konten Berita</label>
+                            <textarea id="description" name="description" class="form-control form-control-solid" rows="10"></textarea>
+                            @error('description')
                                 <div class="is-invalid">
-                                    
                                     <span class="text-danger">
                                         {{$message}}
                                     </span>
                                 </div>
-                            @enderror --}}
+                            @enderror
+                        </div>
+                    </div> --}}
+                    <div class="col-lg-12 mb-4">
+                        <div class="form-group">
+                            <label for="description" class="form-label">Konten Berita</label>
+                            <textarea id="description" name="description" class="form-control form-control-solid" rows="10"></textarea>
+                            @error('description')
+                                <div class="is-invalid">
+                                    <span class="text-danger">
+                                        {{$message}}
+                                    </span>
+                                </div>
+                            @enderror
+                            {{-- <textarea name="description" id="desc" rows="10" cols="80">
+                                This is my textarea to be replaced with CKEditor 4.
+                            </textarea> --}}
                         </div>
                     </div>
                 </div>
@@ -102,7 +132,7 @@ Halaman Informasi
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                 &nbsp;
-                <a href="{{route('page-system.index')}}" class="btn btn-sm btn-secondary">
+                <a href="{{route('op-news.index')}}" class="btn btn-sm btn-secondary">
                     Kembali
                 </a>
             </div>
@@ -114,10 +144,10 @@ Halaman Informasi
 
 @section('script')
     <script>
-        $("#bidang_id").select2();
         $("#status_id").select2();
-        </script>
-    
+    </script>
+
+    <script src="{{ asset('tinymce/tinymce/tinymce.min.js') }}"></script>
     <script>
         document.querySelector('input[type="file"]').addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -134,13 +164,10 @@ Halaman Informasi
                 e.target.value = ''; // Reset input
             }
         });
-    </script>
-    <script src="{{ asset('tinymce/tinymce/tinymce.min.js') }}"></script>
 
-    <script>
         const example_image_upload_handler = (blobInfo, progress) => new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/upload-image'); // Pastikan ini POST
+            xhr.open('POST', '/op-upload-image'); // Pastikan ini POST
             xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
 
             xhr.upload.onprogress = (e) => {
@@ -169,7 +196,7 @@ Halaman Informasi
             selector: '#description',
             plugins: [
                 "advlist", "anchor", "autolink", "charmap", "code", "fullscreen", 
-                "image", "insertdatetime", "link", "lists", "media", 
+                "help", "image", "insertdatetime", "link", "lists", "media", 
                 "preview", "searchreplace", "table", "visualblocks", "code"
             ],
             toolbar: "undo redo |link image accordion | styles | bold italic underline strikethrough | align | bullist numlist | code",
@@ -178,9 +205,6 @@ Halaman Informasi
             images_file_types: 'jpg,svg,webp,png',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
             images_upload_handler: example_image_upload_handler,
-            document_base_url: '../',
-
         });
     </script>
-    
 @endsection

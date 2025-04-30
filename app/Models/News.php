@@ -29,6 +29,11 @@ class News extends Model
         return $this->belongsTo(Status::class, 'status_id', 'id');
     }
 
+    public function _user()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
     public function getFormattedCreatedAtAttribute()
     {
         return Carbon::parse($this->created_at)->locale('id')->translatedFormat('l, d F Y | H:i');

@@ -111,7 +111,8 @@
                     <div class="col-lg-12 mb-4">
                         <div class="form-group">
                             <label for="description" class="form-label">Konten Berita</label>
-                            <textarea id="description" name="description" class="form-control form-control-solid" rows="10">{{$news->description}}</textarea>
+                            {{-- <textarea id="description" name="description" class="form-control form-control-solid" rows="10">{{$news->description}}</textarea> --}}
+                            <textarea id="description" name="description" class="form-control form-control-solid" rows="10">{!! $news->description !!}</textarea>
                             @error('description')
                                 <div class="is-invalid">
                                     <span class="text-danger">
@@ -141,43 +142,7 @@
         $("#bidang_id").select2();
         $("#status_id").select2();
         </script>
-    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
-    <script>
-        tinymce.init({
-            selector: '#description',
-            plugins: [
-                'image', 'imagetools',
-                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-                'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
-            ],
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            file_picker_types: 'image',
-            file_picker_callback: function (callback, value, meta) {
-            if (meta.filetype === 'image') {
-                const input = document.createElement('input');
-                input.setAttribute('type', 'file');
-                input.setAttribute('accept', 'image/*');
-                input.onchange = function () {
-                    const file = this.files[0];
-                    const reader = new FileReader();
-                    reader.onload = function () {
-                        callback(reader.result, { alt: file.name });
-                    };
-                    reader.readAsDataURL(file);
-                };
-                input.click();
-            }},
-            tinycomments_author: 'Author name',
-            mergetags_list: [
-            { value: 'First.Name', title: 'First Name' },
-            { value: 'Email', title: 'Email' },
-            
-            ],
-            
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
-        });
-    </script>
+    <script src="{{ asset('tinymce/tinymce/tinymce.min.js') }}"></script>
     <script>
         document.querySelector('input[type="file"]').addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -193,6 +158,51 @@
                 });
                 e.target.value = ''; // Reset input
             }
+        });
+    </script>
+
+    <script>
+        const example_image_upload_handler = (blobInfo, progress) => new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/upload-image'); // Pastikan ini POST
+            xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+
+            xhr.upload.onprogress = (e) => {
+                progress(e.loaded / e.total * 100);
+            };
+
+            xhr.onload = () => {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    const json = JSON.parse(xhr.responseText);
+                    resolve(json.location);
+                } else {
+                    reject('HTTP Error: ' + xhr.status);
+                }
+            };
+
+            xhr.onerror = () => {
+                reject('Upload failed with status ' + xhr.status);
+            };
+
+            const formData = new FormData();
+            formData.append('file', blobInfo.blob(), blobInfo.filename());
+            xhr.send(formData);
+        });
+
+        tinymce.init({
+            selector: '#description',
+            plugins: [
+                "advlist", "anchor", "autolink", "charmap", "code", "fullscreen", 
+                "image", "insertdatetime", "link", "lists", "media", 
+                "preview", "searchreplace", "table", "visualblocks", "code"
+            ],
+            toolbar: "undo redo |link image accordion | styles | bold italic underline strikethrough | align | bullist numlist | code",
+            image_title: true,
+            file_picker_types: 'image',
+            images_file_types: 'jpg,svg,webp,png',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
+            images_upload_handler: example_image_upload_handler,
+            document_base_url: '../',
         });
     </script>
 @endsection

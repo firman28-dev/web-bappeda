@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Page_System;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class Page_System_Controller extends Controller
@@ -106,7 +107,7 @@ class Page_System_Controller extends Controller
                     }
                 }
                 $fileName = time() . '_' . $file->getClientOriginalName();
-                $file->move($_SERVER['DOCUMENT_ROOT'] . '/uploads/news/', $fileName);
+                $file->move($_SERVER['DOCUMENT_ROOT'] . '/uploads/page_sytem/', $fileName);
                 $page_system->image = $fileName;
             }
             $page_system->save();
@@ -131,15 +132,26 @@ class Page_System_Controller extends Controller
         return redirect()->back();
     }
 
+    // public function uploadImage(Request $request){
+    //     if ($request->hasFile('file')) {
+    //         $file = $request->file('file');
+    //         $path = $file->store('images2', 'public'); // Simpan di folder `storage/app/public/images`
+            
+    //         return response()->json(['location' => asset('storage/' . $path)]);
+    //     }
+    //     return response()->json(['error' => 'No file uploaded'], 400);
+
+    // }
+
     public function uploadImage(Request $request){
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $path = $file->store('images2', 'public'); // Simpan di folder `storage/app/public/images`
-            
-            return response()->json(['location' => asset('storage/' . $path)]);
+            $path = $file->store('images2', 'public');
+    
+            // Hasilkan URL publik yang benar seperti /storage/images2/namafile.png
+            return response()->json(['location' => Storage::url($path)]);
         }
-
+    
         return response()->json(['error' => 'No file uploaded'], 400);
-
     }
 }

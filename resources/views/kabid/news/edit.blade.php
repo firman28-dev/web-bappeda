@@ -1,19 +1,18 @@
 @extends('partials.admin.index')
 @section('heading')
-Halaman Informasi
+    Berita Bappeda
 @endsection
 @section('page')
-Halaman Informasi
+    Berita Bappeda
 @endsection
-
 
 @section('content')
     <div class="card shadow-sm rounded-4">
-        <form action="{{ route('page-system.update', $page_system->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('k-news.update', $news->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="card-header">
-                <h3 class="card-title">Edit Halaman Informasi</h3>
+                <h3 class="card-title">Edit Berita Bappeda</h3>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -27,9 +26,25 @@ Halaman Informasi
                                 name="title"
                                 id="title"
                                 autocomplete="title"
-                                value="{{$page_system->title}}"
+                                value="{{$news->title}}"
+                                readonly
                             >
-                            @error('title')
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="form-group">
+                            <label for="bidang_id" class="form-label">Bidang Bappeda</label>
+                            <input type="text"
+                                class="form-control form-control-solid rounded rounded-4"
+                                placeholder="Masukkan nama menu"
+                                required
+                                name="title"
+                                id="title"
+                                autocomplete="title"
+                                value="{{$news->_bidang->name}}"
+                                readonly
+                            >
+                            @error('bidang_id')
                                 <div class="is-invalid">
                                     <span class="text-danger">
                                         {{$message}}
@@ -38,18 +53,17 @@ Halaman Informasi
                             @enderror
                         </div>
                     </div>
-                   
                     <div class="col-lg-6 mb-4">
                         <div class="form-group">
                             <label for="image" class="form-label">Unggah Foto</label>
                             <input 
-                                type="file" 
+                                type="text" 
                                 name="image" 
                                 class="form-control form-control-solid" 
                                 accept="image/*"
-                                
                                 autocomplete="image"
                                 id="image"
+                                readonly
                             >
                             @error('image')
                                 <div class="text-danger">{{ $message }}</div>
@@ -69,7 +83,7 @@ Halaman Informasi
                             >
                                 <option value="" disabled selected>Pilih Status</option>
                                 @foreach($status as $data)
-                                    <option value="{{ $data->id }}" {{ $data->id == $page_system->status_id ? 'selected' : '' }}>
+                                    <option value="{{ $data->id }}" {{ $data->id == $news->status_id ? 'selected' : '' }}>
                                         {{ $data->name }}
                                     </option>
                                 @endforeach
@@ -85,16 +99,16 @@ Halaman Informasi
                     </div>
                     <div class="col-lg-12 mb-4">
                         <div class="form-group">
-                            <label for="desc" class="form-label">Konten Berita</label>
-                            <textarea id="description" name="description" class="form-control form-control-solid" rows="10">{!! $page_system->description !!}</textarea>
-                            {{-- @error('desc')
+                            <label for="description" class="form-label">Konten Berita</label>
+                            {{-- <textarea id="description" name="description" class="form-control form-control-solid" rows="10">{{$news->description}}</textarea> --}}
+                            <textarea id="description" name="description" class="form-control form-control-solid" rows="10" readonly>{!! $news->description !!}</textarea>
+                            @error('description')
                                 <div class="is-invalid">
-                                    
                                     <span class="text-danger">
                                         {{$message}}
                                     </span>
                                 </div>
-                            @enderror --}}
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -102,7 +116,7 @@ Halaman Informasi
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                 &nbsp;
-                <a href="{{route('page-system.index')}}" class="btn btn-sm btn-secondary">
+                <a href="{{route('k-news.index')}}" class="btn btn-sm btn-secondary">
                     Kembali
                 </a>
             </div>
@@ -117,7 +131,7 @@ Halaman Informasi
         $("#bidang_id").select2();
         $("#status_id").select2();
         </script>
-    
+    <script src="{{ asset('tinymce/tinymce/tinymce.min.js') }}"></script>
     <script>
         document.querySelector('input[type="file"]').addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -135,7 +149,6 @@ Halaman Informasi
             }
         });
     </script>
-    <script src="{{ asset('tinymce/tinymce/tinymce.min.js') }}"></script>
 
     <script>
         const example_image_upload_handler = (blobInfo, progress) => new Promise((resolve, reject) => {
@@ -179,8 +192,6 @@ Halaman Informasi
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
             images_upload_handler: example_image_upload_handler,
             document_base_url: '../',
-
         });
     </script>
-    
 @endsection
