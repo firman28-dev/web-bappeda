@@ -44,7 +44,6 @@ class Bidang_Controller extends Controller
             $bidang->label = $request->label;
             $bidang->status_id = $request->status_id;
             $bidang->save();
-            Alert::success('Success!', 'Berhasil Mengubah Data');
             return redirect()->route('bidang.index');
 
         } catch (\Throwable $th) {
@@ -80,7 +79,6 @@ class Bidang_Controller extends Controller
             $bidang->label = $request->label;
             $bidang->status_id = $request->status_id;
             $bidang->save();
-            Alert::success('Success!', 'Berhasil Mengubah Data');
             return redirect()->route('bidang.index');
 
         } catch (\Throwable $th) {
