@@ -24,7 +24,7 @@ class Guest_Page_System_Controller extends Controller
             return view('guest.page_system.index', $sent);
         }
         else{
-            return view('error.index');
+            return view('guest.error_page.error_404');
         }
         
     }

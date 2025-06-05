@@ -7,7 +7,6 @@ use App\Http\Requests\ListLinkRequest;
 use App\Models\List_Link;
 use App\Models\Status;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class List_Link_Controller extends Controller
 {
@@ -48,9 +47,8 @@ class List_Link_Controller extends Controller
         
         try {
             if ($file) {
-                $fileName = time(). '_' . $file->getClientOriginalName();
-                //untuk server
-                // $path = $file->storeAs('uploads/list_link', $fileName, 'public');
+                $unique = uniqid();
+                $fileName = $unique.'_'.time(). '_' . $file->getClientOriginalName();
                 $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/list_link/', $fileName);
             }
 
@@ -60,8 +58,7 @@ class List_Link_Controller extends Controller
             $list_link->path = $fileName;
             $list_link->status_id = $request->status_id;
             $list_link->save();
-            Alert::success('Success!', 'Berhasil Menambahkan Data');
-            return redirect()->route('list-link.index')->with('success', 'Berhasil Menambahkan data');
+            return redirect()->route('list-link.index')->with('success', 'Berhasil Menambahkan Data');
 
 
         } catch (\Throwable $th) {
@@ -105,18 +102,18 @@ class List_Link_Controller extends Controller
             if ($file) {
                 $oldFile = $_SERVER['DOCUMENT_ROOT'] . '/uploads/list_link/' . $list_link->path;
                 if (file_exists($oldFile)) {
-                    unlink($oldFile); // Hapus file lama
+                    unlink($oldFile); 
                 }
-                $fileName = time() . '_' . $file->getClientOriginalName();
+                $unique = uniqid();
+
+                $fileName = $unique.'_'.time().'_' . $file->getClientOriginalName();
                 $file->move($_SERVER['DOCUMENT_ROOT'] . '/uploads/list_link/', $fileName);
                 $list_link->path = $fileName;
             }
             
             $list_link->status_id = $request->status_id;
             $list_link->save();
-            Alert::success('Success!', 'Berhasil Mengubah Data');
-
-            return redirect()->route('list-link.index')->with('success', 'Berhasil Menambahkan data');
+            return redirect()->route('list-link.index')->with('success', 'Berhasil Mengubah Data');
 
 
         } catch (\Throwable $th) {
@@ -127,9 +124,12 @@ class List_Link_Controller extends Controller
     public function destroy($id){
         $list_link = List_Link::findOrFail($id);
         if($list_link){
+            $imagePath = public_path('uploads/list_link/' . $list_link->path);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
             $list_link->delete();
-            Alert::success('Success!', 'Berhasil Menghapus Data');
         }
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Berhasil Menghapus data');
     }
 }

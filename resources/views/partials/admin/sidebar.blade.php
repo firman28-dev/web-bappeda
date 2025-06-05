@@ -1,112 +1,171 @@
-<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
-    {{-- border bottom 0 --}}
-    <div class="app-sidebar-logo px-6 border-bottom-0" id="kt_app_sidebar_logo">
-        <a href="{{route('dashboard.index')}}">
-            <img alt="Logo" src="{{asset('assets/img/about-sumbar.png')}}" class=" app-sidebar-logo-default w-150px" />
-        </a>
-        <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary body-bg h-30px w-30px position-absolute top-50 start-100 translate-middle rotate" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="app-sidebar-minimize">
-            <span class="svg-icon svg-icon-2 rotate-180">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path opacity="0.5" d="M14.2657 11.4343L18.45 7.25C18.8642 6.83579 18.8642 6.16421 18.45 5.75C18.0358 5.33579 17.3642 5.33579 16.95 5.75L11.4071 11.2929C11.0166 11.6834 11.0166 12.3166 11.4071 12.7071L16.95 18.25C17.3642 18.6642 18.0358 18.6642 18.45 18.25C18.8642 17.8358 18.8642 17.1642 18.45 16.75L14.2657 12.5657C13.9533 12.2533 13.9533 11.7467 14.2657 11.4343Z" fill="currentColor" />
-                    <path d="M8.2657 11.4343L12.45 7.25C12.8642 6.83579 12.8642 6.16421 12.45 5.75C12.0358 5.33579 11.3642 5.33579 10.95 5.75L5.40712 11.2929C5.01659 11.6834 5.01659 12.3166 5.40712 12.7071L10.95 18.25C11.3642 18.6642 12.0358 18.6642 12.45 18.25C12.8642 17.8358 12.8642 17.1642 12.45 16.75L8.2657 12.5657C7.95328 12.2533 7.95328 11.7467 8.2657 11.4343Z" fill="currentColor" />
-                </svg>
-            </span>
-        </div>
-    </div>
-    
-    <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
-        <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer" data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
-            <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
-                
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('dashboard.index') ? 'active' : '' }}" href="{{route('dashboard.index')}}">
-                        <span class="menu-icon">
-                            <i class="fa-solid fa-house fs-3"></i>
-                        </span>
-                        <span class="menu-title">Dashboard</span>
-                    </a>
-                </div>
-                @if(Auth::user()->group_id == 4)
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('menu-public.*') ? 'active' : '' }}" href="{{route('menu-public.index')}}">
-                        <span class="menu-icon">
-                            <i class="fa-solid fa-house fs-3"></i>
-                        </span>
-                        <span class="menu-title">Menu Publik</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('list-link.*') ? 'active' : '' }}" href="{{route('list-link.index')}}">
-                        <span class="menu-icon">
-                            <i class="fa-solid fa-link fs-3"></i>
-                        </span>
-                        <span class="menu-title">Link Terkait</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('bidang.*') ? 'active' : '' }}" href="{{route('bidang.index')}}">
-                        <span class="menu-icon">
-                            <i class="fa-solid fa-link fs-3"></i>
-                        </span>
-                        <span class="menu-title">Bidang</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('news.*') ? 'active' : '' }}" href="{{route('news.index')}}">
-                        <span class="menu-icon">
-                            <i class="fa-solid fa-newspaper fs-3"></i>
-                        </span>
-                        <span class="menu-title">Berita</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('banner.*') ? 'active' : '' }}" href="{{route('banner.index')}}">
-                        <span class="menu-icon">
-                            <i class="fa-solid fa-newspaper fs-3"></i>
-                        </span>
-                        <span class="menu-title">Banner</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('page-system.*') ? 'active' : '' }}" href="{{route('page-system.index')}}">
-                        <span class="menu-icon">
-                            <i class="fa-solid fa-newspaper fs-3"></i>
-                        </span>
-                        <span class="menu-title">Halaman Informasi</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('user.*') ? 'active' : '' }}" href="{{route('user.index')}}">
-                        <span class="menu-icon">
-                            <i class="fa-solid fa-newspaper fs-3"></i>
-                        </span>
-                        <span class="menu-title">User</span>
-                    </a>
-                </div>
-                @endif
-                
-                @if(Auth::user()->group_id == 3)
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('op-news.*') ? 'active' : '' }}" href="{{route('op-news.index')}}">
-                        <span class="menu-icon">
-                            <i class="fa-solid fa-newspaper fs-3"></i>
-                        </span>
-                        <span class="menu-title">Berita</span>
-                    </a>
-                </div>
-                @endif
-
-                @if(Auth::user()->group_id == 1)
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('k-news.*') ? 'active' : '' }}" href="{{route('k-news.index')}}">
-                        <span class="menu-icon">
-                            <i class="fa-solid fa-newspaper fs-3"></i>
-                        </span>
-                        <span class="menu-title">Berita</span>
-                    </a>
-                </div>
-                @endif
+ <!-- Page Sidebar Start-->
+ <div class="sidebar-wrapper" data-sidebar-layout="stroke-svg">
+     <div>
+         <div class="logo-wrapper">
+            <a href="">
+                <img class="img-fluid for-light" src="{{ asset('assets/img/sumbar.png') }}" alt="" style="width: 30px">
+                {{-- <img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo.png') }}" alt=""> --}}
+                <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo_dark.png') }}" alt="">
+            </a>
+             <div class="back-btn">
+                <i class="fa-solid fa-angle-left"></i>
             </div>
+            <div class="toggle-sidebar">
+                <i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i>
+            </div>
+         </div>
+         <div class="logo-icon-wrapper">
+            <a href="">
+                <img class="img-fluid" src="{{ asset('assets/images/logo/logo-icon.png') }}" alt="">
+            </a>
         </div>
-    </div>
-</div>
+        <nav class="sidebar-main">
+            <div class="left-arrow" id="left-arrow">
+                <i data-feather="arrow-left"></i>
+            </div>
+            <div id="sidebar-menu">
+                <ul class="sidebar-links" id="simple-bar">
+                    <li class="back-btn">
+                        <div class="mobile-back text-end">
+                            <span>Back</span>
+                            <i class="fa-solid fa-angle-right ps-2" aria-hidden="true"></i>
+                        </div>
+                    </li>
+                    <li class="pin-title sidebar-main-title">
+                        <div>
+                            <h6>Pinned</h6>
+                        </div>
+                    </li>
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('dashboard.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-charts') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-charts') }}"></use>
+                            </svg>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    @if(Auth::user()->group_id == 4)
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('menu-public.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-home') }}"></use>
+                            </svg>
+                            <span>Menu Public</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('list-link.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-reports') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-reports') }}"></use>
+                            </svg>
+                            <span>Link Terkait</span>
+                        </a>
+                    </li>
+                    
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('bidang.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-task') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-task') }}"></use>
+                            </svg>
+                            <span>Bidang Bappeda</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('news.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-blog') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-blog') }}"></use>
+                            </svg>
+                            <span>Berita Bappeda</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('banner.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-gallery') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-gallery') }}"></use>
+                            </svg>
+                            <span>Infografis</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('page-system.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-learning') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-learning') }}"></use>
+                            </svg>
+                            <span>Halaman Informasi</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('user.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-user') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-user') }}"></use>
+                            </svg>
+                            <span>User</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(Auth::user()->group_id == 3)
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('op-news.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-blog') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-blog') }}"></use>
+                            </svg>
+                            <span>Berita Bappeda</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(Auth::user()->group_id == 1)
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('k-news.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-blog') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-blog') }}"></use>
+                            </svg>
+                            <span>Berita Bappeda</span>
+                        </a>
+                    </li>
+                    @endif
+
+
+
+                   
+                </ul>
+            </div>
+            <div class="right-arrow" id="right-arrow">
+                <i data-feather="arrow-right"></i>
+            </div>
+        </nav>
+     </div>
+ </div>
+ <!-- Page Sidebar Ends-->

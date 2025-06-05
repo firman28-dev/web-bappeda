@@ -1,4 +1,4 @@
-@extends('partials.admin.index')
+{{-- @extends('partials.admin.index')
 @section('heading')
 Data user
 @endsection
@@ -168,4 +168,191 @@ Data user
         
 
     </script>
+@endsection --}}
+
+@extends('partials.admin.master')
+
+@section('title', 'User')
+
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/select2.css') }}">
 @endsection
+
+@section('main_content')
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>User<h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="">
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item active">Tambah User</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Tambah User </h5>
+                </div>
+                <div class="card-body add-post">
+                    <form class="row needs-validation theme-form" action="{{ route('user.store') }}" method="POST" id="userForm">
+                        @csrf
+                        <div class="col-lg-6">
+                            <label>Role Akses</label>
+                            <select class="form-select js-example-basic-single col-sm-12" name="group_id" id="group_id">
+                                @foreach($group as $data)
+                                    <option value="{{ $data->id }}" {{ old('group_id') == $data->id ? 'selected' : '' }}>
+                                        {{ $data->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('group_id')
+                                <div class="is-invalid">
+                                    <span class="text-danger">
+                                        {{$message}}
+                                    </span>
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6 d-none" id="operatorField">
+                            <label>Bidang</label>
+                            <select class="form-select js-example-basic-single col-sm-12" name="bidang_id" id="bidang_id">
+                                <option value="" disabled selected>Pilih Bidang</option>
+                                @foreach($bidang as $data)
+                                    <option value="{{ $data->id }}" {{ old('bidang_id') == $data->id ? 'selected' : '' }}>
+                                        {{ $data->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('bidang_id')
+                                <div class="is-invalid">
+                                    <span class="text-danger">
+                                        {{$message}}
+                                    </span>
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Username</label>
+                            <input 
+                                class="form-control" 
+                                type="text"
+                                placeholder="Username"
+                                name="username"
+                                id="username"
+                                autocomplete="username"
+                            >
+                            @error('username')
+                                <div class="is-invalid">
+                                    <span class="text-danger">
+                                        {{$message}}
+                                    </span>
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Password</label>
+                            <input 
+                                class="form-control" 
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                                id="password"
+                                autocomplete="password"
+                            >
+                            @error('password')
+                                <div class="is-invalid">
+                                    <span class="text-danger">
+                                        {{$message}}
+                                    </span>
+                                </div>
+                            @enderror
+                        </div>
+                    
+                        <div class="common-flex justify-content-end mt-3">
+                            <button class="btn btn-primary" type="submit">Tambah</button>
+                            <a href="{{route('user.index')}}" class="btn btn-secondary">
+                                Kembali
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets/js/select2/select2-custom.js') }}"></script>
+    <script src="{{ asset('assets/js/custom-add-product4.js') }}"></script>
+    <script src="{{ asset('assets/js/bookmark/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom-validation/validation.js') }}"></script>
+
+    <script>
+       $(document).ready(function() {
+
+            const operatorKabkotaField = document.getElementById('operatorField');
+
+            $('#group_id').on('change', function(e) {
+                const selectedValue = $(this).val();
+                // console.log(selectedValue);
+                
+                if (selectedValue === '2') {
+                    operatorKabkotaField.classList.add('d-none');
+                    $('#bidang_id').prop('required', false);
+                } else {
+                    operatorKabkotaField.classList.remove('d-none');
+                    $('#bidang_id').prop('required', true);
+                }
+            });
+
+        });
+        
+        $('#group_id').change(function() {
+            $('#password').val("sumbarprov");
+            $('#password').prop('readonly', true);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Untuk semua input dan select
+            document.querySelectorAll('input, select').forEach(function(element) {
+                element.addEventListener('input', function() {
+                    const invalidDiv = this.parentElement.querySelector('.is-invalid');
+                    if (invalidDiv) {
+                        invalidDiv.remove(); // Hapus pesan error
+                    }
+                    this.classList.remove('is-invalid'); // Hapus class is-invalid dari input
+                });
+
+                element.addEventListener('change', function() {
+                    const invalidDiv = this.parentElement.querySelector('.is-invalid');
+                    if (invalidDiv) {
+                        invalidDiv.remove();
+                    }
+                    this.classList.remove('is-invalid');
+                });
+            });
+        });
+
+    </script>
+@endsection
+

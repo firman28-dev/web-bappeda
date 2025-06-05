@@ -52,8 +52,10 @@ class Menu_Public_Controller extends Controller
             $menu->url = $request->url;
             $menu->order_no = $request->order_no;
             $menu->save();
-            Alert::success('Success!', 'Berhasil Menambahkan Data');
-            return redirect()->route('menu-public.index');
+            // Alert::success('Success!', 'Berhasil Menambahkan Data');
+            // return redirect()->route('menu-public.index');
+            return redirect()->route('menu-public.index')->with('success', 'Berhasil menambahkan data');
+
 
         } catch (\Throwable $th) {
             throw $th;
@@ -94,7 +96,7 @@ class Menu_Public_Controller extends Controller
             $menu->url = $request->url;
             $menu->order_no = $request->order_no;
             $menu->save();
-            Alert::success('Success!', 'Berhasil Mengubah Data');
+            // Alert::success('Success!', 'Berhasil Mengubah Data');
             return redirect()->route('menu-public.index')->with('success', 'Berhasil Menambahkan data');
 
         } catch (\Throwable $th) {
@@ -106,13 +108,11 @@ class Menu_Public_Controller extends Controller
         $menu = Menu_Public::find($id);
         $isParentUsed = Menu_Public::where('parent_id', $id)->exists();
         if ($isParentUsed) {
-            Alert::error('Error!', 'Gagal Menghapus Data Karena Merupakan Parent');
-            return redirect()->back();
+            return redirect()->back()->with('error', __('Gagal Menghapus Data Karena Merupakan Parent'));
         }
         else{
             $menu->delete();
-            Alert::success('Success!', 'Berhasil Menghapus Data');
-            return redirect()->back();
+            return redirect()->back()->with('success', __('Berhasil Menghapus Data'));
         }
 
     }

@@ -8,6 +8,7 @@ use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use Str;
 
 class Page_System_Controller extends Controller
 {
@@ -48,15 +49,17 @@ class Page_System_Controller extends Controller
             $page_system->description = $request->description;
             $page_system->status_id = $request->status_id;
             if ($file) {
-                $fileName = time(). '_' . $file->getClientOriginalName();
+                $unique = uniqid();
+
+                $fileName = $unique.'_'.time(). '_' . $file->getClientOriginalName();
                 //untuk server
                 // $path = $file->storeAs('uploads/list_link', $fileName, 'public');
                 $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/page_system/', $fileName);
                 $page_system->image = $fileName;
             }
             $page_system->save();
-            Alert::success('Success!', 'Berhasil Menambahkan Data');
-            return redirect()->route('page-system.index');
+            // Alert::success('Success!', 'Berhasil Menambahkan Data');
+            return redirect()->route('page-system.index')->with('success', 'Berhasil Menambahkan Data');
 
         } catch (\Throwable $th) {
             throw $th;
@@ -99,6 +102,7 @@ class Page_System_Controller extends Controller
             $page_system->status_id = $request->status_id;
 
             if ($file) {
+                $unique = uniqid();
                 if (!empty($page_system->image)) {
                     $oldFile = $_SERVER['DOCUMENT_ROOT'] . '/uploads/page_sytem/' . $page_system->image;
             
@@ -106,13 +110,12 @@ class Page_System_Controller extends Controller
                         unlink($oldFile); // Hapus file lama
                     }
                 }
-                $fileName = time() . '_' . $file->getClientOriginalName();
+                $fileName = $unique.'_'.time() . '_' . $file->getClientOriginalName();
                 $file->move($_SERVER['DOCUMENT_ROOT'] . '/uploads/page_sytem/', $fileName);
                 $page_system->image = $fileName;
             }
             $page_system->save();
-            Alert::success('Success!', 'Berhasil Mengubah Data');
-            return redirect()->route('page-system.index');
+            return redirect()->route('page-system.index')->with('success', 'Berhasil Mengubah Data');
 
         } catch (\Throwable $th) {
             throw $th;
@@ -121,35 +124,33 @@ class Page_System_Controller extends Controller
 
     public function destroy($id){
         $page_system = Page_System::findOrFail($id);
-        if($page_system){
+        // return $page_system;
+        if($page_system->image){
             $oldPhotoPath = $_SERVER['DOCUMENT_ROOT']. '/uploads/page_system/' .$page_system->image;
             if (file_exists($oldPhotoPath)) {
                 unlink($oldPhotoPath);
             }
         }
         $page_system->delete();
-        Alert::success('Success!', 'Berhasil Menghapus Data');
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Berhasil Menghapus Data');
     }
 
-    // public function uploadImage(Request $request){
-    //     if ($request->hasFile('file')) {
-    //         $file = $request->file('file');
-    //         $path = $file->store('images2', 'public'); // Simpan di folder `storage/app/public/images`
-            
-    //         return response()->json(['location' => asset('storage/' . $path)]);
-    //     }
-    //     return response()->json(['error' => 'No file uploaded'], 400);
-
-    // }
 
     public function uploadImage(Request $request){
         if ($request->hasFile('file')) {
+
             $file = $request->file('file');
-            $path = $file->store('images2', 'public');
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $destination = public_path('uploads/page_system/konten');
+            $file->move($destination, $filename);
+
+            $url = asset('uploads/page_system/konten/' . $filename);
+            return response()->json(['location' => $url]);
+
+            // $path = $file->store('images2', 'public');
     
             // Hasilkan URL publik yang benar seperti /storage/images2/namafile.png
-            return response()->json(['location' => Storage::url($path)]);
+            // return response()->json(['location' => Storage::url($path)]);
         }
     
         return response()->json(['error' => 'No file uploaded'], 400);

@@ -1,4 +1,4 @@
-@extends('partials.admin.index')
+{{-- @extends('partials.admin.index')
 @section('heading')
 Bidang Bappeda 
 @endsection
@@ -81,4 +81,95 @@ Bidang Bappeda
                 ">"
         });
     </script>
+@endsection --}}
+
+@extends('partials.admin.master')
+
+@section('title', 'Bidang Bappeda')
+
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/jquery.dataTables.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/dataTables.bootstrap5.css') }}">
 @endsection
+
+@section('main_content')
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Bidang Bappeda</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="">
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item active">Bidang Bappeda</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid datatable-init">
+    <div class="card">
+        <div class="card-header pb-0 card-no-border">
+            <h5>Daftar Bidang Bappeda</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive custom-scrollbar">
+                <table class="display border table-striped" id="basic-1" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th style="width: 90px"> <span class="c-o-light f-w-600">No</span></th>
+                            <th class="text-start"> <span class="c-o-light f-w-600">Nama Bidang</span></th>
+                            <th> <span class="c-o-light f-w-600">Singkatan</span></th>
+                            <th> <span class="c-o-light f-w-600">Status</span></th>
+                            {{-- <th> <span class="c-o-light f-w-600">Actions</span></th> --}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                       
+                        @foreach ($bidang as $item)
+                            <tr>
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td>{{ $item->name ?? '-' }}</td>
+                                <td>{{ $item->label ?? '-' }}</td>
+                                <td> 
+                                    <span class="badge {{ $item->_status->id == 1 ? 'badge-light-success' : 'badge-light-danger' }}"> {{ $item->_status->name }}</span>
+                                </td>
+                                {{-- <td class="text-center">
+                                    <ul class="action text-center">
+                                        <li class="edit"> 
+                                            <a href="#!"><i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
+                                        </li>
+                                        
+                                    </ul>
+                                </td> --}}
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+
+@section('scripts')
+<script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/js/datatable/datatables/dataTables1.js') }}"></script>
+<script src="{{ asset('assets/js/datatable/datatables/dataTables.bootstrap5.js') }}"></script>
+<script src="{{ asset('assets/js/datatable/datatables/datatable.custom2.js') }}"></script>
+<script src="{{ asset('assets/js/datatable/datatable_advance.js') }}"></script>
+<script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+@endsection
+

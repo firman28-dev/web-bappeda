@@ -14,7 +14,7 @@
                 <div class="col-lg-8">
                     <div class="card rounded-custom mb-5 border-0">
                         <div class="card-body p-8">
-                            <div class="page-content text-custom">
+                            <div class="page-content text-custom content-description">
                                 @if ($page_system->image)
                                     <img src="{{ asset('uploads/page_system/'.$page_system->image) }}" class="card-img-top" alt="News Image" style="object-fit: cover;">
                                 @endif

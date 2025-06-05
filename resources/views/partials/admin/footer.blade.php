@@ -1,8 +1,22 @@
-<div id="kt_app_footer" class="app-footer">
-    <div class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
-        <div class="text-dark order-2 order-md-1">
-            <span class="text-muted fw-semibold me-1">&copy; {{ date('Y') }}</span>
-            <a href="" target="_blank" class="text-gray-800 text-hover-primary">Bappeda Provinsi Sumbar</a>
-        </div>
-    </div>
-</div>
+ <!-- footer start-->
+ @switch(Route::currentRouteName())
+   
+ @case('footer_dark')
+     <footer class="footer footer-dark">
+     @break
+
+ @case('footer_fixed')
+     <footer class="footer footer-fix">
+     @break
+
+ @default
+      <footer class="footer">
+@endswitch
+     <div class="container-fluid">
+         <div class="row">
+             <div class="col-md-12 footer-copyright text-center">
+                 <p class="mb-0">Copyright <span class="year-update"> </span> © Tim IT Bappeda Sumbar </p>
+             </div>
+         </div>
+     </div>
+ </footer>

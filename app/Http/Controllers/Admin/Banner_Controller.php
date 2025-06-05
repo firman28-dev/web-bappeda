@@ -41,7 +41,8 @@ class Banner_Controller extends Controller
         
         try {
             if ($file) {
-                $fileName = time(). '_' . $file->getClientOriginalName();
+                $unique = uniqid();
+                $fileName = $unique.'_'.time(). '_' . $file->getClientOriginalName();
                 //untuk server
                 // $path = $file->storeAs('uploads/list_link', $fileName, 'public');
                 $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/banner/', $fileName);
@@ -52,8 +53,8 @@ class Banner_Controller extends Controller
             $banner->image = $fileName;
             $banner->status_id = $request->status_id;
             $banner->save();
-            Alert::success('Success!', 'Berhasil Menambahkan Data');
-            return redirect()->back();
+            return redirect()->route('banner.index')->with('success', 'Berhasil Menambahkan data');
+
 
         } catch (\Throwable $th) {
             throw $th;
@@ -63,12 +64,11 @@ class Banner_Controller extends Controller
     public function update(Request $request, $id){
         $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'status_id2' => 'required'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'status_id' => 'required'
         ],[
             'name.required' => 'Nama wajib diisi.',
-            'status_id2.required' => 'Status wajib diisi.',
-            'image.required' => 'Foto wajib diunggah.',
+            'status_id.required' => 'Status wajib diisi.',
             'image.image' => 'Foto yang diunggah harus berupa gambar.',
             'image.mimes' => 'Foto harus berformat jpeg, png, jpg, atau gif.',
             'image.max' => 'Ukuran foto maksimal 2MB.',
@@ -79,24 +79,59 @@ class Banner_Controller extends Controller
         try {
             
             $banner = Banner::find($id);
-            
+            // return $banner;
             $banner->name = $request->name;
             if ($file) {
+                $unique = uniqid();
                 $oldFile = $_SERVER['DOCUMENT_ROOT'] . '/uploads/banner/' . $banner->image;
                 if (file_exists($oldFile)) {
                     unlink($oldFile); // Hapus file lama
                 }
-                $fileName = time() . '_' . $file->getClientOriginalName();
+                $fileName = $unique.'_'.time() . '_' . $file->getClientOriginalName();
                 $file->move($_SERVER['DOCUMENT_ROOT'] . '/uploads/banner/', $fileName);
                 $banner->image = $fileName;
             }
-            $banner->status_id = $request->status_id2;
+            $banner->status_id = $request->status_id;
             $banner->save();
-            Alert::success('Success!', 'Berhasil Mengubah Data');
-            return redirect()->back();
+            return redirect()->route('banner.index')->with('success', 'Berhasil Mengubah data');
+
 
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function create(){
+        $status = Status::whereIn('id', [4, 5])->get();
+        $sent = [
+            'status' => $status
+        ];
+        return view('admin.banner.create', $sent);
+
+    }
+
+    public function edit($id){
+        $banner = Banner::findOrFail($id);
+        $status = Status::whereIn('id', [4, 5])->get();
+
+        $sent = [
+            'banner' => $banner,
+            'status' => $status
+        ];
+        return view('admin.banner.edit', $sent);
+
+    }
+
+    public function destroy($id){
+        $banner = Banner::findOrFail($id);
+        if ($banner->image) {
+            $imagePath = public_path('uploads/banner/' . $banner->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+    
+        $banner->delete();
+        return redirect()->back()->with('success', 'Berhasil menghapus data');
     }
 }

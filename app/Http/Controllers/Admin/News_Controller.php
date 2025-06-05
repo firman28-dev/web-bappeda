@@ -8,6 +8,7 @@ use App\Models\News;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Str;
 
 class News_Controller extends Controller
 {
@@ -49,15 +50,15 @@ class News_Controller extends Controller
             $news->bidang_id = $request->bidang_id;
             $news->status_id = $request->status_id;
             if ($file) {
-                $fileName = time(). '_' . $file->getClientOriginalName();
+                $unique = uniqid();
+                $fileName = $unique.'_'.time(). '_' . $file->getClientOriginalName();
                 //untuk server
                 // $path = $file->storeAs('uploads/list_link', $fileName, 'public');
                 $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/news/', $fileName);
                 $news->image = $fileName;
             }
             $news->save();
-            Alert::success('Success!', 'Berhasil Menambahkan Data');
-            return redirect()->route('news.index');
+            return redirect()->route('news.index')->with('success', 'Berhasil Menambahkan Data');
 
         } catch (\Throwable $th) {
             throw $th;
@@ -110,8 +111,7 @@ class News_Controller extends Controller
                 $news->image = $fileName;
             }
             $news->save();
-            Alert::success('Success!', 'Berhasil Mengubah Data');
-            return redirect()->route('news.index');
+            return redirect()->route('news.index')->with('success', 'Berhasil Mengubah Data');
 
         } catch (\Throwable $th) {
             throw $th;
@@ -120,15 +120,43 @@ class News_Controller extends Controller
 
     public function destroy($id){
         $news = News::findOrFail($id);
-        if($news){
-            $oldPhotoPath = $_SERVER['DOCUMENT_ROOT']. 'uploads/news/' .$news->image;
+        if($news->image){
+            $oldPhotoPath = $_SERVER['DOCUMENT_ROOT']. '/uploads/news/' .$news->image;
             if (file_exists($oldPhotoPath)) {
                 unlink($oldPhotoPath);
             }
         }
+
+        // if($news){
+        //     $oldPhotoPath = $_SERVER['DOCUMENT_ROOT']. 'uploads/news/' .$news->image;
+        //     if (file_exists($oldPhotoPath)) {
+        //         unlink($oldPhotoPath);
+        //     }
+        // }
         $news->delete();
-        Alert::success('Success!', 'Berhasil Menghapus Data');
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Berhasil Menghapus Data');
+        // Alert::success('Success!', 'Berhasil Menghapus Data');
+        // return redirect()->back();
+    }
+
+    public function uploadImage(Request $request){
+        if ($request->hasFile('file')) {
+
+            $file = $request->file('file');
+            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $destination = public_path('uploads/news/konten');
+            $file->move($destination, $filename);
+
+            $url = asset('uploads/news/konten/' . $filename);
+            return response()->json(['location' => $url]);
+
+            // $path = $file->store('images2', 'public');
+    
+            // Hasilkan URL publik yang benar seperti /storage/images2/namafile.png
+            // return response()->json(['location' => Storage::url($path)]);
+        }
+    
+        return response()->json(['error' => 'No file uploaded'], 400);
     }
 
    

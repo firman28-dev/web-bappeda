@@ -1,4 +1,4 @@
-@extends('partials.admin.index')
+{{-- @extends('partials.admin.index')
 @section('heading')
     User Bappeda
 @endsection
@@ -137,4 +137,156 @@
                 ">"
         });
     </script>
+@endsection --}}
+@extends('partials.admin.master')
+
+@section('title', 'User')
+
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/jquery.dataTables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/dataTables.bootstrap5.css') }}">
+@endsection
+
+@section('main_content')
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>User<h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="">
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item active">User</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid datatable-init" >
+    <div class="card">
+        <div class="card-header pb-0 card-no-border">
+            <h5>Daftar User</h5>
+        </div>
+        <div class="card-body">
+            
+            <a href="{{route('user.create')}}" class="btn btn-sm btn-primary mb-3">
+                <i class="fa-solid fa-plus pe-1"></i>
+                Tambah
+            </a>
+            {{-- <button class="btn btn-sm btn-primary mb-3" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal">Tambah</button> --}}
+
+            <div class="table-responsive custom-scrollbar">
+                <table class="display border table-striped" id="basic-1" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th > <span class="c-o-light f-w-600">No</span></th>
+                            <th> <span class="c-o-light f-w-600">Nama</span></th>
+                            <th> <span class="c-o-light f-w-600">Username</span></th>
+                            <th> <span class="c-o-light f-w-600">Email</span></th>
+                            <th> <span class="c-o-light f-w-600">Role</span></th>
+                            <th> <span class="c-o-light f-w-600">Bidang</span></th>
+                            <th> <span class="c-o-light f-w-600">Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                       
+                        @foreach ($users as $item)
+                            <tr>
+                                <td class="text-right">{{ $loop->iteration }}</td>
+                                <td>{{ $item->name ?? '-' }}</td>
+                                <td>{{ $item->username ?? '-' }}</td>
+                                <td>{{ $item->email ?? '-' }}</td>
+                                <td>{{ $item->_group->name ?? '-' }}</td>
+
+                                <td>{{ $item->_bidang->label ?? '-' }}</td>
+
+                                
+                                <td>
+                                    <ul class="action">
+                                        <li class="edit"> 
+                                            <a href=""><i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
+                                        </li>
+                                        <li class="reset"> 
+                                            <a href="" data-bs-toggle="modal" data-bs-target="#resetPassword{{ $item->id }}">
+                                                <i class="fa-solid fa-key"></i>
+                                            </a>
+                                            <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="resetPassword{{ $item->id }}">
+                                                <form action="{{ route('user.resetPassword', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('patch')
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Apakah yakin ingin mereset password ke default "sumbarprov"?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                <button type="submmit" class="btn btn-primary">Simpan</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                              
+                                            </div>
+                                        </li>
+                                        <li class="delete">
+                                            <a href="" data-bs-target="#confirmDelete{{ $item->id }}" data-bs-toggle="modal">
+                                                <i class="fa-solid fa-trash-can" ></i>
+                                            </a>
+                                            <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="confirmDelete{{ $item->id }}">
+                                                <form action="{{ route('user.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Apakah yakin ingin menghapus data?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                <button type="submmit" class="btn btn-danger">Hapus</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                              
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/dataTables1.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom2.js') }}"></script>
 @endsection

@@ -16,6 +16,7 @@ use App\Http\Controllers\Guest\Guest_Page_System_Controller;
 use App\Http\Controllers\Guest\Home_Controller;
 use App\Http\Controllers\Kabid\News_Kabid_Controller;
 use App\Http\Controllers\Operator\News_Operator_Controller;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +43,7 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/unauthorized', function () {
-        return view('error.unauthorized');
+        return view('error_page.error_403');
     })->name('unauthorized');
 
     Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
@@ -53,6 +54,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/profile/update-profile', [User_Controller::class, 'updateProfile'])->name('user.updateProfile');
     Route::put('/profile/update-password', [User_Controller::class, 'updatePassword'])->name('user.updatePassword');
 
+    Route::post('/upload-image-information', [Page_System_Controller::class, 'uploadImage'])->name('upload.imageInformation');
+    Route::post('/upload-image-news', [News_Controller::class, 'uploadImage'])->name('upload.imageNews');
+
+
     Route::group(['middleware' => ['superadmin']], function () {
         Route::resource('user', User_Controller::class);
         Route::patch('/user/{id}/reset-password', [User_Controller::class, 'resetPassword'])->name('user.resetPassword');
@@ -62,8 +67,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('bidang', Bidang_Controller::class);
         Route::resource('banner', Banner_Controller::class);
         Route::resource('news', News_Controller::class);
+        // Route::post('/upload-image', [UploadController::class, 'store']);
 
-        Route::post('/upload-image', [Page_System_Controller::class, 'uploadImage'])->name('upload.image');
         Route::resource('page-system', Page_System_Controller::class);
     });
 
@@ -79,13 +84,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/k-news/data', [News_Kabid_Controller::class, 'getData'])->name('k-news.data');
     });
     
-
-    //menu public
     
 });
 
-
-//guest
 
 Route::get('/link-storage', function () {
     // Menjalankan perintah storage:link
