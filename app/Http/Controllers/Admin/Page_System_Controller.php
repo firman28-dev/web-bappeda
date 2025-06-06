@@ -140,17 +140,13 @@ class Page_System_Controller extends Controller
         if ($request->hasFile('file')) {
 
             $file = $request->file('file');
-            $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-            $destination = public_path('uploads/page_system/konten');
+            $filename = Str::random(20) . '_'.$file->getClientOriginalName();
+            $destination = $_SERVER['DOCUMENT_ROOT'] .  '/uploads/page_system/konten';
             $file->move($destination, $filename);
 
             $url = asset('uploads/page_system/konten/' . $filename);
             return response()->json(['location' => $url]);
 
-            // $path = $file->store('images2', 'public');
-    
-            // Hasilkan URL publik yang benar seperti /storage/images2/namafile.png
-            // return response()->json(['location' => Storage::url($path)]);
         }
     
         return response()->json(['error' => 'No file uploaded'], 400);
