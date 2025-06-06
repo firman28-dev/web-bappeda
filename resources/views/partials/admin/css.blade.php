@@ -18,6 +18,8 @@
 <!-- Plugins css Ends-->
 <!-- Bootstrap css-->
 @vite(['public/assets/scss/style.scss'])
+{{-- @vite(['public/assets/scss/style.scss']) --}}
+
 
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/bootstrap.css') }}">
 <!-- App css-->
