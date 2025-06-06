@@ -18,4 +18,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/resources/views/partials/css.blade.php
+/resources/views/partials/admin/css.blade.php
