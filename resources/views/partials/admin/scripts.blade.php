@@ -20,6 +20,8 @@
  @yield('scripts')
  <!-- Plugins JS Ends-->
  <!-- Theme js-->
+ <!-- Theme js-->
+
  <script src="{{ asset('assets/js/script.js') }}"></script>
  <script src="{{ asset('assets/js/script1.js') }}"></script>
  <script src="{{ asset('assets/js/toastr.min.js') }}"></script>
