@@ -16,6 +16,8 @@
 @yield('css')
 
 <!-- Plugins css Ends-->
+<!-- Plugins css Ends-->
+
 <!-- Bootstrap css-->
 {{-- @vite(['public/assets/scss/style.sscss']) --}}
 
