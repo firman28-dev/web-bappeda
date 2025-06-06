@@ -4,7 +4,6 @@
          <div class="logo-wrapper">
             <a href="">
                 <img class="img-fluid for-light" src="{{ asset('assets/img/sumbar.png') }}" alt="" style="width: 30px">
-                {{-- <img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo.png') }}" alt=""> --}}
                 <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo_dark.png') }}" alt="">
             </a>
              <div class="back-btn">
