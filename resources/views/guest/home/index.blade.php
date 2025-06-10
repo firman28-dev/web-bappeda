@@ -6,7 +6,7 @@
             Your browser does not support the video tag.
         </video>
     </div> --}}
-    <div class="curve-bg">
+    {{-- <div class="curve-bg"> --}}
         {{-- <video autoplay muted loop class="video-bg">
             <source src="{{asset('assets/video/MASJID RAYA.mp4')}}" type="video/mp4">
             Your browser does not support the video tag.
@@ -16,7 +16,7 @@
                 <path fill="#fff" fill-opacity="1" d="M0,192L120,208C240,224,480,256,720,256C960,256,1200,224,1320,208L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
             </svg>
         </div> --}}
-    </div>
+    {{-- </div> --}}
 
     <div data-aos="fade-up"
         data-aos-anchor-placement="bottom-bottom"
@@ -40,11 +40,11 @@
     <div data-aos="fade-up"
         data-aos-duration="2000">
         <div class="container">
-            <div class="row align-items-stretch d-flex flex-row">
-                <div class="col-lg-6">
+            <div class="row align-items-stretch d-flex ">
+                <div class="col-lg-6 mb-lg-0 mb-15">
                     <h1 class="display-6 text-center mb-2">Berita Terbaru</h1>
                     @foreach ($news as $item)
-                        <div class="card shadow-sm rounded-4 overflow-hidden h-100 border-0" >
+                        <div class="card shadow-sm overflow-hidden h-100 border-0 rounded-custom mb-7">
                             <div class="position-relative">
                                 @php
                                     $allowedExtensions = ['png', 'jpg', 'jpeg'];
@@ -56,9 +56,7 @@
                                                 ? asset('uploads/news/' . $item->image)
                                                 : asset('uploads/news/default.jpg');
                                 @endphp
-
                                 <img src="{{ $imageUrl }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 250px; object-fit: cover;">
-                        
                                 <div class="position-absolute top-0 start-0 bg-orange text-white p-2 text-center" style="width: 60px;">
                                     @php
                                         $date = \Carbon\Carbon::parse($item->created_at);
@@ -69,7 +67,7 @@
                             </div>
                             <div class="card-body d-flex flex-column">
                                 <div class="d-flex justify-content-between text-muted small mb-2">
-                                    <span><i class="fa-solid fa-eye"></i> {{$item->hits}} Viewers</span>
+                                    <span><i class="fa-solid fa-eye"></i> {{$item->hits ?? '0'}} Viewers</span>
                                     <span>{{ $item->_user->username ?? ' Admin' }}</span>
                                 </div>
                                 @php
@@ -89,7 +87,6 @@
                                     {{ $shortText }}
                                 </div>          
                             
-                                <!-- Tombol baca selengkapnya dipaksa ke bawah -->
                                 <div class="mt-auto">
                                     <a href="{{ route('guest.news', $item->id) }}" class="text-decoration-none d-inline-flex align-items-center text-orange fw-semibold">
                                         <span>Baca Selengkapnya</span>
@@ -99,14 +96,14 @@
                                     </a>
                                 </div>
                             </div>
-                            
                         </div>
-                       
                     @endforeach
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-6 text-center mb-2">Realisasi Bappeda</h1>
-                    <div class="card h-100 shadow-sm" style="max-height: 500px">
+                    <div>
+                        <h1 class="display-6 text-center mb-2">Realisasi Bappeda</h1>
+                    </div>
+                    <div class="card h-100 shadow-sm rounded-custom">
                         <div class="card-body">
                             <div class="d-flex flex-column">
                                 <div class="row">

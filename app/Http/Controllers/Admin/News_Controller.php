@@ -144,7 +144,8 @@ class News_Controller extends Controller
 
             $file = $request->file('file');
             $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-            $destination = public_path('uploads/news/konten');
+            $destination = $_SERVER['DOCUMENT_ROOT'] .  '/uploads/news/konten';
+            // $destination = public_path('uploads/news/konten');
             $file->move($destination, $filename);
 
             $url = asset('uploads/news/konten/' . $filename);
