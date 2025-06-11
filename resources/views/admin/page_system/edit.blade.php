@@ -484,7 +484,6 @@ Halaman Informasi
 
     <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/js/select2/select2-custom.js') }}"></script>
-    <script src="{{ asset('assets/js/custom-add-product5.js') }}"></script>
     <script src="{{ asset('assets/js/bookmark/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom-validation/validation.js') }}"></script>
     <script src="{{ asset('tinymce/tinymce/tinymce.min.js') }}"></script>
@@ -520,6 +519,7 @@ Halaman Informasi
 
         tinymce.init({
             selector: '#description',
+            license_key: 'gpl',
             plugins: [
                 "advlist", "anchor", "autolink", "charmap", "code", "fullscreen", 
                 "help", "image", "insertdatetime", "link", "lists", "media", 

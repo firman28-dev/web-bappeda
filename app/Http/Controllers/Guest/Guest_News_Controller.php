@@ -27,7 +27,8 @@ class Guest_News_Controller extends Controller
             return view('guest.news.index', $sent);
         }
         else{
-            return view('error.index');
+            return view('guest.error_page.error_404');
+            // return view('error.index');
         }
         
 
@@ -49,7 +50,8 @@ class Guest_News_Controller extends Controller
             return view('guest.news.show', $sent);
         }
         else{
-            return view('error.index');
+            return view('guest.error_page.error_404');
+            // return view('error.index');
         }
 
     }

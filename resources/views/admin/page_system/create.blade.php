@@ -271,6 +271,7 @@ Halaman Informasi
                                     <div class="email-wrapper">
                                         <div class="theme-form">
                                             <label class="w-100">Content:</label>
+                                            {{-- <textarea id="description" name="description" class="tox-target "></textarea> --}}
                                             <textarea id="description" name="description" class="form-control form-control-solid" rows="10"></textarea>
                                             @error('description')
                                                 <div class="is-invalid">
@@ -304,11 +305,11 @@ Halaman Informasi
     <!-- calendar js-->
     <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/js/select2/select2-custom.js') }}"></script>
-    <script src="{{ asset('assets/js/editors/quill.js') }}"></script>
-    <script src="{{ asset('assets/js/custom-add-product5.js') }}"></script>
     <script src="{{ asset('assets/js/bookmark/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom-validation/validation.js') }}"></script>
     <script src="{{ asset('tinymce/tinymce/tinymce.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets_global/plugins/custom/tinymce/tinymce.bundle.js') }}"></script> --}}
+
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/quill-image-uploader@1.2.3/dist/quill.imageUploader.min.js"></script>
 
@@ -355,6 +356,7 @@ Halaman Informasi
         const example_image_upload_handler = (blobInfo, progress) => new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open('POST', '/upload-image-information'); 
+
             xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
 
             xhr.upload.onprogress = (e) => {
@@ -363,8 +365,18 @@ Halaman Informasi
 
             xhr.onload = () => {
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    const json = JSON.parse(xhr.responseText);
-                    resolve(json.location);
+                    try {
+                        const json = JSON.parse(xhr.responseText);
+
+                        // Cek apakah json.location adalah string
+                        if (json.location && typeof json.location === 'string') {
+                            resolve(json.location); // ✅ ini harus URL
+                        } else {
+                            reject('Invalid JSON: "location" is missing or not a string.');
+                        }
+                    } catch (err) {
+                        reject('Invalid JSON response: ' + err.message);
+                    }
                 } else {
                     reject('HTTP Error: ' + xhr.status);
                 }
@@ -379,8 +391,10 @@ Halaman Informasi
             xhr.send(formData);
         });
 
+
         tinymce.init({
             selector: '#description',
+            license_key: 'gpl',
             plugins: [
                 "advlist", "anchor", "autolink", "charmap", "code", "fullscreen", 
                 "help", "image", "insertdatetime", "link", "lists", "media", 
@@ -393,7 +407,25 @@ Halaman Informasi
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
             images_upload_handler: example_image_upload_handler,
         });
+
+        // tinymce.init({
+        //     selector: '#description',
+        //     height: 400,
+        //     plugins: [
+        //         "advlist", "anchor", "autolink", "charmap", "code", "fullscreen", 
+        //         "help", "image", "insertdatetime", "link", "lists", "media", 
+        //         "preview", "searchreplace", "table", "visualblocks", "code"
+        //     ],
+        //     toolbar: "undo redo |link image accordion | styles | bold italic underline strikethrough | align | bullist numlist | code",
+        //     image_title: true,
+        //     file_picker_types: 'image',
+        //     images_file_types: 'jpg,svg,webp,png,jpeg',
+        //     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
+        //     images_upload_handler: example_image_upload_handler,
+        // });
     </script>
+
+    
 
 @endsection
 

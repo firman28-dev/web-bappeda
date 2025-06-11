@@ -139,13 +139,17 @@ class Page_System_Controller extends Controller
     public function uploadImage(Request $request){
         if ($request->hasFile('file')) {
 
+             $request->validate([
+                'file' => 'required|image|mimes:jpg,jpeg,png,gif,webp|max:5120',
+            ]);
+
             $file = $request->file('file');
             $filename = Str::random(20) . '_'.$file->getClientOriginalName();
             $destination = $_SERVER['DOCUMENT_ROOT'] .  '/uploads/page_system/konten';
             $file->move($destination, $filename);
 
             $url = asset('uploads/page_system/konten/' . $filename);
-            return response()->json(['location' => $url]);
+            return response()->json(['location' => (string)$url]);
 
         }
     

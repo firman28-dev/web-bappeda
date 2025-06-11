@@ -449,13 +449,13 @@
                             </div>
                             <div class="d-flex flex-row gap-2 mt-2">
                                 <a href="https://www.instagram.com/bappedaprovsumbar" target="_blank">
-                                <img src="{{ asset('assets/icon/IG.svg') }}" alt="">
+                                <img src="{{ asset('assets_global/icon/IG.svg') }}" alt="">
                                 </a>
                                 <a href="https://www.youtube.com/@bappedaprovsumbar" target="_blank">
-                                <img src="{{ asset('assets/icon/YT.svg') }}" alt="">
+                                <img src="{{ asset('assets_global/icon/YT.svg') }}" alt="">
                                 </a>
                                 <a href="https://www.facebook.com/p/Bappeda-Provinsi-Sumatera-Barat-100069898355800/" target="_blank">
-                                <img src="{{ asset('assets/icon/FB.svg') }}" alt="">
+                                <img src="{{ asset('assets_global/icon/FB.svg') }}" alt="">
                                 </a>
                             </div> 
                         </div>

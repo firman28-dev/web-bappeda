@@ -19,6 +19,8 @@ class Menu_Public_Controller extends Controller
         return view('admin.menu_public.index', $sent);
     }
 
+    
+
     public function create(){
         $status = Status::whereIn('id', [1, 2, 3])->get();
         $menus = Menu_Public::where('status_id', 1)

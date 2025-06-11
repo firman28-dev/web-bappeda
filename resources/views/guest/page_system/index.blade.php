@@ -91,7 +91,6 @@
                         <div class="col-lg-5 mb-lg-0 mb-4 flex-column justify-content-center">
                             <div class="d-flex-column lh-lg">
                                 <img src="{{asset('assets/img/about-sumbar.png')}}" alt="">
-                                {{-- <h1 class="text-white">Tentang BAPPEDA</h1> --}}
                                 <div class="d-flex-row align-items-center mt-5">
                                     <i class="fa-solid fa-location-dot text-white me-2"></i>
                                     <span class="fw-bolder text-white fs-5">Lokasi Bappeda Sumbar</span>
@@ -119,19 +118,26 @@
                                 </div>
                                 <div class="d-flex flex-row gap-2 mt-2">
                                     <a href="https://www.instagram.com/bappedaprovsumbar" target="_blank">
-                                    <img src="{{ asset('assets/icon/IG.svg') }}" alt="">
+                                    <img src="{{ asset('assets_global/icon/IG.svg') }}" alt="">
                                     </a>
                                     <a href="https://www.youtube.com/@bappedaprovsumbar" target="_blank">
-                                    <img src="{{ asset('assets/icon/YT.svg') }}" alt="">
+                                    <img src="{{ asset('assets_global/icon/YT.svg') }}" alt="">
                                     </a>
                                     <a href="https://www.facebook.com/p/Bappeda-Provinsi-Sumatera-Barat-100069898355800/" target="_blank">
-                                    <img src="{{ asset('assets/icon/FB.svg') }}" alt="">
+                                    <img src="{{ asset('assets_global/icon/FB.svg') }}" alt="">
                                     </a>
                                 </div> 
                             </div>
                         </div>
                         <div class="col-lg-7 ">
-                            <iframe class="w-100 h-400px"  style="border-radius: 24px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.2974880739275!2d100.35823437434728!3d-0.9257947990652464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b8d07eb04e27%3A0x2cbc1df2cab53ec1!2sBappeda%20Provinsi%20Sumatera%20Barat!5e0!3m2!1sid!2sid!4v1734580623331!5m2!1sid!2sid" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe
+                                class="w-100 h-400px"
+                                style="border-radius: 24px; border: 0"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.2974880739275!2d100.35823437434728!3d-0.9257947990652464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b8d07eb04e27%3A0x2cbc1df2cab53ec1!2sBappeda%20Provinsi%20Sumatera%20Barat!5e0!3m2!1sid!2sid!4v1734580623331!5m2!1sid!2sid"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
                     </div>
                 </div>

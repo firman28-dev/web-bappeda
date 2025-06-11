@@ -8,11 +8,13 @@ use App\Http\Controllers\Admin\List_Link_Controller;
 use App\Http\Controllers\Admin\Menu_Public_Controller;
 use App\Http\Controllers\Admin\News_Controller;
 use App\Http\Controllers\Admin\Page_System_Controller;
+use App\Http\Controllers\Admin\Pejabat_Controller;
 use App\Http\Controllers\Admin\User_Controller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Guest\Guest_News_Controller;
 use App\Http\Controllers\Guest\Guest_Page_System_Controller;
+use App\Http\Controllers\Guest\Guest_Profile_Controller;
 use App\Http\Controllers\Guest\Home_Controller;
 use App\Http\Controllers\Kabid\News_Kabid_Controller;
 use App\Http\Controllers\Operator\News_Operator_Controller;
@@ -36,6 +38,8 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('/show-news/{id}', [Guest_News_Controller::class, 'news'])->name('guest.news');
     Route::get('/pages/{id}', [Guest_Page_System_Controller::class, 'show'])->name('guest.page-system');
     Route::get('/ppid/{id}', [Guest_Page_System_Controller::class, 'showPpid'])->name('guest.showPpid');
+    Route::get('/profile/profile-pejabat', [Guest_Profile_Controller::class, 'index'])->name('guest.pejabat');
+
     
     Route::get('/login', [LoginController::class, 'show'])->name('login.show');
     Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
@@ -67,9 +71,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('bidang', Bidang_Controller::class);
         Route::resource('banner', Banner_Controller::class);
         Route::resource('news', News_Controller::class);
-        // Route::post('/upload-image', [UploadController::class, 'store']);
+        Route::post('/upload-image', [UploadController::class, 'store']);
 
         Route::resource('page-system', Page_System_Controller::class);
+        Route::resource('pejabat', Pejabat_Controller::class);
+
     });
 
     Route::group(['middleware' => ['operator']], function () {

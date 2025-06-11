@@ -2,7 +2,6 @@
 @section('content') 
 
     <div class="bg-content-page py-20 justify-content-center text-center">
-        {{-- <h1 class="display-6 text-white">{{$nama_kategori}}</h1> --}}
         <h1 class="display-6 text-white text-center fw-bold position-relative d-inline-block"
             style="padding-bottom: 0.5rem;">
             PPID {{ $nama_kategori }}

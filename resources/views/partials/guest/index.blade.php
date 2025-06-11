@@ -28,26 +28,26 @@
 <body id="kt_app_body" data-kt-app-layout="light-header" data-kt-app-header-fixed="true"
   data-kt-app-toolbar-enabled="true" data-kt-app-header-fixed-mobile="true" class="app-default">
 	
-  <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
-    <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
-      <div id="kt_app_header" class="app-header bg-backdrop">
+	<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+		<div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+		<div id="kt_app_header" class="app-header bg-backdrop">
 
-		@include('partials.guest.nav')
-      </div>
-      <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
-        <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
-          <div class="d-flex flex-column flex-column-fluid">
-            <div id="kt_app_content" class="app-content flex-column-fluid bg-white pb-0">
-				@yield('content')
-            </div>
-          </div>
-          <div id="kt_app_footer" class="footer justify-content-center bg-custom-orange">
-			@include('partials.guest.footer')
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+			@include('partials.guest.nav')
+		</div>
+		<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+			<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+			<div class="d-flex flex-column flex-column-fluid">
+				<div id="kt_app_content" class="app-content flex-column-fluid bg-white pb-0">
+					@yield('content')
+				</div>
+			</div>
+			<div id="kt_app_footer" class="footer justify-content-center bg-custom-orange">
+				@include('partials.guest.footer')
+			</div>
+			</div>
+		</div>
+		</div>
+	</div>
 
 	<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
 		<span class="svg-icon">
