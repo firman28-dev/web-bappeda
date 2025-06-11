@@ -536,7 +536,6 @@
                     ];
                     create3DPieChart(chartData);
 
-
                    
                 },
                 error: function (xhr, status, error) {
@@ -545,29 +544,33 @@
                 }
             });
         });
-       
+
         function create3DPieChart(data) {
             am4core.ready(function () {
                 am4core.useTheme(am4themes_animated);
-                // Membuat chart
+
                 var chart = am4core.create("chartdiv", am4charts.PieChart3D);
                 chart.hiddenState.properties.opacity = 0;
 
-                // Menambahkan legenda
                 chart.legend = new am4charts.Legend();
 
-                // Masukkan data ke dalam chart
                 chart.data = data;
-                // chart.innerRadius = 100;
 
-                // Konfigurasi series
+                chart.colors.list = [
+                    am4core.color("#F29F58"), 
+                    am4core.color("#AB4459"), 
+                ];
+
                 var series = chart.series.push(new am4charts.PieSeries3D());
                 series.dataFields.value = "value";
                 series.dataFields.category = "category";
+
+                // Pastikan tidak override oleh auto-colors
+                series.colors.list = chart.colors.list;
+                series.colors.step = 1;
             });
         }
 
-       
     </script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 	<script>
