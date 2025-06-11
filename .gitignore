@@ -19,3 +19,4 @@ yarn-error.log
 /.idea
 /.vscode
 /resources/views/partials/admin/css.blade.php
+/resources/views/partials/error_page/css.blade.php
