@@ -403,7 +403,7 @@
                     <a href="{{$item->url}}" target="_blank" class="d-flex align-items-stretch w-100">
                         <div class="card w-100 d-flex align-items-center shadow-sm">
                             <div class="card-body d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('uploads/list_link/' . $item->path) }}" alt="File Image" class="w-25">
+                                <img src="{{ asset('uploads/list_link/' . $item->path) }}" alt="File Image" class="w-50">
                             </div>
                         </div>
                     </a>
