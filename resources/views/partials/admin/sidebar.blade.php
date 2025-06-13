@@ -94,17 +94,21 @@
                             <span>Bidang Bappeda</span>
                         </a>
                     </li>
-
-                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
-                        <a class="sidebar-link sidebar-title link-nav" href="{{route('news.index')}}" >
+                    <li class="sidebar-list">
+                        <i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                             <svg class="stroke-icon">
                                 <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-blog') }}"></use>
                             </svg>
                             <svg class="fill-icon">
                                 <use href="{{ asset('assets/svg/icon-sprite.svg#fill-blog') }}"></use>
                             </svg>
-                            <span>Berita Bappeda</span>
+                            <span >Berita </span>
                         </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('category.index') }}">Tag Konten</a></li>
+                            <li><a href="{{ route('news.index') }}">Konten</a></li>
+                        </ul>
                     </li>
                     <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{route('banner.index')}}" >
@@ -117,6 +121,7 @@
                             <span>Infografis</span>
                         </a>
                     </li>
+                    
                     <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{route('page-system.index')}}" >
                             <svg class="stroke-icon">

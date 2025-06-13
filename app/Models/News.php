@@ -16,7 +16,8 @@ class News extends Model
         'image',
         'created_by',
         'updated_by',
-        'bidang_id'
+        'bidang_id',
+        'category_id'
 
     ];  
     public function _bidang()
@@ -32,6 +33,10 @@ class News extends Model
     public function _user()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+    public function _category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     public function getFormattedCreatedAtAttribute()

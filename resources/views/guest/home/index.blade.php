@@ -17,25 +17,86 @@
             </svg>
         </div> --}}
     {{-- </div> --}}
-
-    <div data-aos="fade-up"
-        data-aos-anchor-placement="bottom-bottom"
-        data-aos-duration="1000">
-        <div class="container  bg-white p-20">
-            <div class="row align-items-center ">
-                <div class="col-lg-6 mb-lg-0 mb-4 flex-column justify-content-center">
-                    <h1 class="display-5">BADAN PERENCANAAN PEMBANGUNAN DAERAH <span class="text-custom-warning">SUMATERA BARAT</span> </h1>
-                    <p class="lead">
-                        Bappeda Sumatera Barat adalah singkatan dari Badan Perencanaan Pembangunan Daerah Provinsi Sumatera Barat. Ini adalah sebuah lembaga pemerintah daerah yang memiliki peran sangat penting dalam perencanaan dan pembangunan di wilayah <span></span> Sumatera Barat.
-                    </p>
+    <div class="py-20 bg-home">
+        <div class="app-container container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-3 mb-8 text-white">
+                        Sumatera Barat <b class="text-custom-primary">Madani</b> Maju dan <b class="text-custom-primary">Berkelanjutan</b>  Berlandaskan <b class="text-custom-primary">Agama</b>  dan Budaya.
+                    </h1>
                 </div>
                 <div class="col-lg-6">
-                    <iframe class="w-100 h-350px"  src="https://www.youtube.com/embed/Vc8G8tO6rpg?si=Sde0JI15IN5KQCee" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 24px"></iframe>
+                    <div class="d-lg-block d-none">
+                        <img src="{{asset('')}}"  class="img-fluid" alt="" class="w-100" />
+                    </div>
                 </div>
             </div>
         </div>
-
+        
     </div>
+    <div class="container justify-content-center">
+        <div class="text-center py-10">
+             <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
+                <span class="d-inline-block mb-2 fs-2tx fw-bold">
+                    Berita Sumbar
+                </span>
+                <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span>
+            </span>
+        </div>
+       
+        <div class="card card-custom">
+            <div class="card-body">
+                 @if($news_sumbar->count())
+                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            @foreach($news_sumbar as $index => $item)
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                            @endforeach
+                        </div>
+                        <div class="carousel-inner">
+                            @foreach($news_sumbar as $index => $item)
+                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                    <img src="{{ $item->image ? asset('uploads/news/' . $item->image) : asset('uploads/news/default.jpg') }}" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="{{ $item->title }}">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-3 rounded">
+                                        <h5 class="text-white">{{ $item->title }}</h5>
+                                        <p>{{ \Illuminate\Support\Str::limit(strip_tags($item->description), 100) }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Sebelumnya</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Selanjutnya</span>
+                        </button>
+                    </div>
+                @else
+                    <div class="text-center py-5">
+                        <h4 class="text-muted">Tidak ada berita tersedia untuk kategori ini.</h4>
+                    </div>
+                @endif
+            </div>
+        </div>
+       
+    </div>
+    
+    <div class="container  bg-white p-20">
+        <div class="row align-items-center ">
+            <div class="col-lg-6 mb-lg-0 mb-4 flex-column justify-content-center">
+                <h1 class="display-5">BADAN PERENCANAAN PEMBANGUNAN DAERAH <span class="text-custom-warning">SUMATERA BARAT</span> </h1>
+                <p class="lead">
+                    Bappeda Sumatera Barat adalah singkatan dari Badan Perencanaan Pembangunan Daerah Provinsi Sumatera Barat. Ini adalah sebuah lembaga pemerintah daerah yang memiliki peran sangat penting dalam perencanaan dan pembangunan di wilayah <span></span> Sumatera Barat.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <iframe class="w-100 h-350px"  src="https://www.youtube.com/embed/Vc8G8tO6rpg?si=Sde0JI15IN5KQCee" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 24px"></iframe>
+            </div>
+        </div>
+    </div>
+
 
     <div data-aos="fade-up"
         data-aos-duration="2000">
@@ -187,7 +248,7 @@
                             @forelse ($item->_news->slice(0, 3) as $dataNews)
                             <div class="col-lg-4 d-flex align-items-stretch mb-5">
                                 
-                                <div class="card shadow-sm rounded-4 overflow-hidden mb-4 h-100 border-0 d-flex flex-column mb-3" >
+                                <div class="card shadow-sm rounded-4 overflow-hidden mb-4 h-100 border-0 d-flex flex-column mb-3 w-100" >
                                     <div class="position-relative">
                                         @php
                                             $allowedExtensions = ['png', 'jpg', 'jpeg'];

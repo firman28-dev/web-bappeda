@@ -594,6 +594,17 @@
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
             images_upload_handler: example_image_upload_handler,
             document_base_url: '../',
+            extended_valid_elements: 'iframe[*]',
+            valid_children: '+body[iframe]',
+            sandbox_iframes: false,
+            setup: function (editor) {
+                editor.on('SetContent', function () {
+                    const iframes = editor.getDoc().querySelectorAll('iframe[sandbox]');
+                    iframes.forEach(function (iframe) {
+                        iframe.removeAttribute('sandbox');
+                    });
+                });
+            }
 
         });
     </script>

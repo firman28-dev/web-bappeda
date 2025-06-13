@@ -2,7 +2,7 @@
     id="kt_app_header_container">
     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
         <a href="#">
-            <img alt="Logo" src="{{asset('assets_global/img/about-sumbar.png')}}"
+            <img alt="Logo" src="{{asset('assets_global/img/BAPPEDA SUMBAR HTM.png')}}"
             class="text-black h-50px app-sidebar-logo-default theme-light-show" />
         </a>
     </div>

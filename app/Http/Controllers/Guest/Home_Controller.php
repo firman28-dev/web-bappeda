@@ -15,15 +15,12 @@ class Home_Controller extends Controller
 {
     public function index(){
         $list_link = List_Link::where('status_id',4)->get();
-        // $menu_public = Menu_Public::where('status_id', 1)
-        //     ->whereNull('parent_id')
-        //     ->with('_children')
-        //     ->orderBy('order_no', 'asc')
-        //     ->get();
+       
         $bidang = Bidang::where('status_id', 1)->with('_news')->get();
         $latest_news = News::orderBy('created_at', 'desc')
-        ->limit(1)
-        ->get();
+            ->limit(1)
+            ->get();
+        $news_sumbar = News::where('category_id', 8)->orderBy('id','desc')->limit(10)->get();
 
         $banner = Banner::where('status_id',4)
         ->orderBy('id', 'desc')
@@ -34,7 +31,8 @@ class Home_Controller extends Controller
             // 'menu_public' => $menu_public,
             'bidang' => $bidang,
             'news' => $latest_news,
-            'banner' => $banner
+            'banner' => $banner,
+            'news_sumbar' => $news_sumbar
 
         ];
 

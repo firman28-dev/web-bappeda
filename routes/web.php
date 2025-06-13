@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Banner_Controller;
 use App\Http\Controllers\Admin\Bidang_Controller;
+use App\Http\Controllers\Admin\Category_Controller;
 use App\Http\Controllers\Admin\Dashboard_Controller;
 use App\Http\Controllers\Admin\Image_Controller;
 use App\Http\Controllers\Admin\List_Link_Controller;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\Pejabat_Controller;
 use App\Http\Controllers\Admin\User_Controller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Guest\Guest_Category_Controller;
 use App\Http\Controllers\Guest\Guest_News_Controller;
 use App\Http\Controllers\Guest\Guest_Page_System_Controller;
 use App\Http\Controllers\Guest\Guest_Profile_Controller;
@@ -33,12 +35,14 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/', [Home_Controller::class, 'index'])->name('guest.index');
-    Route::get('/detail-realisasi', [Home_Controller::class, 'detailRealisasi'])->name('guest.detail-realisai');
-    Route::get('/get-category-bidang/{id}', [Guest_News_Controller::class, 'getAllCategory'])->name('guest.get-category');
-    Route::get('/show-news/{id}', [Guest_News_Controller::class, 'news'])->name('guest.news');
-    Route::get('/pages/{id}', [Guest_Page_System_Controller::class, 'show'])->name('guest.page-system');
-    Route::get('/ppid/{id}', [Guest_Page_System_Controller::class, 'showPpid'])->name('guest.showPpid');
+    Route::get('/home/detail-realisasi', [Home_Controller::class, 'detailRealisasi'])->name('guest.detail-realisai');
+    Route::get('/home/get-category-bidang/{id}', [Guest_News_Controller::class, 'getAllCategory'])->name('guest.get-category');
+    Route::get('/home/show-news/{id}', [Guest_News_Controller::class, 'news'])->name('guest.news');
+    Route::get('/home/pages/{id}', [Guest_Page_System_Controller::class, 'show'])->name('guest.page-system');
+    Route::get('/home/ppid/{id}', [Guest_Page_System_Controller::class, 'showPpid'])->name('guest.showPpid');
     Route::get('/profile/profile-pejabat', [Guest_Profile_Controller::class, 'index'])->name('guest.pejabat');
+    Route::get('/home/category/{id}', [Guest_Category_Controller::class, 'index'])->name('guest.category-news');
+
 
     
     Route::get('/login', [LoginController::class, 'show'])->name('login.show');
@@ -75,6 +79,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::resource('page-system', Page_System_Controller::class);
         Route::resource('pejabat', Pejabat_Controller::class);
+        Route::resource('category', Category_Controller::class);
+
 
     });
 

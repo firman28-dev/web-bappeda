@@ -1,4 +1,16 @@
 @extends('partials.guest.index')
+
+@section('css')
+    <style>
+        .custom-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+    </style>
+@endsection
+
 @section('content') 
 
     <div class="bg-content-page py-20 justify-content-center text-center">
@@ -6,12 +18,12 @@
         <h1 class="text-center text-white">Bidang {{$bidang->name}}</h1>
         {{-- <h1 class="display-6">{{ $page_system->title }}</h1> --}}
     </div>
-    <div class="container mt-5">
+    <div class="container mt-10">
         <div class="row mb-10">
             @if ($categoryNews->count() > 0)
                 @foreach ($categoryNews as $item)   
                 <div class="col-lg-4 mb-10  align-items-stretch">
-                    <div class="card shadow-sm rounded-3 overflow-hidden h-100 border-0 d-flex flex-column mb-3" >
+                    <div class="card h-100 border-0 d-flex flex-column mb-3 custom-card" >
                         <div class="position-relative">
                             @php
                                 $allowedExtensions = ['png', 'jpg', 'jpeg'];
@@ -56,8 +68,10 @@
                         </div>
                         
                     </div>
+                    
                 </div>
                 @endforeach
+                
                 @php
                     $currentPage = $categoryNews->currentPage();
                     $lastPage = $categoryNews->lastPage();
@@ -102,7 +116,7 @@
             
         </div>
 
-        <div class="d-flex flex-row gap-3 flex-wrap mb-10 justify-content-center">
+        {{-- <div class="d-flex flex-row gap-3 flex-wrap mb-10 justify-content-center">
             @foreach ($allBidang as $item)
                 <a href="{{route('guest.get-category',$item->id)}}" class="hover-elevate-down">
                     <div class="card p-3 min-w-200px bg-primary text-white text-center">
@@ -110,7 +124,21 @@
                     </div>
                 </a>
             @endforeach
+        </div> --}}
+
+        <div class="d-flex flex-row gap-3 flex-wrap mb-10 justify-content-center">
+            @foreach ($allBidang as $item)
+                @php
+                    $isActive = isset($currentCategoryId) && $currentCategoryId == $item->id;
+                @endphp
+                <a href="{{ route('guest.get-category', $item->id) }}" class="hover-elevate-down text-decoration-none">
+                    <div class="card p-3 min-w-200px text-center   {{ $isActive ? 'bg-primary text-white border-2 border'  : ' bg-opacity-25 bg-primary text-dark  border-2 border' }}">
+                        {{ $item->label }}
+                    </div>
+                </a>
+            @endforeach
         </div>
+
         
 
     </div>

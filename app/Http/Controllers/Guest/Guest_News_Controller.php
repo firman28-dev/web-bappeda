@@ -15,14 +15,15 @@ class Guest_News_Controller extends Controller
             $categoryNews = News::where('bidang_id', $id)
                 ->orderBy('id', 'desc')
                 ->paginate(9);
-            $allBidang = Bidang::whereNot('id', $id)->get();
+            $allBidang = Bidang::all();
             if (request('page') > $categoryNews->lastPage()) {
                 return redirect()->route('guest.get-category', ['id' => $id, 'page' => $categoryNews->lastPage()]);
             }
             $sent = [
                 'categoryNews' => $categoryNews,
                 'bidang' => $bidang,
-                'allBidang' => $allBidang
+                'allBidang' => $allBidang,
+                'currentCategoryId' => $id
             ];
             return view('guest.news.index', $sent);
         }
@@ -30,8 +31,6 @@ class Guest_News_Controller extends Controller
             return view('guest.error_page.error_404');
             // return view('error.index');
         }
-        
-
         // return $categoryNews;
     }
 
@@ -39,7 +38,7 @@ class Guest_News_Controller extends Controller
         $news = News::find($id);
         if($news){
             $newsAll = News::where('bidang_id', $news->bidang_id)
-            ->whereNot('id', $news->id)
+            // ->whereNot('id', $news->id)
             ->get();
             // return $news;
             $sent = [

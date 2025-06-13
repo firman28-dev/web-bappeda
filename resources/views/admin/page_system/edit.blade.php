@@ -522,17 +522,31 @@ Halaman Informasi
             license_key: 'gpl',
             plugins: [
                 "advlist", "anchor", "autolink", "charmap", "code", "fullscreen", 
-                "help", "image", "insertdatetime", "link", "lists", "media", 
+                "help", "image", "insertdatetime", "link", "lists", 
                 "preview", "searchreplace", "table", "visualblocks", "code"
             ],
-            toolbar: "undo redo |link image accordion | styles | bold italic underline strikethrough | align | bullist numlist | code",
+            toolbar: "undo redo | link image | styles | bold italic underline strikethrough | align | bullist numlist | code",
             image_title: true,
             file_picker_types: 'image',
             images_file_types: 'jpg,svg,webp,png,jpeg',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
             images_upload_handler: example_image_upload_handler,
             document_base_url: '../',
+            
+            // Perhatikan baris ini sudah diperbaiki
+            extended_valid_elements: 'iframe[*]',
+            valid_children: '+body[iframe]',
+            sandbox_iframes: false,
+            setup: function (editor) {
+                editor.on('SetContent', function () {
+                    const iframes = editor.getDoc().querySelectorAll('iframe[sandbox]');
+                    iframes.forEach(function (iframe) {
+                        iframe.removeAttribute('sandbox');
+                    });
+                });
+            }
         });
+
     </script>
 
 @endsection
