@@ -17,7 +17,7 @@
             </svg>
         </div> --}}
     {{-- </div> --}}
-    <div class="py-20 bg-home">
+    <div class="bg-home">
         <div class="app-container container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="d-lg-block d-none">
-                        <img src="{{asset('')}}"  class="img-fluid" alt="" class="w-100" />
+                        <img src="{{asset('assets_global/img/GUB WAGUB.png')}}"  class="img-fluid" alt="" class="w-100" />
                     </div>
                 </div>
             </div>
