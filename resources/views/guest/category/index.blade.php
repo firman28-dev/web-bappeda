@@ -14,31 +14,37 @@
             <div class="col-md-7 col-12">
                 <h2 class="mb-3">Kategory Berita</h2>
                 @forelse ($news as $item)
-                <div class="row mb-4 d-flex align-items-center">
-                    <div class="col-md-5 col-12">
-                        @if ($item->image)
-                            <img src="{{ asset('uploads/news/' . $item->image) }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 150px; object-fit: cover;">
-                        @else
-                            <img src="{{ asset('uploads/news/default.jpg') }}" class="card-img-top img-hover-zoom" alt="News Image" style="height:150px; object-fit: cover;">
-                        @endif
-                    </div>
-                    <div class="col-md-7 col-12">
-                        @php
-                            $date = \Carbon\Carbon::parse($item->created_at)->format('d M Y');
-                        @endphp
-                        <h2>{{ $item->title }}</h2>
-                        <div class="d-flex align-items-center mt-2 mb-2 text-muted" style="font-size: 0.9rem;">
-                            <i class="fas fa-calendar px-2"></i>{{ $date }}
-                            <span class="px-2">|</span>
-                            <i class="fas fa-user px-2"></i>{{ $item->created_by ?? '-' }}
-                            <span class="px-2">|</span>
-                            <i class="fa-solid fa-eye px-2"></i>{{ $item->hits ?? '-' }}
+                <div class="card shadow-sm mb-5 hover-elevate-up">
+                    <div class="card-body">
+                         <div class="row d-flex align-items-center">
+                            <div class="col-md-5 col-12">
+                                @if ($item->image)
+                                    <img src="{{ asset('uploads/news/' . $item->image) }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 150px; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('uploads/news/default.jpg') }}" class="card-img-top img-hover-zoom" alt="News Image" style="height:150px; object-fit: cover;">
+                                @endif
+                            </div>
+                            <div class="col-md-7 col-12">
+                                @php
+                                    $date = \Carbon\Carbon::parse($item->created_at)->format('d M Y');
+                                @endphp
+                                <h2>{{ $item->title }}</h2>
+                                <div class="d-flex align-items-center mt-2 mb-2 text-muted">
+                                    <i class="fas fa-calendar px-2"></i>{{ $date }}
+                                    <span class="px-2">|</span>
+                                    <i class="fas fa-user px-2"></i>{{ $item->created_by ?? '-' }}
+                                    <span class="px-2">|</span>
+                                    <i class="fa-solid fa-eye px-2"></i>{{ $item->hits ?? '-' }}
+                                </div>
+                                <a href="{{ route('guest.news', $item->id) }}" class="w-50 btn btn-outline btn-outline-primary rounded-4 btn-sm">Lihat</a>
+                            </div>
                         </div>
-                        <a href="{{ route('guest.news', $item->id) }}" class="w-50 btn btn-outline btn-outline-primary rounded-4">Lihat</a>
                     </div>
                 </div>
+               
                 @empty
-                    <div class="row align-items-center text-center">
+                    <div class="row align-items-center text-center justify-content-center">
+                        <img src="{{asset('assets_global/media/illustration/empty-content.png')}}" alt="" class="w-75 text-center">
                         <h4 class="text-muted">Kategori konten belum tersedia.</h4>
                     </div>
                 @endforelse
