@@ -475,6 +475,40 @@
         </div>
     </div>
 
+     <div class="container mb-20 mt-20">
+        <h1 class="display-6 pb-10 text-center">FAQ BAPPEDA SUMBAR</h1>
+        <div class="card">
+            <div class="card-body">
+                <div class="accordion" id="kt_accordion_1">
+                    @foreach($faqs as $index => $faq)
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="kt_accordion_1_header_{{ $index }}">
+                                <button class="accordion-button fs-4 fw-semibold {{ $index !== 0 ? 'collapsed' : '' }}"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#kt_accordion_1_body_{{ $index }}"
+                                        aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
+                                        aria-controls="kt_accordion_1_body_{{ $index }}">
+                                    {{ $faq->name }}
+                                </button>
+                            </h2>
+                            <div id="kt_accordion_1_body_{{ $index }}"
+                                class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}"
+                                aria-labelledby="kt_accordion_1_header_{{ $index }}"
+                                data-bs-parent="#kt_accordion_1">
+                                <div class="accordion-body">
+                                    {!! $faq->description !!}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    
     <div class="container mb-20 mt-20">
         <div class="card rounded-custom bg-about">
             <div class="card-body">
@@ -482,7 +516,6 @@
                     <div class="col-lg-5 mb-lg-0 mb-4 flex-column justify-content-center">
                         <div class="d-flex-column lh-lg">
                             <img src="{{asset('assets/img/about-sumbar.png')}}" alt="">
-                            {{-- <h1 class="text-white">Tentang BAPPEDA</h1> --}}
                             <div class="d-flex-row align-items-center mt-5">
                                 <i class="fa-solid fa-location-dot text-white me-2"></i>
                                 <span class="fw-bolder text-white fs-5">Lokasi Bappeda Sumbar</span>

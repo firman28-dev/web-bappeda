@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Banner_Controller;
 use App\Http\Controllers\Admin\Bidang_Controller;
 use App\Http\Controllers\Admin\Category_Controller;
 use App\Http\Controllers\Admin\Dashboard_Controller;
+use App\Http\Controllers\Admin\FAQ_Controller;
 use App\Http\Controllers\Admin\Image_Controller;
 use App\Http\Controllers\Admin\List_Link_Controller;
 use App\Http\Controllers\Admin\Menu_Public_Controller;
@@ -64,6 +65,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/upload-image-information', [Page_System_Controller::class, 'uploadImage'])->name('upload.imageInformation');
     Route::post('/upload-image-news', [News_Controller::class, 'uploadImage'])->name('upload.imageNews');
+    Route::post('/upload-pdf-news', [News_Controller::class, 'uploadPDF']);
+
 
 
     Route::group(['middleware' => ['superadmin']], function () {
@@ -80,6 +83,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('page-system', Page_System_Controller::class);
         Route::resource('pejabat', Pejabat_Controller::class);
         Route::resource('category', Category_Controller::class);
+        Route::resource('faq', FAQ_Controller::class);
 
 
     });

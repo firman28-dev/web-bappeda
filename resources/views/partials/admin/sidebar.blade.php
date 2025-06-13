@@ -3,7 +3,7 @@
      <div>
          <div class="logo-wrapper">
             <a href="">
-                <img class="img-fluid for-light" src="{{ asset('assets/img/sumbar.png') }}" alt="" style="width: 30px">
+                <img class="img-fluid for-light" src="{{ asset('assets_global/img/BAPPEDA SUMBAR HTM.png') }}" alt="" style="width: 90px">
                 <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo_dark.png') }}" alt="">
             </a>
              <div class="back-btn">
@@ -15,7 +15,7 @@
          </div>
          <div class="logo-icon-wrapper">
             <a href="">
-                <img class="img-fluid" src="{{ asset('assets/images/logo/logo-icon.png') }}" alt="">
+                <img class="img-fluid" src="{{ asset('logo/B BAPPEDA.png') }}" alt="" style="width: 30px">
             </a>
         </div>
         <nav class="sidebar-main">
@@ -110,7 +110,23 @@
                             <li><a href="{{ route('news.index') }}">Konten</a></li>
                         </ul>
                     </li>
-                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                    <li class="sidebar-list">
+                        <i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-gallery') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-gallery') }}"></use>
+                            </svg>
+                            <span >Fitur </span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('faq.index') }}">FAQ</a></li>
+                            <li><a href="{{ route('banner.index') }}">Infografis</a></li>
+                        </ul>
+                    </li>
+                    {{-- <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{route('banner.index')}}" >
                             <svg class="stroke-icon">
                                 <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-gallery') }}"></use>
@@ -120,7 +136,7 @@
                             </svg>
                             <span>Infografis</span>
                         </a>
-                    </li>
+                    </li> --}}
                     
                     <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{route('page-system.index')}}" >

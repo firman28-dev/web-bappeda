@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guest;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Bidang;
+use App\Models\FAQ;
 use App\Models\List_Link;
 use App\Models\Menu_Public;
 use App\Models\News;
@@ -26,13 +27,16 @@ class Home_Controller extends Controller
         ->orderBy('id', 'desc')
         ->get();
 
+        $faqs =FAQ::where('status_id',1)->get();
+
         $sent = [
             'list_link' => $list_link,
             // 'menu_public' => $menu_public,
             'bidang' => $bidang,
             'news' => $latest_news,
             'banner' => $banner,
-            'news_sumbar' => $news_sumbar
+            'news_sumbar' => $news_sumbar,
+            'faqs' => $faqs
 
         ];
 

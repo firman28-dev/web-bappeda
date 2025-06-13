@@ -476,6 +476,19 @@
                                     </div>
                                     
                                 </div>
+                                 <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label>Kategori Berita</label>
+                                        <select class="form-select js-example-basic-single col-sm-12" name="category_id" id="category_id">
+                                            @foreach($category as $data)
+                                                <option value="{{ $data->id }}" {{ $data->id == $news->category_id ? 'selected' : '' }}>
+                                                    {{ $data->title }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    
+                                </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label>Status</label>
@@ -593,7 +606,8 @@
             images_file_types: 'jpg,svg,webp,png,jpeg',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
             images_upload_handler: example_image_upload_handler,
-            document_base_url: '../',
+            relative_urls: false,
+            convert_urls: false,
             extended_valid_elements: 'iframe[*]',
             valid_children: '+body[iframe]',
             sandbox_iframes: false,

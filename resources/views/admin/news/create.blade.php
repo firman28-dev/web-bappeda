@@ -269,6 +269,20 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
+                                        <label>Kategori Berita</label>
+                                        <select class="form-select js-example-basic-single col-sm-12" name="category_id" id="category_id">
+                                            <option value="" disabled selected>Pilih Kategori</option>
+                                            @foreach($category as $data)
+                                                <option value="{{ $data->id }}" >
+                                                    {{ $data->title }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
                                         <label>Status</label>
                                         <select class="form-select js-example-basic-single col-sm-12" name="status_id" id="status_id">
                                             @foreach($status as $data)
@@ -370,21 +384,59 @@
             xhr.send(formData);
         });
 
+        const file_upload_handler = (callback, value, meta) => {
+            const input = document.createElement('input');
+            input.setAttribute('type', 'file');
+
+            if (meta.filetype === 'file') {
+                input.setAttribute('accept', '.pdf'); // hanya PDF
+            } else if (meta.filetype === 'image') {
+                input.setAttribute('accept', 'image/*');
+            }
+
+            input.onchange = function () {
+                const file = this.files[0];
+                const formData = new FormData();
+                formData.append('file', file);
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/upload-pdf-news');
+                xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+
+                xhr.onload = () => {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        const json = JSON.parse(xhr.responseText);
+                        // Menambahkan link ke PDF
+                        callback(json.location, { text: file.name });
+                    } else {
+                        alert('Upload gagal: ' + xhr.status);
+                    }
+                };
+
+                xhr.send(formData);
+            };
+
+            input.click();
+        };
+
         tinymce.init({
             selector: '#description',
             license_key: 'gpl',
             plugins: [
-                "advlist", "anchor", "autolink", "charmap", "code", "fullscreen", 
-                "help", "image", "insertdatetime", "link", "lists", "media", 
-                "preview", "searchreplace", "table", "visualblocks", "code"
+                "advlist", "anchor", "autolink", "charmap", "code", "fullscreen",
+                "help", "image", "insertdatetime", "link", "lists", "preview",
+                "searchreplace", "table", "visualblocks", "code"
             ],
-            toolbar: "undo redo |link image accordion | styles | bold italic underline strikethrough | align | bullist numlist | code",
-            image_title: true,
-            file_picker_types: 'image',
+            toolbar: "undo redo | link image | styles | bold italic underline strikethrough | align | bullist numlist | code",
+            file_picker_callback: file_upload_handler,
+            file_picker_types: 'file image',
             images_file_types: 'jpg,svg,webp,png,jpeg',
-            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
             images_upload_handler: example_image_upload_handler,
+            relative_urls: false,
+            convert_urls: false,
+
         });
+
     </script>
 @endsection
 

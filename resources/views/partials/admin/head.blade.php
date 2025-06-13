@@ -5,8 +5,7 @@
     <meta name="description" content="Website BAPPEDA Sumatera Barat adalah website yang memperlihatkan informasi publik">
     <meta name="keywords" content="website bappeda">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
+	<link rel="icon" type="image/png" href="{{ asset('logo/B BAPPEDA.png') }}" sizes="32x32">
     <title>@yield('title') | Bappeda - Sumatera Barat</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bidang;
+use App\Models\Category;
 use App\Models\News;
 use App\Models\Status;
 use Illuminate\Http\Request;
@@ -23,9 +24,12 @@ class News_Controller extends Controller
     public function create(){
         $bidang = Bidang::where('status_id',1)->get();
         $status = Status::whereIn('id', [4,5])->get();
+        $category = Category::where('status_id', 1)->get();
+
         $sent = [
             'bidang' => $bidang,
-            'status' => $status
+            'status' => $status,
+            'category'=>$category
         ];
         return view('admin.news.create', $sent);
     }
@@ -35,6 +39,7 @@ class News_Controller extends Controller
             'title' => 'required|max:255',
             'description' => 'required',
             'bidang_id' => 'required',
+            'category_id' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status_id' => 'required',
         ],);
@@ -49,6 +54,8 @@ class News_Controller extends Controller
             $news->description = $request->description;
             $news->bidang_id = $request->bidang_id;
             $news->status_id = $request->status_id;
+            $news->category_id = $request->category_id;
+
             if ($file) {
                 $unique = uniqid();
                 $fileName = $unique.'_'.time(). '_' . $file->getClientOriginalName();
@@ -67,12 +74,14 @@ class News_Controller extends Controller
 
     public function edit($id){
         $bidang = Bidang::where('status_id',1)->get();
+        $category = Category::where('status_id',1)->get();
         $status = Status::whereIn('id', [4,5])->get();
         $news = News::find($id);
         $sent = [
             'bidang' => $bidang,
             'status' => $status,
-            'news' => $news
+            'news' => $news,
+            'category' =>$category
         ];
         return view('admin.news.edit', $sent);
     }
@@ -82,6 +91,7 @@ class News_Controller extends Controller
             'title' => 'required|max:255',
             'description' => 'required',
             'bidang_id' => 'required',
+            'category_id' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status_id' => 'required',
         ],);
@@ -96,6 +106,8 @@ class News_Controller extends Controller
             $news->description = $request->description;
             $news->bidang_id = $request->bidang_id;
             $news->status_id = $request->status_id;
+            $news->category_id = $request->category_id;
+
 
             if ($file) {
                 if (!empty($news->image)) {
@@ -157,6 +169,26 @@ class News_Controller extends Controller
             // return response()->json(['location' => Storage::url($path)]);
         }
     
+        return response()->json(['error' => 'No file uploaded'], 400);
+    }
+
+    public function uploadPDF(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $originalName = Str::slug($originalName); // hasil: "surat-pernyataan-non-pkp"
+            $extension = $file->getClientOriginalExtension();
+
+            $filename = $originalName . '_' . Str::random(8) . '.' . $extension;
+
+            // $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $destination = $_SERVER['DOCUMENT_ROOT'] .  '/uploads/news/konten_dokumen';
+            $file->move($destination, $filename);
+            $url = asset('/uploads/news/konten_dokumen/' . $filename);
+            return response()->json(['location' => $url]);
+        }
+
         return response()->json(['error' => 'No file uploaded'], 400);
     }
 
