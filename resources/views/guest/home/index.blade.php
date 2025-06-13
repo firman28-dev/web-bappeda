@@ -476,7 +476,7 @@
     </div>
 
     <div class="container mb-20 mt-20">
-        <div class="card rounded-custom bg-about">
+        <div class="card rounded-custom">
             <div class="card-body">
                 <div class="row align-items-center ">
                     <div class="col-lg-5 mb-lg-0 mb-4 flex-column justify-content-center">
