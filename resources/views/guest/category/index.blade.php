@@ -19,9 +19,9 @@
                          <div class="row d-flex align-items-center">
                             <div class="col-md-5 col-12">
                                 @if ($item->image)
-                                    <img src="{{ asset('uploads/news/' . $item->image) }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 150px; object-fit: cover;">
+                                    <img src="{{ asset('uploads/news/' . $item->image) }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 200px; object-fit: cover;">
                                 @else
-                                    <img src="{{ asset('uploads/news/default.jpg') }}" class="card-img-top img-hover-zoom" alt="News Image" style="height:150px; object-fit: cover;">
+                                    <img src="{{ asset('uploads/news/default.jpg') }}" class="card-img-top img-hover-zoom" alt="News Image" style="height:200px; object-fit: cover;">
                                 @endif
                             </div>
                             <div class="col-md-7 col-12">
