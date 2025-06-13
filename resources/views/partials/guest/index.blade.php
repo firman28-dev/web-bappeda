@@ -8,7 +8,6 @@
 	<meta charset="utf-8" />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link href="{{asset('assets_global/custom/custom.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('assets_global/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('assets_global/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('assets_global/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
@@ -20,7 +19,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 	{{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 	<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
+	<link href="{{asset('assets_global/custom/custom.css')}}" rel="stylesheet" type="text/css" />
 	@yield('css')
 	
 </head>
