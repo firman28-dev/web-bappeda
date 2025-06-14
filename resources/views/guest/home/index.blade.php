@@ -1,4 +1,26 @@
 @extends('partials.guest.index')
+@section('css')
+    <style>
+       .carousel-indicators img {
+            opacity: 0.7;
+            transition: all 0.3s ease-in-out;
+            height: 100px;
+            object-fit: cover;
+            border: 2px solid transparent; /* default no border */
+        }
+
+        .carousel-indicators .selected img {
+            opacity: 1;
+            border: 2px solid #007bff; /* biru terang */
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+            transform: scale(1.05); /* sedikit membesar */
+            z-index: 2;
+            filter: contrast(1.2) saturate(1.3);
+        }
+
+
+    </style>
+@endsection
 @section('content')
     {{-- <div class="curve-bg">
         <video autoplay muted loop class="top-0 h-100 w-100 z-index-1" style="object-fit: cover">
@@ -26,7 +48,7 @@
                     </h1>
                 </div>
                 <div class="col-lg-6">
-                    <div class="d-lg-block d-none">
+                    <div class="d-lg-block d-none pt-10">
                         <img src="{{asset('assets_global/img/GUB WAGUB.png')}}"  class="img-fluid" alt="" class="w-100" />
                     </div>
                 </div>
@@ -44,16 +66,16 @@
             </span>
         </div>
        
-        <div class="card card-custom">
-            <div class="card-body">
+        <div class="card card-custom p-6">
+            <div class="card-body ">
                  @if($news_sumbar->count())
-                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             @foreach($news_sumbar as $index => $item)
                                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                             @endforeach
                         </div>
-                        <div class="carousel-inner">
+                        <div class="carousel-inner" role="listbox">
                             @foreach($news_sumbar as $index => $item)
                                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                     <img src="{{ $item->image ? asset('uploads/news/' . $item->image) : asset('uploads/news/default.jpg') }}" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="{{ $item->title }}">
@@ -64,6 +86,7 @@
                                 </div>
                             @endforeach
                         </div>
+                        
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Sebelumnya</span>
@@ -72,6 +95,22 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Selanjutnya</span>
                         </button>
+                    </div>
+                    <div class="text-center mt-10">
+                        <ol class="carousel-indicators list-inline justify-content-center">
+                            @foreach($news_sumbar as $index => $item)
+                                <li class="list-inline-item mx-1">
+                                    <a id="carousel-selector-{{ $index }}"
+                                    data-bs-slide-to="{{ $index }}"
+                                    data-bs-target="#carouselExampleCaptions"
+                                    class="{{ $index == 0 ? 'selected' : '' }}">
+                                        <img src="{{ $item->image ? asset('uploads/news/' . $item->image) : asset('uploads/news/default.jpg') }}"
+                                            class="img-fluid border"
+                                            style="width: 100px; height: 60px; object-fit: cover;">
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ol>
                     </div>
                 @else
                     <div class="text-center py-5">
@@ -545,7 +584,7 @@
                                 <a href="https://www.instagram.com/bappedaprovsumbar" target="_blank">
                                 <img src="{{ asset('assets_global/icon/IG.svg') }}" alt="">
                                 </a>
-                                <a href="https://www.youtube.com/@bappedaprovsumbar" target="_blank">
+                                <a href="https://www.youtube.com/channel/UCiNbXpt0Z60fK6qOwxE1B0A" target="_blank">
                                 <img src="{{ asset('assets_global/icon/YT.svg') }}" alt="">
                                 </a>
                                 <a href="https://www.facebook.com/p/Bappeda-Provinsi-Sumatera-Barat-100069898355800/" target="_blank">
@@ -664,6 +703,34 @@
                 series.colors.step = 1;
             });
         }
+
+
+        document.querySelectorAll('[id^="carousel-selector-"]').forEach(function (el) {
+            el.addEventListener('click', function () {
+                // Hapus semua yang selected
+                document.querySelectorAll('[id^="carousel-selector-"]').forEach(e => e.classList.remove('selected'));
+                // Tambahkan selected ke yang diklik
+                el.classList.add('selected');
+
+                const slideIndex = el.getAttribute('data-bs-slide-to');
+                const carousel = bootstrap.Carousel.getOrCreateInstance(document.querySelector('#carouselExampleCaptions'));
+                carousel.to(slideIndex);
+            });
+        });
+
+        const carousel = document.querySelector('#carouselExampleCaptions');
+        const indicators = document.querySelectorAll('.carousel-indicators a');
+
+        // Saat slide berubah (manual atau otomatis)
+        carousel.addEventListener('slide.bs.carousel', function (e) {
+            indicators.forEach((indicator, index) => {
+                if (index === e.to) {
+                    indicator.classList.add('selected');
+                } else {
+                    indicator.classList.remove('selected');
+                }
+            });
+        });
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
