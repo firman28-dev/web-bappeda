@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\Pejabat_Controller;
 use App\Http\Controllers\Admin\User_Controller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Guest\API_Edatabase_Controller;
 use App\Http\Controllers\Guest\Guest_Category_Controller;
 use App\Http\Controllers\Guest\Guest_News_Controller;
 use App\Http\Controllers\Guest\Guest_Page_System_Controller;
@@ -43,6 +44,8 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('/home/ppid/{id}', [Guest_Page_System_Controller::class, 'showPpid'])->name('guest.showPpid');
     Route::get('/profile/profile-pejabat', [Guest_Profile_Controller::class, 'index'])->name('guest.pejabat');
     Route::get('/home/category/{id}', [Guest_Category_Controller::class, 'index'])->name('guest.category-news');
+    Route::get('/makro/{jenis}/{id?}', [API_Edatabase_Controller::class, 'curlListMakro']);
+
 
 
     

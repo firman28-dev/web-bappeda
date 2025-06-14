@@ -41,14 +41,14 @@
     {{-- </div> --}}
     <div class="bg-home">
         <div class="app-container container">
-            <div class="row align-items-center">
+            <div class="row align-items-center py-lg-0 py-20">
                 <div class="col-lg-6">
                     <h1 class="display-3 mb-8 text-white">
                         Sumatera Barat <b class="text-custom-primary">Madani</b> Maju dan <b class="text-custom-primary">Berkelanjutan</b>  Berlandaskan <b class="text-custom-primary">Agama</b>  dan Budaya.
                     </h1>
                 </div>
                 <div class="col-lg-6">
-                    <div class="d-lg-block d-none pt-10">
+                    <div class="d-lg-block d-none pt-10 pb-0">
                         <img src="{{asset('assets_global/img/GUB WAGUB.png')}}"  class="img-fluid" alt="" class="w-100" />
                     </div>
                 </div>
@@ -56,7 +56,7 @@
         </div>
         
     </div>
-    <div class="container justify-content-center">
+    <div class="container justify-content-center mb-10">
         <div class="text-center py-10">
              <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
                 <span class="d-inline-block mb-2 fs-2tx fw-bold">
@@ -120,6 +120,64 @@
             </div>
         </div>
        
+    </div>
+
+    <div class="container justify-content-center mb-10">
+         <div class="text-center py-10">
+             <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
+                <span class="d-inline-block mb-2 fs-2tx fw-bold">
+                    Indikator Makro
+                </span>
+                <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span>
+            </span>
+        </div>
+        <div class="row justify-content-center text-center mb-6">
+            <div class="col-6">
+                <form>
+                     <select 
+                        id="makro" 
+                        name="makro" 
+                        aria-label="Default select example"
+                        class="form-select form-select-solid rounded rounded-4 bindMakro" 
+                        required
+                        autocomplete="makro"
+                    >
+
+                        <option value="null" disabled selected>Pilih Indikator</option>
+                        
+                    </select>
+                </form>
+               
+
+            </div>
+        </div>
+        <div id="loading-spinner" class="text-center my-5 load d-none">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            {{-- <p>Memuat grafik...</p> --}}
+        </div>
+        <div class="card shadow-sm rounded-custom ">
+             <div id="result_makro">
+                <div id="initial_message" class="text-center text-muted py-4">
+                    <img src="{{asset('assets_global/media/illustration/search.png')}}" alt="" class="w-25" style="opacity:0.7;">
+                    <br>
+                    <em>Silakan pilih indikator terlebih dahulu.</em>
+                </div>
+
+                <div class="card-header d-none g-header">
+                    <div class="card-title">
+                        <h3 id="nama_data"></h3>
+                    </div>
+                </div>
+                <div class="card-body align-items-center d-none g-body">
+                    <canvas id="grafikMakroChart" class="p-15"></canvas>
+                </div>
+            </div>
+        </div>
+       
+        
+        
     </div>
     
     <div class="container  bg-white p-20">
@@ -222,24 +280,7 @@
                                 <div id="chartdiv" class="h-300px"></div>
 
                             </div>
-                            {{-- <div class="row align-items-center">
-                                <div class="col-lg-7">
-                                    <div class="row">
-                                        <div class="col-sm-6 col-4">
-                                            <h3>Pagu</h3>
-                                            <h3>Realisasi</h3>
-                                            <h3>Persentase</h3>
-                                        </div>
-                                        <div class="col-sm-6 col-8">
-                                            <h3>Pagu</h3>
-                                            <h3>Realisasi</h3>
-                                            <h3>Persentase</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                </div>
-                            </div> --}}
+                           
                         </div>
                         <div class="card-footer text-center">
                             <a href="{{route('guest.detail-realisai')}}">Lihat Selengkapnya</a>
@@ -522,7 +563,7 @@
                     @foreach($faqs as $index => $faq)
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="kt_accordion_1_header_{{ $index }}">
-                                <button class="accordion-button fs-4 fw-semibold {{ $index !== 0 ? 'collapsed' : '' }}"
+                                <button class="accordion-button fs-4 fw-semibold collapsed"
                                         type="button"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#kt_accordion_1_body_{{ $index }}"
@@ -532,7 +573,7 @@
                                 </button>
                             </h2>
                             <div id="kt_accordion_1_body_{{ $index }}"
-                                class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}"
+                                class="accordion-collapse collapse"
                                 aria-labelledby="kt_accordion_1_header_{{ $index }}"
                                 data-bs-parent="#kt_accordion_1">
                                 <div class="accordion-body">
@@ -737,5 +778,133 @@
 	<script>
     	AOS.init();
   	</script>
+    <script>
+        $('#makro').select2({
+            placeholder: 'Pilih Indikator',
+            allowClear: true
+        });
+
+        $(document).ready(function() {
+            // Ambil data list makro
+            $.ajax({
+                type: "GET",
+                url: "{{ url('/makro/list_makro') }}",
+                dataType: "json",
+                success: function(data) {
+                    if (data) {
+                        $.each(data, function(index, value) {
+                            let o = new Option(value.nama_indikator, value.id_indikator);
+                            $('#makro').append(o);
+                        });
+                    } else {
+                        alert("Data tidak tersedia!");
+                    }
+                }
+            });
+
+            // EVENT CHANGE: Saat user memilih indikator
+            $('.bindMakro').on('change', function () {
+                var id = $('#makro').val();
+
+                if (id === 'null') {
+                    $('#result_makro').html("Indikator Makro Belum dipilih");
+                } else {
+                    $('.load').removeClass('d-none');
+
+                    $.getJSON("/makro/grafik/" + id + "?jenis=grafik", function (response) {
+                        $('.load').removeClass('d-none');
+
+
+                        const tahun = response.tahun;
+                        const dataDaerah = response.data[0];
+                        const dataNasional = response.nasional[0];
+
+                        const nilaiDaerah = tahun.map(th => parseFloat(dataDaerah[th]) || 0);
+                        const nilaiNasional = dataNasional ? tahun.map(th => parseFloat(dataNasional[th]) || 0) : tahun.map(() => 0);
+                        $('#initial_message').hide();
+                        $('.card-header').removeClass('d-none');
+                        $('.card-body').removeClass('d-none');
+                        
+                        $('#error_message').remove();
+                        $('#nama_data').text(response.nama_data);
+
+                        // Buat ulang canvas (reset chart)
+                        $('#grafikMakroChart').remove(); // hapus lama
+                        $('#result_makro').append('<canvas id="grafikMakroChart"></canvas>'); // buat baru
+
+                        const ctx = document.getElementById('grafikMakroChart').getContext('2d');
+
+                        new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: response.tahun,
+                                datasets: [
+                                    {
+                                        label: 'Provinsi',
+                                        data: nilaiDaerah,
+                                        fill: true,
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        tension: 0.4,
+                                        pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                                        pointRadius: 5
+                                    },
+                                    {
+                                        label: 'Nasional',
+                                        data: nilaiNasional,
+                                        fill: true,
+                                        borderColor: 'rgba(255, 99, 132, 1)',
+                                        tension: 0.4,
+                                        pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                                        pointRadius: 5
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: false,
+                                        title: {
+                                            display: true,
+                                            text: 'Nilai'
+                                        }
+                                    },
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Tahun'
+                                        }
+                                    }
+                                }
+                            }
+                        });
+
+                        $('.load').addClass('d-none');
+
+                    }).fail(function () {
+                        $('.load').addClass('d-none');
+                        $('#initial_message').hide();
+                        $('#grafikMakroChart').remove();
+                        $('#nama_data').text('');
+                        $('.g-header').addClass('d-none');
+                        $('.g-body').addClass('d-none');
+
+                        if ($('#error_message').length === 0) {
+                            $('#result_makro').append(`
+                                <div id="error_message" class="text-center mt-4 mb-4">
+                                    <img src="{{asset('assets_global/media/illustration/search.png')}}" alt="Data tidak tersedia" class='w-25' style="opacity:0.7;">
+                                    <br>
+                                    <em class="text-danger mt-3">Data Grafik tidak tersedia.</em>
+                                </div>
+                            `);
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
+    
+
 @endsection
 
