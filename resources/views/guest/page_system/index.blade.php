@@ -15,6 +15,11 @@
                     <div class="card rounded-custom mb-5 border-0">
                         <div class="card-body p-8">
                             <div class="page-content text-custom content-description">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <p >{{$page_system->formatted_created_at}}</p>
+                                    <span><i class="fa-solid fa-eye"></i> {{$page_system->hits}} Viewers</span>
+                                </div>
+
                                 @if ($page_system->image)
                                     <img src="{{ asset('uploads/page_system/'.$page_system->image) }}" class="card-img-top" alt="News Image" style="object-fit: cover;">
                                 @endif
