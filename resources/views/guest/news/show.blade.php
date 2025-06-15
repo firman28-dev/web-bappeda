@@ -13,11 +13,25 @@
         </div>
         <div class="row">
             <div class="col-lg-7 mb-2 content-description">
-                <div class="card rounded-custom mb-5 border-0">
+                <div class="card rounded-custom shadow-sm mb-5 border-0">
                     <div class="card-body p-8">
                         <div class="page-content text-custom content-description">
                             @php
                                 $content = $news->description;
+
+                                $content = preg_replace_callback(
+                                    '/<img[^>]+>/i',
+                                    function ($matches) {
+                                        $imgTag = $matches[0];
+
+                                        $imgTag = preg_replace('/(width|height)="[^"]*"/i', '', $imgTag);
+
+                                        $imgTag = preg_replace('/<img/i', '<img style="max-width:100%;height:auto;" width="100%"', $imgTag);
+                                        return $imgTag;
+                                    },
+                                    $content
+                                );
+
                                 $contentWithPdf = preg_replace_callback(
                                     '/<a[^>]+href="([^"]+\.pdf)"[^>]*>.*?<\/a>/i',
                                     function ($matches) {
