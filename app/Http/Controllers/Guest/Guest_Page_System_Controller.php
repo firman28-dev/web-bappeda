@@ -13,6 +13,7 @@ class Guest_Page_System_Controller extends Controller
     public function show($id){
         $page_system = Page_System::find($id);
         if($page_system){
+            $page_system->increment('hits');
             $news = News::orderBy('created_at', 'desc')->take(3)->get();
             $breaking_news = News::orderBy('id', 'desc')->first();
 
