@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-7 mb-2 content-description">
+            <div class="col-lg-8 mb-2 content-description">
                 <div class="card rounded-custom shadow-sm mb-5 border-0">
                     <div class="card-body p-8">
                         <div class="page-content text-custom content-description">
@@ -50,10 +50,7 @@
                         </div>
                     </div>
                 </div>
-               
-                
             </div>
-            <div class="col-lg-1 mb-2"></div>
             <div class="col-lg-4 mb-2">
                 <div class="row">
                     @php
