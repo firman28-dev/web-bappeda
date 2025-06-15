@@ -13,23 +13,31 @@
         </div>
         <div class="row">
             <div class="col-lg-7 mb-2 content-description">
-               @php
-                    $content = $news->description;
-                    $contentWithPdf = preg_replace_callback(
-                        '/<a[^>]+href="([^"]+\.pdf)"[^>]*>.*?<\/a>/i',
-                        function ($matches) {
-                            $pdfUrl = $matches[1];
-                            return '<div class="mb-4"><embed src="' . $pdfUrl . '" type="application/pdf" width="100%" height="800px" /></div>';
-                        },
-                        $content
-                    );
-                @endphp
-                <h1>{{$news->title}}</h1>
-                <div class="d-flex flex-row justify-content-between">
-                    <p >{{$news->formatted_created_at}}</p>
-                    <span><i class="fa-solid fa-eye"></i> {{$news->hits}} Viewers</span>
+                <div class="card rounded-custom mb-5 border-0">
+                    <div class="card-body p-8">
+                        <div class="page-content text-custom content-description">
+                            @php
+                                $content = $news->description;
+                                $contentWithPdf = preg_replace_callback(
+                                    '/<a[^>]+href="([^"]+\.pdf)"[^>]*>.*?<\/a>/i',
+                                    function ($matches) {
+                                        $pdfUrl = $matches[1];
+                                        return '<div class="mb-4"><embed src="' . $pdfUrl . '" type="application/pdf" width="100%" height="800px" /></div>';
+                                    },
+                                    $content
+                                );
+                            @endphp
+                            <h1>{{$news->title}}</h1>
+                            <div class="d-flex flex-row justify-content-between">
+                                <p >{{$news->formatted_created_at}}</p>
+                                <span><i class="fa-solid fa-eye"></i> {{$news->hits}} Viewers</span>
+                            </div>
+                            {!! $contentWithPdf !!}
+                        </div>
+                    </div>
                 </div>
-                {!! $contentWithPdf !!}
+               
+                
             </div>
             <div class="col-lg-1 mb-2"></div>
             <div class="col-lg-4 mb-2">
