@@ -531,7 +531,9 @@ Halaman Informasi
             images_file_types: 'jpg,svg,webp,png,jpeg',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
             images_upload_handler: example_image_upload_handler,
-            document_base_url: '../',
+            // document_base_url: '../',
+            relative_urls: false,
+            convert_urls: false,
             
             // Perhatikan baris ini sudah diperbaiki
             extended_valid_elements: 'iframe[*]',
