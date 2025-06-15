@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-7 mb-2">
+            <div class="col-lg-7 mb-2 content-description">
                @php
                     $content = $news->description;
                     $contentWithPdf = preg_replace_callback(
@@ -25,7 +25,10 @@
                     );
                 @endphp
                 <h1>{{$news->title}}</h1>
-                <p class="text-start">{{$news->formatted_created_at}}</p>
+                <div class="d-flex flex-row justify-content-between">
+                    <p >{{$news->formatted_created_at}}</p>
+                    <span><i class="fa-solid fa-eye"></i> {{$news->hits}} Viewers</span>
+                </div>
                 {!! $contentWithPdf !!}
             </div>
             <div class="col-lg-1 mb-2"></div>

@@ -37,6 +37,7 @@ class Guest_News_Controller extends Controller
     public function news($id){
         $news = News::find($id);
         if($news){
+            $news->increment('hits');
             $newsAll = News::where('bidang_id', $news->bidang_id)
             // ->whereNot('id', $news->id)
             ->get();

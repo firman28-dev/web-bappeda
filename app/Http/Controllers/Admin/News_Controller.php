@@ -55,6 +55,7 @@ class News_Controller extends Controller
             $news->bidang_id = $request->bidang_id;
             $news->status_id = $request->status_id;
             $news->category_id = $request->category_id;
+            $news->hits = 0;
 
             if ($file) {
                 $unique = uniqid();

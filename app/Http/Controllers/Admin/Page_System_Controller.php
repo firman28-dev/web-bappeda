@@ -48,6 +48,8 @@ class Page_System_Controller extends Controller
             $page_system->title = $request->title;
             $page_system->description = $request->description;
             $page_system->status_id = $request->status_id;
+            $page_system->hits = 0;
+
             if ($file) {
                 $unique = uniqid();
 
