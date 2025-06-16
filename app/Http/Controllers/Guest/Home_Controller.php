@@ -11,27 +11,49 @@ use App\Models\Menu_Public;
 use App\Models\News;
 use Http;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class Home_Controller extends Controller
 {
     public function index(){
-        $list_link = List_Link::where('status_id',4)->get();
-       
+        $list_link = Cache::remember('list_link', 30, function () {
+            return List_Link::where('status_id', 4)->get(['path','url','id']);
+        });
         $bidang = Bidang::where('status_id', 1)->with('_news')->get();
-        $latest_news = News::orderBy('created_at', 'desc')
+
+        $latest_news = News::where('status_id',4)
+            ->orderBy('created_at', 'desc')
             ->limit(1)
             ->get();
-        $news_sumbar = News::where('category_id', 8)->orderBy('id','desc')->limit(10)->get();
+        $news_sumbar = News::where('category_id', 8)
+            ->where('status_id', 4)
+            ->orderBy('id','desc')->limit(10)
+            ->get();
+        
+        $banner = Cache::remember('banner', 30, function () {
+            return Banner::where('status_id', 4)->orderBy('id', 'desc')->get(['id', 'image', 'name']);
+        });
+        $faqs = Cache::remember('faq', 30, function () {
+            return FAQ::where('status_id', 1)->get(['id', 'name', 'description']);
+        });
+        
+        
+        // $list_link = List_Link::where('status_id',4)->get();
+       
+        // $bidang = Bidang::where('status_id', 1)->with('_news')->get();
+        // $latest_news = News::orderBy('created_at', 'desc')
+        //     ->limit(1)
+        //     ->get();
+        // $news_sumbar = News::where('category_id', 8)->orderBy('id','desc')->limit(10)->get();
 
-        $banner = Banner::where('status_id',4)
-        ->orderBy('id', 'desc')
-        ->get();
+        // $banner = Banner::where('status_id',4)
+        // ->orderBy('id', 'desc')
+        // ->get();
 
-        $faqs =FAQ::where('status_id',1)->get();
+        // $faqs =FAQ::where('status_id',1)->get();
 
         $sent = [
             'list_link' => $list_link,
-            // 'menu_public' => $menu_public,
             'bidang' => $bidang,
             'news' => $latest_news,
             'banner' => $banner,
@@ -40,7 +62,7 @@ class Home_Controller extends Controller
 
         ];
 
-        return view('guest.home.index', $sent);
+        return view('guest.home.index',$sent );
     }
 
     public function detailRealisasi(){
