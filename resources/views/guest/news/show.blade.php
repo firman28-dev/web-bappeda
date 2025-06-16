@@ -36,7 +36,15 @@
                                     '/<a[^>]+href="([^"]+\.pdf)"[^>]*>.*?<\/a>/i',
                                     function ($matches) {
                                         $pdfUrl = $matches[1];
-                                        return '<div class="mb-4"><embed src="' . $pdfUrl . '" type="application/pdf" width="100%" height="800px" /></div>';
+                                        return '<div class="mb-4">
+                                            <iframe src="' . $pdfUrl . '" 
+                                                    width="100%" 
+                                                    height="800px" 
+                                                    frameborder="0" 
+                                                    allowfullscreen>
+                                            </iframe>
+                                        </div>';
+                                        // return '<div class="mb-4"><embed src="' . $pdfUrl . '" type="application/pdf" width="100%" height="800px" /></div>';
                                     },
                                     $content
                                 );

@@ -18,7 +18,6 @@
             filter: contrast(1.2) saturate(1.3);
         }
 
-
     </style>
 @endsection
 @section('content')
