@@ -1,7 +1,7 @@
 <div class="app-container container d-flex align-items-stretch justify-content-between"
     id="kt_app_header_container">
     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
-        <a href="#">
+        <a href="{{route('guest.index')}}">
             <img alt="Logo" src="{{asset('assets_global/img/BAPPEDA SUMBAR HTM.png')}}"
             class="text-black h-50px app-sidebar-logo-default theme-light-show" />
         </a>

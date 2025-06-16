@@ -13,23 +13,28 @@ class News_Kabid_Controller extends Controller
 {
     public function index(){
         $user = Auth::user();
+        $bidang = Bidang::where('id',$user->bidang_id)->first();
 
         $news = News::where('bidang_id', $user->bidang_id)
         ->orderBy('id','desc')
         ->get();
 
         $sent = [
-            'news' => $news
+            'news' => $news,
+            'bidang' => $bidang
         ];
         return view('kabid.news.index', $sent);
     }
 
     public function edit($id){
-        $status = Status::whereIn('id', [4,5])->get();
+        $user = Auth::user();
+        $status = Status::whereIn('id', [4,5,6])->get();
+        $bidang = Bidang::where('id',$user->bidang_id)->first();
         $news = News::find($id);
         $sent = [
             'status' => $status,
-            'news' => $news
+            'news' => $news,
+            'bidang' =>$bidang
         ];
         return view('kabid.news.edit', $sent);
     }
@@ -44,10 +49,30 @@ class News_Kabid_Controller extends Controller
             $news = News::find($id);
             $news->status_id = $request->status_id;
             $news->save();
-            return redirect()->route('k-news.index');
+            return redirect()->route('k-news.index')->with('success', 'Berhasil Mengubah Data');
+
 
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function destroy($id){
+        $news = News::findOrFail($id);
+        if($news){
+             if($news->image){
+                $oldPhotoPath = $_SERVER['DOCUMENT_ROOT']. '/uploads/news/' .$news->image;
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
+            }
+        
+            $news->delete();
+            return redirect()->back()->with('success', 'Berhasil Menghapus Data');
+        }
+        else{
+            return redirect()->back()->with('error', 'Gagal Menghapus Data');
+        }
+       
     }
 }

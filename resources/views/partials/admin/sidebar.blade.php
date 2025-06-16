@@ -2,7 +2,7 @@
  <div class="sidebar-wrapper" data-sidebar-layout="stroke-svg">
      <div>
          <div class="logo-wrapper">
-            <a href="">
+            <a href="{{route('dashboard.index')}}">
                 <img class="img-fluid for-light" src="{{ asset('assets_global/img/BAPPEDA SUMBAR HTM.png') }}" alt="" style="width: 90px">
                 <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo_dark.png') }}" alt="">
             </a>
