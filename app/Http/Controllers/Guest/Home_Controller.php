@@ -19,12 +19,15 @@ class Home_Controller extends Controller
         $list_link = Cache::remember('list_link', 30, function () {
             return List_Link::where('status_id', 4)->get(['path','url','id']);
         });
-        $bidang = Bidang::where('status_id', 1)->with('_news')->get();
-
+        $bidang = Bidang::where('status_id', 1)
+            ->with(['_news:id,title,description,bidang_id,image,created_at,hits,created_by,hits']) 
+            ->get(['id', 'icon', 'label']);
+            // ->with('_news')
+            // ->get();
         $latest_news = News::where('status_id',4)
             ->orderBy('created_at', 'desc')
-            ->limit(1)
-            ->get();
+            ->first();
+       
         $news_sumbar = News::where('category_id', 8)
             ->where('status_id', 4)
             ->orderBy('id','desc')->limit(10)
@@ -36,7 +39,6 @@ class Home_Controller extends Controller
         $faqs = Cache::remember('faq', 30, function () {
             return FAQ::where('status_id', 1)->get(['id', 'name', 'description']);
         });
-        
         
         // $list_link = List_Link::where('status_id',4)->get();
        
@@ -55,7 +57,7 @@ class Home_Controller extends Controller
         $sent = [
             'list_link' => $list_link,
             'bidang' => $bidang,
-            'news' => $latest_news,
+            'latest_news' => $latest_news,
             'banner' => $banner,
             'news_sumbar' => $news_sumbar,
             'faqs' => $faqs

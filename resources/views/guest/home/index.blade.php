@@ -201,41 +201,38 @@
             <div class="row align-items-stretch d-flex ">
                 <div class="col-lg-6 mb-lg-0 mb-15">
                     <h1 class="display-6 text-center mb-2">Berita Terbaru</h1>
-                    @foreach ($news as $item)
+                    @if ($latest_news)
+                        @php
+                            $allowedExtensions = ['png', 'jpg', 'jpeg'];
+                            $imagePath = public_path('uploads/news/' . $latest_news->image);
+                            $extension = strtolower(pathinfo($latest_news->image, PATHINFO_EXTENSION));
+                            $imageUrl = (isset($latest_news->image) &&
+                                        file_exists($imagePath) &&
+                                        in_array($extension, $allowedExtensions))
+                                        ? asset('uploads/news/' . $latest_news->image)
+                                        : asset('uploads/news/default.jpg');
+                            $date = \Carbon\Carbon::parse($latest_news->created_at);
+                            preg_match('/<img[^>]+src="([^">]+)"/', $latest_news->description, $matches);
+                            $firstImage = $matches[1] ?? null;
+                            $plainText = strip_tags($latest_news->description);
+                            $shortText = Str::limit($plainText, 300);
+                        @endphp
+
                         <div class="card shadow-sm overflow-hidden h-100 border-0 rounded-custom mb-7">
                             <div class="position-relative">
-                                @php
-                                    $allowedExtensions = ['png', 'jpg', 'jpeg'];
-                                    $imagePath = public_path('uploads/news/' . $item->image);
-                                    $extension = strtolower(pathinfo($item->image, PATHINFO_EXTENSION));
-                                    $imageUrl = (isset($item->image) &&
-                                                file_exists($imagePath) &&
-                                                in_array($extension, $allowedExtensions))
-                                                ? asset('uploads/news/' . $item->image)
-                                                : asset('uploads/news/default.jpg');
-                                @endphp
                                 <img src="{{ $imageUrl }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 250px; object-fit: cover;">
                                 <div class="position-absolute top-0 start-0 bg-orange text-white p-2 text-center" style="width: 60px;">
-                                    @php
-                                        $date = \Carbon\Carbon::parse($item->created_at);
-                                    @endphp
                                     <div class="fw-bold fs-6">{{ $date->format('d') }}</div>
                                     <div class="small">{{ $date->format('M') }}</div>
                                 </div>
                             </div>
                             <div class="card-body d-flex flex-column">
                                 <div class="d-flex justify-content-between text-muted small mb-2">
-                                    <span><i class="fa-solid fa-eye"></i> {{$item->hits ?? '0'}} Viewers</span>
-                                    <span>{{ $item->_user->username ?? ' Admin' }}</span>
+                                    <span><i class="fa-solid fa-eye"></i> {{ $latest_news->hits ?? '0' }} Viewers</span>
+                                    <span>{{ $latest_news->_user->username ?? 'Admin' }}</span>
                                 </div>
-                                @php
-                                    preg_match('/<img[^>]+src="([^">]+)"/', $item->description, $matches);
-                                    $firstImage = $matches[1] ?? null;
-                                    $plainText = strip_tags($item->description);
-                                    $shortText = Str::limit($plainText, 300);
-                                @endphp
                                 <p class="card-title fw-bold mb-3">
-                                    {{ $item->title }}
+                                    {{ $latest_news->title }}
                                 </p>
                                 @if ($firstImage)
                                     <img src="{{ $firstImage }}" alt="Gambar" class="img-fluid mb-3" style="max-height: 200px; object-fit: cover;">
@@ -244,9 +241,8 @@
                                 <div class="content">
                                     {{ $shortText }}
                                 </div>          
-                            
                                 <div class="mt-auto">
-                                    <a href="{{ route('guest.news', $item->id) }}" class="text-decoration-none d-inline-flex align-items-center text-orange fw-semibold">
+                                    <a href="{{ route('guest.news', $latest_news->id) }}" class="text-decoration-none d-inline-flex align-items-center text-orange fw-semibold">
                                         <span>Baca Selengkapnya</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right ms-2" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M10.146 3.646a.5.5 0 0 1 .708 0L14.207 7.5H1.5a.5.5 0 0 1 0 1h12.707l-3.353 3.854a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.646a.5.5 0 0 1 0-.708z"/>
@@ -255,7 +251,8 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @endif
+
                 </div>
                 <div class="col-lg-6">
                     <div>

@@ -167,6 +167,7 @@ Berita Bappeda
                             <th style="width: 80px" class="text-center"> <span class="c-o-light f-w-600">No</span></th>
                             <th class="text-start"> <span class="c-o-light f-w-600">Nama Bidang</span></th>
                             <th class="w-25 text-start"> <span class="c-o-light f-w-600">Judul</span></th>
+                            <th class="w-25 text-start"> <span class="c-o-light f-w-600">Kategori</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Foto</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Status</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">ID</span></th>
@@ -179,7 +180,9 @@ Berita Bappeda
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $item->_bidang->label }}</td>
                                 <td>{{ $item->title }}</td>
-                                <td class="border border-1 text-center">
+                                <td>{{ $item->_category->title ?? '' }}</td>
+
+                                <td class="text-center">
                                     @if ($item->image)
                                         <figure itemprop="associatedMedia" itemscope="">
                                             <a href="{{ asset('uploads/news/' . $item->image) }}" itemprop="contentUrl" data-size="1600x950">
