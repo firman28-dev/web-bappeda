@@ -122,65 +122,105 @@
        
     </div>
 
-    <div class="container justify-content-center mb-10">
-         <div class="text-center py-10">
-             <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
-                <span class="d-inline-block mb-2 fs-2tx fw-bold">
-                    Indikator Makro
-                </span>
-                <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span>
-            </span>
-        </div>
-        <div class="row justify-content-center text-center mb-6">
-            <div class="col-6">
-                <form>
-                     <select 
-                        id="makro" 
-                        name="makro" 
-                        aria-label="Default select example"
-                        class="form-select form-select-solid rounded rounded-4 bindMakro" 
-                        required
-                        autocomplete="makro"
-                    >
-
-                        <option value="null" disabled selected>Pilih Indikator</option>
-                        
-                    </select>
-                </form>
-               
-
-            </div>
-        </div>
-        <div id="loading-spinner" class="text-center my-5 load d-none">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            {{-- <p>Memuat grafik...</p> --}}
-        </div>
-        <div class="card shadow-sm rounded-custom ">
-             <div id="result_makro">
-                <div id="initial_message" class="text-center text-muted py-4">
-                    <img src="{{asset('assets_global/media/illustration/search.png')}}" alt="" class="w-25" style="opacity:0.7;">
-                    <br>
-                    <em>Silakan pilih indikator terlebih dahulu.</em>
+    <div class="container app-container justify-content-center pb-10">
+        <div class="row d-flex align-items-stretch">
+             <div class="col-lg-7 mb-lg-0 mb-4">
+                <div class="text-center py-10">
+                    <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
+                        <span class="d-inline-block mb-2 fs-2tx fw-bold">
+                            Indikator Makro
+                        </span>
+                        <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span>
+                    </span>
                 </div>
+                <div class="row justify-content-center text-center mb-6">
+                    <div class="col-6">
+                        <form>
+                            <select 
+                                id="makro" 
+                                name="makro" 
+                                aria-label="Default select example"
+                                class="form-select form-select-solid rounded rounded-4 bindMakro" 
+                                required
+                                autocomplete="makro"
+                            >
 
-                <div class="card-header d-none g-header">
-                    <div class="card-title">
-                        <h3 id="nama_data"></h3>
+                                <option value="null" disabled selected>Pilih Indikator</option>
+                                
+                            </select>
+                        </form>
+                    
+
                     </div>
                 </div>
-                <div class="card-body align-items-center d-none g-body">
-                    <canvas id="grafikMakroChart" class="p-15"></canvas>
+                <div id="loading-spinner" class="text-center my-5 load d-none">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    {{-- <p>Memuat grafik...</p> --}}
+                </div>
+                <div class="card shadow-sm rounded-custom ">
+                    <div id="result_makro">
+                        <div id="initial_message" class="text-center text-muted py-4">
+                            <img src="{{asset('assets_global/media/illustration/search.png')}}" alt="" class="w-25" style="opacity:0.7;">
+                            <br>
+                            <em>Silakan pilih indikator terlebih dahulu.</em>
+                        </div>
+
+                        <div class="card-header d-none g-header">
+                            <div class="card-title">
+                                <h3 id="nama_data"></h3>
+                            </div>
+                        </div>
+                        <div class="card-body align-items-center d-none g-body">
+                            <canvas id="grafikMakroChart" class="p-15"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="text-center py-10">
+                    <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
+                        <span class="d-inline-block mb-2 fs-2tx fw-bold">
+                            Realisasi Bappeda
+                        </span>
+                        <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span>
+                    </span>
+                </div>
+                <div class="card shadow-sm rounded-custom">
+                    <div class="card-body">
+                        <div class="d-flex flex-column">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h3>Pagu</h3>
+                                    <h3>Realisasi</h3>
+                                    <h3>Persentase</h3>
+                                </div>
+                                
+                                <div class="col-sm-8">
+                                    <h3 id="totalPagu"></h3>
+                                    <h3 id="realisasiKeuangan"></h3>
+                                    <h3 id="persenKeuangan"></h3>
+                                </div>
+                            </div>
+                            <div id="chartdiv" class="h-300px"></div>
+                        </div>
+                        
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{{route('guest.detail-realisai')}}">Lihat Selengkapnya</a>
+                    </div>
                 </div>
             </div>
         </div>
        
         
+       
+        
         
     </div>
     
-    <div class="container  bg-white p-20">
+    <div class="container app-container bg-white p-20">
         <div class="row align-items-center ">
             <div class="col-lg-6 mb-lg-0 mb-4 flex-column justify-content-center">
                 <h1 class="display-5">BADAN PERENCANAAN PEMBANGUNAN DAERAH <span class="text-custom-warning">SUMATERA BARAT</span> </h1>
@@ -195,7 +235,7 @@
     </div>
 
 
-    <div data-aos="fade-up"
+    {{-- <div data-aos="fade-up"
         data-aos-duration="2000">
         <div class="container">
             <div class="row align-items-stretch d-flex ">
@@ -286,7 +326,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
     <div class="container mb-20 mt-20">
@@ -439,7 +479,7 @@
                     <div class="card rounded-custom2 shadow-sm">
                         <div class="card-body">
                             <div class="d-flex flex-row gap-5 align-items-center">
-                                <img src="{{asset('assets/icon/no1.png')}}" alt="">
+                                <img src="{{asset('assets_global/icon/no1.png')}}" alt="">
                                 <h3 class="lh-sm">Rencana Kerja Pemerintah Daerah</h3>
                             </div>
                         </div>
@@ -449,7 +489,7 @@
                     <div class="card rounded-custom2 shadow-sm">
                         <div class="card-body">
                             <div class="d-flex flex-row gap-5 align-items-center">
-                                <img src="{{asset('assets/icon/no2.png')}}" alt="">
+                                <img src="{{asset('assets_global/icon/no2.png')}}" alt="">
                                 <h3 class="lh-sm">Rencana Tata Ruang dan Wilayah</h3>
                             </div>
                         </div>
@@ -459,7 +499,7 @@
                     <div class="card rounded-custom2 shadow-sm">
                         <div class="card-body">
                             <div class="d-flex flex-row gap-5 align-items-center">
-                                <img src="{{asset('assets/icon/no3.png')}}" alt="">
+                                <img src="{{asset('assets_global/icon/no3.png')}}" alt="">
                                 <h3 class="lh-sm">Rencana Pembangunan Jangka Panjang Daerah</h3>
                             </div>
                         </div>
@@ -469,7 +509,7 @@
                     <div class="card rounded-custom2 shadow-sm">
                         <div class="card-body">
                             <div class="d-flex flex-row gap-5 align-items-center">
-                                <img src="{{asset('assets/icon/no4.png')}}" alt="">
+                                <img src="{{asset('assets_global/icon/no4.png')}}" alt="">
                                 <h3 class="lh-sm">Rencana Pembangunan Jangka Menegah Daerah</h3>
                             </div>
                         </div>
@@ -479,7 +519,7 @@
                     <div class="card rounded-custom2 shadow-sm">
                         <div class="card-body">
                             <div class="d-flex flex-row gap-5 align-items-center">
-                                <img src="{{asset('assets/icon/no5.png')}}" alt="">
+                                <img src="{{asset('assets_global/icon/no5.png')}}" alt="">
                                 <h3 class="lh-sm">Laporan Keterangan Pertanggungjawaban</h3>
                             </div>
                         </div>
@@ -489,7 +529,7 @@
                     <div class="card rounded-custom2 shadow-sm">
                         <div class="card-body">
                             <div class="d-flex flex-row gap-5 align-items-center">
-                                <img src="{{asset('assets/icon/no6.png')}}" alt="">
+                                <img src="{{asset('assets_global/icon/no6.png')}}" alt="">
                                 <h3 class="lh-sm">Rencana Pembangunan Jangka Panjang Nasional</h3>
                             </div>
                         </div>
