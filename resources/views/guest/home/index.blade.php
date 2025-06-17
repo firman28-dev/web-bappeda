@@ -544,25 +544,25 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning">{{ number_format($jumlahPengunjung) }}</h2>
+                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ $jumlahPengunjung }}">0</h2>
                     <p class="lead">Jumlah Pengunjung</p>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning">{{ number_format($rataKunjunganHarian) }}</h2>
+                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ number_format($rataKunjunganHarian) }}">0</h2>
                     <p class="lead">Rata-rata Kunjungan Harian</p>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning">{{ number_format($pengunjungAktif) }}</h2>
+                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ number_format($pengunjungAktif) }}">0</h2>
                     <p class="lead">Pengunjung Aktif</p>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning">{{ number_format($jumlahHalamanDikunjungi) }}</h2>
+                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ number_format($jumlahHalamanDikunjungi) }}">0</h2>
                     <p class="lead">Jumlah Halaman Dikunjungi</p>
                 </div>
             </div>
