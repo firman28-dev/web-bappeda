@@ -9,6 +9,7 @@ use App\Models\FAQ;
 use App\Models\List_Link;
 use App\Models\Menu_Public;
 use App\Models\News;
+use DB;
 use Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -39,6 +40,23 @@ class Home_Controller extends Controller
         $faqs = Cache::remember('faq', 30, function () {
             return FAQ::where('status_id', 1)->get(['id', 'name', 'description']);
         });
+
+        $jumlahPengunjung = Cache::remember('jumlah_pengunjung', 3600, function () {
+            return DB::table('visitor_stats')->distinct('ip_address')->count('ip_address');
+        });
+
+        $pengunjungAktif = DB::table('visitor_stats')
+            ->where('visited_at', '>=', now()->subDays(7))
+            ->distinct('ip_address')
+            ->count('ip_address');
+
+        $rataKunjunganHarian = DB::table('visitor_stats')
+            ->select(DB::raw('DATE(visited_at) as date'), DB::raw('COUNT(*) as total'))
+            ->groupBy('date')
+            ->get()
+            ->avg('total');
+
+        $jumlahHalamanDikunjungi = DB::table('visitor_stats')->count();
         
         // $list_link = List_Link::where('status_id',4)->get();
        
@@ -60,7 +78,11 @@ class Home_Controller extends Controller
             'latest_news' => $latest_news,
             'banner' => $banner,
             'news_sumbar' => $news_sumbar,
-            'faqs' => $faqs
+            'faqs' => $faqs,
+            'jumlahPengunjung' => $jumlahPengunjung,
+            'pengunjungAktif' => $pengunjungAktif,
+            'rataKunjunganHarian' => $rataKunjunganHarian,
+            'jumlahHalamanDikunjungi' => $jumlahHalamanDikunjungi
 
         ];
 

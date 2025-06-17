@@ -133,7 +133,7 @@
                     </span>
                 </div>
                 <div class="row justify-content-center text-center mb-6">
-                    <div class="col-6">
+                    <div class="col-12">
                         <form>
                             <select 
                                 id="makro" 
@@ -544,25 +544,25 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning">3,438</h2>
+                    <h2 class="display-5 text-custom-warning">{{ number_format($jumlahPengunjung) }}</h2>
                     <p class="lead">Jumlah Pengunjung</p>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning">2,149</h2>
+                    <h2 class="display-5 text-custom-warning">{{ number_format($rataKunjunganHarian) }}</h2>
                     <p class="lead">Rata-rata Kunjungan Harian</p>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning">3,493</h2>
+                    <h2 class="display-5 text-custom-warning">{{ number_format($pengunjungAktif) }}</h2>
                     <p class="lead">Pengunjung Aktif</p>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning">4,230</h2>
+                    <h2 class="display-5 text-custom-warning">{{ number_format($jumlahHalamanDikunjungi) }}</h2>
                     <p class="lead">Jumlah Halaman Dikunjungi</p>
                 </div>
             </div>
