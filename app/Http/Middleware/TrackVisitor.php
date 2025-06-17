@@ -17,13 +17,29 @@ class TrackVisitor
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->is('/')) {
+        if (
+            $request->is('/') ||
+            $request->is('home/detail-realisasi') ||
+            $request->is('home/get-category-bidang/*') ||
+            $request->is('home/show-news/*') ||
+            $request->is('home/pages/*') ||
+            $request->is('home/ppid/*') ||
+            $request->is('profile/profile-pejabat') ||
+            $request->is('home/category/*')
+        ) {
             DB::table('visitor_stats')->insert([
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->header('User-Agent'),
                 'visited_at' => now()
             ]);
         }
+        // if ($request->is('/')) {
+        //     DB::table('visitor_stats')->insert([
+        //         'ip_address' => $request->ip(),
+        //         'user_agent' => $request->header('User-Agent'),
+        //         'visited_at' => now()
+        //     ]);
+        // }
 
         return $next($request);
     }
