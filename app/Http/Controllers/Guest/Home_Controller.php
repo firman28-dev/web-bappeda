@@ -41,7 +41,7 @@ class Home_Controller extends Controller
             return FAQ::where('status_id', 1)->get(['id', 'name', 'description']);
         });
 
-        $jumlahPengunjung = Cache::remember('jumlah_pengunjung', 3600, function () {
+        $jumlahPengunjung = Cache::remember('jumlah_pengunjung', 60, function () {
             return DB::table('visitor_stats')->distinct('ip_address')->count('ip_address');
         });
 
