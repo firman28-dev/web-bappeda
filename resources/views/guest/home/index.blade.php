@@ -591,7 +591,7 @@
         </div>
     </div>
 
-     <div class="container mb-20 mt-20">
+     {{-- <div class="container mb-20 mt-20">
         <h1 class="display-6 pb-10 text-center">FAQ BAPPEDA SUMBAR</h1>
         <div class="card">
             <div class="card-body">
@@ -623,7 +623,7 @@
         </div>
         
 
-    </div>
+    </div> --}}
     
     <div class="container mb-20 mt-20">
         <div class="card rounded-custom bg-about">
