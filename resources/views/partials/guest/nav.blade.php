@@ -51,8 +51,8 @@
             @endforeach
 
             <div class="d-lg-none py-3 px-4">
-                <a href="{{ route('login.show') }}" class="btn rounded-4 btn-outline-primary btn-outline py-4">
-                    Masuk
+                <a href="#" class="btn rounded-4 btn-outline-primary btn-outline py-4">
+                    <i class="fa-solid fa-bell"></i>
                 </a>
             </div>
             
@@ -60,10 +60,9 @@
         </div>
 
         <div class="app-navbar">
-            <div class="app-navbar-item ms-1 ms-lg-3 d-none d-lg-block d-md-block d-sm-block m-auto"
-            id="kt_app_header_menu">
-                <a href="{{ route('login.show') }}" class="btn rounded-4 btn-outline-primary btn-outline py-4">
-                    Masuk
+            <div class="app-navbar-item ms-1 ms-lg-3 d-none d-lg-block d-md-block d-sm-block m-auto" id="kt_app_header_menu">
+                <a href="#" class="btn rounded-4 btn-outline-primary btn-outline btn-icon">
+                    <i class="fa-solid fa-bell"></i>
                 </a>
             </div>
 

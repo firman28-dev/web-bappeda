@@ -9,6 +9,7 @@ use App\Models\FAQ;
 use App\Models\List_Link;
 use App\Models\Menu_Public;
 use App\Models\News;
+use App\Models\SosialMedia;
 use DB;
 use Http;
 use Illuminate\Http\Request;
@@ -59,6 +60,7 @@ class Home_Controller extends Controller
             ->avg('total');
 
         $jumlahHalamanDikunjungi = DB::table('visitor_stats')->count();
+        $socials = SosialMedia::all();
         
         // $list_link = List_Link::where('status_id',4)->get();
        
@@ -84,7 +86,8 @@ class Home_Controller extends Controller
             'jumlahPengunjung' => $jumlahPengunjung,
             'pengunjungAktif' => $pengunjungAktif,
             'rataKunjunganHarian' => $rataKunjunganHarian,
-            'jumlahHalamanDikunjungi' => $jumlahHalamanDikunjungi
+            'jumlahHalamanDikunjungi' => $jumlahHalamanDikunjungi,
+            'socials' => $socials
 
         ];
 

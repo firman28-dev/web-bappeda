@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Menu_Public_Controller;
 use App\Http\Controllers\Admin\News_Controller;
 use App\Http\Controllers\Admin\Page_System_Controller;
 use App\Http\Controllers\Admin\Pejabat_Controller;
+use App\Http\Controllers\Admin\SosialMedia_Controller;
 use App\Http\Controllers\Admin\User_Controller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -35,23 +36,23 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => ['guest']], function () {
-    Route::get('/', [Home_Controller::class, 'index'])->name('guest.index');
-    Route::get('/home/detail-realisasi', [Home_Controller::class, 'detailRealisasi'])->name('guest.detail-realisai');
-    Route::get('/home/get-category-bidang/{id}', [Guest_News_Controller::class, 'getAllCategory'])->name('guest.get-category');
-    Route::get('/home/show-news/{id}', [Guest_News_Controller::class, 'news'])->name('guest.news');
-    Route::get('/home/pages/{id}', [Guest_Page_System_Controller::class, 'show'])->name('guest.page-system');
-    Route::get('/home/ppid/{id}', [Guest_Page_System_Controller::class, 'showPpid'])->name('guest.showPpid');
-    Route::get('/profile/profile-pejabat', [Guest_Profile_Controller::class, 'index'])->name('guest.pejabat');
-    Route::get('/home/category/{id}', [Guest_Category_Controller::class, 'index'])->name('guest.category-news');
-    Route::get('/makro/{jenis}/{id?}', [API_Edatabase_Controller::class, 'curlListMakro']);
-
-
-
+// Route::group(['middleware' => ['guest']], function () {
     
-    Route::get('/login', [LoginController::class, 'show'])->name('login.show');
-    Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
-});
+// });
+
+Route::get('/', [Home_Controller::class, 'index'])->name('guest.index');
+Route::get('/home/detail-realisasi', [Home_Controller::class, 'detailRealisasi'])->name('guest.detail-realisai');
+Route::get('/home/get-category-bidang/{id}', [Guest_News_Controller::class, 'getAllCategory'])->name('guest.get-category');
+Route::get('/home/show-news/{id}', [Guest_News_Controller::class, 'news'])->name('guest.news');
+Route::get('/home/pages/{id}', [Guest_Page_System_Controller::class, 'show'])->name('guest.page-system');
+Route::get('/home/ppid/{id}', [Guest_Page_System_Controller::class, 'showPpid'])->name('guest.showPpid');
+Route::get('/profile/profile-pejabat', [Guest_Profile_Controller::class, 'index'])->name('guest.pejabat');
+Route::get('/home/category/{id}', [Guest_Category_Controller::class, 'index'])->name('guest.category-news');
+Route::get('/makro/{jenis}/{id?}', [API_Edatabase_Controller::class, 'curlListMakro']);
+
+Route::get('/management', [LoginController::class, 'show'])->name('login.show');
+Route::post('/management', [LoginController::class, 'login'])->name('login.perform');
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/unauthorized', function () {
@@ -77,6 +78,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::patch('/user/{id}/reset-password', [User_Controller::class, 'resetPassword'])->name('user.resetPassword');
 
         Route::resource('menu-public', Menu_Public_Controller::class);
+        Route::resource('sosial-media', SosialMedia_Controller::class);
+
         Route::resource('list-link', List_Link_Controller::class);
         Route::resource('bidang', Bidang_Controller::class);
         Route::resource('banner', Banner_Controller::class);

@@ -55,69 +55,109 @@
         </div>
         
     </div>
-    <div class="container justify-content-center mb-10">
-        <div class="text-center py-10">
-             <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
-                <span class="d-inline-block mb-2 fs-2tx fw-bold">
-                    Berita Sumbar
-                </span>
-                <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span>
-            </span>
-        </div>
-       
-        <div class="card card-custom p-6">
-            <div class="card-body ">
-                 @if($news_sumbar->count())
-                    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            @foreach($news_sumbar as $index => $item)
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-                            @endforeach
-                        </div>
-                        <div class="carousel-inner" role="listbox">
-                            @foreach($news_sumbar as $index => $item)
-                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                    <img src="{{ $item->image ? asset('uploads/news/' . $item->image) : asset('uploads/news/default.jpg') }}" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="{{ $item->title }}">
-                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-3 rounded">
-                                        <h5 class="text-white">{{ $item->title }}</h5>
-                                        <p>{{ \Illuminate\Support\Str::limit(strip_tags($item->description), 100) }}</p>
-                                    </div>
+    <div class="container app-container justify-content-center mb-10">
+        <div class="row row align-items-stretch">
+            <div class="col-lg-7 h-100">
+                <div class="text-start py-10">
+                    <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
+                        <span class="d-inline-block mb-2 fs-2tx fw-bold">
+                            Berita Sumbar
+                        </span>
+                        <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span>
+                    </span>
+                </div>
+        
+                <div class="card card-custom p-6 d-flex flex-column h-100">
+                    <div class="card-body card-body flex-grow-1">
+                        @if($news_sumbar->count())
+                            <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    @foreach($news_sumbar as $index => $item)
+                                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                                    @endforeach
                                 </div>
-                            @endforeach
-                        </div>
-                        
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Sebelumnya</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Selanjutnya</span>
-                        </button>
+                                <div class="carousel-inner" role="listbox">
+                                    @foreach($news_sumbar as $index => $item)
+                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                            <img src="{{ $item->image ? asset('uploads/news/' . $item->image) : asset('uploads/news/default.jpg') }}" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="{{ $item->title }}">
+                                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-3 rounded">
+                                                <h5 class="text-white">{{ $item->title }}</h5>
+                                                <p>{{ \Illuminate\Support\Str::limit(strip_tags($item->description), 100) }}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Sebelumnya</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Selanjutnya</span>
+                                </button>
+                            </div>
+                            <div class="text-center mt-16">
+                                <ol class="carousel-indicators list-inline justify-content-center">
+                                    @foreach($news_sumbar as $index => $item)
+                                        <li class="list-inline-item mx-1">
+                                            <a id="carousel-selector-{{ $index }}"
+                                            data-bs-slide-to="{{ $index }}"
+                                            data-bs-target="#carouselExampleCaptions"
+                                            class="{{ $index == 0 ? 'selected' : '' }}">
+                                                <img src="{{ $item->image ? asset('uploads/news/' . $item->image) : asset('uploads/news/default.jpg') }}"
+                                                    class="img-fluid border"
+                                                    style="width: 100px; height: 60px; object-fit: cover;">
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ol>
+                            </div>
+                        @else
+                            <div class="text-center py-5">
+                                <h4 class="text-muted">Tidak ada berita tersedia untuk kategori ini.</h4>
+                            </div>
+                        @endif
                     </div>
-                    <div class="text-center mt-10">
-                        <ol class="carousel-indicators list-inline justify-content-center">
-                            @foreach($news_sumbar as $index => $item)
-                                <li class="list-inline-item mx-1">
-                                    <a id="carousel-selector-{{ $index }}"
-                                    data-bs-slide-to="{{ $index }}"
-                                    data-bs-target="#carouselExampleCaptions"
-                                    class="{{ $index == 0 ? 'selected' : '' }}">
-                                        <img src="{{ $item->image ? asset('uploads/news/' . $item->image) : asset('uploads/news/default.jpg') }}"
-                                            class="img-fluid border"
-                                            style="width: 100px; height: 60px; object-fit: cover;">
+                </div>
+            </div>
+
+            <div class="col-lg-5 h-100">
+                <div class="text-start py-10">
+                    <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
+                        <span class="d-inline-block mb-2 fs-2tx fw-bold">
+                            Media Sosial
+                        </span>
+                        <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-danger translate rounded"></span>
+                    </span>
+                </div>
+                @if ($socials->count())
+                <div class="card card-custom p-6 d-flex flex-column h-100">
+                    <div class="card-body card-body flex-grow-1">
+                        <ul class="nav nav-tabs mb-3">
+                            @foreach ($socials as $social)
+                                <li class="nav-item">
+                                    <a class="nav-link {{ $loop->first ? 'active' : '' }}" data-bs-toggle="tab" href="#tab{{ $social->id }}">
+                                        {{ ucfirst($social->platform) }}
                                     </a>
                                 </li>
                             @endforeach
-                        </ol>
+                        </ul>
+
+                        <div class="tab-content w-100" style="overflow:hidden; max-width: 100%; max-height: 50%">
+                            @foreach ($socials as $social)
+                                <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="tab{{ $social->id }}">
+                                    {!! $social->embed_code !!}
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                @else
-                    <div class="text-center py-5">
-                        <h4 class="text-muted">Tidak ada berita tersedia untuk kategori ini.</h4>
-                    </div>
+                </div>
                 @endif
+                
             </div>
         </div>
+        
        
     </div>
 
@@ -591,6 +631,27 @@
         </div>
     </div>
 
+    <div class="container">
+        <h2 class="text-danger">Media Sosial</h2>
+        <ul class="nav nav-tabs mb-3">
+            @foreach ($socials as $social)
+                <li class="nav-item">
+                    <a class="nav-link {{ $loop->first ? 'active' : '' }}" data-bs-toggle="tab" href="#tab{{ $social->id }}">
+                        {{ ucfirst($social->platform) }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+
+        <div class="tab-content">
+            @foreach ($socials as $social)
+                <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="tab{{ $social->id }}">
+                    {!! $social->embed_code !!}
+                </div>
+            @endforeach
+        </div>
+    </div>
+
      {{-- <div class="container mb-20 mt-20">
         <h1 class="display-6 pb-10 text-center">FAQ BAPPEDA SUMBAR</h1>
         <div class="card">
@@ -940,7 +1001,6 @@
 
         });
     </script>
-    
-
+    <script async src="//www.instagram.com/embed.js"></script>
 @endsection
 

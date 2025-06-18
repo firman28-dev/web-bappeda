@@ -124,6 +124,8 @@
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('faq.index') }}">FAQ</a></li>
                             <li><a href="{{ route('banner.index') }}">Infografis</a></li>
+                            <li><a href="{{ route('sosial-media.index') }}">Sosial Media</a></li>
+
                         </ul>
                     </li>
                     {{-- <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
