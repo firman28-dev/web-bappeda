@@ -631,26 +631,6 @@
         </div>
     </div>
 
-    <div class="container">
-        <h2 class="text-danger">Media Sosial</h2>
-        <ul class="nav nav-tabs mb-3">
-            @foreach ($socials as $social)
-                <li class="nav-item">
-                    <a class="nav-link {{ $loop->first ? 'active' : '' }}" data-bs-toggle="tab" href="#tab{{ $social->id }}">
-                        {{ ucfirst($social->platform) }}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-
-        <div class="tab-content">
-            @foreach ($socials as $social)
-                <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="tab{{ $social->id }}">
-                    {!! $social->embed_code !!}
-                </div>
-            @endforeach
-        </div>
-    </div>
 
      {{-- <div class="container mb-20 mt-20">
         <h1 class="display-6 pb-10 text-center">FAQ BAPPEDA SUMBAR</h1>
