@@ -66,14 +66,21 @@ class Category_Controller extends Controller
     
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Category::find($id);
         $status = Status::whereIn('id', [1, 2])->get();
 
         $sent = [
             'category' => $category,
             'status' => $status
         ];
-        return view('admin.category.edit', $sent);
+        
+        if($category){
+            return view('admin.category.edit', $sent);
+        }
+        else{
+            return view('error_page.error_404');
+        }
+        
     }
 
     

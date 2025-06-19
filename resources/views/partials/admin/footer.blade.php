@@ -15,7 +15,7 @@
      <div class="container-fluid">
          <div class="row">
              <div class="col-md-12 footer-copyright text-center">
-                 <p class="mb-0">Copyright <span class="year-update"> </span> © Tim IT Bappeda Sumbar </p>
+                 <p class="mb-0">Copyright 2024 - <span class="year-update"> </span> © Tim IT Bappeda Sumbar </p>
              </div>
          </div>
      </div>

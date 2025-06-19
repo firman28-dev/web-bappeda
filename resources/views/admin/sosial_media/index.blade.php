@@ -25,7 +25,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item active">Sosial Media Bappeda</li>
+                    <li class="breadcrumb-item active">Sosial Media</li>
                 </ol>
             </div>
         </div>

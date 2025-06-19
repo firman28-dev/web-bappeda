@@ -29,9 +29,9 @@ class List_Link_Controller extends Controller
     }
     public function store(Request $request){
         $request->validate([
-            'name' => 'required',
-            'url' => 'required',
-            'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'url' => 'required|string|max:255',
+            'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
             'status_id' => 'required'
         ],[
             'name.required' => 'Nama wajib diisi.',
@@ -67,22 +67,26 @@ class List_Link_Controller extends Controller
     }
 
     public function edit($id){
-        $list_link = List_Link::findOrFail($id);
+        $list_link = List_Link::find($id);
         $status = Status::whereIn('id', [4, 5])->get();
 
         $sent = [
             'list_link' => $list_link,
             'status' => $status
         ];
-        return view('admin.list_link.edit', $sent);
-
+        if($list_link){
+            return view('admin.list_link.edit', $sent);
+        }
+        else{
+            return view('error_page.error_404');
+        }
     }
 
     public function update(Request $request, $id){
         $request->validate([
-            'name' => 'required',
-            'url' => 'required',
-            'path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'url' => 'required|string|max:255',
+            'path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
         ],[
             'name.required' => 'Nama wajib diisi.',
             'url.required' => 'URL wajib diisi.',

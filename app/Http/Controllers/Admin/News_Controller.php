@@ -40,7 +40,7 @@ class News_Controller extends Controller
             'description' => 'required',
             'bidang_id' => 'required',
             'category_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
             'status_id' => 'required',
         ],);
 
@@ -84,7 +84,14 @@ class News_Controller extends Controller
             'news' => $news,
             'category' =>$category
         ];
-        return view('admin.news.edit', $sent);
+
+        if($news){
+            return view('admin.news.edit', $sent);
+        }
+        else{
+            return view('error_page.error_404');
+        }
+        
     }
 
     public function update(Request $request, $id){
@@ -93,7 +100,7 @@ class News_Controller extends Controller
             'description' => 'required',
             'bidang_id' => 'required',
             'category_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
             'status_id' => 'required',
         ],);
         // dd($request->description);
@@ -173,7 +180,7 @@ class News_Controller extends Controller
         return response()->json(['error' => 'No file uploaded'], 400);
     }
 
-    public function uploadPDF(Request $request)
+    public function uploadFileEditor(Request $request)
     {
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -184,9 +191,9 @@ class News_Controller extends Controller
             $filename = $originalName . '_' . Str::random(8) . '.' . $extension;
 
             // $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-            $destination = $_SERVER['DOCUMENT_ROOT'] .  '/uploads/news/konten_dokumen';
+            $destination = $_SERVER['DOCUMENT_ROOT'] .  '/uploads/news/file';
             $file->move($destination, $filename);
-            $url = asset('/uploads/news/konten_dokumen/' . $filename);
+            $url = asset('/uploads/news/file/' . $filename);
             return response()->json(['location' => $url]);
         }
 

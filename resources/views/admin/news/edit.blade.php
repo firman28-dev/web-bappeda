@@ -432,8 +432,8 @@
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
                                 </svg></a></li>
-                        <li class="breadcrumb-item">Berita Bappeda</li>
-                        <li class="breadcrumb-item active">Edit Berita</li>
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item active">Berita Bappeda</li>
                     </ol>
                 </div>
             </div>
@@ -555,6 +555,24 @@
         </div>
     </div>
     
+    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter1"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-toggle-wrapper">
+                        <ul class="modal-img">
+                            <li> <img src="http://127.0.0.1:8001/assets/images/gif/danger.gif" alt="error"></li>
+                        </ul>
+                        <h4 class="text-center pb-2">Terjadi Kesalahan Upload</h4>
+                        <p class="text-center c-light">Ukuran File yang kamu upload maksimal 3 MB. Silahkan diulangi kembali
+                            uploadnya</p>
+                        <button class="btn btn-secondary d-flex m-auto" type="button" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
@@ -567,7 +585,7 @@
     <script>
         const example_image_upload_handler = (blobInfo, progress) => new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/upload-image-news'); 
+            xhr.open('POST', '/upload-image-news');
             xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
 
             xhr.upload.onprogress = (e) => {
@@ -592,34 +610,73 @@
             xhr.send(formData);
         });
 
+        const file_upload_handler = (callback, value, meta) => {
+            const input = document.createElement('input');
+            input.setAttribute('type', 'file');
+
+            if (meta.filetype === 'file') {
+                input.setAttribute('accept', '.pdf'); // hanya PDF
+            } else if (meta.filetype === 'image') {
+                input.setAttribute('accept', 'image/*');
+            }
+
+            input.onchange = function () {
+                const file = this.files[0];
+                const formData = new FormData();
+                formData.append('file', file);
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/upload-pdf-news');
+                xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+
+                xhr.onload = () => {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        const json = JSON.parse(xhr.responseText);
+                        // Menambahkan link ke PDF
+                        callback(json.location, { text: file.name });
+                    } else {
+                        alert('Upload gagal: ' + xhr.status);
+                    }
+                };
+
+                xhr.send(formData);
+            };
+
+            input.click();
+        };
+
         tinymce.init({
             selector: '#description',
             license_key: 'gpl',
             plugins: [
-                "advlist", "anchor", "autolink", "charmap", "code", "fullscreen", 
-                "help", "image", "insertdatetime", "link", "lists", "media", 
-                "preview", "searchreplace", "table", "visualblocks", "code"
+                "advlist", "anchor", "autolink", "charmap", "code", "fullscreen",
+                "help", "image", "insertdatetime", "link", "lists", "preview",
+                "searchreplace", "table", "visualblocks", "code"
             ],
-            toolbar: "undo redo |link image accordion | styles | bold italic underline strikethrough | align | bullist numlist | code",
-            image_title: true,
-            file_picker_types: 'image',
+            toolbar: "undo redo | link image | styles | bold italic underline strikethrough | align | bullist numlist | code",
+            file_picker_callback: file_upload_handler,
+            file_picker_types: 'file image',
             images_file_types: 'jpg,svg,webp,png,jpeg',
-            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
-            images_upload_handler: example_image_upload_handler,
+            // images_upload_handler: example_image_upload_handler,
             relative_urls: false,
             convert_urls: false,
-            extended_valid_elements: 'iframe[*]',
-            valid_children: '+body[iframe]',
-            sandbox_iframes: false,
-            setup: function (editor) {
-                editor.on('SetContent', function () {
-                    const iframes = editor.getDoc().querySelectorAll('iframe[sandbox]');
-                    iframes.forEach(function (iframe) {
-                        iframe.removeAttribute('sandbox');
-                    });
-                });
-            }
 
+        });
+
+    </script>
+
+    <script>
+        document.getElementById('image').addEventListener('change', function () {
+            const file = this.files[0];
+            const maxSize = 3 * 1024 * 1024; // 3 MB
+
+            if (file && file.size > maxSize) {
+                this.value = ''; // reset input
+
+                const modalElement = document.getElementById('exampleModalCenter1');
+                const modal = new bootstrap.Modal(modalElement);
+                modal.show();
+            }
         });
     </script>
 @endsection

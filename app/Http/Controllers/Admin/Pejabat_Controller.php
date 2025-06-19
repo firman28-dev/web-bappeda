@@ -37,8 +37,8 @@ class Pejabat_Controller extends Controller
     {
         
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
             'bidang_id' => 'nullable',
             'group_id' => 'required',
         ],);
@@ -81,20 +81,27 @@ class Pejabat_Controller extends Controller
         $group = Group::whereIn('id', [1, 2,5])->get();
         $pejabat = Pejabat::find($id);
 
+        
+
         $sent = [
             'bidang' => $bidang,
             'group' => $group,
             'pejabat' => $pejabat
         ];
-        return view('admin.pejabat.edit', $sent);
+        if($pejabat){
+            return view('admin.pejabat.edit', $sent);
+        }
+        else{
+            return view('error_page.error_404');
+        }
     }
 
     
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
             'bidang_id' => 'nullable',
             'group_id' => 'required',
         ],);

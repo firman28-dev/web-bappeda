@@ -111,14 +111,19 @@ class Banner_Controller extends Controller
     }
 
     public function edit($id){
-        $banner = Banner::findOrFail($id);
+        $banner = Banner::find($id);
         $status = Status::whereIn('id', [4, 5])->get();
 
         $sent = [
             'banner' => $banner,
             'status' => $status
         ];
-        return view('admin.banner.edit', $sent);
+        if($banner){
+            return view('admin.banner.edit', $sent);
+        }
+        else{
+            return view('error_page.error_404');
+        }
 
     }
 

@@ -19,8 +19,8 @@
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
                                 </svg></a></li>
-                        <li class="breadcrumb-item">FAQ Bappeda</li>
-                        <li class="breadcrumb-item active">Edit FAQ</li>
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item active">FAQ Bappeda</li>
                     </ol>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                                 </div>
 
                                 <div class="common-flex justify-content-end mt-3">
-                                    <button class="btn btn-primary" type="submit">Tambah</button>
+                                    <button class="btn btn-primary" type="submit">Update</button>
                                     <a href="{{route('faq.index')}}" class="btn btn-sm btn-secondary">
                                         Kembali
                                     </a>

@@ -40,8 +40,9 @@
                         <h4>Edit Data</h4>
                     </div>
                     <div class="card-body add-post">
-                        <form class="row needs-validation theme-form" novalidate="" id="pageSystemForm" action="{{ route('sosial-media.store') }}" method="POST">
+                        <form class="row needs-validation theme-form" novalidate="" id="pageSystemForm" action="{{ route('sosial-media.update', $sosmed->id) }}" method="POST">
                             @csrf
+                            @method('PUT')
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">

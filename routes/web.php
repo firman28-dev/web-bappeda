@@ -67,9 +67,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/profile/update-profile', [User_Controller::class, 'updateProfile'])->name('user.updateProfile');
     Route::put('/profile/update-password', [User_Controller::class, 'updatePassword'])->name('user.updatePassword');
 
-    Route::post('/upload-image-information', [Page_System_Controller::class, 'uploadImage'])->name('upload.imageInformation');
-    Route::post('/upload-image-news', [News_Controller::class, 'uploadImage'])->name('upload.imageNews');
-    Route::post('/upload-pdf-news', [News_Controller::class, 'uploadPDF']);
+    // Route::post('/upload-image-news', [News_Controller::class, 'uploadImage'])->name('upload.imageNews');
+    Route::post('/upload-file-information', [Page_System_Controller::class, 'uploadFileEditor'])->name('page-system.uploadFileEditor');
+    Route::post('/upload-file-news', [News_Controller::class, 'uploadFileEditor'])->name('news.uploadFileEditor');
 
 
 
@@ -78,10 +78,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::patch('/user/{id}/reset-password', [User_Controller::class, 'resetPassword'])->name('user.resetPassword');
 
         Route::resource('menu-public', Menu_Public_Controller::class);
-        Route::resource('sosial-media', SosialMedia_Controller::class);
+        // Route::resource('sosial-media', SosialMedia_Controller::class);
+        Route::get('/sosial-media', [SosialMedia_Controller::class, 'index'])->name('sosial-media.index');
+        Route::get('/sosial-media/{id}/edit', [SosialMedia_Controller::class, 'edit'])->name('sosial-media.edit');
+        Route::put('/sosial-media/{id}', [SosialMedia_Controller::class, 'update'])->name('sosial-media.update');
+
 
         Route::resource('list-link', List_Link_Controller::class);
-        Route::resource('bidang', Bidang_Controller::class);
+        // Route::resource('bidang', Bidang_Controller::class);
+        Route::get('/bidang', [Bidang_Controller::class, 'index'])->name('bidang.index');
+
         Route::resource('banner', Banner_Controller::class);
         Route::resource('news', News_Controller::class);
         Route::post('/upload-image', [UploadController::class, 'store']);

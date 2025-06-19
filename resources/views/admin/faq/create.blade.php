@@ -19,8 +19,8 @@
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
                                 </svg></a></li>
-                        <li class="breadcrumb-item">FAQ Bappeda</li>
-                        <li class="breadcrumb-item active">Tambah FAQ</li>
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item active">FAQ Bappeda</li>
                     </ol>
                 </div>
             </div>

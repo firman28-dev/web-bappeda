@@ -61,7 +61,12 @@ class FAQ_Controller extends Controller
     {
         $status = Status::whereIn('id', [1, 2])->get();
         $faq= FAQ::find($id);
-        return view('admin.faq.edit', compact('status','faq'));
+        if($faq){
+            return view('admin.faq.edit', compact('status','faq'));
+        }
+        else{
+            return view('error_page.error_404');
+        }
     }
 
     

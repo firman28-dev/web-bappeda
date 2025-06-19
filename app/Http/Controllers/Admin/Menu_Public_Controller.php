@@ -41,7 +41,7 @@ class Menu_Public_Controller extends Controller
             'name' => 'required|string|max:255',
             'parent_id' => 'nullable|exists:menu_public,id',
             'status_id' => 'required',
-            'url' => 'nullable|max:255',
+            'url' => 'nullable|string|max:255',
             'order_no' => 'required|integer',
         ],);
 
@@ -77,7 +77,12 @@ class Menu_Public_Controller extends Controller
             'menus' => $menus,
             'findMenu' => $findMenu
         ];
-        return view('admin.menu_public.edit', $sent);
+        if($findMenu){
+            return view('admin.menu_public.edit', $sent);
+        }
+        else{
+            return view('error_page.error_404');
+        }
 
     }
 
@@ -86,7 +91,7 @@ class Menu_Public_Controller extends Controller
             'name' => 'required|string|max:255',
             'parent_id' => 'nullable|exists:menu_public,id',
             'status_id' => 'required',
-            'url' => 'nullable|max:255',
+            'url' => 'nullable|string|max:255',
             'order_no' => 'required|integer',
         ],);
 
