@@ -1,7 +1,7 @@
 
 @extends('partials.admin.master')
 
-@section('title', 'Maintencen')
+@section('title', 'Maintenance')
 
 @section('css')
 @endsection
