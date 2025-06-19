@@ -37,7 +37,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Tambah Kategori Berita </h5>
+                    <h5>Edit Kategori Berita </h5>
                 </div>
                 <div class="card-body">
                     <form class="row g-3 needs-validation theme-form" action="{{ route('category.update', $category->id) }}" method="POST">

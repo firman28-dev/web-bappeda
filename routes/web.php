@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Dashboard_Controller;
 use App\Http\Controllers\Admin\FAQ_Controller;
 use App\Http\Controllers\Admin\Image_Controller;
 use App\Http\Controllers\Admin\List_Link_Controller;
+use App\Http\Controllers\Admin\MaintenanceController;
 use App\Http\Controllers\Admin\Menu_Public_Controller;
 use App\Http\Controllers\Admin\News_Controller;
 use App\Http\Controllers\Admin\Page_System_Controller;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Guest\Home_Controller;
 use App\Http\Controllers\Kabid\News_Kabid_Controller;
 use App\Http\Controllers\Operator\News_Operator_Controller;
 use App\Http\Controllers\UploadController;
+use App\Http\Middleware\MaintenanceMode;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -96,6 +98,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('pejabat', Pejabat_Controller::class);
         Route::resource('category', Category_Controller::class);
         Route::resource('faq', FAQ_Controller::class);
+
+
+        Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
+        Route::post('/maintenance/toggle', [MaintenanceController::class, 'toggleMaintenance'])->name('maintenance.toggle');
 
 
     });

@@ -72,7 +72,7 @@
                                 </div>
 
                                 <div class="common-flex justify-content-end mt-3">
-                                    <button class="btn btn-primary" type="submit">Simpan</button>
+                                    <button class="btn btn-primary" type="submit">Update</button>
                                     <a href="{{route('sosial-media.index')}}" class="btn btn-sm btn-secondary">
                                         Kembali
                                     </a>

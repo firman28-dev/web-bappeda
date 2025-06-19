@@ -160,7 +160,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Edi Link Terkait </h5>
+                    <h5>Edit Link Terkait </h5>
                 </div>
                 <div class="card-body add-post">
                     <form class="row g-3 needs-validation theme-form" action="{{ route('list-link.update',$list_link->id) }}" method="POST" enctype="multipart/form-data">
@@ -250,7 +250,7 @@
                         
                     
                         <div class="common-flex justify-content-end mt-3">
-                            <button class="btn btn-primary" type="submit">Simpan</button>
+                            <button class="btn btn-primary" type="submit">Update</button>
                             <a href="{{route('list-link.index')}}" class="btn btn-sm btn-secondary">
                                 Kembali
                             </a>
