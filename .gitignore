@@ -20,3 +20,4 @@ yarn-error.log
 /.vscode
 /resources/views/partials/admin/css.blade.php
 /resources/views/partials/error_page/css.blade.php
+/resources/views/partials/authentication/css.blade.php
