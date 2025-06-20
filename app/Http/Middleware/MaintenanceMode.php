@@ -26,6 +26,11 @@ class MaintenanceMode
                 'guest.news',
                 'guest.page-system',
                 'guest.showPpid',
+                'guest.category-news',
+                'guest.pejabat',
+                'guest.detail-realisai',
+                'guest.get-category',
+                'curlListMakro'
             ];
 
             if ($request->route() && in_array($request->route()->getName(), $blockedRoutes)) {

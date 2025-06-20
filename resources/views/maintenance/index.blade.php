@@ -6,12 +6,8 @@
 @endsection
 
 @section('main_content')
-    <!-- tap on top starts-->
     <div class="tap-top"><i data-feather="chevrons-up"></i></div>
-    <!-- tap on tap ends-->
-    <!-- page-wrapper Start-->
     <div class="page-wrapper">
-        <!-- Maintenance start-->
         <div class="error-wrapper comingsoon-bgimg">
             <div class="container">
                 <ul class="maintenance-icons">
@@ -28,7 +24,6 @@
                 </div>
             </div>
         </div>
-        <!-- Maintenance end-->
     </div>
 @endsection
 
