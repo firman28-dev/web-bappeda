@@ -42,8 +42,8 @@
         <div class="app-container container">
             <div class="row align-items-center py-lg-0 py-20">
                 <div class="col-lg-6">
-                    <h1 class="display-3 mb-8 text-white">
-                        Sumatera Barat <b class="text-custom-primary">Madani</b> Maju dan <b class="text-custom-primary">Berkelanjutan</b>  Berlandaskan <b class="text-custom-primary">Agama</b>  dan Budaya.
+                    <h1 class="display-2 mb-8 text-white">
+                        Sumatera Barat <b class="text-custom-primary">Madani</b> yang Maju dan <b class="text-custom-primary">Berkeadilan</b>
                     </h1>
                 </div>
                 <div class="col-lg-6">
