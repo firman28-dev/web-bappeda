@@ -35,8 +35,12 @@
                                 <div class="position-relative">
                                     @php
                                         $allowedExtensions = ['png', 'jpg', 'jpeg'];
-                                        $imagePath = public_path('uploads/news/' . $item->image);
                                         $extension = strtolower(pathinfo($item->image, PATHINFO_EXTENSION));
+
+                                        // Path fisik ke file gambar
+                                        $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/uploads/news/' . $item->image;
+
+                                        // URL gambar untuk browser
                                         $imageUrl = (isset($item->image) &&
                                                     file_exists($imagePath) &&
                                                     in_array($extension, $allowedExtensions))
