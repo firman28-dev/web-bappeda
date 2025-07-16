@@ -498,12 +498,10 @@
                                             $allowedExtensions = ['png', 'jpg', 'jpeg'];
                                             $extension = strtolower(pathinfo($dataNews->image, PATHINFO_EXTENSION));
 
-                                            if (app()->environment('local')) {
-                                                $imagePath = public_path('uploads/news/' . $dataNews->image);
-                                            } else {
-                                                $imagePath = base_path('../public_html/uploads/news/' . $dataNews->image);
-                                            }
+                                            // Path fisik ke file gambar
+                                            $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/uploads/news/' . $dataNews->image;
 
+                                            // URL gambar untuk browser
                                             $imageUrl = (isset($dataNews->image) &&
                                                         file_exists($imagePath) &&
                                                         in_array($extension, $allowedExtensions))
@@ -511,6 +509,8 @@
                                                         : asset('uploads/news/default.jpg');
                                         @endphp
 
+
+            
                                         <img src="{{ $imageUrl }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 200px; object-fit: cover;">
                                 
                                         <div class="position-absolute top-0 start-0 bg-orange text-white p-2 text-center" style="width: 80px;">

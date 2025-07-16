@@ -29,12 +29,10 @@
                                 $allowedExtensions = ['png', 'jpg', 'jpeg'];
                                 $extension = strtolower(pathinfo($item->image, PATHINFO_EXTENSION));
 
-                                if (app()->environment('local')) {
-                                    $imagePath = public_path('uploads/news/' . $item->image);
-                                } else {
-                                    $imagePath = base_path('../public_html/uploads/news/' . $dataNews->image);
-                                }
+                                // Path fisik ke file gambar
+                                $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/uploads/news/' . $item->image;
 
+                                // URL gambar untuk browser
                                 $imageUrl = (isset($item->image) &&
                                             file_exists($imagePath) &&
                                             in_array($extension, $allowedExtensions))
