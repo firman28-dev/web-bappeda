@@ -53,7 +53,95 @@
                 </div>
             </div>
         </div>
-        
+    </div>
+
+    <div class="mb-10 mt-10 mt-lg-n15 mt-n15">
+        <div class="container">
+            <div class="row justify-content-evenly">
+                <div class="col-lg-3 col-sm-6 col-12 mt-lg-0 mt-5">
+                    <a href="https://dashboard.sumbarprov.go.id/tahun/2025" class="text-dark" target="_blank">
+                        <div class="card rounded-4 shadow-sm hover-scale" >
+                            <div class="card-body">
+                                <div class="container text-center">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-xl-6 col-12">
+                                            <div class="fs-lg-2hx fs-2x fw-bolder d-flex flex-center">
+                                                <div class="min-w-24px text-custom-pink" id="users"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-12 text-xl-start">
+                                            <p class="mb-0 text-custom-dark">DASHBOARD SUMBAR</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12 mt-lg-0 mt-5">
+                    <a href="https://sumbar2045.sumbarprov.go.id/" class="text-dark" target="_blank">
+                        <div class="card rounded-4 shadow-sm hover-scale">
+                            <div class="card-body">
+                                <div class="container text-center">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-xl-6 col-12">
+                                            <div class="fs-lg-2hx fs-2x fw-bold text-black  d-flex flex-center">
+                                                <div class="min-w-24px text-custom-pink" id="exams"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-12 text-xl-start">
+                                            <p class="mb-0 text-custom-dark">SUMBAR 2045 </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12 mt-lg-0 mt-5">
+                    <a href="https://sakatoplan.sumbarprov.go.id/" class="text-dark" target="_blank">
+                        <div class="card rounded-4 shadow-sm hover-scale">
+                            <div class="card-body">
+                                <div class="container text-center">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-xl-6 col-12">
+                                            <div class="fs-lg-2hx fs-2x fw-bold text-black  d-flex flex-center">
+                                                <div class="min-w-24px text-custom-pink" id="alumnus"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-12 text-xl-start">
+                                            <p class="mb-0 text-custom-dark">SAKATO PLAN</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12 mt-lg-0 mt-5">
+                    <a href="" class="text-dark">
+                        <div class="card rounded-4 shadow-sm hover-scale">
+                            <div class="card-body">
+                                <div class="container text-center">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-xl-6 col-12">
+                                            <div class="fs-lg-2hx fs-2x fw-bold text-black  d-flex flex-center">
+                                                <div class="min-w-24px text-custom-pink" id="partners"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-12 text-xl-start">
+                                            <p class="mb-0 text-custom-dark">BAPPEDA MENULIS</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container app-container justify-content-center mb-10">
         <div class="row row align-items-stretch">
@@ -408,7 +496,8 @@
                                     <div class="position-relative">
                                         @php
                                             $allowedExtensions = ['png', 'jpg', 'jpeg'];
-                                            $imagePath = public_path('uploads/news/' . $dataNews->image);
+                                            $imageFolder = base_path('../public_html/uploads/news/');
+                                            $imagePath = $imageFolder . $dataNews->image;
                                             $extension = strtolower(pathinfo($dataNews->image, PATHINFO_EXTENSION));
                                             $imageUrl = (isset($dataNews->image) &&
                                                         file_exists($imagePath) &&
@@ -416,6 +505,7 @@
                                                         ? asset('uploads/news/' . $dataNews->image)
                                                         : asset('uploads/news/default.jpg');
                                         @endphp
+
             
                                         <img src="{{ $imageUrl }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 200px; object-fit: cover;">
                                 
