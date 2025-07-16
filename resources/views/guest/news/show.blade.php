@@ -68,10 +68,27 @@
                         <div class="col-lg-12 mb-5">
                             <div class="card shadow-sm rounded-4 overflow-hidden mb-4 h-100 border-0 d-flex flex-column mb-3" >
                                 <div class="position-relative">
-                                    @php
+                                    {{-- @php
                                         $allowedExtensions = ['png', 'jpg', 'jpeg'];
                                         $imagePath = public_path('uploads/news/' . $item->image);
                                         $extension = strtolower(pathinfo($item->image, PATHINFO_EXTENSION));
+                                        $imageUrl = (isset($item->image) &&
+                                                    file_exists($imagePath) &&
+                                                    in_array($extension, $allowedExtensions))
+                                                    ? asset('uploads/news/' . $item->image)
+                                                    : asset('uploads/news/default.jpg');
+                                    @endphp --}}
+
+                                    @php
+                                        $allowedExtensions = ['png', 'jpg', 'jpeg'];
+                                        $extension = strtolower(pathinfo($item->image, PATHINFO_EXTENSION));
+
+                                        if (app()->environment('local')) {
+                                            $imagePath = public_path('uploads/news/' . $item->image);
+                                        } else {
+                                            $imagePath = base_path('../public_html/uploads/news/' . $dataNews->image);
+                                        }
+
                                         $imageUrl = (isset($item->image) &&
                                                     file_exists($imagePath) &&
                                                     in_array($extension, $allowedExtensions))

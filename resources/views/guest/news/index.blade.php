@@ -27,8 +27,14 @@
                         <div class="position-relative">
                             @php
                                 $allowedExtensions = ['png', 'jpg', 'jpeg'];
-                                $imagePath = public_path('uploads/news/' . $item->image);
                                 $extension = strtolower(pathinfo($item->image, PATHINFO_EXTENSION));
+
+                                if (app()->environment('local')) {
+                                    $imagePath = public_path('uploads/news/' . $item->image);
+                                } else {
+                                    $imagePath = base_path('../public_html/uploads/news/' . $dataNews->image);
+                                }
+
                                 $imageUrl = (isset($item->image) &&
                                             file_exists($imagePath) &&
                                             in_array($extension, $allowedExtensions))
