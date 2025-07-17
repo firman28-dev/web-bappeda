@@ -43,6 +43,7 @@
                     <thead>
                         <tr>
                             <th rowspan="2" style="width: 200px">Nama Indikator</th>
+                            <th rowspan="2" style="width: 200px">Satuan</th>
                             @foreach ($tahun as $th)
                                 <th colspan="3" class="text-center">{{ $th }}</th>
                             @endforeach
@@ -59,6 +60,8 @@
                         @foreach ($indikator as $item)
                             <tr>
                                 <td>{{ $item->indikator_name }}</td>
+                                <td class="text-center">{{ $item->satuan }}</td>
+
                                 @foreach ($tahun as $th)
                                     @php
                                         $key = $item->id . '_' . $th;
