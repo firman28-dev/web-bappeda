@@ -55,21 +55,21 @@
         </div>
     </div>
 
-    <div class="mb-10 mt-10 mt-lg-n15 mt-n15">
+    <div class="mb-10 mt-10 mt-lg-n10 mt-n10">
         <div class="container">
             <div class="row justify-content-evenly">
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://dashboard.sumbarprov.go.id/tahun/2025" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-scale" >
+                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-light-warning" >
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
-                                        <div class="col-xl-6 col-12">
+                                        <div class="col-xl-4 col-12">
                                             <div class="fs-lg-2hx fs-2x fw-bolder d-flex flex-center">
                                                 <div class="min-w-24px text-custom-pink" id="users"></div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-6 col-12 text-xl-start">
+                                        <div class="col-xl-8 col-12 text-xl-start">
                                             <p class="mb-0 text-custom-dark">DASHBOARD SUMBAR</p>
                                         </div>
                                     </div>
@@ -80,16 +80,16 @@
                 </div>
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://sumbar2045.sumbarprov.go.id/" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-scale">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-light-warning">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
-                                        <div class="col-xl-6 col-12">
+                                        <div class="col-xl-4 col-12">
                                             <div class="fs-lg-2hx fs-2x fw-bold text-black  d-flex flex-center">
                                                 <div class="min-w-24px text-custom-pink" id="exams"></div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-6 col-12 text-xl-start">
+                                        <div class="col-xl-8 col-12 text-xl-start">
                                             <p class="mb-0 text-custom-dark">SUMBAR 2045 </p>
                                         </div>
                                     </div>
@@ -101,16 +101,16 @@
                 </div>
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://sakatoplan.sumbarprov.go.id/" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-scale">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-light-warning">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
-                                        <div class="col-xl-6 col-12">
+                                        <div class="col-xl-4 col-12">
                                             <div class="fs-lg-2hx fs-2x fw-bold text-black  d-flex flex-center">
                                                 <div class="min-w-24px text-custom-pink" id="alumnus"></div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-6 col-12 text-xl-start">
+                                        <div class="col-xl-8 col-12 text-xl-start">
                                             <p class="mb-0 text-custom-dark">SAKATO PLAN</p>
                                         </div>
                                     </div>
