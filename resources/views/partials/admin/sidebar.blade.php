@@ -173,6 +173,18 @@
                             <span>Maintenance</span>
                         </a>
                     </li>
+
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('indikator.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-job-search') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-job-search') }}"></use>
+                            </svg>
+                            <span>Indikator Makro</span>
+                        </a>
+                    </li>
                     
                     @endif
 

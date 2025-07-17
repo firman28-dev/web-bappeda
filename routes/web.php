@@ -22,6 +22,8 @@ use App\Http\Controllers\Guest\Guest_News_Controller;
 use App\Http\Controllers\Guest\Guest_Page_System_Controller;
 use App\Http\Controllers\Guest\Guest_Profile_Controller;
 use App\Http\Controllers\Guest\Home_Controller;
+use App\Http\Controllers\IndikatorMakroController;
+use App\Http\Controllers\IndikatorMakroSurveyController;
 use App\Http\Controllers\Kabid\News_Kabid_Controller;
 use App\Http\Controllers\Operator\News_Operator_Controller;
 use App\Http\Controllers\UploadController;
@@ -103,13 +105,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
         Route::post('/maintenance/toggle', [MaintenanceController::class, 'toggleMaintenance'])->name('maintenance.toggle');
 
+        Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
+
+        Route::resource('indikator', IndikatorMakroSurveyController::class);
 
     });
 
     Route::group(['middleware' => ['operator']], function () {
         Route::resource('op-news', News_Operator_Controller::class);
         Route::post('/op-upload-image', [News_Operator_Controller::class, 'uploadImage'])->name('op-upload.image');
-
         
     });
 
