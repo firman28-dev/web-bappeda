@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="d-lg-block d-none pt-10 pb-0">
-                        <img src="{{asset('assets_global/img/GUB WAGUB.png')}}"  class="img-fluid" alt="" class="w-100" />
+                        <img src="{{asset('assets_global/img/GUB WAGUB.png')}}" loading="lazy"  class="img-fluid" alt="" class="w-100" />
                     </div>
                 </div>
             </div>
@@ -736,8 +736,20 @@
     <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
     <script>
         const instansiId = 72;
+        $(document).ready(function () {
+            $('#tahun-select').select2();
+
+            $('#tahun-select').on('change', function () {
+                const selectedYear = $(this).val();
+                $('#judul-tahun').text(`Realisasi Bappeda ${selectedYear}`);
+                fetchData(selectedYear);
+            });
+
+            fetchData("2025");
+        });
+
         function fetchData(year) {
-            const url2 = `https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/${instansiId}/${year}`;
+            const url2 = `https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/${year}`;
             
             $.ajax({
                 url: url2,
@@ -767,13 +779,13 @@
             });
         }
 
-        fetchData("2025");
+        // fetchData("2025");
 
-        document.getElementById('tahun-select').addEventListener('change', function () {
-            const selectedYear = this.value;
-            document.getElementById('judul-tahun').textContent = `Realisasi Bappeda ${selectedYear}`;
-            fetchData(selectedYear);
-        });
+        // document.getElementById('tahun-select').addEventListener('change', function () {
+        //     const selectedYear = this.value;
+        //     document.getElementById('judul-tahun').textContent = `Realisasi Bappeda ${selectedYear}`;
+        //     fetchData(selectedYear);
+        // });
 
         function formatRupiah(angka) {
             return new Intl.NumberFormat('id-ID', {
@@ -857,6 +869,10 @@
             placeholder: 'Pilih Indikator',
             allowClear: true
         });
+        // $('#tahun-select').select2({
+        //     placeholder: 'Pilih Tahun',
+        //     allowClear: true
+        // });
 
         $(document).ready(function() {
             // Ambil data list makro
