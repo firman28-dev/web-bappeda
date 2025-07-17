@@ -66,9 +66,10 @@
                                     @php
                                         $key = $item->id . '_' . $th;
                                         $data = $nilai[$key][0] ?? null;
+                                        $decimalPlaces = ($item->id == 5) ? 3 : 2;
                                     @endphp
                                     <td>
-                                        {{ $data->target ?? '-' }}
+                                        {{ $data?->target !== null ? number_format($data->target, $decimalPlaces, ',', '.') : '-' }}
                                         <br>
                                         <a href="#" class="btn btn-xs btn-pill btn-outline-primary" 
                                             data-bs-toggle="modal"
@@ -82,7 +83,7 @@
                                         
                                     </td>
                                     <td>
-                                        {{ $data->realisasi ?? '-' }}
+                                        {{ $data?->target !== null ? number_format($data->realisasi, $decimalPlaces, ',', '.') : '-' }}
                                         <br>
                                         <a href="#" class="btn btn-xs btn-pill btn-outline-primary" 
                                             data-bs-toggle="modal"
@@ -95,7 +96,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        {{ $data->nasional ?? '-' }}
+                                        {{ $data?->target !== null ? number_format($data->nasional, $decimalPlaces, ',', '.') : '-' }}
                                         <br>
                                         <a href="#" class="btn btn-xs btn-pill btn-outline-primary" 
                                             data-bs-toggle="modal"
@@ -131,7 +132,7 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="edit-value" class="required">Nilai</label>
-                                <input type="number" step="0.01" class="form-control" name="value" id="edit-value" required>
+                                <input type="number" step="0.001" class="form-control" name="value" id="edit-value" required>
                                  <small class="form-text text-muted">
                                     Masukkan nilai dalam angka desimal (contoh: 95.50). Maksimal 100.00.
                                 </small>
