@@ -239,7 +239,84 @@
                         <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span>
                     </span>
                 </div>
-                <div class="row justify-content-center text-center mb-6">
+                <div class="card shadow-sm rounded-custom">
+                    <div class="card-body">
+                        <div class="table-responsive mt-3">
+                            <table id="tableProgram" class="table table-striped table-row-bordered  border rounded" style="width:100%">
+                                <thead class="bg-light-success">
+                                    <tr class="fw-semibold">
+                                        <th class="w-60px text-center border border-1 align-middle text-center p-3" rowspan="2">No.</th>
+                                        <th class="border border-1 align-middle text-center p-3" rowspan="2">Indikator  </th>
+                                        <th class="border border-1 align-middle text-center p-3" rowspan="2">Satuan  </th>
+                                        <th class="border border-1 align-middle text-center p-3" colspan="3">Tahun {{$tahun}} </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="border border-1 align-middle text-center p-3">Target</th>
+                                        <th class="border border-1 align-middle text-center p-3">Realisasi</th>
+                                        <th class="border border-1 align-middle text-center p-3">Nasional</th>            
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        function formatAngka($angka) {
+                                            if ($angka === null) return '-';
+                                            if (fmod($angka, 1) == 0.0) {
+                                                return number_format($angka, 0, ',', '.'); // bulat, tanpa koma
+                                            } else {
+                                                return str_replace('.', ',', rtrim(rtrim((string) $angka, '0'), '.'));
+                                            }
+                                        }
+                                    @endphp
+
+                                    @forelse ($indikator as $key => $item)
+                                        <tr>
+                                            <td class="text-center p-3">{{ $key + 1 }}</td>
+                                            <td>
+                                                <a href="" class="text-dark show-chart" data-id="{{ $item->_indexIndikator->id ?? '' }}" data-name="{{ $item->_indexIndikator->indikator_name ?? '' }}">
+                                                    {{ $item->_indexIndikator->indikator_name ?? '-' }}
+                                                </a>
+                                            </td>
+                                            <td>{{ $item->_indexIndikator->satuan ?? '-' }}</td>
+                                            <td class="text-end p-3">{{ formatAngka($item->target) }}</td>
+                                            <td class="text-end p-3">{{ formatAngka($item->realisasi) }}</td>
+                                            <td class="text-end p-3">{{ formatAngka($item->nasional) }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">Tidak ada data indikator</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                            <!-- Modal untuk grafik -->
+                            <div class="modal fade" id="chartModal" tabindex="-1" aria-labelledby="chartModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="chartModalLabel">Grafik Indikator</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <canvas id="chartContainer" height="200"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow-sm rounded-custom ">
+                    <div class="card-header d-none g-header">
+                        <div class="card-title">
+                            <h3 id="nama_data"></h3>
+                        </div>
+                    </div>
+                    <div class="card-body align-items-center d-none g-body">
+                        <canvas id="grafikMakroChart" class="p-15"></canvas>
+                    </div>
+                </div>
+                {{-- <div class="row justify-content-center text-center mb-6">
                     <div class="col-12">
                         <form>
                             <select 
@@ -263,7 +340,6 @@
                     <div class="spinner-border text-primary" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
-                    {{-- <p>Memuat grafik...</p> --}}
                 </div>
                 <div class="card shadow-sm rounded-custom ">
                     <div id="result_makro">
@@ -282,7 +358,7 @@
                             <canvas id="grafikMakroChart" class="p-15"></canvas>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="col-lg-5">
                 <div class="text-center py-10">
@@ -869,13 +945,8 @@
             placeholder: 'Pilih Indikator',
             allowClear: true
         });
-        // $('#tahun-select').select2({
-        //     placeholder: 'Pilih Tahun',
-        //     allowClear: true
-        // });
 
         $(document).ready(function() {
-            // Ambil data list makro
             $.ajax({
                 type: "GET",
                 url: "{{ url('/makro/list_makro') }}",
@@ -993,7 +1064,83 @@
             });
 
         });
+
+        $(document).ready(function() {
+            $('.show-chart').on('click', function (e) {
+                e.preventDefault();
+                let indikatorId = $(this).data('id');
+
+                console.log(indikatorId);
+                
+            })
+        });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        let chartInstance = null;
+
+        $('.show-chart').on('click', function (e) {
+            e.preventDefault();
+            const indikatorId = $(this).data('id');
+            const indikatorName = $(this).data('name');
+
+
+            // Ganti judul
+            $('#chartModalLabel').text('Grafik Indikator ID: ' + indikatorName);
+
+            // Ambil data via AJAX
+            $.ajax({
+                url: `/grafik-indikator/${indikatorId}`, // sesuaikan route kamu
+                method: 'GET',
+                success: function (response) {
+                    const labels = response.labels; // array tahun
+                    const target = response.target;
+                    const realisasi = response.realisasi;
+                    const nasional = response.nasional;
+
+                    // Jika chart sudah ada, hapus dulu
+                    if (chartInstance) {
+                        chartInstance.destroy();
+                    }
+
+                    const ctx = document.getElementById('chartContainer').getContext('2d');
+                    chartInstance = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'Target',
+                                    data: target,
+                                    borderColor: 'green',
+                                    fill: false
+                                },
+                                {
+                                    label: 'Realisasi',
+                                    data: realisasi,
+                                    borderColor: 'blue',
+                                    fill: false
+                                },
+                                {
+                                    label: 'Nasional',
+                                    data: nasional,
+                                    borderColor: 'orange',
+                                    fill: false
+                                }
+                            ]
+                        }
+                    });
+
+                    $('#chartModal').modal('show');
+                },
+                error: function () {
+                    alert('Gagal memuat data grafik');
+                }
+            });
+        });
+    </script>
+
     <script async src="//www.instagram.com/embed.js"></script>
 @endsection
 

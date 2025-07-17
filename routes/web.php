@@ -56,6 +56,7 @@ Route::get('/makro/{jenis}/{id?}', [API_Edatabase_Controller::class, 'curlListMa
 
 Route::get('/management', [LoginController::class, 'show'])->name('login.show');
 Route::post('/management', [LoginController::class, 'login'])->name('login.perform');
+Route::get('/grafik-indikator/{id}', [Home_Controller::class, 'getChartData']);
 
 
 Route::group(['middleware' => ['auth']], function () {

@@ -2,7 +2,16 @@
 @section('content') 
 
 <div class="container mt-5">
-    <h1 class="text-center display-6">Detail Realisasi <br> Bappeda Sumatera Barat {{$tahun}}</h1>
+
+    <h1 class="text-center display-6">
+        Detail Realisasi <br>
+        Bappeda Sumatera Barat
+        <select id="tahun-select" class="form-select d-inline w-auto select2 border-0" style="font-size: inherit;">
+            @foreach (range(2024, 2025) as $thn)
+                <option value="{{ $thn }}" {{ $tahun == $thn ? 'selected' : '' }}>{{ $thn }}</option>
+            @endforeach
+        </select>
+    </h1>
 
     @if(isset($error))
         <div class="alert alert-danger">
@@ -135,23 +144,276 @@
 
 @section('script')
     <script>
-        $(document).ready(function () {
-            const tahun = @json($tahun);
-            console.log(tahun);
+        // $(document).ready(function () {
+        //     $('#tahun-select').select2({
+        //         minimumResultsForSearch: Infinity,
+        //         width: 'auto'
+        //     });
+        //     const tahun = @json($tahun);
+        //     console.log(tahun);
             
-            const urlOld = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/detail_data_opd_pengelompokan/72?tahun=2024";
-            const url = `https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/${tahun}`;
+        //     const urlOld = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/detail_data_opd_pengelompokan/72?tahun=2024";
+        //     const url = `https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/${tahun}`;
 
-            const grafikAkumulasiOld = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/grafik_akumulasi?id_instansi=72&tahun=2024";
+        //     const grafikAkumulasiOld = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/grafik_akumulasi?id_instansi=72&tahun=2024";
+        //     const grafikAkumulasi = `https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/grafik_akumulasi?id_instansi=72&tahun=${tahun}`;
+
+        //     function formatRupiah(number) {
+        //         return new Intl.NumberFormat('id-ID', {
+        //             style: 'currency',
+        //             currency: 'IDR'
+        //         }).format(number);
+        //     }
+
+        //     $.ajax({
+        //         url: url,
+        //         method: "GET",
+        //         dataType: "json",
+        //         success: function (response) {
+        //             const data = response.result;
+        //             console.log(data);
+        //             let tableRows = '';
+
+        //             data.data.forEach((opd) => {
+        //                 // Baris untuk OPD (Program)
+        //                 tableRows += `
+        //                     <tr class="bg-success border-1 border border-dark">
+        //                         <td class="border-1 border border-dark">${opd.nama_program}</td>
+        //                         <td class="border-1 border border-dark">${opd.pptk || '-'}</td>
+        //                         <td class="text-end border-1 border border-dark">${opd.pagu ? numberWithCommas(opd.pagu) : '-'}</td>
+        //                         <td class="border-1 border border-dark">${opd.persen_target_fisik || '-'}</td>
+        //                         <td class="border-1 border border-dark">${opd.persen_realisasi_fisik || '-'}</td>
+        //                         <td class="border-1 border border-dark">${opd.deviasi_fisik || '-'}</td>
+        //                         <td class="border-1 border border-dark">${opd.rp_target_keuangan ? numberWithCommas(opd.rp_target_keuangan) : '-'}</td>
+        //                         <td class="border-1 border border-dark">${opd.persen_target_keuangan || '-'}</td>
+        //                         <td class="border-1 border border-dark">${opd.rp_realisasi_keuangan ? numberWithCommas(opd.rp_realisasi_keuangan) : '-'}</td>
+        //                         <td class="border-1 border border-dark">${opd.persen_realisasi_keuangan || '-'}</td>
+        //                         <td class="border-1 border border-dark">${opd.deviasi_keuangan || '-'}</td>
+                                
+        //                     </tr>
+        //                 `;
+
+        //                 // Baris untuk Kegiatan
+        //                 if (opd.data_kegiatan) {
+        //                     opd.data_kegiatan.forEach((kegiatan) => {
+        //                         tableRows += `
+        //                             <tr class="bg-warning border-1 border border-dark">
+        //                                 <td class="border-1 border border-dark">${kegiatan.nama_kegiatan}</td>
+        //                                 <td class="border-1 border border-dark">${kegiatan.pptk || '-'}</td>
+        //                                 <td class="text-end border-1 border border-dark">${kegiatan.pagu ? numberWithCommas(kegiatan.pagu) : '-'}</td>
+        //                                 <td class="border-1 border border-dark">${kegiatan.persen_target_fisik || '-'}</td>
+        //                                 <td class="border-1 border border-dark">${kegiatan.persen_realisasi_fisik || '-'}</td>
+        //                                 <td class="border-1 border border-dark">${kegiatan.deviasi_fisik || '-'}</td>
+        //                                 <td class="border-1 border border-dark">${kegiatan.rp_target_keuangan ? numberWithCommas(kegiatan.rp_target_keuangan) : '-'}</td>
+        //                                 <td class="border-1 border border-dark">${opd.persen_target_keuangan || '-'}</td>
+        //                                 <td class="border-1 border border-dark">${opd.rp_realisasi_keuangan ? numberWithCommas(opd.rp_realisasi_keuangan) : '-'}</td>
+        //                                 <td class="border-1 border border-dark">${opd.persen_realisasi_keuangan || '-'}</td>
+
+        //                                 <td class="border-1 border border-dark">${kegiatan.deviasi_keuangan || '-'}</td>
+        //                             </tr>
+        //                         `;
+
+        //                         // Baris untuk Sub Kegiatan
+        //                         if (kegiatan.data_sub_kegiatan) {
+        //                             kegiatan.data_sub_kegiatan.forEach((sub) => {
+        //                                 tableRows += `
+        //                                     <tr>
+        //                                         <td class="border-1 border border-dark">
+        //                                             <ul>
+        //                                                 <li>${sub.nama_sub_kegiatan}</li>
+        //                                             </ul>
+        //                                         </td>
+        //                                         <td class="border-1 border border-dark">${sub.pptk || '-'}</td>
+        //                                         <td class="text-end border-1 border border-dark">${sub.pagu ? numberWithCommas(sub.pagu) : '-'}</td>
+        //                                         <td class="border-1 border border-dark">${sub.persen_target_fisik || '-'}</td>
+        //                                         <td class="border-1 border border-dark">${sub.persen_realisasi_fisik || '-'}</td>
+        //                                         <td class="border-1 border border-dark">${sub.deviasi_fisik || '-'}</td>
+        //                                         <td class="border-1 border border-dark">${sub.rp_target_keuangan ? numberWithCommas(sub.rp_target_keuangan) : '-'}</td>
+        //                                         <td class="border-1 border border-dark">${opd.persen_target_keuangan || '-'}</td>
+        //                                         <td class="border-1 border border-dark">${opd.rp_realisasi_keuangan ? numberWithCommas(opd.rp_realisasi_keuangan) : '-'}</td>
+        //                                         <td class="border-1 border border-dark">${opd.persen_realisasi_keuangan || '-'}</td>
+        //                                         <td class="border-1 border border-dark">${sub.deviasi_keuangan || '-'}</td>
+        //                                     </tr>
+        //                                 `;
+        //                             });
+        //                         }
+        //                     });
+        //                 }
+        //             });
+
+        //             // Tambahkan ke <tbody>
+        //             $('#data-table-body').html(tableRows);
+
+        //             const totalPagu = data.pencapaian_opd.pagu || 0;
+        //             const targetFisik = data.pencapaian_opd.target_fisik_akumulasi || '0%';
+        //             const targetKeuangan = data.pencapaian_opd.rp_target_keuangan || 0;
+        //             const persenTarget = data.pencapaian_opd.persen_target_keuangan || 0;
+                    
+
+        //             const realisasiKeu = data.pencapaian_opd.rp_realisasi_keuangan || 0;
+        //             const realisasiFisik = data.pencapaian_opd.realisasi_fisik_akumulasi || '0%';
+        //             const devFisikKeu = data.pencapaian_opd.deviasi_fisik_akumulasi || 0;
+        //             const persenRKeu = data.pencapaian_opd.persen_realisasi_keuangan || '0%';
+
+        //             document.getElementById('totalPagu').textContent = formatRupiah(totalPagu);
+        //             document.getElementById('targetFisik').textContent = targetFisik;
+        //             document.getElementById('persenTarget').textContent = persenTarget;
+        //             document.getElementById('targetKeuangan').textContent = formatRupiah(targetKeuangan);
+
+        //             let elements = document.getElementsByClassName('realisasiKeu');
+        //             for (let i = 0; i < elements.length; i++) {
+        //                 elements[i].textContent = formatRupiah(realisasiKeu);
+        //             }
+        //             document.getElementById('realisasiFisik').textContent = realisasiFisik;
+        //             document.getElementById('deviasiFisik').textContent = devFisikKeu;
+        //             document.getElementById('persenRKeu').textContent = persenRKeu;
+        //         },
+        //         error: function (xhr, status, error) {
+        //             console.error("Error: ", error);
+        //             // alert("Gagal mengambil data.");  
+        //             Swal.fire({
+        //                     icon: 'error',
+        //                     title: 'DATA API BAPPEDA',
+        //                     text: 'Gagal mengambil data',
+        //                     confirmButtonText: 'Oke',
+        //                 });
+        //         }
+        //     });
+
+        //     $.ajax({
+        //         url: grafikAkumulasi,
+        //         method: "GET",
+        //         dataType: "json",
+        //         success: function (responsegrafik) {
+        //             const data = responsegrafik.data;
+        //             // console.log(data);
+        //             // Persiapkan data untuk grafik
+        //             const bulan = data.map(item => `Bulan ${item.bulan}`);
+        //             const targetFisik = data.map(item => item.target_fisik);
+        //             const realisasiFisik = data.map(item => item.realisasi_fisik);
+        //             const targetKeuangan = data.map(item => item.target_keuangan);
+        //             const realisasiKeuangan = data.map(item => item.realisasi_keuangan);
+                    
+        //             const dataGrafik = {
+        //                 labels: bulan,
+        //                 datasets: [
+        //                     {
+        //                         label: 'Target Fisik',
+        //                         data: targetFisik,
+        //                         backgroundColor: '#F29F58',
+        //                         // borderColor: 'rgba(255, 99, 132, 1)',
+        //                         borderWidth: 1,
+        //                         type: 'bar'
+        //                     },
+        //                     {
+        //                         label: 'Realisasi Fisik',
+        //                         data: realisasiFisik,
+        //                         backgroundColor: '#F29F58',
+        //                         // borderColor: 'rgba(255, 99, 132, 1)',
+        //                         tension: 0.4,
+        //                         type: 'line', // Ubah menjadi garis
+        //                         fill: false, // Jangan mengisi di bawah garis
+        //                         pointStyle: 'circle',
+        //                         pointRadius: 5,
+        //                         pointBackgroundColor: 'rgba(255, 165, 0, 1)' // Warna titik data
+        //                     },
+        //                     {
+        //                         label: 'Target Keuangan',
+        //                         data: targetKeuangan,
+        //                         backgroundColor: '#AB4459',
+        //                         // borderColor: 'rgb(75, 192, 192)',
+        //                         borderWidth: 1,
+        //                         type: 'bar'
+
+        //                     },
+        //                     {
+        //                         label: 'Realisasi Keuangan',
+        //                         data: realisasiKeuangan,
+        //                         backgroundColor: '#AB4459',
+        //                         // borderColor: 'rgb(75, 192, 192)',
+        //                         tension: 0.4,
+        //                         type: 'line',
+        //                         fill: false,
+        //                         pointStyle: 'circle',
+        //                         pointRadius: 5,
+        //                         pointBackgroundColor: '#000' // War
+        //                     },
+        //                 ]
+        //             };
+        //             const config = {
+        //                 type: 'bar',
+        //                 data: dataGrafik,
+        //                 options: {
+        //                     animations: {
+        //                         tension: {
+        //                             duration: 1000,
+        //                             easing: 'linear',
+        //                             from: 1,
+        //                             to: 0,
+        //                             loop: true
+        //                         }
+        //                     },
+        //                     responsive: true,
+        //                     plugins: {
+        //                         legend: {
+        //                             position: 'top',
+        //                         },
+        //                         tooltip: {
+        //                             callbacks: {
+        //                                 label: function(tooltipItem) {
+        //                                     return tooltipItem.dataset.label + ': ' + tooltipItem.raw + '%';
+        //                                 }
+        //                             }
+        //                         }
+        //                     },
+        //                     scales: {
+        //                         x: {
+        //                             beginAtZero: true
+        //                         },
+        //                         y: {
+        //                             beginAtZero: true,
+        //                             ticks: {
+        //                                 stepSize: 30,
+        //                                 callback: function(value) {
+        //                                     return value + '%';
+        //                                 }
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             };
+
+        //             const ctx = document.getElementById('myChart').getContext('2d');
+        //             new Chart(ctx, config);
+        //         },
+        //         error: function (xhr, status, error) {
+        //             console.error("Error: ", error);
+        //             // alert("Gagal mengambil data.");  
+        //             Swal.fire({
+        //                     icon: 'error',
+        //                     title: 'DATA API BAPPEDA',
+        //                     text: 'Gagal mengambil data',
+        //                     confirmButtonText: 'Oke',
+        //                 });
+        //         }
+        //     });
+
+            
+        //     function numberWithCommas(x) {
+        //         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //     }
+        // });
+
+        // Tangkap chart agar bisa di-destroy jika perlu
+        let myChart = null;
+
+        function loadData(tahun) {
+            const instansiId = 72;
+
+            const url = `https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/${tahun}`;
             const grafikAkumulasi = `https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/grafik_akumulasi?id_instansi=72&tahun=${tahun}`;
 
-            function formatRupiah(number) {
-                return new Intl.NumberFormat('id-ID', {
-                    style: 'currency',
-                    currency: 'IDR'
-                }).format(number);
-            }
-
+            // Panggil AJAX tabel (salin dari bagian $.ajax tabel kamu)
             $.ajax({
                 url: url,
                 method: "GET",
@@ -267,20 +529,20 @@
                 }
             });
 
+            // Panggil AJAX grafik
             $.ajax({
                 url: grafikAkumulasi,
                 method: "GET",
                 dataType: "json",
                 success: function (responsegrafik) {
                     const data = responsegrafik.data;
-                    // console.log(data);
-                    // Persiapkan data untuk grafik
+
                     const bulan = data.map(item => `Bulan ${item.bulan}`);
                     const targetFisik = data.map(item => item.target_fisik);
                     const realisasiFisik = data.map(item => item.realisasi_fisik);
                     const targetKeuangan = data.map(item => item.target_keuangan);
                     const realisasiKeuangan = data.map(item => item.realisasi_keuangan);
-                    
+
                     const dataGrafik = {
                         labels: bulan,
                         datasets: [
@@ -288,109 +550,97 @@
                                 label: 'Target Fisik',
                                 data: targetFisik,
                                 backgroundColor: '#F29F58',
-                                // borderColor: 'rgba(255, 99, 132, 1)',
-                                borderWidth: 1,
                                 type: 'bar'
                             },
                             {
                                 label: 'Realisasi Fisik',
                                 data: realisasiFisik,
                                 backgroundColor: '#F29F58',
-                                // borderColor: 'rgba(255, 99, 132, 1)',
-                                tension: 0.4,
-                                type: 'line', // Ubah menjadi garis
-                                fill: false, // Jangan mengisi di bawah garis
-                                pointStyle: 'circle',
+                                type: 'line',
+                                fill: false,
                                 pointRadius: 5,
-                                pointBackgroundColor: 'rgba(255, 165, 0, 1)' // Warna titik data
+                                pointBackgroundColor: 'orange'
                             },
                             {
                                 label: 'Target Keuangan',
                                 data: targetKeuangan,
                                 backgroundColor: '#AB4459',
-                                // borderColor: 'rgb(75, 192, 192)',
-                                borderWidth: 1,
                                 type: 'bar'
-
                             },
                             {
                                 label: 'Realisasi Keuangan',
                                 data: realisasiKeuangan,
                                 backgroundColor: '#AB4459',
-                                // borderColor: 'rgb(75, 192, 192)',
-                                tension: 0.4,
                                 type: 'line',
                                 fill: false,
-                                pointStyle: 'circle',
                                 pointRadius: 5,
-                                pointBackgroundColor: '#000' // War
-                            },
+                                pointBackgroundColor: '#000'
+                            }
                         ]
                     };
-                    const config = {
+
+                    // Hancurkan chart lama jika ada
+                    if (myChart) {
+                        myChart.destroy();
+                    }
+
+                    const ctx = document.getElementById('myChart').getContext('2d');
+                    myChart = new Chart(ctx, {
                         type: 'bar',
                         data: dataGrafik,
                         options: {
-                            animations: {
-                                tension: {
-                                    duration: 1000,
-                                    easing: 'linear',
-                                    from: 1,
-                                    to: 0,
-                                    loop: true
-                                }
-                            },
                             responsive: true,
                             plugins: {
-                                legend: {
-                                    position: 'top',
-                                },
+                                legend: { position: 'top' },
                                 tooltip: {
                                     callbacks: {
-                                        label: function(tooltipItem) {
-                                            return tooltipItem.dataset.label + ': ' + tooltipItem.raw + '%';
-                                        }
+                                        label: (tooltipItem) =>
+                                            tooltipItem.dataset.label + ': ' + tooltipItem.raw + '%'
                                     }
                                 }
                             },
                             scales: {
-                                x: {
-                                    beginAtZero: true
-                                },
                                 y: {
                                     beginAtZero: true,
                                     ticks: {
-                                        stepSize: 30,
-                                        callback: function(value) {
-                                            return value + '%';
-                                        }
+                                        callback: (value) => value + '%'
                                     }
                                 }
                             }
                         }
-                    };
-
-                    const ctx = document.getElementById('myChart').getContext('2d');
-                    new Chart(ctx, config);
+                    });
                 },
-                error: function (xhr, status, error) {
-                    console.error("Error: ", error);
-                    // alert("Gagal mengambil data.");  
+                error: function () {
                     Swal.fire({
-                            icon: 'error',
-                            title: 'DATA API BAPPEDA',
-                            text: 'Gagal mengambil data',
-                            confirmButtonText: 'Oke',
-                        });
+                        icon: 'error',
+                        title: 'DATA API BAPPEDA',
+                        text: 'Gagal mengambil data grafik',
+                    });
                 }
             });
+        }
 
-            // Fungsi untuk memformat angka ke format dengan koma
-            function numberWithCommas(x) {
-                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            }
+
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(number);
+        }
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        const tahunAwal = @json($tahun);
+        loadData(tahunAwal);
+
+        // Saat user memilih tahun baru
+        $('#tahun-select').on('change', function () {
+            const tahunBaru = $(this).val();
+            loadData(tahunBaru);
         });
 
+
     </script>
-     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endsection

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Bidang;
 use App\Models\FAQ;
+use App\Models\IndikatorMakroSurvey;
 use App\Models\List_Link;
 use App\Models\Menu_Public;
 use App\Models\News;
@@ -18,6 +19,17 @@ use Illuminate\Support\Facades\Cache;
 class Home_Controller extends Controller
 {
     public function index(){
+        $tahun = now()->year -1;
+        $indikator = IndikatorMakroSurvey::with('_indexIndikator')
+            ->where('survey_id', $tahun)
+            ->get();
+        $data = IndikatorMakroSurvey::select('indikator_id', 'survey_id', 'target', 'realisasi', 'nasional')
+            ->whereBetween('survey_id', [2021, 2026])
+            ->where('indikator_id', 1)
+            ->orderBy('indikator_id')
+            ->orderBy('survey_id')
+            ->get();
+        // return $data;
         $list_link = Cache::remember('list_link', 30, function () {
             return List_Link::where('status_id', 4)->get(['path','url','id']);
         });
@@ -87,7 +99,9 @@ class Home_Controller extends Controller
             'pengunjungAktif' => $pengunjungAktif,
             'rataKunjunganHarian' => $rataKunjunganHarian,
             'jumlahHalamanDikunjungi' => $jumlahHalamanDikunjungi,
-            'socials' => $socials
+            'socials' => $socials,
+            'tahun' => $tahun,
+            'indikator' =>$indikator
 
         ];
 
@@ -99,4 +113,20 @@ class Home_Controller extends Controller
         return view('guest.home.detail_realisasi', compact('tahun'));
 
     }
+
+    public function getChartData($id)
+    {
+        $data = IndikatorMakroSurvey::where('indikator_id', $id)
+            ->whereBetween('survey_id', [2021, 2026])
+            ->orderBy('survey_id')
+            ->get();
+
+        return response()->json([
+            'labels' => $data->pluck('survey_id'),
+            'target' => $data->pluck('target'),
+            'realisasi' => $data->pluck('realisasi'),
+            'nasional' => $data->pluck('nasional'),
+        ]);
+    }
+
 }
