@@ -26,7 +26,24 @@
 
 <body id="kt_app_body" data-kt-app-layout="light-header" data-kt-app-header-fixed="true"
   data-kt-app-toolbar-enabled="true" data-kt-app-header-fixed-mobile="true" class="app-default">
-	
+	 <script>
+		document.addEventListener('DOMContentLoaded', function() {
+			@if ($errors->any())
+				@foreach ($errors->all() as $error)
+					toastr.error('{{ $error }}');
+				@endforeach
+			@endif
+
+			
+			@if (session('success'))
+				toastr.success('{{ session('success') }}');
+			@endif
+
+			@if (session('error'))
+				toastr.error('{{ session('error') }}');
+			@endif
+		});
+	</script>
 	<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
 		<div class="app-page flex-column flex-column-fluid" id="kt_app_page">
 		<div id="kt_app_header" class="app-header bg-backdrop">
@@ -59,7 +76,6 @@
 		</span>
 	</div>
 
-  
 
   
   	<script src="{{asset('assets_global/plugins/global/plugins.bundle.js')}}"></script>

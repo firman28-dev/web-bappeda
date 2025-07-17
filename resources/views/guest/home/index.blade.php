@@ -406,10 +406,6 @@
                 </div>
             </div>
         </div>
-       
-        
-       
-        
         
     </div>
     
@@ -731,7 +727,97 @@
         
 
     </div> --}}
-    
+    <div class="container mb-20 mt-20">
+        <div class="row align-items-center">
+            
+            
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_4">Pengaduan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_5">Permintaan Data dan Informasi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_6">Magang</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="kt_tab_pane_4" role="tabpanel">
+                                <form action="/laporan-pengaduan" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="name" class="form-label required">Nama</label>
+                                                <input type="text" class="form-control form-control-solid" id="name" name="name" required placeholder="Nama">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label required">Email</label>
+                                                <input type="email" class="form-control form-control-solid" id="email" name="email" required placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="instansi" class="form-label required">Instansi/Lembaga/Masyarakat</label>
+                                                <input type="text" class="form-control form-control-solid" id="instansi" name="instansi" required placeholder="Instansi"> 
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="title" class="form-label required">Judul Pengaduan</label>
+                                                <input type="text" class="form-control form-control-solid" id="title" name="title" required placeholder="Judul Pengaduan">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="category" class="form-label required">Kategori</label>
+                                                <select class="form-select form-select-solid" name="category" id="category" required>
+                                                    <option value="" disabled>Pilih Kategori</option>
+                                                    <option value="feedback">Feedback</option>
+                                                    <option value="laporan">Laporan</option>
+                                                    <option value="permintaan">Permintaan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label for="desc" class="form-label required">Isi Laporan</label>
+                                                <textarea class="form-control form-control-solid" id="description" name="description" rows="4" required placeholder="Isi Masukan / Saran"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Pengaduan</button>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="kt_tab_pane_5" role="tabpanel">
+                                
+                            </div>
+                            <div class="tab-pane fade" id="kt_tab_pane_6" role="tabpanel">
+                                ...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1">
+
+            </div>
+            <div class="col-lg-5 text-center">
+                <div>
+
+                    <img src="{{asset('assets_global/media/illustration/20.png')}}" class="w-100">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container mb-20 mt-20">
         <div class="card rounded-custom bg-about">
             <div class="card-body">
@@ -789,6 +875,8 @@
 @endsection
 
 @section('script')
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <script>
         // $(document).ready(function () {
         //     const url = "https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/2024";
@@ -814,6 +902,7 @@
         const instansiId = 72;
         $(document).ready(function () {
             $('#tahun-select').select2();
+            $('#category').select2();
 
             $('#tahun-select').on('change', function () {
                 const selectedYear = $(this).val();

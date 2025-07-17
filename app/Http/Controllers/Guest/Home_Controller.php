@@ -10,14 +10,41 @@ use App\Models\IndikatorMakroSurvey;
 use App\Models\List_Link;
 use App\Models\Menu_Public;
 use App\Models\News;
+use App\Models\Pengaduan;
 use App\Models\SosialMedia;
 use DB;
-use Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class Home_Controller extends Controller
 {
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'instansi' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'category' => 'required|in:feedback,laporan,permintaan',
+            'description' => 'required|string|min:10',
+        ]);
+
+        // Simpan pengaduan ke database
+        Pengaduan::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'instansi' => $request->instansi,
+            'title' => $request->title,
+            'category' => $request->category,
+            'description' => $request->description,
+        ]);
+
+        return back()->with('success', 'Pengaduan berhasil dikirim.');
+    }
+    
+
+
     public function index(){
         $tahun = now()->year -1;
         $indikator = IndikatorMakroSurvey::with('_indexIndikator')
