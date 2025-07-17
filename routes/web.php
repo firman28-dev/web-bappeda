@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Menu_Public_Controller;
 use App\Http\Controllers\Admin\News_Controller;
 use App\Http\Controllers\Admin\Page_System_Controller;
 use App\Http\Controllers\Admin\Pejabat_Controller;
+use App\Http\Controllers\Admin\PengaduanController;
 use App\Http\Controllers\Admin\SosialMedia_Controller;
 use App\Http\Controllers\Admin\User_Controller;
 use App\Http\Controllers\Auth\LoginController;
@@ -111,6 +112,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
 
         Route::resource('indikator', IndikatorMakroSurveyController::class);
+        Route::resource('pengaduan', PengaduanController::class);
 
     });
 
