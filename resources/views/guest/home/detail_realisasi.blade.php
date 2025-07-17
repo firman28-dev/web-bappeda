@@ -2,7 +2,7 @@
 @section('content') 
 
 <div class="container mt-5">
-    <h1 class="text-center display-6">Detail Realisasi Bappeda 2024</h1>
+    <h1 class="text-center display-6">Detail Realisasi Bappeda 2025</h1>
 
     @if(isset($error))
         <div class="alert alert-danger">
@@ -16,7 +16,7 @@
                         <div class="card h-100 rounded rounded-4 shadow-sm">
                             <div class="card-body">
                                 <h3 class='fw-normal'>
-                                    Total Pagu Anggaran 2024
+                                    Total Pagu Anggaran 2025
                                 </h3>
                                 <h2>
                                     <span id="totalPagu"></span>
@@ -76,7 +76,7 @@
                                         <span class='text-black fs-3'>Deviasi Fisik / Keuangan</span>
                                     </div>
                                     <div class="col-8">
-                                        <span class='text-black fs-3'>: <span id="deviasiFisik"></span>% / <span></span></span>
+                                        <span class='text-black fs-3'>: <span id="deviasiFisik"></span>%  <span></span></span>
                                     </div>
                                 </div>
                             </div>
@@ -138,7 +138,10 @@
         $(document).ready(function () {
             
             const url = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/detail_data_opd_pengelompokan/72?tahun=2024";
+            const url2 = "https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/2025";
+
             const grafikAkumulasi = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/grafik_akumulasi?id_instansi=72&tahun=2024";
+            const grafikAkumulas2 = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/grafik_akumulasi?id_instansi=72&tahun=2025";
 
             function formatRupiah(number) {
                 return new Intl.NumberFormat('id-ID', {
@@ -148,12 +151,12 @@
             }
 
             $.ajax({
-                url: url,
+                url: url2,
                 method: "GET",
                 dataType: "json",
                 success: function (response) {
-                    const data = response;
-                    // console.log(data);
+                    const data = response.result;
+                    console.log(data);
                     let tableRows = '';
 
                     data.data.forEach((opd) => {
@@ -263,7 +266,7 @@
             });
 
             $.ajax({
-                url: grafikAkumulasi,
+                url: grafikAkumulas2,
                 method: "GET",
                 dataType: "json",
                 success: function (responsegrafik) {

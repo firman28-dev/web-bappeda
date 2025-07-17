@@ -226,7 +226,6 @@
             </div>
         </div>
         
-       
     </div>
 
     <div class="container app-container justify-content-center pb-10">
@@ -288,11 +287,21 @@
             <div class="col-lg-5">
                 <div class="text-center py-10">
                     <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
-                        <span class="d-inline-block mb-2 fs-2tx fw-bold">
-                            Realisasi Bappeda
+                        <span id="judul-tahun" class="d-inline-block mb-2 fs-2tx fw-bold">
+                            Realisasi Bappeda 2025
                         </span>
                         <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span>
                     </span>
+                </div>
+                <div class="row justify-content-center text-center mb-6">
+                    <div class="col-12">
+                        <form>
+                            <select id="tahun-select" class="form-select form-select-solid rounded rounded-4">
+                                <option value="2025" selected>2025</option>
+                                <option value="2024">2024</option>
+                            </select>
+                        </form>
+                    </div>
                 </div>
                 <div class="card shadow-sm rounded-custom">
                     <div class="card-body">
@@ -315,7 +324,8 @@
                         
                     </div>
                     <div class="card-footer text-center">
-                        <a href="{{route('guest.detail-realisai')}}">Lihat Selengkapnya</a>
+                        <a href="#" id="lihat-selengkapnya">Lihat Selengkapnya</a>
+                        {{-- <a href="{{route('guest.detail-realisai')}}">Lihat Selengkapnya</a> --}}
                     </div>
                 </div>
             </div>
@@ -340,100 +350,6 @@
             </div>
         </div>
     </div>
-
-
-    {{-- <div data-aos="fade-up"
-        data-aos-duration="2000">
-        <div class="container">
-            <div class="row align-items-stretch d-flex ">
-                <div class="col-lg-6 mb-lg-0 mb-15">
-                    <h1 class="display-6 text-center mb-2">Berita Terbaru</h1>
-                    @if ($latest_news)
-                        @php
-                            $allowedExtensions = ['png', 'jpg', 'jpeg'];
-                            $imagePath = public_path('uploads/news/' . $latest_news->image);
-                            $extension = strtolower(pathinfo($latest_news->image, PATHINFO_EXTENSION));
-                            $imageUrl = (isset($latest_news->image) &&
-                                        file_exists($imagePath) &&
-                                        in_array($extension, $allowedExtensions))
-                                        ? asset('uploads/news/' . $latest_news->image)
-                                        : asset('uploads/news/default.jpg');
-                            $date = \Carbon\Carbon::parse($latest_news->created_at);
-                            preg_match('/<img[^>]+src="([^">]+)"/', $latest_news->description, $matches);
-                            $firstImage = $matches[1] ?? null;
-                            $plainText = strip_tags($latest_news->description);
-                            $shortText = Str::limit($plainText, 300);
-                        @endphp
-
-                        <div class="card shadow-sm overflow-hidden h-100 border-0 rounded-custom mb-7">
-                            <div class="position-relative">
-                                <img src="{{ $imageUrl }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 250px; object-fit: cover;">
-                                <div class="position-absolute top-0 start-0 bg-orange text-white p-2 text-center" style="width: 60px;">
-                                    <div class="fw-bold fs-6">{{ $date->format('d') }}</div>
-                                    <div class="small">{{ $date->format('M') }}</div>
-                                </div>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex justify-content-between text-muted small mb-2">
-                                    <span><i class="fa-solid fa-eye"></i> {{ $latest_news->hits ?? '0' }} Viewers</span>
-                                    <span>{{ $latest_news->_user->username ?? 'Admin' }}</span>
-                                </div>
-                                <p class="card-title fw-bold mb-3">
-                                    {{ $latest_news->title }}
-                                </p>
-                                @if ($firstImage)
-                                    <img src="{{ $firstImage }}" alt="Gambar" class="img-fluid mb-3" style="max-height: 200px; object-fit: cover;">
-                                @endif
-
-                                <div class="content">
-                                    {{ $shortText }}
-                                </div>          
-                                <div class="mt-auto">
-                                    <a href="{{ route('guest.news', $latest_news->id) }}" class="text-decoration-none d-inline-flex align-items-center text-orange fw-semibold">
-                                        <span>Baca Selengkapnya</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right ms-2" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M10.146 3.646a.5.5 0 0 1 .708 0L14.207 7.5H1.5a.5.5 0 0 1 0 1h12.707l-3.353 3.854a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.646a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
-                </div>
-                <div class="col-lg-6">
-                    <div>
-                        <h1 class="display-6 text-center mb-2">Realisasi Bappeda</h1>
-                    </div>
-                    <div class="card h-100 shadow-sm rounded-custom">
-                        <div class="card-body">
-                            <div class="d-flex flex-column">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <h3>Pagu</h3>
-                                        <h3>Realisasi</h3>
-                                        <h3>Persentase</h3>
-                                    </div>
-                                    
-                                    <div class="col-sm-8">
-                                        <h3 id="totalPagu"></h3>
-                                        <h3 id="realisasiKeuangan"></h3>
-                                        <h3 id="persenKeuangan"></h3>
-                                    </div>
-                                </div>
-                                <div id="chartdiv" class="h-300px"></div>
-
-                            </div>
-                           
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="{{route('guest.detail-realisai')}}">Lihat Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 
 
     <div class="container mb-20 mt-20">
@@ -798,77 +714,74 @@
 
 @section('script')
     <script>
-        $(document).ready(function () {
-            const url = "https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/2024";
-            $.ajax({
-                url: url,
-                method: "GET",
-                dataType: "json",
-                success: function (response) {
-                    // console.log(response); 
+        // $(document).ready(function () {
+        //     const url = "https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/2024";
+        //     $.ajax({
+        //         url: url,
+        //         method: "GET",
+        //         dataType: "json",
+        //         success: function (response) {
+        //             // console.log(response); 
                     
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error: ", error);
-                    alert("Gagal mengambil data.");
-                }
-            }); 
-        });
+        //         },
+        //         error: function (xhr, status, error) {
+        //             console.error("Error: ", error);
+        //             alert("Gagal mengambil data.");
+        //         }
+        //     }); 
+        // });
     </script>
     <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
     <script>
-        $(document).ready(function () {
-            const url = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/detail_data_opd_pengelompokan/72?tahun=2024";
-            // const url = "https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/2024";
-            // console.log(url);
-
-            function formatRupiah(number) {
-                return new Intl.NumberFormat('id-ID', {
-                    style: 'currency',
-                    currency: 'IDR'
-                }).format(number);
-            }
+        const instansiId = 72;
+        function fetchData(year) {
+            const url2 = `https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/${instansiId}/${year}`;
             
             $.ajax({
-                url: url,
+                url: url2,
                 method: "GET",
                 dataType: "json",
                 success: function (response) {
-                    
-                    // console.log(response); 
-                    const data = response.pencapaian_opd;
-                    // console.log(data);
+                    console.log(response);
+
+                    const data = response.result.pencapaian_opd;
                     const pagu = data.pagu;
                     const realisasiKeuangan = data.rp_realisasi_keuangan;
                     const persenKeuangan = data.persen_realisasi_keuangan;
-                    
+
                     document.getElementById('totalPagu').textContent = ': ' + formatRupiah(pagu);
                     document.getElementById('realisasiKeuangan').textContent = ': ' + formatRupiah(realisasiKeuangan);
                     document.getElementById('persenKeuangan').textContent = ': ' + persenKeuangan + ' %';
 
-                    
                     const chartData = [
-                        {
-                            category: "Pagu",
-                            value: data.pagu
-                        },
-                        {
-                            category: "Realisasi",
-                            value: data.rp_realisasi_keuangan
-                        },
+                        { category: "Pagu", value: pagu },
+                        { category: "Realisasi", value: realisasiKeuangan }
                     ];
                     create3DPieChart(chartData);
-
-                   
                 },
-                error: function (xhr, status, error) {
-                    // console.error("Error: ", error);
+                error: function () {
                     alert("Gagal mengambil data.");
                 }
             });
+        }
+
+        fetchData("2025");
+
+        document.getElementById('tahun-select').addEventListener('change', function () {
+            const selectedYear = this.value;
+            document.getElementById('judul-tahun').textContent = `Realisasi Bappeda ${selectedYear}`;
+            fetchData(selectedYear);
         });
+
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(angka);
+        }
 
         function create3DPieChart(data) {
             am4core.ready(function () {
@@ -922,6 +835,18 @@
                     indicator.classList.remove('selected');
                 }
             });
+        });
+
+        document.getElementById('lihat-selengkapnya').addEventListener('click', function (e) {
+            e.preventDefault(); // cegah link langsung
+
+            const selectedYear = document.getElementById('tahun-select').value;
+            console.log(selectedYear);
+            
+            // const baseUrl = "{{ route('guest.detail-realisai') }}"; 
+            // const targetUrl = `${baseUrl}?tahun=${selectedYear}`;
+
+            // window.location.href = targetUrl;
         });
 
     </script>
