@@ -346,7 +346,7 @@
                 </p>
             </div>
             <div class="col-lg-6">
-                <iframe class="w-100 h-350px"  src="https://www.youtube.com/embed/Vc8G8tO6rpg?si=Sde0JI15IN5KQCee" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 24px"></iframe>
+                {{-- <iframe class="w-100 h-350px"  src="https://www.youtube.com/embed/Vc8G8tO6rpg?si=Sde0JI15IN5KQCee" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 24px"></iframe> --}}
             </div>
         </div>
     </div>
