@@ -94,24 +94,9 @@ class Home_Controller extends Controller
         return view('guest.home.index',$sent );
     }
 
-    public function detailRealisasi(){
-        // try {
-        //     $url = "https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/2024";
-        //     $response = Http::get($url);
-        //     if ($response->successful()) {
-        //         $data = $response->json(); 
-        //         return $data['result'];
-        //         return view('guest.home.detail_realisasi', ['data' => $data]);
-                
-        //     } else {
-        //         return view('guest.home.detail_realisasi', ['data' => null]);
-               
-        //     }
-        // } catch (\Exception $e) {
-        //     return view('guest.home.detail_realisasi', ['data' => null, 'error' => $e->getMessage()]);
-           
-        // }
-        return view('guest.home.detail_realisasi');
+    public function detailRealisasi(Request $request){
+        $tahun = $request->query('tahun', 2025);
+        return view('guest.home.detail_realisasi', compact('tahun'));
 
     }
 }

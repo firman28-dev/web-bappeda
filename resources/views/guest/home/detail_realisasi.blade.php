@@ -2,7 +2,7 @@
 @section('content') 
 
 <div class="container mt-5">
-    <h1 class="text-center display-6">Detail Realisasi Bappeda 2025</h1>
+    <h1 class="text-center display-6">Detail Realisasi <br> Bappeda Sumatera Barat {{$tahun}}</h1>
 
     @if(isset($error))
         <div class="alert alert-danger">
@@ -136,12 +136,14 @@
 @section('script')
     <script>
         $(document).ready(function () {
+            const tahun = @json($tahun);
+            console.log(tahun);
             
-            const url = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/detail_data_opd_pengelompokan/72?tahun=2024";
-            const url2 = "https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/2025";
+            const urlOld = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/detail_data_opd_pengelompokan/72?tahun=2024";
+            const url = `https://admin-dashboard.sumbarprov.go.id/api/simbangda/getrealisasikegiatanopd/72/${tahun}`;
 
-            const grafikAkumulasi = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/grafik_akumulasi?id_instansi=72&tahun=2024";
-            const grafikAkumulas2 = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/grafik_akumulasi?id_instansi=72&tahun=2025";
+            const grafikAkumulasiOld = "https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/grafik_akumulasi?id_instansi=72&tahun=2024";
+            const grafikAkumulasi = `https://simbangda.sumbarprov.go.id/integrated/api/dashboard_pembangunan/grafik_akumulasi?id_instansi=72&tahun=${tahun}`;
 
             function formatRupiah(number) {
                 return new Intl.NumberFormat('id-ID', {
@@ -151,7 +153,7 @@
             }
 
             $.ajax({
-                url: url2,
+                url: url,
                 method: "GET",
                 dataType: "json",
                 success: function (response) {
@@ -266,7 +268,7 @@
             });
 
             $.ajax({
-                url: grafikAkumulas2,
+                url: grafikAkumulasi,
                 method: "GET",
                 dataType: "json",
                 success: function (responsegrafik) {

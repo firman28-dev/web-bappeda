@@ -841,12 +841,10 @@
             e.preventDefault(); // cegah link langsung
 
             const selectedYear = document.getElementById('tahun-select').value;
-            console.log(selectedYear);
-            
-            // const baseUrl = "{{ route('guest.detail-realisai') }}"; 
-            // const targetUrl = `${baseUrl}?tahun=${selectedYear}`;
+            const baseUrl = "{{ route('guest.detail-realisai') }}"; 
+            const targetUrl = `${baseUrl}?tahun=${selectedYear}`;
 
-            // window.location.href = targetUrl;
+            window.location.href = targetUrl;
         });
 
     </script>
