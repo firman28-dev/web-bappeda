@@ -792,7 +792,21 @@
                                                 <textarea class="form-control form-control-solid" id="description" name="description" rows="4" required placeholder="Isi Masukan / Saran"></textarea>
                                             </div>
                                         </div>
-                                        
+                                        @php
+                                            $a = rand(1, 10);
+                                            $b = rand(1, 10);
+                                            session(['captcha_result' => $a + $b]);
+                                        @endphp
+
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="captcha" class="form-label required">Captcha: Berapa {{ $a }} + {{ $b }}?</label>
+                                                <input type="text" class="form-control form-control-solid" id="captcha" name="captcha" required placeholder="Jawaban Captcha">
+                                                @if ($errors->has('captcha'))
+                                                    <span class="text-danger">{{ $errors->first('captcha') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Pengaduan</button>
                                 </form>

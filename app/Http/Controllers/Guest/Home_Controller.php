@@ -28,7 +28,12 @@ class Home_Controller extends Controller
             'title' => 'required|string|max:255',
             'category' => 'required|in:feedback,laporan,permintaan',
             'description' => 'required|string|min:10',
+            'captcha' => 'required|numeric',
         ]);
+
+        if ((int)$request->captcha !== session('captcha_result')) {
+            return back()->withErrors(['captcha' => 'Jawaban captcha salah.'])->withInput();
+        }
 
         // Simpan pengaduan ke database
         Pengaduan::create([
@@ -38,6 +43,8 @@ class Home_Controller extends Controller
             'title' => $request->title,
             'category' => $request->category,
             'description' => $request->description,
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
         ]);
 
         return back()->with('success', 'Pengaduan berhasil dikirim.');

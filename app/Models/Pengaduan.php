@@ -14,7 +14,9 @@ class Pengaduan extends Model
         'category',
         'description',
         'instansi',
-        'email'
+        'email',
+        'ip_address',
+        'user_agent',
     ];
     protected $table = 'public_complaints';
 
