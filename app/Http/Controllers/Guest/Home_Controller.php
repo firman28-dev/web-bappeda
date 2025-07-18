@@ -125,7 +125,7 @@ class Home_Controller extends Controller
         $file = $request->file('path'); 
         $unique = uniqid();
         $fileName = $unique. '_' . $file->getClientOriginalName();
-        $file->move($_SERVER['DOCUMENT_ROOT']. '/pelayanan/permohonan_informasi/', $fileName);
+        $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/permohonan_informasi/', $fileName);
 
         // Simpan pengaduan ke database
         PermohonanInformasi::create([
