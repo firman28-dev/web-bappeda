@@ -126,6 +126,8 @@
                             <li><a href="{{ route('banner.index') }}">Infografis</a></li>
                             <li><a href="{{ route('sosial-media.index') }}">Sosial Media</a></li>
                             <li><a href="{{ route('pengaduan.index') }}">Pengaduan</a></li>
+                            <li><a href="{{ route('magang.index') }}">Pengajuan Magang</a></li>
+
 
 
                         </ul>

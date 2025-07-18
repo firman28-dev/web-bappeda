@@ -8,6 +8,7 @@ use App\Models\Bidang;
 use App\Models\FAQ;
 use App\Models\IndikatorMakroSurvey;
 use App\Models\List_Link;
+use App\Models\Magang;
 use App\Models\Menu_Public;
 use App\Models\News;
 use App\Models\Pengaduan;
@@ -48,6 +49,41 @@ class Home_Controller extends Controller
         ]);
 
         return back()->with('success', 'Pengaduan berhasil dikirim.');
+    }
+
+    public function storeMagang(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'universitas' => 'required|string|max:255',
+            'jurusan' => 'required|string|max:255',
+            'tujuan' => 'required|string',
+            'phone' => 'required|max:15',
+            'email' => 'required|max:30',
+            'started_at' => 'required',
+            'ended_at' => 'required',
+            'captcha' => 'required|numeric',
+        ]);
+
+        if ((int)$request->captcha !== session('captcha_result')) {
+            return back()->withErrors(['captcha' => 'Jawaban captcha salah.'])->withInput();
+        }
+
+        // Simpan pengaduan ke database
+        Magang::create([
+            'name' => $request->name,
+            'universitas' => $request->universitas,
+            'jurusan' => $request->jurusan,
+            'tujuan' => $request->tujuan,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'start' => strtotime($request->started_at),
+            'end' => strtotime($request->ended_at),
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
+        ]);
+
+        return back()->with('success', 'Pengajuan magang berhasil dikirim.');
     }
     
 

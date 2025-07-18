@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Dashboard_Controller;
 use App\Http\Controllers\Admin\FAQ_Controller;
 use App\Http\Controllers\Admin\Image_Controller;
 use App\Http\Controllers\Admin\List_Link_Controller;
+use App\Http\Controllers\Admin\MagangController;
 use App\Http\Controllers\Admin\MaintenanceController;
 use App\Http\Controllers\Admin\Menu_Public_Controller;
 use App\Http\Controllers\Admin\News_Controller;
@@ -59,6 +60,7 @@ Route::get('/management', [LoginController::class, 'show'])->name('login.show');
 Route::post('/management', [LoginController::class, 'login'])->name('login.perform');
 Route::get('/grafik-indikator/{id}', [Home_Controller::class, 'getChartData']);
 Route::post('/laporan-pengaduan', [Home_Controller::class, 'store'])->middleware('throttle:5,1');
+Route::post('/pengajuan-magang', [Home_Controller::class, 'storeMagang'])->middleware('throttle:5,1');
 
 
 
@@ -113,6 +115,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::resource('indikator', IndikatorMakroSurveyController::class);
         Route::resource('pengaduan', PengaduanController::class);
+        Route::resource('magang', MagangController::class);
+
 
     });
 

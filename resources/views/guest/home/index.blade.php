@@ -43,7 +43,7 @@
             <div class="row align-items-center py-lg-0 py-20">
                 <div class="col-lg-6">
                     <h1 class="display-2 mb-8 text-white">
-                        Sumatera Barat <b class="text-custom-primary">Madani</b> yang Maju dan <b class="text-custom-primary">Berkeadilan</b>
+                        Sumatera Barat Madani yang Maju dan Berkeadilan
                     </h1>
                 </div>
                 <div class="col-lg-6">
@@ -60,7 +60,7 @@
             <div class="row justify-content-evenly">
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://dashboard.sumbarprov.go.id/tahun/2025" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-light-warning" >
+                        <div class="card rounded-4 shadow-sm hover-elevate-up" style="background-color: rgba(210, 228, 249, 0.8);" >
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
@@ -70,7 +70,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-12 text-xl-start">
-                                            <p class="mb-0 text-custom-dark">DASHBOARD SUMBAR</p>
+                                            <p class="mb-0 fw-bold">DASHBOARD SUMBAR</p>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://sumbar2045.sumbarprov.go.id/" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-light-warning">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up" style="background-color: rgba(210, 228, 249, 0.8);">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
@@ -90,7 +90,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-12 text-xl-start">
-                                            <p class="mb-0 text-custom-dark">SUMBAR 2045 </p>
+                                            <p class="mb-0 fw-bold">SUMBAR 2045 </p>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://sakatoplan.sumbarprov.go.id/" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-light-warning">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up" style="background-color: rgba(210, 228, 249, 0.8);">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
@@ -111,7 +111,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-12 text-xl-start">
-                                            <p class="mb-0 text-custom-dark">SAKATO PLAN</p>
+                                            <p class="mb-0 fw-bold">SAKATO PLAN</p>
                                         </div>
                                     </div>
                                 </div>
@@ -738,9 +738,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_4">Pengaduan</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_5">Permintaan Data dan Informasi</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_6">Magang</a>
                             </li>
@@ -811,11 +811,82 @@
                                     <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Pengaduan</button>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="kt_tab_pane_5" role="tabpanel">
+                            {{-- <div class="tab-pane fade" id="kt_tab_pane_5" role="tabpanel">
                                 
-                            </div>
+                            </div> --}}
                             <div class="tab-pane fade" id="kt_tab_pane_6" role="tabpanel">
-                                ...
+                                <form action="/pengajuan-magang" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="name" class="form-label required">Nama</label>
+                                                <input type="text" class="form-control form-control-solid" id="name" name="name" required placeholder="Nama">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="universitas" class="form-label required">Universitas</label>
+                                                <input type="text" class="form-control form-control-solid" id="universitas" name="universitas" required placeholder="Universitas">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="jurusan" class="form-label required">Jurusan</label>
+                                                <input type="text" class="form-control form-control-solid" id="jurusan" name="jurusan" required placeholder="Jurusan"> 
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="phone" class="form-label required">No HP/WhatsApp (Aktif)</label>
+                                                <input type="text" class="form-control form-control-solid" id="phone" name="phone" required placeholder="No HP/WhatsApp"> 
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label required">Email</label>
+                                                <input type="email" class="form-control form-control-solid" id="email" name="email" required placeholder="Email"> 
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="time" class="form-label required">Jadwal Magang</label>
+                                                <input name="time" class="form-control form-control-solid @error('time') is-invalid @enderror"  placeholder="Pilih Waktu" id="time"/>
+                                            </div>
+                                            @error('time')
+                                                <div class="is-invalid">
+                                                    <span class="text-danger">
+                                                        {{$message}}
+                                                    </span>
+                                                </div>
+                                            @enderror
+                                            <input type="text" name="started_at" id="started_at" hidden/>
+                                            <input type="text" name="ended_at" id="ended_at" hidden/>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label for="tujuan" class="form-label required">Tujuan Magang</label>
+                                                <textarea class="form-control form-control-solid" id="tujuan" name="tujuan" rows="4" required placeholder="Isi Tujuan Magang"></textarea>
+                                            </div>
+                                        </div>
+                                        @php
+                                            $a = rand(1, 10);
+                                            $b = rand(1, 10);
+                                            session(['captcha_result' => $a + $b]);
+                                        @endphp
+
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="captcha" class="form-label required">Captcha: Berapa {{ $a }} + {{ $b }}?</label>
+                                                <input type="text" class="form-control form-control-solid" id="captcha" name="captcha" required placeholder="Jawaban Captcha">
+                                                @if ($errors->has('captcha'))
+                                                    <span class="text-danger">{{ $errors->first('captcha') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Pengajuan</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -1242,6 +1313,34 @@
                 }
             });
         });
+
+        $("#time").daterangepicker({
+            timePicker: true,
+            // timezone: "Asia/Jakarta",
+            // startDate: moment().startOf("hour"),
+            // endDate: moment().startOf("hour").add(32, "hour"),
+            locale: {
+                format: "DD/MM hh:mm A"
+            }
+        },function(start, end, label) {
+            // const timesStart2 = start
+            const timesStart = start.format('Y-MM-DD H:mm:ss');
+            const timesEnd = end.format('Y-MM-DD H:mm:ss');
+            // const timesStart = start;
+            // const timesEnd = end;
+            document.getElementById("started_at").value = timesStart;
+            document.getElementById("ended_at").value = timesEnd;
+        });
+
+        
+        function checkDate() {
+            if ($('#time').val() == '') {
+                $('#time').addClass('invalid')
+            } else {
+                $('#time').removeClass('invalid')
+            }
+        }
+
     </script>
 
     <script async src="//www.instagram.com/embed.js"></script>

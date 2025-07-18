@@ -103,7 +103,7 @@
                     alt="search image">
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="card course-box">
                 <div class="card-body">
                     <div class="course-widget">
@@ -117,7 +117,7 @@
                                 <span class="counter" >{{$user}}</span>
                             </h4>
                                 <span class="f-light">Total User</span>
-                                <a class="btn btn-light f-light" href="course-list-view.html">
+                                <a class="btn btn-light f-light" href="#">
                                     Lihat User
                                     <span class="ms-2"> 
                                         <svg class="fill-icon f-light">
@@ -140,7 +140,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="card course-box">
                 <div class="card-body">
                     <div class="course-widget">
@@ -154,8 +154,45 @@
                                 <span class="counter" >{{$bidang}}</span>
                             </h4>
                                 <span class="f-light">Total Bidang</span>
-                                <a class="btn btn-light f-light" href="course-list-view.html">
+                                <a class="btn btn-light f-light" href="#">
                                     Lihat Bidang
+                                    <span class="ms-2"> 
+                                        <svg class="fill-icon f-light">
+                                            <use href="../assets/svg/icon-sprite.svg#arrowright"></use>
+                                        </svg>
+                                    </span>
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <ul class="square-group">
+                    <li class="square-1 warning"></li>
+                    <li class="square-1 primary"></li>
+                    <li class="square-2 warning1"></li>
+                    <li class="square-3 danger"></li>
+                    <li class="square-4 light"></li>
+                    <li class="square-5 warning"></li>
+                    <li class="square-6 success"></li>
+                    <li class="square-7 success"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card course-box">
+                <div class="card-body">
+                    <div class="course-widget">
+                        <div class="course-icon primary"> 
+                            <svg class="fill-icon">
+                                <use href="../assets/svg/icon-sprite.svg#fill-reports"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="mb-0"> 
+                                <span class="counter" >{{$pengaduan}}</span>
+                            </h4>
+                                <span class="f-light">Total Pengaduan</span>
+                                <a class="btn btn-light f-light" href="#">
+                                    Lihat Pengaduan
                                     <span class="ms-2"> 
                                         <svg class="fill-icon f-light">
                                             <use href="../assets/svg/icon-sprite.svg#arrowright"></use>
