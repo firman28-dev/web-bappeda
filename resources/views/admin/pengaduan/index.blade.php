@@ -46,9 +46,9 @@
                             <th class="text-start"> <span class="c-o-light f-w-600">Nama </span></th>
                             <th class="w-25 text-start"> <span class="c-o-light f-w-600">Email</span></th>
                             <th class="w-25 text-start"> <span class="c-o-light f-w-600">Instansi</span></th>
-                            <th class="w-25 text-start"> <span class="c-o-light f-w-600">Jenis Pengaduan</span></th>
                             <th class="w-25 text-start"> <span class="c-o-light f-w-600">Judul</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Deskripsi</span></th>
+                            <th class="text-center"> <span class="c-o-light f-w-600">Status</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Actions</span></th>
                         </tr>
                     </thead>
@@ -61,7 +61,11 @@
                                 <td>{{ $item->instansi ?? '' }}</td>
                                 <td>{{ $item->category ?? '' }}</td>
                                 <td>{{ $item->title ?? '' }}</td>
-                                <td>{{ $item->description ?? '' }}</td>
+                                <td>
+                                    <span class="badge {{ $item->status == 1 ? 'badge-light-success' : 'badge-light-danger' }}">
+                                        {{ $item->status == 1 ? 'Sudah ditindaklanjuti' : 'Belum ditindaklanjuti' }}
+                                    </span>
+                                </td>
                                 <td class="text-center justify-content-center">
                                     <ul class="action text-center justify-content-center">
                                         <li class="delete">

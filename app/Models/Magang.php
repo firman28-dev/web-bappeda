@@ -19,6 +19,7 @@ class Magang extends Model
         'phone',
         'ip_address',
         'user_agent',
+        'path'
     ];
 
     protected $casts = [

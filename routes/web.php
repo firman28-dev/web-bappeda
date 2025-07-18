@@ -61,6 +61,7 @@ Route::post('/management', [LoginController::class, 'login'])->name('login.perfo
 Route::get('/grafik-indikator/{id}', [Home_Controller::class, 'getChartData']);
 Route::post('/laporan-pengaduan', [Home_Controller::class, 'store'])->middleware('throttle:5,1');
 Route::post('/pengajuan-magang', [Home_Controller::class, 'storeMagang'])->middleware('throttle:5,1');
+Route::post('/permohonan-informasi', [Home_Controller::class, 'storePermohonanInformasi'])->middleware('throttle:5,1');
 
 
 

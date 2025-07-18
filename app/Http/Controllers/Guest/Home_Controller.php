@@ -12,6 +12,7 @@ use App\Models\Magang;
 use App\Models\Menu_Public;
 use App\Models\News;
 use App\Models\Pengaduan;
+use App\Models\PermohonanInformasi;
 use App\Models\SosialMedia;
 use DB;
 use Illuminate\Http\Request;
@@ -27,23 +28,27 @@ class Home_Controller extends Controller
             'email' => 'required|email|max:255',
             'instansi' => 'required|string|max:255',
             'title' => 'required|string|max:255',
-            'category' => 'required|in:feedback,laporan,permintaan',
             'description' => 'required|string|min:10',
-            'captcha' => 'required|numeric',
+            'captcha_pengaduan' => 'required|numeric',
+            'a' => 'required|numeric',
+            'b' => 'required|numeric',
         ]);
 
-        if ((int)$request->captcha !== session('captcha_result')) {
-            return back()->withErrors(['captcha' => 'Jawaban captcha salah.'])->withInput();
+        $expected = (int)$request->a + (int)$request->b;
+
+        if ((int)$request->captcha_pengaduan !== $expected) {
+            return back()->withErrors(['captcha_pengaduan' => 'Jawaban captcha salah.'])->withInput();
         }
 
+       
         // Simpan pengaduan ke database
         Pengaduan::create([
             'name' => $request->name,
             'email' => $request->email,
             'instansi' => $request->instansi,
             'title' => $request->title,
-            'category' => $request->category,
             'description' => $request->description,
+            'status' => 1,
             'ip_address' => $request->ip(),
             'user_agent' => $request->header('User-Agent'),
         ]);
@@ -62,12 +67,22 @@ class Home_Controller extends Controller
             'email' => 'required|max:30',
             'started_at' => 'required',
             'ended_at' => 'required',
-            'captcha' => 'required|numeric',
+            'captcha_magang' => 'required|numeric',
+            'a' => 'required|numeric',
+            'b' => 'required|numeric',
+            'path' => 'required|mimes:pdf|max:2048',
         ]);
 
-        if ((int)$request->captcha !== session('captcha_result')) {
-            return back()->withErrors(['captcha' => 'Jawaban captcha salah.'])->withInput();
+        $expected = (int)$request->a + (int)$request->b;
+
+        if ((int)$request->captcha_magang !== $expected) {
+            return back()->withErrors(['captcha_magang' => 'Jawaban captcha salah.'])->withInput();
         }
+
+        $file = $request->file('path'); 
+        $unique = uniqid();
+        $fileName = $unique. '_' . $file->getClientOriginalName();
+        $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/magang/', $fileName);
 
         // Simpan pengaduan ke database
         Magang::create([
@@ -77,6 +92,7 @@ class Home_Controller extends Controller
             'tujuan' => $request->tujuan,
             'phone' => $request->phone,
             'email' => $request->email,
+            'path' => $fileName,
             'start' => strtotime($request->started_at),
             'end' => strtotime($request->ended_at),
             'ip_address' => $request->ip(),
@@ -84,6 +100,46 @@ class Home_Controller extends Controller
         ]);
 
         return back()->with('success', 'Pengajuan magang berhasil dikirim.');
+    }
+
+    public function storePermohonanInformasi(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|max:30',
+            'instansi' => 'required|string|max:255',
+            'phone' => 'required|max:15',
+            'tujuan' => 'required|string',
+            'path' => 'required|mimes:pdf|max:2048',
+            'captcha_permohonan' => 'required|numeric',
+            'a' => 'required|numeric',
+            'b' => 'required|numeric',
+        ]);
+
+        $expected = (int)$request->a + (int)$request->b;
+
+        if ((int)$request->captcha_permohonan !== $expected) {
+            return back()->withErrors(['captcha_permohonan' => 'Jawaban captcha salah.'])->withInput();
+        }
+
+        $file = $request->file('path'); 
+        $unique = uniqid();
+        $fileName = $unique. '_' . $file->getClientOriginalName();
+        $file->move($_SERVER['DOCUMENT_ROOT']. '/pelayanan/permohonan_informasi/', $fileName);
+
+        // Simpan pengaduan ke database
+        PermohonanInformasi::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'instansi' => $request->instansi,
+            'phone' => $request->phone,
+            'tujuan' => $request->tujuan,
+            'path' => $fileName,
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
+        ]);
+
+        return back()->with('success', 'Pengajuan permohonan informasi berhasil dikirim.');
     }
     
 

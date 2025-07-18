@@ -125,8 +125,8 @@
     </div>
     <div class="container app-container justify-content-center mb-10">
         <div class="row row align-items-stretch">
-            <div class="col-lg-7 h-100">
-                <div class="text-start py-10">
+            <div class="col-lg-7 d-flex flex-column">
+                <div class="text-center py-10">
                     <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
                         <span class="d-inline-block mb-2 fs-2tx fw-bold">
                             Berita Sumbar
@@ -190,8 +190,8 @@
                 </div>
             </div>
 
-            <div class="col-lg-5 h-100">
-                <div class="text-start py-10">
+            <div class="col-lg-5 d-flex flex-column">
+                <div class="text-center py-10">
                     <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
                         <span class="d-inline-block mb-2 fs-2tx fw-bold">
                             Media Sosial
@@ -212,7 +212,7 @@
                             @endforeach
                         </ul>
 
-                        <div class="tab-content w-100" style="overflow:hidden; max-width: 100%; max-height: 50%">
+                        <div class="tab-content w-100" style="overflow:hidden; max-width: 100%;">
                             @foreach ($socials as $social)
                                 <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="tab{{ $social->id }}">
                                     {!! $social->embed_code !!}
@@ -230,7 +230,7 @@
 
     <div class="container app-container justify-content-center pb-10">
         <div class="row d-flex align-items-stretch">
-             <div class="col-lg-7 mb-lg-0 mb-4">
+             <div class="col-lg-7 d-flex flex-column">
                 <div class="text-center py-10">
                     <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
                         <span class="d-inline-block mb-2 fs-2tx fw-bold">
@@ -239,7 +239,7 @@
                         <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span>
                     </span>
                 </div>
-                <div class="card shadow-sm rounded-custom">
+                <div class="card shadow-sm rounded-custom w-100 d-flex flex-column h-100">
                     <div class="card-body">
                         <div class="table-responsive mt-3">
                             <table id="tableProgram" class="table table-striped table-row-bordered  border rounded" style="width:100%">
@@ -306,7 +306,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card shadow-sm rounded-custom ">
+                {{-- <div class="card shadow-sm rounded-custom ">
                     <div class="card-header d-none g-header">
                         <div class="card-title">
                             <h3 id="nama_data"></h3>
@@ -315,7 +315,7 @@
                     <div class="card-body align-items-center d-none g-body">
                         <canvas id="grafikMakroChart" class="p-15"></canvas>
                     </div>
-                </div>
+                </div> --}}
                 {{-- <div class="row justify-content-center text-center mb-6">
                     <div class="col-12">
                         <form>
@@ -360,7 +360,7 @@
                     </div>
                 </div> --}}
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-5 d-flex flex-column">
                 <div class="text-center py-10">
                     <span class="d-inline-block position-relative ms-2 text-center justify-content-center">
                         <span id="judul-tahun" class="d-inline-block mb-2 fs-2tx fw-bold">
@@ -369,18 +369,18 @@
                         <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span>
                     </span>
                 </div>
-                <div class="row justify-content-center text-center mb-6">
-                    <div class="col-12">
-                        <form>
-                            <select id="tahun-select" class="form-select form-select-solid rounded rounded-4">
-                                <option value="2025" selected>2025</option>
-                                <option value="2024">2024</option>
-                            </select>
-                        </form>
-                    </div>
-                </div>
-                <div class="card shadow-sm rounded-custom">
+                <div class="card shadow-sm rounded-custom w-100 d-flex flex-column h-100">
                     <div class="card-body">
+                        <div class="row justify-content-center text-center mb-6">
+                            <div class="col-12">
+                                <form>
+                                    <select id="tahun-select" class="form-select form-select-solid rounded rounded-4">
+                                        <option value="2025" selected>2025</option>
+                                        <option value="2024">2024</option>
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
                         <div class="d-flex flex-column">
                             <div class="row">
                                 <div class="col-sm-4">
@@ -640,114 +640,102 @@
         </div>
     </div>
 
-    <div class="container mb-20 mt-20">
-        
-        <h1 class="display-6 pb-10 text-center">Statistik Pengunjung</h1>
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ $jumlahPengunjung }}">0</h2>
-                    <p class="lead">Jumlah Pengunjung</p>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ number_format($rataKunjunganHarian) }}">0</h2>
-                    <p class="lead">Rata-rata Kunjungan Harian</p>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ number_format($pengunjungAktif) }}">0</h2>
-                    <p class="lead">Pengunjung Aktif</p>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="d-flex flex-column justify-content-center text-center">
-                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ number_format($jumlahHalamanDikunjungi) }}">0</h2>
-                    <p class="lead">Jumlah Halaman Dikunjungi</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container mb-20 mt-20">
-        <h1 class="display-6 pb-10 text-center">Link Terkait</h1>
-        <div class="row text-center">
-            
-            {{-- <h1 class="display-6 pb-10">Link Terkait</h1> --}}
-            {{-- <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span> --}}
-            @foreach ($list_link as $item)
-                <div class="col-xl-4 col-md-6 mb-4 aos-init aos-animate d-flex align-items-stretch" data-aos="fade-up" data-aos-duration="1000">
-                    <a href="{{$item->url}}" target="_blank" class="d-flex align-items-stretch w-100">
-                        <div class="card w-100 d-flex align-items-center shadow-sm">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('uploads/list_link/' . $item->path) }}" alt="File Image" class="w-50">
-                            </div>
-                        </div>
-                    </a>
-                
-                </div>
-            
-            @endforeach
-        </div>
-    </div>
-
-
-     {{-- <div class="container mb-20 mt-20">
-        <h1 class="display-6 pb-10 text-center">FAQ BAPPEDA SUMBAR</h1>
-        <div class="card">
-            <div class="card-body">
-                <div class="accordion" id="kt_accordion_1">
-                    @foreach($faqs as $index => $faq)
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="kt_accordion_1_header_{{ $index }}">
-                                <button class="accordion-button fs-4 fw-semibold collapsed"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#kt_accordion_1_body_{{ $index }}"
-                                        aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
-                                        aria-controls="kt_accordion_1_body_{{ $index }}">
-                                    {{ $faq->name }}
-                                </button>
-                            </h2>
-                            <div id="kt_accordion_1_body_{{ $index }}"
-                                class="accordion-collapse collapse"
-                                aria-labelledby="kt_accordion_1_header_{{ $index }}"
-                                data-bs-parent="#kt_accordion_1">
-                                <div class="accordion-body">
-                                    {!! $faq->description !!}
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        
-
-    </div> --}}
-    <div class="container mb-20 mt-20">
+     <div class="container mb-20 mt-20">
+        <h1 class="display-6 pb-10 text-center">Hubungi Kami</h1>
         <div class="row align-items-center">
-            
-            
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
                         <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_4">Pengaduan</a>
+                            <li class="nav-item"> 
+                                <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_5">Permintaan Informasi</a>
                             </li>
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_5">Permintaan Data dan Informasi</a>
-                            </li> --}}
+                            <li class="nav-item">
+                                <a class="nav-link " data-bs-toggle="tab" href="#kt_tab_pane_4">Pengaduan</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_6">Magang</a>
                             </li>
                         </ul>
 
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="kt_tab_pane_4" role="tabpanel">
+                            <div class="tab-pane fade show active" id="kt_tab_pane_5" role="tabpanel">
+                                <form action="/permohonan-informasi" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="name" class="form-label required">Nama</label>
+                                                <input type="text" class="form-control form-control-solid" id="name" name="name" required placeholder="Nama">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label required">Email</label>
+                                                <input type="email" class="form-control form-control-solid" id="email" name="email" required placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="instansi" class="form-label required">Instansi/Lembaga/Masyarakat</label>
+                                                <input type="text" class="form-control form-control-solid" id="instansi" name="instansi" required placeholder="Instansi"> 
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="phone" class="form-label required">No HP/WhatsApp</label>
+                                                <input type="text" class="form-control form-control-solid" id="phone" name="phone" required placeholder="No Hp/WA">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label for="tujuan" class="form-label required">Perihal Permohonan Informasi</label>
+                                                <textarea class="form-control form-control-solid" id="tujuan" name="tujuan" rows="4" required placeholder="Perihal Permohonan Informasi"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Unduh Template Permohonan</label>
+                                                <br>
+                                                <a href="{{ asset('pelayanan/Form Permohonan Informasi.docx') }}" class="btn btn-success btn-sm" download>
+                                                    <i class="fa-solid fa-print"></i>
+                                                    Unduh Template Permohonan Informasi
+                                                </a>
+                                            </div>
+                                        </div>
+                                         <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label for="surat_pengantar" class="form-label required">Upload Surat Permohonan Sesuai Template (PDF)</label>
+                                                <input type="file" class="form-control form-control-solid" id="path" name="path" required accept=".pdf">
+                                                @if ($errors->has('path'))
+                                                    <span class="text-danger">{{ $errors->first('path') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        @php
+                                            $a = rand(1, 10);
+                                            $b = rand(1, 10);
+                                        @endphp
+
+                                        <input type="hidden" name="a" value="{{ $a }}">
+                                        <input type="hidden" name="b" value="{{ $b }}">
+
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="captcha_permohonan" class="form-label required">
+                                                    Captcha: Berapa {{ $a }} + {{ $b }}?
+                                                </label>
+                                                <input type="text" class="form-control form-control-solid" id="captcha_permohonan" name="captcha_permohonan" required placeholder="Jawaban Captcha">
+                                                @if ($errors->has('captcha_permohonan'))
+                                                    <span class="text-danger">{{ $errors->first('captcha_permohonan') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Pengaduan</button>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade " id="kt_tab_pane_4" role="tabpanel">
                                 <form action="/laporan-pengaduan" method="POST">
                                     @csrf
                                     <div class="row">
@@ -775,17 +763,6 @@
                                                 <input type="text" class="form-control form-control-solid" id="title" name="title" required placeholder="Judul Pengaduan">
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="category" class="form-label required">Kategori</label>
-                                                <select class="form-select form-select-solid" name="category" id="category" required>
-                                                    <option value="" disabled>Pilih Kategori</option>
-                                                    <option value="feedback">Feedback</option>
-                                                    <option value="laporan">Laporan</option>
-                                                    <option value="permintaan">Permintaan</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="desc" class="form-label required">Isi Laporan</label>
@@ -795,27 +772,29 @@
                                         @php
                                             $a = rand(1, 10);
                                             $b = rand(1, 10);
-                                            session(['captcha_result' => $a + $b]);
                                         @endphp
+
+                                        <input type="hidden" name="a" value="{{ $a }}">
+                                        <input type="hidden" name="b" value="{{ $b }}">
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="captcha" class="form-label required">Captcha: Berapa {{ $a }} + {{ $b }}?</label>
-                                                <input type="text" class="form-control form-control-solid" id="captcha" name="captcha" required placeholder="Jawaban Captcha">
-                                                @if ($errors->has('captcha'))
-                                                    <span class="text-danger">{{ $errors->first('captcha') }}</span>
+                                                <label for="captcha_pengaduan" class="form-label required">
+                                                    Captcha: Berapa {{ $a }} + {{ $b }}?
+                                                </label>
+                                                <input type="text" class="form-control form-control-solid" id="captcha_pengaduan" name="captcha_pengaduan" required placeholder="Jawaban Captcha">
+                                                @if ($errors->has('captcha_pengaduan'))
+                                                    <span class="text-danger">{{ $errors->first('captcha_pengaduan') }}</span>
                                                 @endif
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Pengaduan</button>
+                                    <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Permohonan</button>
                                 </form>
                             </div>
-                            {{-- <div class="tab-pane fade" id="kt_tab_pane_5" role="tabpanel">
-                                
-                            </div> --}}
+                            
                             <div class="tab-pane fade" id="kt_tab_pane_6" role="tabpanel">
-                                <form action="/pengajuan-magang" method="POST">
+                                <form action="/pengajuan-magang" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -865,6 +844,15 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
+                                                <label for="surat_pengantar" class="form-label required">Upload Surat Pengantar Magang (PDF) Maksimal 2 MB</label>
+                                                <input type="file" class="form-control form-control-solid" id="path" name="path" required accept=".pdf">
+                                                @if ($errors->has('path'))
+                                                    <span class="text-danger">{{ $errors->first('path') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
                                                 <label for="tujuan" class="form-label required">Tujuan Magang</label>
                                                 <textarea class="form-control form-control-solid" id="tujuan" name="tujuan" rows="4" required placeholder="Isi Tujuan Magang"></textarea>
                                             </div>
@@ -872,15 +860,19 @@
                                         @php
                                             $a = rand(1, 10);
                                             $b = rand(1, 10);
-                                            session(['captcha_result' => $a + $b]);
                                         @endphp
 
-                                        <div class="col-lg-6">
+                                        <input type="hidden" name="a" value="{{ $a }}">
+                                        <input type="hidden" name="b" value="{{ $b }}">
+                                        
+                                        <div class="col-lg-12">
                                             <div class="mb-3">
-                                                <label for="captcha" class="form-label required">Captcha: Berapa {{ $a }} + {{ $b }}?</label>
-                                                <input type="text" class="form-control form-control-solid" id="captcha" name="captcha" required placeholder="Jawaban Captcha">
-                                                @if ($errors->has('captcha'))
-                                                    <span class="text-danger">{{ $errors->first('captcha') }}</span>
+                                                <label for="captcha_magang" class="form-label required">
+                                                    Captcha: Berapa {{ $a }} + {{ $b }}?
+                                                </label>
+                                                <input type="text" class="form-control form-control-solid" id="captcha_magang" name="captcha_magang" required placeholder="Jawaban Captcha">
+                                                @if ($errors->has('captcha_magang'))
+                                                    <span class="text-danger">{{ $errors->first('captcha_magang') }}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -903,6 +895,96 @@
             </div>
         </div>
     </div>
+
+    
+
+    <div class="container mb-20 mt-20">
+        <h1 class="display-6 pb-10 text-center">Link Terkait</h1>
+        <div class="row text-center">
+            
+            {{-- <h1 class="display-6 pb-10">Link Terkait</h1> --}}
+            {{-- <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span> --}}
+            @foreach ($list_link as $item)
+                <div class="col-xl-4 col-md-6 mb-4 aos-init aos-animate d-flex align-items-stretch" data-aos="fade-up" data-aos-duration="1000">
+                    <a href="{{$item->url}}" target="_blank" class="d-flex align-items-stretch w-100">
+                        <div class="card w-100 d-flex align-items-center shadow-sm">
+                            <div class="card-body d-flex align-items-center justify-content-center">
+                                <img src="{{ asset('uploads/list_link/' . $item->path) }}" alt="File Image" class="w-50">
+                            </div>
+                        </div>
+                    </a>
+                
+                </div>
+            
+            @endforeach
+        </div>
+    </div>
+
+    <div class="container mb-20 mt-20">
+        
+        <h1 class="display-6 pb-10 text-center">Statistik Pengunjung</h1>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="d-flex flex-column justify-content-center text-center">
+                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ $jumlahPengunjung }}">0</h2>
+                    <p class="lead">Jumlah Pengunjung</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="d-flex flex-column justify-content-center text-center">
+                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ number_format($rataKunjunganHarian) }}">0</h2>
+                    <p class="lead">Rata-rata Kunjungan Harian</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="d-flex flex-column justify-content-center text-center">
+                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ number_format($pengunjungAktif) }}">0</h2>
+                    <p class="lead">Pengunjung Aktif</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="d-flex flex-column justify-content-center text-center">
+                    <h2 class="display-5 text-custom-warning" data-kt-countup="true" data-kt-countup-value="{{ number_format($jumlahHalamanDikunjungi) }}">0</h2>
+                    <p class="lead">Jumlah Halaman Dikunjungi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     {{-- <div class="container mb-20 mt-20">
+        <h1 class="display-6 pb-10 text-center">FAQ BAPPEDA SUMBAR</h1>
+        <div class="card">
+            <div class="card-body">
+                <div class="accordion" id="kt_accordion_1">
+                    @foreach($faqs as $index => $faq)
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="kt_accordion_1_header_{{ $index }}">
+                                <button class="accordion-button fs-4 fw-semibold collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#kt_accordion_1_body_{{ $index }}"
+                                        aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
+                                        aria-controls="kt_accordion_1_body_{{ $index }}">
+                                    {{ $faq->name }}
+                                </button>
+                            </h2>
+                            <div id="kt_accordion_1_body_{{ $index }}"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="kt_accordion_1_header_{{ $index }}"
+                                data-bs-parent="#kt_accordion_1">
+                                <div class="accordion-body">
+                                    {!! $faq->description !!}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        
+
+    </div> --}}
+   
     <div class="container mb-20 mt-20">
         <div class="card rounded-custom bg-about">
             <div class="card-body">
@@ -987,7 +1069,6 @@
         const instansiId = 72;
         $(document).ready(function () {
             $('#tahun-select').select2();
-            $('#category').select2();
 
             $('#tahun-select').on('change', function () {
                 const selectedYear = $(this).val();
@@ -1252,6 +1333,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
+        
         let chartInstance = null;
 
         $('.show-chart').on('click', function (e) {
@@ -1340,6 +1422,26 @@
                 $('#time').removeClass('invalid')
             }
         }
+
+        document.querySelectorAll('input[type="file"]').forEach(function(input) {
+            input.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                const maxSize = 2 * 1024 * 1024; // 8 MB
+    
+                if (file && file.type !== 'application/pdf') {
+                    alert('File harus berformat PDF.');
+                    e.target.value = ''; // Reset input
+                } else if (file && file.size > maxSize) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Ukuran file terlalu besar',
+                        text: 'Ukuran maksimal file adalah 2 MB.',
+                        confirmButtonText: 'Oke',
+                    });
+                    e.target.value = ''; // Reset input
+                }
+            });
+        });
 
     </script>
 
