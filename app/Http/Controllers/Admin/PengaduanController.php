@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PengaduanController extends Controller
 {
     public function index(){
-        $pengaduan = Pengaduan::all();
+        $pengaduan = Pengaduan::orderBy('id', 'desc')->get();
 
         return view('admin.pengaduan.index', compact('pengaduan'));
     }

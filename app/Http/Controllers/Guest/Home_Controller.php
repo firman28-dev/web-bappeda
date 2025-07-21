@@ -73,6 +73,8 @@ class Home_Controller extends Controller
             'path' => 'required|mimes:pdf|max:2048',
         ]);
 
+        // return $request->started_at;
+
         $expected = (int)$request->a + (int)$request->b;
 
         if ((int)$request->captcha_magang !== $expected) {
@@ -94,8 +96,8 @@ class Home_Controller extends Controller
             'email' => $request->email,
             'path' => $fileName,
             'status' => 1,
-            'start' => strtotime($request->started_at),
-            'end' => strtotime($request->ended_at),
+            'start' => $request->started_at,
+            'end' => $request->ended_at,
             'ip_address' => $request->ip(),
             'user_agent' => $request->header('User-Agent'),
         ]);

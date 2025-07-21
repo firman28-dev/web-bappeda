@@ -24,9 +24,9 @@ class Magang extends Model
         'note'
     ];
 
-    protected $casts = [
-        'started_at' => 'datetime:Y-m-d',
-        'ended_at' => 'datetime:Y-m-d',
-    ];
+    // protected $casts = [
+    //     'started_at' => 'datetime:',
+    //     'ended_at' => 'datetime:',
+    // ];
     protected $table = 'magang';
 }

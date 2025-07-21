@@ -38,24 +38,26 @@
             </svg>
         </div> --}}
     {{-- </div> --}}
-    <div class="bg-home">
+    <div class="bg-home ">
         <div class="app-container container">
-            <div class="row align-items-center py-lg-0 py-20">
+            <div class="row d-flex align-items-center h-lg-450px h-300px p-0">
                 <div class="col-lg-6">
                     <h1 class="display-2 mb-8 text-white">
                         Sumatera Barat Madani yang Maju dan Berkeadilan
                     </h1>
                 </div>
-                <div class="col-lg-6">
-                    <div class="d-lg-block d-none pt-10 pb-0">
-                        <img src="{{asset('assets_global/img/GUB WAGUB.png')}}" loading="lazy"  class="img-fluid" alt="" class="w-100" />
+                <div class="col-lg-6 text-end ">
+                    <div class="d-lg-block d-none pb-0">
+                        <img src="{{ asset('assets_global/img/GUB WAGUB.png') }}" class="w-75  text-end z-index-1 "  alt="">
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <div class="mb-10 mt-15 mt-lg-n15 mt-n15">
+
+    <div class="mb-10 mt-20 mt-lg-n18 mt-n18">
         <div class="container">
             <div class="row justify-content-evenly">
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
@@ -1408,19 +1410,16 @@
         });
 
         $("#time").daterangepicker({
-            timePicker: true,
-            // timezone: "Asia/Jakarta",
-            // startDate: moment().startOf("hour"),
-            // endDate: moment().startOf("hour").add(32, "hour"),
             locale: {
-                format: "DD/MM hh:mm A"
+                format: "YYYY-MM-DD"
             }
         },function(start, end, label) {
-            // const timesStart2 = start
-            const timesStart = start.format('Y-MM-DD H:mm:ss');
-            const timesEnd = end.format('Y-MM-DD H:mm:ss');
-            // const timesStart = start;
-            // const timesEnd = end;
+            const timesStart = start.format('YYYY-MM-DD');
+            const timesEnd = end.format('YYYY-MM-DD');
+            console.log(timesStart);
+            console.log(timesEnd);
+
+            
             document.getElementById("started_at").value = timesStart;
             document.getElementById("ended_at").value = timesEnd;
         });

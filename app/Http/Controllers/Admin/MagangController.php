@@ -11,7 +11,7 @@ class MagangController extends Controller
     
     public function index()
     {
-        $magang = Magang::all();
+        $magang = Magang::orderBy('id', 'desc')->get();
 
         return view('admin.magang.index', compact('magang'));
     }
