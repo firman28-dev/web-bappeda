@@ -49,6 +49,7 @@
                         <tr>
                             <th style="width: 90px"> <span class="c-o-light f-w-600">No</span></th>
                             <th> <span class="c-o-light f-w-600">Nama</span></th>
+                            <th> <span class="c-o-light f-w-600">#ID</span></th>
                             <th> <span class="c-o-light f-w-600">Status</span></th>
                             <th> <span class="c-o-light f-w-600">Actions</span></th>
                         </tr>
@@ -58,6 +59,7 @@
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $item->title ?? '-' }}</td>
+                                <td>{{ $item->id}}</td>
                                 <td class="text-center"> 
                                     <span class="badge {{ $item->_status->id == 1 ? 'badge-light-success' : 'badge-light-danger' }}"> {{ $item->_status->name }}</span>
                                 <td>
