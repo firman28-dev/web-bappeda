@@ -15,8 +15,8 @@
                     <div class="card rounded-custom mb-5 border-0">
                         <div class="card-body p-8">
                             <div class="page-content text-custom content-description">
-                                <div class="d-flex flex-row justify-content-between mb-10">
-                                    <p >{{$page_system->formatted_created_at}}</p>
+                                <div class="d-flex flex-row justify-content-end mb-10">
+                                    {{-- <p >{{$page_system->formatted_created_at}}</p> --}}
                                     <span><i class="fa-solid fa-eye"></i> {{$page_system->hits}} Viewers</span>
                                 </div>
 
