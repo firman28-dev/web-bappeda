@@ -15,6 +15,39 @@
                     <div class="card rounded-custom mb-5 border-0">
                         <div class="card-body p-8">
                             <div class="page-content text-custom content-description">
+                                @php
+                                    $content = $news->page_system;
+
+                                    $content = preg_replace_callback(
+                                        '/<img[^>]+>/i',
+                                        function ($matches) {
+                                            $imgTag = $matches[0];
+
+                                            $imgTag = preg_replace('/(width|height)="[^"]*"/i', '', $imgTag);
+
+                                            $imgTag = preg_replace('/<img/i', '<img style="max-width:100%;height:auto;" width="100%"', $imgTag);
+                                            return $imgTag;
+                                        },
+                                        $content
+                                    );
+
+                                    $contentWithPdf = preg_replace_callback(
+                                        '/<a[^>]+href="([^"]+\.pdf)"[^>]*>.*?<\/a>/i',
+                                        function ($matches) {
+                                            $pdfUrl = $matches[1];
+                                            return '<div class="mb-4">
+                                                <iframe src="' . $pdfUrl . '" 
+                                                        width="100%" 
+                                                        height="800px" 
+                                                        frameborder="0" 
+                                                        allowfullscreen>
+                                                </iframe>
+                                            </div>';
+                                            // return '<div class="mb-4"><embed src="' . $pdfUrl . '" type="application/pdf" width="100%" height="800px" /></div>';
+                                        },
+                                        $content
+                                    );
+                                @endphp
                                 <div class="d-flex flex-row justify-content-end mb-10">
                                     {{-- <p >{{$page_system->formatted_created_at}}</p> --}}
                                     <span><i class="fa-solid fa-eye"></i> {{$page_system->hits}} Viewers</span>
@@ -23,7 +56,8 @@
                                 @if ($page_system->image)
                                     <img src="{{ asset('uploads/page_system/'.$page_system->image) }}" class="card-img-top" alt="News Image" style="object-fit: cover;">
                                 @endif
-                                {!! $page_system->description !!}
+                                {!! $contentWithPdf !!}
+                                {{-- {!! $page_system->description !!} --}}
                             </div>
                         </div>
                     </div>
