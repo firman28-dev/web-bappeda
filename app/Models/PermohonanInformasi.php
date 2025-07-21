@@ -17,6 +17,8 @@ class PermohonanInformasi extends Model
         'path',
         'ip_address',
         'user_agent',
+        'status',
+        'note'
     ];
     protected $table = 'permohonan_informasi';
 }

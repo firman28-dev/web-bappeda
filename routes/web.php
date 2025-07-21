@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\News_Controller;
 use App\Http\Controllers\Admin\Page_System_Controller;
 use App\Http\Controllers\Admin\Pejabat_Controller;
 use App\Http\Controllers\Admin\PengaduanController;
+use App\Http\Controllers\Admin\PermohonanInformasiController;
 use App\Http\Controllers\Admin\SosialMedia_Controller;
 use App\Http\Controllers\Admin\User_Controller;
 use App\Http\Controllers\Auth\LoginController;
@@ -61,7 +62,7 @@ Route::post('/management', [LoginController::class, 'login'])->name('login.perfo
 Route::get('/grafik-indikator/{id}', [Home_Controller::class, 'getChartData']);
 Route::post('/laporan-pengaduan', [Home_Controller::class, 'store'])->middleware('throttle:5,1');
 Route::post('/pengajuan-magang', [Home_Controller::class, 'storeMagang'])->middleware('throttle:5,1');
-Route::post('/permohonan-informasi', [Home_Controller::class, 'storePermohonanInformasi'])->middleware('throttle:5,1');
+Route::post('/laporan-permohonan-informasi', [Home_Controller::class, 'storePermohonanInformasi'])->middleware('throttle:5,1');
 
 
 
@@ -117,6 +118,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('indikator', IndikatorMakroSurveyController::class);
         Route::resource('pengaduan', PengaduanController::class);
         Route::resource('magang', MagangController::class);
+        Route::resource('permohonan-informasi', PermohonanInformasiController::class);
+
 
 
     });

@@ -127,23 +127,12 @@
                             <li><a href="{{ route('sosial-media.index') }}">Sosial Media</a></li>
                             <li><a href="{{ route('pengaduan.index') }}">Pengaduan</a></li>
                             <li><a href="{{ route('magang.index') }}">Pengajuan Magang</a></li>
+                            <li><a href="{{ route('permohonan-informasi.index') }}">Permohonan Informasi</a></li>
 
 
 
                         </ul>
                     </li>
-                    {{-- <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
-                        <a class="sidebar-link sidebar-title link-nav" href="{{route('banner.index')}}" >
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-gallery') }}"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-gallery') }}"></use>
-                            </svg>
-                            <span>Infografis</span>
-                        </a>
-                    </li> --}}
-                    
                     <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{route('page-system.index')}}" >
                             <svg class="stroke-icon">

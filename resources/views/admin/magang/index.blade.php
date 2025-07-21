@@ -51,6 +51,7 @@
                             <th class="text-center"> <span class="c-o-light f-w-600">Tujuan Magang</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Jadwal Mulai</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Jadwal Berakhir</span></th>
+                            <th class="text-center"> <span class="c-o-light f-w-600">Dokumen</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Status</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Actions</span></th>
 
@@ -68,9 +69,100 @@
                                 <td>{{ $item->tujuan ?? '' }}</td>
                                 <td>{{ $item->start ? \Carbon\Carbon::parse($item->start)->format('d-m-Y') : 'Belum ada' }}</td>
                                 <td>{{ $item->end ? \Carbon\Carbon::parse($item->end)->format('d-m-Y') : 'Belum ada' }}</td>
-                                <td></td>
+                                @if ($item->path)
+                                    <td>
+                                        <a href="{{ asset('uploads/magang/'.$item->path) }}" target="_blank" class="btn btn-icon btn-success w-35px h-35px mb-sm-0 mb-3">
+                                            <div class="d-flex justify-content-center">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </div>
+                                        </a>
+                                    </td>
+                                @else
+                                    <td>
+                                        <span class="badge badge-light-danger">
+                                            Belum upload
+                                        </span>
+                                    </td>
+                                @endif
+                                <td>
+                                    @php
+                                        $badgeClass = '';
+                                        $statusText = '';
+
+                                        if ($item->status == 1) {
+                                            $badgeClass = 'badge-light-info';
+                                            $statusText = 'Diajukan';
+                                        } elseif ($item->status == 2) {
+                                            $badgeClass = 'badge-light-danger';
+                                            $statusText = 'Ditolak';
+                                        } elseif ($item->status == 3) {
+                                            $badgeClass = 'badge-light-success';
+                                            $statusText = 'Diterima';
+                                        } else {
+                                            $badgeClass = 'badge-light-secondary';
+                                            $statusText = 'Tidak Diketahui';
+                                        }
+                                    @endphp
+                                    <span class="badge {{ $badgeClass }}">
+                                        {{ $statusText }}
+                                    </span>
+                                </td>
                                 <td class="text-center justify-content-center">
                                     <ul class="action text-center justify-content-center">
+                                         <li class="edit">
+                                            <a href="" data-bs-target="#confirmEdit{{ $item->id }}" data-bs-toggle="modal">
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
+                                            <div class="modal fade text-start"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="confirmEdit{{ $item->id }}">
+                                                <form action="{{ route('magang.update', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Verifikasi Pengaduan</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <!-- Contoh field yang bisa diedit -->
+                                                                <div class="mb-3">
+                                                                    <label for="nama_{{ $item->id }}" class="form-label">Nama</label>
+                                                                    <input type="text" class="form-control" name="name" id="nama_{{ $item->id }}" value="{{ $item->name }}" readonly>
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label for="email_{{ $item->id }}" class="form-label">Universitas</label>
+                                                                    <input type="text" class="form-control" name="universitas" id="universitas_{{ $item->id }}" value="{{ $item->universitas }}" readonly>
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label for="instansi_{{ $item->id }}" class="form-label">Jurusan</label>
+                                                                    <input type="text" class="form-control" name="jurusan" id="jurusan_{{ $item->id }}" value="{{ $item->jurusan }}" readonly>
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label for="description_{{ $item->id }}" class="form-label">Tujuan</label>
+                                                                    <textarea class="form-control" name="tujuan" id="tujuan_{{ $item->id }}" readonly>{{ $item->tujuan }}</textarea>
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label for="status_{{ $item->id }}" class="form-label">Status</label>
+                                                                    <select name="status" id="status_{{ $item->id }}" class="form-control" required>
+                                                                        <option value="1" {{ $item->status == 1 ? 'selected' : '' }}>Diajukan</option>
+                                                                        <option value="2" {{ $item->status == 2 ? 'selected' : '' }}>Ditolak</option>
+                                                                        <option value="3" {{ $item->status == 3 ? 'selected' : '' }}>Diterima</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                <button type="submmit" class="btn btn-primary">Simpan</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </li>
                                         <li class="delete">
                                             <a href="" data-bs-target="#confirmDelete{{ $item->id }}" data-bs-toggle="modal">
                                                 <i class="fa-solid fa-trash-can" ></i>

@@ -93,6 +93,7 @@ class Home_Controller extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'path' => $fileName,
+            'status' => 1,
             'start' => strtotime($request->started_at),
             'end' => strtotime($request->ended_at),
             'ip_address' => $request->ip(),
@@ -135,6 +136,7 @@ class Home_Controller extends Controller
             'phone' => $request->phone,
             'tujuan' => $request->tujuan,
             'path' => $fileName,
+            'status' => 1,
             'ip_address' => $request->ip(),
             'user_agent' => $request->header('User-Agent'),
         ]);

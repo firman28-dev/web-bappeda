@@ -41,9 +41,16 @@ class MagangController extends Controller
     }
 
    
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+        $request->validate([
+            'status' => 'required'
+        ]);
+
+        $magang = Magang::findOrFail($id);
+        $magang->update([
+            'status' => $request->status,
+        ]);
+        return redirect()->back()->with('success', 'Berhasil Verifikasi Data');
     }
 
     

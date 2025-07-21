@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pengaduan;
+use App\Models\PermohonanInformasi;
 use Illuminate\Http\Request;
 
-class PengaduanController extends Controller
+class PermohonanInformasiController extends Controller
 {
     public function index(){
-        $pengaduan = Pengaduan::all();
-
-        return view('admin.pengaduan.index', compact('pengaduan'));
+        $permohonan = PermohonanInformasi::all();
+        return view('admin.permohonan_informasi.index', compact('permohonan'));
     }
 
     public function update(Request $request, $id){
@@ -19,21 +18,20 @@ class PengaduanController extends Controller
             'status' => 'required'
         ]);
 
-        $pengaduan = Pengaduan::findOrFail($id);
-        // return $request->status;
-        $pengaduan->update([
+        $permohonan = PermohonanInformasi::findOrFail($id);
+        $permohonan->update([
             'status' => $request->status,
         ]);
         return redirect()->back()->with('success', 'Berhasil Verifikasi Data');
     }
 
     public function destroy($id){
-        $pengaduan = Pengaduan::findOrFail($id);
+        $permohonan = PermohonanInformasi::findOrFail($id);
         // return $page_system;
-        if($pengaduan){
-            $pengaduan->delete();
+        if($permohonan){
+            $permohonan->delete();
             return redirect()->back()->with('success', 'Berhasil Menghapus Data');
             
         }
-    }
+    }   
 }

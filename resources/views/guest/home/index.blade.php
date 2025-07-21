@@ -55,22 +55,24 @@
         </div>
     </div>
 
-    <div class="mb-10 mt-10 mt-lg-n10 mt-n10">
+    <div class="mb-10 mt-15 mt-lg-n15 mt-n15">
         <div class="container">
             <div class="row justify-content-evenly">
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://dashboard.sumbarprov.go.id/tahun/2025" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up" style="background-color: rgba(210, 228, 249, 0.8);" >
+                        <div class="card rounded-4 shadow-sm hover-elevate-up">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-xl-4 col-12">
-                                            <div class="fs-lg-2hx fs-2x fw-bolder d-flex flex-center">
-                                                <div class="min-w-24px text-custom-pink" id="users"></div>
+                                            <div>
+                                                <img src="{{asset('assets_global/icon_svg/011-computer.svg')}}" alt="" class="w-100">
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-12 text-xl-start">
-                                            <p class="mb-0 fw-bold">DASHBOARD SUMBAR</p>
+                                            <h1 class="">
+                                                DASHBOARD SUMBAR
+                                            </h1>
                                         </div>
                                     </div>
                                 </div>
@@ -80,17 +82,17 @@
                 </div>
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://sumbar2045.sumbarprov.go.id/" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up" style="background-color: rgba(210, 228, 249, 0.8);">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-xl-4 col-12">
-                                            <div class="fs-lg-2hx fs-2x fw-bold text-black  d-flex flex-center">
-                                                <div class="min-w-24px text-custom-pink" id="exams"></div>
+                                            <div>
+                                                <img src="{{asset('assets_global/icon_svg/022-suitcase.svg')}}" alt="" class="w-100">
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-12 text-xl-start">
-                                            <p class="mb-0 fw-bold">SUMBAR 2045 </p>
+                                            <h1>SUMBAR 2045</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -101,17 +103,17 @@
                 </div>
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://sakatoplan.sumbarprov.go.id/" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up" style="background-color: rgba(210, 228, 249, 0.8);">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-xl-4 col-12">
-                                            <div class="fs-lg-2hx fs-2x fw-bold text-black  d-flex flex-center">
-                                                <div class="min-w-24px text-custom-pink" id="alumnus"></div>
+                                            <div>
+                                                <img src="{{asset('assets_global/icon_svg/027-bar graph.svg')}}" alt="" class="w-100">
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-12 text-xl-start">
-                                            <p class="mb-0 fw-bold">SAKATO PLAN</p>
+                                            <h1>SAKATO PLAN</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -123,6 +125,7 @@
             </div>
         </div>
     </div>
+
     <div class="container app-container justify-content-center mb-10">
         <div class="row row align-items-stretch">
             <div class="col-lg-7 d-flex flex-column">
@@ -642,7 +645,7 @@
 
      <div class="container mb-20 mt-20">
         <h1 class="display-6 pb-10 text-center">Hubungi Kami</h1>
-        <div class="row align-items-center">
+        <div class="row">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
@@ -656,11 +659,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_6">Magang</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Survey Kepuasan</a>
+                            </li>
                         </ul>
 
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="kt_tab_pane_5" role="tabpanel">
-                                <form action="/permohonan-informasi" method="POST" enctype="multipart/form-data">
+                                <form action="/laporan-permohonan-informasi" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -732,7 +738,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Pengaduan</button>
+                                    <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Permohonan</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade " id="kt_tab_pane_4" role="tabpanel">
@@ -880,6 +886,12 @@
                                     <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Pengajuan</button>
                                 </form>
                             </div>
+                            <div class="tab-pane fade" id="kt_tab_pane_2" role="tabpanel">
+                                <img src="{{asset('assets_global/media/illustration/chart-graph.png')}}" alt="" class="w-75">
+                                <a href="https://s.id/Layanan_Bappeda_SB" target="_blank" class="btn btn-primary">
+                                    Silahkan Tekan Link ini
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -889,7 +901,6 @@
             </div>
             <div class="col-lg-5 text-center">
                 <div>
-
                     <img src="{{asset('assets_global/media/illustration/20.png')}}" class="w-100">
                 </div>
             </div>

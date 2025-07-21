@@ -1,7 +1,7 @@
 
 @extends('partials.admin.master')
 
-@section('title', 'Pengaduan Masyrakat')
+@section('title', 'Permohonan Informasi')
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/jquery.dataTables.css') }}">
@@ -13,7 +13,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-sm-6">
-                <h3>Pengaduan Masyrakat</h3>
+                <h3>Permohonan Informasi</h3>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb">
@@ -25,7 +25,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item active">Pengaduan Masyrakat</li>
+                    <li class="breadcrumb-item active">Permohonan Informasi</li>
                 </ol>
             </div>
         </div>
@@ -35,7 +35,7 @@
 <div class="container-fluid datatable-init">
     <div class="card">
         <div class="card-header pb-0 card-no-border">
-            <h5>Daftar Pengaduan Masyrakat</h5>
+            <h5>Daftar Permohonan Informasi</h5>
         </div>
         <div class="card-body">
             <div class="table-responsive custom-scrollbar">
@@ -46,24 +46,56 @@
                             <th class="text-start"> <span class="c-o-light f-w-600">Nama </span></th>
                             <th class="w-25 text-start"> <span class="c-o-light f-w-600">Email</span></th>
                             <th class="w-25 text-start"> <span class="c-o-light f-w-600">Instansi</span></th>
-                            <th class="w-25 text-start"> <span class="c-o-light f-w-600">Judul</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Deskripsi</span></th>
+                            <th class="text-center"> <span class="c-o-light f-w-600">Dokumen</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Status</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Actions</span></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pengaduan as $item)
+                        @foreach ($permohonan as $item)
                              <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $item->name??'' }}</td>
                                 <td>{{ $item->email ?? '' }}</td>
                                 <td>{{ $item->instansi ?? '' }}</td>
-                                <td>{{ $item->title ?? '' }}</td>
-                                <td>{{ $item->description ?? '' }}</td>
+                                <td>{{ $item->tujuan ?? '' }}</td>
+                                @if ($item->path)
+                                    <td>
+                                        <a href="{{ asset('uploads/permohonan_informasi/'.$item->path) }}" target="_blank" class="btn btn-icon btn-success mb-sm-0 mb-3">
+                                            <div class="d-flex justify-content-center">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </div>
+                                        </a>
+                                    </td>
+                                @else
+                                    <td>
+                                        <span class="badge badge-light-danger">
+                                            Belum upload
+                                        </span>
+                                    </td>
+                                @endif
                                 <td>
-                                    <span class="badge {{ $item->status == 1 ? 'badge-light-danger' : 'badge-light-success' }}">
-                                        {{ $item->status == 1 ? 'Belum ditindaklanjuti' : 'Sudah ditindaklanjuti' }}
+                                    @php
+                                        $badgeClass = '';
+                                        $statusText = '';
+
+                                        if ($item->status == 1) {
+                                            $badgeClass = 'badge-light-info';
+                                            $statusText = 'Diajukan';
+                                        } elseif ($item->status == 2) {
+                                            $badgeClass = 'badge-light-danger';
+                                            $statusText = 'Ditolak';
+                                        } elseif ($item->status == 3) {
+                                            $badgeClass = 'badge-light-success';
+                                            $statusText = 'Diterima';
+                                        } else {
+                                            $badgeClass = 'badge-light-secondary';
+                                            $statusText = 'Tidak Diketahui';
+                                        }
+                                    @endphp
+                                    <span class="badge {{ $badgeClass }}">
+                                        {{ $statusText }}
                                     </span>
                                 </td>
                                 <td class="text-center justify-content-center">
@@ -73,13 +105,13 @@
                                                 <i class="fa-regular fa-pen-to-square"></i>
                                             </a>
                                             <div class="modal fade text-start"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="confirmEdit{{ $item->id }}">
-                                                <form action="{{ route('pengaduan.update', $item->id) }}" method="POST">
+                                                <form action="{{ route('permohonan-informasi.update', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Verifikasi Pengaduan</h5>
+                                                                <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Edit Permohonan</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                                                             </div>
                                                             <div class="modal-body">
@@ -95,20 +127,16 @@
                                                                 </div>
 
                                                                 <div class="mb-3">
-                                                                    <label for="instansi_{{ $item->id }}" class="form-label">Instansi</label>
-                                                                    <input type="text" class="form-control" name="instansi" id="instansi_{{ $item->id }}" value="{{ $item->instansi }}" readonly>
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label for="description_{{ $item->id }}" class="form-label">Instansi</label>
-                                                                    <textarea class="form-control" name="description" id="description_{{ $item->id }}" readonly>{{ $item->description }}</textarea>
+                                                                    <label for="email_{{ $item->id }}" class="form-label">Perihal</label>
+                                                                    <textarea class="form-control" name="tujuan" id="email_{{ $item->id }}" readonly>{{ $item->tujuan }}</textarea>
                                                                 </div>
 
                                                                 <div class="mb-3">
                                                                     <label for="status_{{ $item->id }}" class="form-label">Status</label>
                                                                     <select name="status" id="status_{{ $item->id }}" class="form-control" required>
-                                                                        <option value=1 {{ $item->status == 1 ? 'selected' : '' }}>Belum ditindaklanjuti</option>
-                                                                        <option value=2 {{ $item->status == 2 ? 'selected' : '' }}>Sudah ditindaklanjuti</option>
+                                                                        <option value="1" {{ $item->status == 1 ? 'selected' : '' }}>Diajukan</option>
+                                                                        <option value="2" {{ $item->status == 2 ? 'selected' : '' }}>Ditolak</option>
+                                                                        <option value="3" {{ $item->status == 3 ? 'selected' : '' }}>Diterima</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
