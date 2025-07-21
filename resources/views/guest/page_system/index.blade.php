@@ -16,7 +16,7 @@
                         <div class="card-body p-8">
                             <div class="page-content text-custom content-description">
                                 @php
-                                    $content = $news->page_system;
+                                    $content = $page_system->description;
 
                                     $content = preg_replace_callback(
                                         '/<img[^>]+>/i',
