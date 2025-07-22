@@ -25,12 +25,18 @@ class Menu_Public extends Model
         return $this->belongsTo(Menu_Public::class, 'parent_id');
     }
 
-    // Relasi ke child menu
+    // public function _children()
+    // {
+    //     return $this->hasMany(Menu_Public::class, 'parent_id')->orderBy('order_no')->with('_children');
+    // }
     public function _children()
     {
-        return $this->hasMany(Menu_Public::class, 'parent_id')->orderBy('order_no')->with('_children');
+        return $this->hasMany(Menu_Public::class, 'parent_id')
+            ->where('status_id', 1)
+            ->orderBy('order_no')
+            ->with('_children');
     }
-    
+
     protected $table = 'menu_public';
 
 }
