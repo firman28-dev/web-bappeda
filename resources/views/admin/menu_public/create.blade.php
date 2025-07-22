@@ -237,7 +237,7 @@
                                     @endphp
                                 @endonce
                                 <label for="parent_id">Parent Menu</label>
-                                <select class="form-select js-example-basic-single col-sm-12 form-select" name="parent_id" id="parent_id" required>
+                                <select class="form-select js-example-basic-single col-sm-12 form-select" name="parent_id" id="parent_id">
                                     <option value="" disabled selected>Select Menu</option>
                                     @php renderMenuOptions($menus); @endphp
                                 </select>
