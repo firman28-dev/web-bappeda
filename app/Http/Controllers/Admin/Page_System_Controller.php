@@ -34,7 +34,7 @@ class Page_System_Controller extends Controller
     public function store(Request $request){
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status_id' => 'required',
         ],);

@@ -55,6 +55,7 @@ Route::get('/home/pages/{id}', [Guest_Page_System_Controller::class, 'show'])->n
 Route::get('/home/ppid/{id}', [Guest_Page_System_Controller::class, 'showPpid'])->name('guest.showPpid');
 Route::get('/profile/profile-pejabat', [Guest_Profile_Controller::class, 'index'])->name('guest.pejabat');
 Route::get('/home/category/{id}', [Guest_Category_Controller::class, 'index'])->name('guest.category-news');
+Route::get('/laporan-pengaduan', [Home_Controller::class, 'indexPengaduan'])->name('guest.indexPengaduan');
 Route::get('/makro/{jenis}/{id?}', [API_Edatabase_Controller::class, 'curlListMakro']);
 
 Route::get('/management', [LoginController::class, 'show'])->name('login.show');

@@ -21,6 +21,19 @@ use Illuminate\Support\Facades\Http;
 
 class Home_Controller extends Controller
 {
+    public function indexPengaduan(){
+        $pengaduan = Pengaduan::orderBy('id', 'desc')->get();
+        $total1 = Pengaduan::where('status', 1)->count();
+        $total2 = Pengaduan::where('status', 2)->count();
+        $total3 = Pengaduan::where('status', 3)->count();
+        $sent = [
+            'pengaduan' => $pengaduan,
+            'total1' => $total1,
+            'total2' => $total2,
+            'total3' => $total3
+        ];
+        return view('guest.pengaduan.index', $sent);
+    }
     public function store(Request $request)
     {
         $request->validate([

@@ -40,13 +40,13 @@
     {{-- </div> --}}
     <div class="bg-home ">
         <div class="app-container container">
-            <div class="row d-flex align-items-center h-lg-450px h-300px p-0">
-                <div class="col-lg-6">
+            <div class="row align-items-center d-flex py-lg-0 py-10">
+                <div class="col-lg-6 h-100 flex-column">
                     <h1 class="display-2 mb-8 text-white">
                         Sumatera Barat Madani yang Maju dan Berkeadilan
                     </h1>
                 </div>
-                <div class="col-lg-6 text-end ">
+                <div class="col-lg-6 text-end mb-0 pt-20">
                     <div class="d-lg-block d-none pb-0">
                         <img src="{{ asset('assets_global/img/GUB WAGUB.png') }}" class="w-75  text-end z-index-1 "  alt="">
                     </div>
@@ -57,21 +57,21 @@
     </div>
 
 
-    <div class="mb-10 mt-20 mt-lg-n18 mt-n18">
+    <div class="mb-10 mt-20 mt-lg-n15 mt-n15">
         <div class="container">
             <div class="row justify-content-evenly">
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://dashboard.sumbarprov.go.id/tahun/2025" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
-                                        <div class="col-xl-4 col-12">
+                                        <div class="col-lg-4 col-12">
                                             <div>
-                                                <img src="{{asset('assets_global/icon_svg/011-computer.svg')}}" alt="" class="w-100">
+                                                <img src="{{asset('assets_global/icon_svg/011-computer.svg')}}" alt="" class="w-lg-100 img-fluid" style="max-width: 200px;">
                                             </div>
                                         </div>
-                                        <div class="col-xl-8 col-12 text-xl-start">
+                                        <div class="col-lg-8 col-12 text-lg-start">
                                             <h1 class="">
                                                 DASHBOARD SUMBAR
                                             </h1>
@@ -84,16 +84,16 @@
                 </div>
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://sumbar2045.sumbarprov.go.id/" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
-                                        <div class="col-xl-4 col-12">
+                                        <div class="col-lg-4 col-12">
                                             <div>
-                                                <img src="{{asset('assets_global/icon_svg/022-suitcase.svg')}}" alt="" class="w-100">
+                                                <img src="{{asset('assets_global/icon_svg/022-suitcase.svg')}}" alt="" class="w-100 img-fluid" style="max-width: 200px;">
                                             </div>
                                         </div>
-                                        <div class="col-xl-8 col-12 text-xl-start">
+                                        <div class="col-lg-8 col-12 text-lg-start">
                                             <h1>SUMBAR 2045</h1>
                                         </div>
                                     </div>
@@ -105,16 +105,16 @@
                 </div>
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://sakatoplan.sumbarprov.go.id/" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
-                                        <div class="col-xl-4 col-12">
+                                        <div class="col-lg-4 col-12">
                                             <div>
-                                                <img src="{{asset('assets_global/icon_svg/027-bar graph.svg')}}" alt="" class="w-100">
+                                                <img src="{{asset('assets_global/icon_svg/027-bar graph.svg')}}" alt="" class="w-100 img-fluid" style="max-width: 200px;">
                                             </div>
                                         </div>
-                                        <div class="col-xl-8 col-12 text-xl-start">
+                                        <div class="col-lg-8 col-12 text-lg-start">
                                             <h1>SAKATO PLAN</h1>
                                         </div>
                                     </div>
@@ -902,7 +902,7 @@
 
             </div>
             <div class="col-lg-5 text-center">
-                <div>
+                <div class="d-lg-block d-none pb-0">
                     <img src="{{asset('assets_global/media/illustration/20.png')}}" class="w-100">
                 </div>
             </div>

@@ -62,9 +62,15 @@
                                 <td>{{ $item->title ?? '' }}</td>
                                 <td>{{ $item->description ?? '' }}</td>
                                 <td>
-                                    <span class="badge {{ $item->status == 1 ? 'badge-light-danger' : 'badge-light-success' }}">
-                                        {{ $item->status == 1 ? 'Belum ditindaklanjuti' : 'Sudah ditindaklanjuti' }}
+                                    <span class="badge 
+                                        {{ $item->status == 1 ? 'badge-light-danger' : 
+                                        ($item->status == 2 ? 'badge-light-warning' : 
+                                        ($item->status == 3 ? 'badge-light-success' : 'badge-light-secondary')) }}">
+                                        {{ $item->status == 1 ? 'Belum ditindaklanjuti' : 
+                                        ($item->status == 2 ? 'Sedang ditindaklanjuti' : 
+                                        ($item->status == 3 ? 'Sudah ditindaklanjuti' : 'Tidak diketahui')) }}
                                     </span>
+{{--  --}}
                                 </td>
                                 <td class="text-center justify-content-center">
                                     <ul class="action text-center justify-content-center">
@@ -108,7 +114,8 @@
                                                                     <label for="status_{{ $item->id }}" class="form-label">Status</label>
                                                                     <select name="status" id="status_{{ $item->id }}" class="form-control" required>
                                                                         <option value=1 {{ $item->status == 1 ? 'selected' : '' }}>Belum ditindaklanjuti</option>
-                                                                        <option value=2 {{ $item->status == 2 ? 'selected' : '' }}>Sudah ditindaklanjuti</option>
+                                                                        <option value=2 {{ $item->status == 2 ? 'selected' : '' }}>Sedang ditindaklanjuti</option>
+                                                                        <option value=3 {{ $item->status == 3 ? 'selected' : '' }}>Sudah ditindaklanjuti</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
