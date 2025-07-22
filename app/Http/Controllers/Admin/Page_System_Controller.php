@@ -110,14 +110,14 @@ class Page_System_Controller extends Controller
             if ($file) {
                 $unique = uniqid();
                 if (!empty($page_system->image)) {
-                    $oldFile = $_SERVER['DOCUMENT_ROOT'] . '/uploads/page_sytem/' . $page_system->image;
+                    $oldFile = $_SERVER['DOCUMENT_ROOT'] . '/uploads/page_system/' . $page_system->image;
             
                     if (file_exists($oldFile) && is_writable($oldFile)) {
                         unlink($oldFile); // Hapus file lama
                     }
                 }
                 $fileName = $unique.'_'.time() . '_' . $file->getClientOriginalName();
-                $file->move($_SERVER['DOCUMENT_ROOT'] . '/uploads/page_sytem/', $fileName);
+                $file->move($_SERVER['DOCUMENT_ROOT'] . '/uploads/page_system/', $fileName);
                 $page_system->image = $fileName;
             }
             $page_system->save();
