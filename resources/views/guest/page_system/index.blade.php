@@ -62,7 +62,6 @@
                                             style="object-fit: cover; max-height: 400px;">
                                     </a>
                                 @endif
-
                                 {!! $contentWithPdf !!}
                                 {{-- {!! $page_system->description !!} --}}
                             </div>
@@ -199,8 +198,6 @@
 @endsection
 
 @section('script')
-    <script src="{{asset('assets_global/plugins/custom/fslightbox/fslightbox.bundle.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fslightbox/index.js"></script>
 
 @endsection
