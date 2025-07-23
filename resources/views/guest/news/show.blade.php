@@ -197,5 +197,6 @@
 @endsection
 
 @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/fslightbox/index.js"></script>
     
 @endsection
