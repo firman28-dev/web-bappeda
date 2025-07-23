@@ -1,4 +1,7 @@
 @extends('partials.guest.index')
+@section('css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+@endsection
 @section('content') 
 
     <div class="bg-content-page py-20 justify-content-center text-center">
@@ -18,18 +21,31 @@
                                 @php
                                     $content = $page_system->description;
 
+                                    // $content = preg_replace_callback(
+                                    //     '/<img[^>]+>/i',
+                                    //     function ($matches) {
+                                    //         $imgTag = $matches[0];
+
+                                    //         $imgTag = preg_replace('/(width|height)="[^"]*"/i', '', $imgTag);
+
+                                    //         $imgTag = preg_replace('/<img/i', '<img style="max-width:100%;height:auto;" width="100%"', $imgTag);
+                                    //         return $imgTag;
+                                    //     },
+                                    //     $content
+                                    // );
+
                                     $content = preg_replace_callback(
-                                        '/<img[^>]+>/i',
+                                        '/<img[^>]+src="([^"]+)"[^>]*>/i',
                                         function ($matches) {
-                                            $imgTag = $matches[0];
-
-                                            $imgTag = preg_replace('/(width|height)="[^"]*"/i', '', $imgTag);
-
-                                            $imgTag = preg_replace('/<img/i', '<img style="max-width:100%;height:auto;" width="100%"', $imgTag);
-                                            return $imgTag;
+                                            $imgSrc = $matches[1];
+                                            $newTag = '<a data-fslightbox="gallery" href="' . $imgSrc . '">
+                                                            <img src="' . $imgSrc . '" style="max-width:100%;height:auto;" width="100%">
+                                                    </a>';
+                                            return $newTag;
                                         },
                                         $content
                                     );
+
 
                                     $contentWithPdf = preg_replace_callback(
                                         '/<a[^>]+href="([^"]+\.pdf)"[^>]*>.*?<\/a>/i',
@@ -192,5 +208,8 @@
 @endsection
 
 @section('script')
-    
+    <script src="{{asset('assets_global/plugins/custom/fslightbox/fslightbox.bundle.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fslightbox/index.js"></script>
+
 @endsection

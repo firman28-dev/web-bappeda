@@ -216,6 +216,9 @@ class Home_Controller extends Controller
 
         $jumlahHalamanDikunjungi = DB::table('visitor_stats')->count();
         $socials = SosialMedia::all();
+        $bappeda_menulis = News::where('category_id', 8)
+            ->orderBy('id', 'desc')
+            ->first();
         
         // $list_link = List_Link::where('status_id',4)->get();
        
@@ -244,7 +247,8 @@ class Home_Controller extends Controller
             'jumlahHalamanDikunjungi' => $jumlahHalamanDikunjungi,
             'socials' => $socials,
             'tahun' => $tahun,
-            'indikator' =>$indikator
+            'indikator' =>$indikator,
+            'bappeda_menulis' => $bappeda_menulis
 
         ];
 

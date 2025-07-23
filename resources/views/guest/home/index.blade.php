@@ -41,16 +41,6 @@
     <div class="bg-home ">
         <div class="app-container container">
             <div class="row d-flex align-items-center min-h-500px">
-                {{-- <div class="col-lg-6 h-100 flex-column">
-                    <h1 class="display-2 mb-8 text-white">
-                        Sumatera Barat Madani yang Maju dan Berkeadilan
-                    </h1>
-                </div>
-                <div class="col-lg-6 text-end mb-0 pt-20">
-                    <div class="d-lg-block d-none pb-0">
-                        <img src="{{ asset('assets_global/img/GUB WAGUB.png') }}" class="w-75  text-end z-index-1 "  alt="">
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>
@@ -150,13 +140,16 @@
                                 </div>
                                 <div class="carousel-inner" role="listbox">
                                     @foreach($news_sumbar as $index => $item)
-                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                            <img src="{{ $item->image ? asset('uploads/news/' . $item->image) : asset('uploads/news/default.jpg') }}" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="{{ $item->title }}">
-                                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-3 rounded">
-                                                <h5 class="text-white">{{ $item->title }}</h5>
-                                                <p>{{ \Illuminate\Support\Str::limit(strip_tags($item->description), 100) }}</p>
+                                        <a href="{{ route('guest.news', $item->id) }}">
+                                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                                <img src="{{ $item->image ? asset('uploads/news/' . $item->image) : asset('uploads/news/default.jpg') }}" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="{{ $item->title }}">
+                                                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-3 rounded">
+                                                    <h5 class="text-white">{{ $item->title }}</h5>
+                                                    <p>{!! Str::limit(strip_tags($item->description,), 100) !!}</p>
+                                                    
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     @endforeach
                                 </div>
                                 
@@ -410,7 +403,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
     
     <div class="container app-container bg-white p-20">
@@ -422,7 +414,47 @@
                 </p>
             </div>
             <div class="col-lg-6">
-                {{-- <iframe class="w-100 h-350px"  src="https://www.youtube.com/embed/Vc8G8tO6rpg?si=Sde0JI15IN5KQCee" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 24px"></iframe> --}}
+                <h1 class="text-center display-6">BAPPEDA MENULIS</h1>
+                @if ($bappeda_menulis)
+                    @php
+                        $allowedExtensions = ['png', 'jpg', 'jpeg'];
+                        $extension = strtolower(pathinfo($bappeda_menulis->image, PATHINFO_EXTENSION));
+
+                        // Path fisik ke file gambar
+                        $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/uploads/news/' . $bappeda_menulis->image;
+
+                        // URL gambar untuk browser
+                        $imageUrl = (isset($bappeda_menulis->image) &&
+                                    file_exists($imagePath) &&
+                                    in_array($extension, $allowedExtensions))
+                                    ? asset('uploads/news/' . $bappeda_menulis->image)
+                                    : asset('uploads/news/default.jpg');
+                    @endphp
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                            {{-- <img src="{{ $imageUrl }}" class="h-100px w-150px" alt="News Image">
+                            <h5 >{{ $bappeda_menulis->title }}</h5>
+                            <p >{!! Str::limit(strip_tags($bappeda_menulis->description,), 200) !!}</p>
+                            <a href="" class="btn btn-sm btn-outline-primary btn-outline text-end">Baca Selengkapnya</a> --}}
+                            <div class="d-flex">
+                                <div class="me-3 align-self-start">
+                                    <img src="{{ $imageUrl }}" alt="News Image"
+                                        style="width: 160px; height: 120px; object-fit: cover; border-radius: 8px;">
+                                </div>
+
+                                <div class="flex-grow-1">
+                                    <h5 class="fw-bold mb-2">{{ $bappeda_menulis->title }}</h5>
+                                    <p class="mb-3">{!! Str::limit(strip_tags($bappeda_menulis->description), 400) !!}</p>
+                                    <a href="{{ route('guest.news', $bappeda_menulis->id) }}" class="btn btn-sm btn-outline btn-outline-primary">
+                                        Baca Selengkapnya
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <p>Tidak ada artikel menulis terbaru.</p>
+                @endif
             </div>
         </div>
     </div>
