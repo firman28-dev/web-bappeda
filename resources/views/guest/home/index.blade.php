@@ -40,8 +40,8 @@
     {{-- </div> --}}
     <div class="bg-home ">
         <div class="app-container container">
-            <div class="row align-items-center d-flex py-lg-0 py-10">
-                <div class="col-lg-6 h-100 flex-column">
+            <div class="row d-flex align-items-center min-h-500px">
+                {{-- <div class="col-lg-6 h-100 flex-column">
                     <h1 class="display-2 mb-8 text-white">
                         Sumatera Barat Madani yang Maju dan Berkeadilan
                     </h1>
@@ -50,14 +50,13 @@
                     <div class="d-lg-block d-none pb-0">
                         <img src="{{ asset('assets_global/img/GUB WAGUB.png') }}" class="w-75  text-end z-index-1 "  alt="">
                     </div>
-                </div>
-
+                </div> --}}
             </div>
         </div>
     </div>
 
 
-    <div class="mb-10 mt-20 mt-lg-n15 mt-n15">
+    <div class="mb-10 mt-20 mt-lg-n20 mt-n20">
         <div class="container">
             <div class="row justify-content-evenly">
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
