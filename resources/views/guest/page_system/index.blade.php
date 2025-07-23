@@ -20,20 +20,6 @@
                             <div class="page-content text-custom content-description">
                                 @php
                                     $content = $page_system->description;
-
-                                    // $content = preg_replace_callback(
-                                    //     '/<img[^>]+>/i',
-                                    //     function ($matches) {
-                                    //         $imgTag = $matches[0];
-
-                                    //         $imgTag = preg_replace('/(width|height)="[^"]*"/i', '', $imgTag);
-
-                                    //         $imgTag = preg_replace('/<img/i', '<img style="max-width:100%;height:auto;" width="100%"', $imgTag);
-                                    //         return $imgTag;
-                                    //     },
-                                    //     $content
-                                    // );
-
                                     $content = preg_replace_callback(
                                         '/<img[^>]+src="([^"]+)"[^>]*>/i',
                                         function ($matches) {
@@ -45,7 +31,6 @@
                                         },
                                         $content
                                     );
-
 
                                     $contentWithPdf = preg_replace_callback(
                                         '/<a[^>]+href="([^"]+\.pdf)"[^>]*>.*?<\/a>/i',
@@ -70,8 +55,14 @@
                                 </div>
 
                                 @if ($page_system->image)
-                                    <img src="{{ asset('uploads/page_system/'.$page_system->image) }}" class="card-img-top" alt="News Image" style="object-fit: cover;">
+                                    <a data-fslightbox="gallery" href="{{ asset('uploads/page_system/'.$page_system->image) }}">
+                                        <img src="{{ asset('uploads/page_system/'.$page_system->image) }}" 
+                                            class="card-img-top w-100" 
+                                            alt="News Image" 
+                                            style="object-fit: cover; max-height: 400px;">
+                                    </a>
                                 @endif
+
                                 {!! $contentWithPdf !!}
                                 {{-- {!! $page_system->description !!} --}}
                             </div>

@@ -19,15 +19,27 @@
                             @php
                                 $content = $news->description;
 
+                                // $content = preg_replace_callback(
+                                //     '/<img[^>]+>/i',
+                                //     function ($matches) {
+                                //         $imgTag = $matches[0];
+
+                                //         $imgTag = preg_replace('/(width|height)="[^"]*"/i', '', $imgTag);
+
+                                //         $imgTag = preg_replace('/<img/i', '<img style="max-width:100%;height:auto;" width="100%"', $imgTag);
+                                //         return $imgTag;
+                                //     },
+                                //     $content
+                                // );
+
                                 $content = preg_replace_callback(
-                                    '/<img[^>]+>/i',
+                                    '/<img[^>]+src="([^"]+)"[^>]*>/i',
                                     function ($matches) {
-                                        $imgTag = $matches[0];
-
-                                        $imgTag = preg_replace('/(width|height)="[^"]*"/i', '', $imgTag);
-
-                                        $imgTag = preg_replace('/<img/i', '<img style="max-width:100%;height:auto;" width="100%"', $imgTag);
-                                        return $imgTag;
+                                        $imgSrc = $matches[1];
+                                        $newTag = '<a data-fslightbox="gallery" href="' . $imgSrc . '">
+                                                        <img src="' . $imgSrc . '" style="max-width:100%;height:auto;" width="100%">
+                                                </a>';
+                                        return $newTag;
                                     },
                                     $content
                                 );
