@@ -55,7 +55,7 @@ Route::get('/home/pages/{id}', [Guest_Page_System_Controller::class, 'show'])->n
 Route::get('/home/ppid/{id}', [Guest_Page_System_Controller::class, 'showPpid'])->name('guest.showPpid');
 Route::get('/profile/profile-pejabat', [Guest_Profile_Controller::class, 'index'])->name('guest.pejabat');
 Route::get('/home/category/{id}', [Guest_Category_Controller::class, 'index'])->name('guest.category-news');
-Route::get('/laporan-pengaduan', [Home_Controller::class, 'indexPengaduan'])->name('guest.indexPengaduan');
+Route::get('/laporan-informasi', [Home_Controller::class, 'indexPengaduan'])->name('guest.indexPengaduan');
 Route::get('/survey-kepuasan', function () {
     return view('guest.pengaduan.survey_kepuasan');
 });

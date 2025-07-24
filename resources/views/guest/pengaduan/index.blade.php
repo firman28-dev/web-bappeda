@@ -165,6 +165,19 @@
                                 <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-orange"></span>
                             </a>
                         </li>
+                        
+                        <li class="nav-item mb-3 me-3 me-lg-6">
+                            <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-150px h-85px" 
+                                id="kt_stats_widget_16_tab_link_4" 
+                                data-bs-toggle="pill" 
+                                href="#tab4">
+                                <div class="nav-icon mb-3">
+                                    <i class="fa-solid fa-circle-question fs-2x"></i>
+                                </div>
+                                <span class="nav-text text-gray-800 fw-bold fs-6 lh-1 text-uppercase">Keberatan Permohonan Informasi</span>
+                                <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-orange"></span>
+                            </a>
+                        </li>
                         <li class="nav-item mb-3 me-3 me-lg-6">
                             <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-150px h-85px" 
                                 id="kt_stats_widget_16_tab_link_3" 
@@ -174,18 +187,6 @@
                                     <i class="fa-solid fa-user-graduate fs-2x"></i>
                                 </div>
                                 <span class="nav-text text-gray-800 fw-bold fs-6 lh-1 text-uppercase">Magang</span>
-                                <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-orange"></span>
-                            </a>
-                        </li>
-                        <li class="nav-item mb-3 me-3 me-lg-6">
-                            <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-150px h-85px" 
-                                id="kt_stats_widget_16_tab_link_4" 
-                                data-bs-toggle="pill" 
-                                href="#tab4">
-                                <div class="nav-icon mb-3">
-                                    <i class="fa-solid fa-chart-column fs-2x"></i>
-                                </div>
-                                <span class="nav-text text-gray-800 fw-bold fs-6 lh-1 text-uppercase">Survey Kepuasan</span>
                                 <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-orange"></span>
                             </a>
                         </li>
@@ -398,6 +399,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="tab4">
+                            <h4>Keberatan Atas Permohonan Informasi</h4>
+                            <p>
+                                
+                            </p>
+                            <img src="{{asset('assets_global/media/illustration/chart-graph.png')}}" alt="" class="w-25">
+                            <br>
+                            <a href="{{ asset('pelayanan/Form Keberatan Bappeda Prov. Sumbar.docx') }}" class="btn btn-success btn-sm" download>
+                                <i class="fa-solid fa-print"></i>
+                                Unduh Template Keberatan Informasi
+                            </a>
+                        </div>
                         <div class="tab-pane fade" id="tab3">
                             <h4>Magang</h4>
                             <form action="/pengajuan-magang" method="POST" enctype="multipart/form-data">
@@ -486,14 +499,7 @@
                                 <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Pengajuan</button>
                             </form>
                         </div>
-                        <div class="tab-pane fade" id="tab4">
-                            <h4>Survey Kepuasan</h4>
-                            <img src="{{asset('assets_global/media/illustration/chart-graph.png')}}" alt="" class="w-50">
-                            <br>
-                            <a href="https://s.id/Layanan_Bappeda_SB" target="_blank" class="btn btn-primary">
-                                Silahkan Tekan Link ini
-                            </a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
