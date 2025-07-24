@@ -676,7 +676,7 @@
         </div>
     </div>
 
-     <div class="container mb-20 mt-20">
+    {{-- <div class="container mb-20 mt-20">
         <h1 class="display-6 pb-10 text-center">Hubungi Kami</h1>
         <div class="row">
             <div class="col-lg-6">
@@ -938,7 +938,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     
 

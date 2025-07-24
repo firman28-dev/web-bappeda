@@ -56,7 +56,13 @@ Route::get('/home/ppid/{id}', [Guest_Page_System_Controller::class, 'showPpid'])
 Route::get('/profile/profile-pejabat', [Guest_Profile_Controller::class, 'index'])->name('guest.pejabat');
 Route::get('/home/category/{id}', [Guest_Category_Controller::class, 'index'])->name('guest.category-news');
 Route::get('/laporan-pengaduan', [Home_Controller::class, 'indexPengaduan'])->name('guest.indexPengaduan');
+Route::get('/survey-kepuasan', function () {
+    return view('guest.pengaduan.survey_kepuasan');
+});
 Route::get('/makro/{jenis}/{id?}', [API_Edatabase_Controller::class, 'curlListMakro']);
+// Route::get('/home/layanan-permohonan-informasi', function () {
+//     return view('guest.layanan.index');
+// });
 
 Route::get('/management', [LoginController::class, 'show'])->name('login.show');
 Route::post('/management', [LoginController::class, 'login'])->name('login.perform');
@@ -64,7 +70,7 @@ Route::get('/grafik-indikator/{id}', [Home_Controller::class, 'getChartData']);
 Route::post('/laporan-pengaduan', [Home_Controller::class, 'store'])->middleware('throttle:5,1');
 Route::post('/pengajuan-magang', [Home_Controller::class, 'storeMagang'])->middleware('throttle:5,1');
 Route::post('/laporan-permohonan-informasi', [Home_Controller::class, 'storePermohonanInformasi'])->middleware('throttle:5,1');
-
+Route::post('/laporan-permohonan-informasi', [Home_Controller::class, 'storePermohonanInformasi'])->middleware('throttle:5,1');
 
 
 Route::group(['middleware' => ['auth']], function () {
