@@ -41,6 +41,11 @@
     <div class="bg-home ">
         <div class="app-container container">
             <div class="row d-flex align-items-center min-h-500px">
+                <div class="col-lg-6">
+                    <h1 class="display-1 text-white fw-bold">
+                        Sumatera Barat Madani, Unggul, dan Berkeadilan 
+                    </h1>
+                </div>
             </div>
         </div>
     </div>
