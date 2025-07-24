@@ -402,7 +402,7 @@
                         <div class="tab-pane fade" id="tab4">
                             <h4>Keberatan Atas Permohonan Informasi</h4>
                             <p>
-                                
+                                Untuk pengajuan keberatan silahkan mengisi form pada link dibawah ini dan menyampaikannya secara tertulis ke PPID pelaksana Bppeda Provinsi Sumatera Barat
                             </p>
                             <img src="{{asset('assets_global/media/illustration/chart-graph.png')}}" alt="" class="w-25">
                             <br>
