@@ -13,6 +13,10 @@
         <div class="container">
             <div class="card d-flex justify-content-center align-items-center">
                 <div class="card-body text-center">
+                    <p>
+                        Sebagai bahan evaluasi kinerja layanan publik Bappeda Provinsi Sumatera Barat, mohon kiranya bapak/ibuk berkenan mengisi
+                        kuesioner survei kepuasan layanan diabawah ini
+                    </p>
                     <img src="{{ asset('assets_global/media/illustration/chart-graph.png') }}" alt="" class="w-75">
                     <br>
                     <a href="https://s.id/Layanan_Bappeda_SB" target="_blank" class="btn btn-primary">
