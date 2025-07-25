@@ -419,7 +419,7 @@
                 </p>
             </div>
             <div class="col-lg-6">
-                <h1 class="text-center display-6">BAPPEDA MENULIS</h1>
+                <h1 class="text-center display-6 font-custom">BAPPEDA MENULIS</h1>
                 @if ($bappeda_menulis)
                     @php
                         $allowedExtensions = ['png', 'jpg', 'jpeg'];
