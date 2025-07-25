@@ -43,7 +43,7 @@
             <div class="row d-flex align-items-center min-h-500px">
                 <div class="col-lg-6">
                     <h1 class="display-1 text-white fw-bold">
-                        Sumatera Barat Madani, Unggul, dan Berkeadilan 
+                        Sumatera Barat Madani yang Maju dan Berkeadilan
                     </h1>
                 </div>
             </div>
