@@ -56,7 +56,7 @@
             <div class="row justify-content-evenly">
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://dashboard.sumbarprov.go.id/tahun/2025" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop3">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://sumbar2045.sumbarprov.go.id/" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop3">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-6 col-12 mt-lg-0 mt-5">
                     <a href="https://sakatoplan.sumbarprov.go.id/" class="text-dark" target="_blank">
-                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
+                        <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop3">
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="row d-flex align-items-center">
