@@ -1,0 +1,710 @@
+{
+    "success": true,
+    "message": "Sukses get data",
+    "data": {
+        "id_skpd": 2618,
+        "kode_skpd": "2.16.2.20.2.21.01.0000",
+        "nama_skpd": "DINAS KOMUNIKASI, INFORMATIKA DAN STATISTIK",
+        "tahun": "2024",
+        "anggaran": 36509759008,
+        "data_program": [
+            {
+                "id_skpd": 2618,
+                "id_program": 1281,
+                "kode_program": "2.16.02",
+                "nama_program": "PROGRAM PENGELOLAAN INFORMASI DAN KOMUNIKASI PUBLIK",
+                "data_kegiatan": [
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1281,
+                        "id_giat": 9147,
+                        "kode_kegiatan": "2.16.02.1.01",
+                        "nama_kegiatan": "Pengelolaan Informasi dan Komunikasi Publik Pemerintah Daerah Provinsi",
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22266,
+                                "kode_kegiatan": "2.16.02.1.01.0001",
+                                "nama_kegiatan": "Perumusan Kebijakan Teknis Bidang Informasi dan Komunikasi Publik",
+                                "indikator" : [
+                                    {
+                                        "anggaran" : "",
+                                        "nama_indikator" : "",
+                                        "target" : "",
+                                        "pagu" : "",
+                                        "satuan" : "",
+                                        "realisasi_target" : "",
+                                        "realisasi_pagu" : ""
+                                    }
+                                ]
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22267,
+                                "kode_kegiatan": "2.16.02.1.01.0002",
+                                "nama_kegiatan": "Monitoring Opini dan Aspirasi Publik",
+                                "anggaran": 183988200
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22268,
+                                "kode_kegiatan": "2.16.02.1.01.0003",
+                                "nama_kegiatan": "Monitoring Informasi dan Penetapan Agenda Prioritas Komunikasi Pemerintah Daerah",
+                                "anggaran": 14900000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22269,
+                                "kode_kegiatan": "2.16.02.1.01.0004",
+                                "nama_kegiatan": "Pengelolaan Konten dan Perencanaan Media Komunikasi Publik",
+                                "anggaran": 739215300
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22270,
+                                "kode_kegiatan": "2.16.02.1.01.0005",
+                                "nama_kegiatan": "Pengelolaan Media Komunikasi Publik",
+                                "anggaran": 6852522622
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22271,
+                                "kode_kegiatan": "2.16.02.1.01.0006",
+                                "nama_kegiatan": "Pelayanan Informasi Publik",
+                                "anggaran": 171000000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22272,
+                                "kode_kegiatan": "2.16.02.1.01.0007",
+                                "nama_kegiatan": "Layanan Hubungan Media",
+                                "anggaran": 87558200
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22273,
+                                "kode_kegiatan": "2.16.02.1.01.0008",
+                                "nama_kegiatan": "Kemitraan dengan Pemangku Kepentingan",
+                                "anggaran": 38299000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22274,
+                                "kode_kegiatan": "2.16.02.1.01.0009",
+                                "nama_kegiatan": "Manajemen Komunikasi Krisis",
+                                "anggaran": 10820500
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22275,
+                                "kode_kegiatan": "2.16.02.1.01.0010",
+                                "nama_kegiatan": "Penguatan Kapasitas Sumber Daya Komunikasi Publik",
+                                "anggaran": 25757000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22276,
+                                "kode_kegiatan": "2.16.02.1.01.0011",
+                                "nama_kegiatan": "Penguatan Tata Kelola Komisi Informasi di Daerah",
+                                "anggaran": 2065896858
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1281,
+                                "id_giat": 9147,
+                                "id_sub_giat": 22277,
+                                "kode_kegiatan": "2.16.02.1.01.0012",
+                                "nama_kegiatan": "Penyelenggaraan Hubungan Masyarakat, Media dan Kemitraan Komunitas",
+                                "anggaran": 51500000
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id_skpd": 2618,
+                "id_program": 1282,
+                "kode_program": "2.16.03",
+                "nama_program": "PROGRAM PENGELOLAAN APLIKASI INFORMATIKA",
+                "anggaran": 10033896128,
+                "data_kegiatan": [
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1282,
+                        "id_giat": 9148,
+                        "kode_kegiatan": "2.16.03.1.01",
+                        "nama_kegiatan": "Pengelolaan Nama Domain yang Telah ditetapkan oleh Pemerintah Pusat dan Sub Domain di Lingkup Pemerintah Daerah Provinsi",
+                        "anggaran": 8723213567,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1282,
+                                "id_giat": 9148,
+                                "id_sub_giat": 22280,
+                                "kode_kegiatan": "2.16.03.1.01.0002",
+                                "nama_kegiatan": "Penatalaksanaan dan Pengawasan Nama Domain dan Sub Domain dalam Penyelenggaraan Pemerintahan Daerah Provinsi",
+                                "anggaran": 46977500
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1282,
+                                "id_giat": 9148,
+                                "id_sub_giat": 22281,
+                                "kode_kegiatan": "2.16.03.1.01.0003",
+                                "nama_kegiatan": "Penyelenggaraan Sistem Jaringan Intra Pemerintah Daerah",
+                                "anggaran": 8676236067
+                            }
+                        ]
+                    },
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1282,
+                        "id_giat": 9149,
+                        "kode_kegiatan": "2.16.03.1.02",
+                        "nama_kegiatan": "Pengelolaan E-government di Lingkup Pemerintah Daerah Provinsi",
+                        "anggaran": 1310682561,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1282,
+                                "id_giat": 9149,
+                                "id_sub_giat": 22282,
+                                "kode_kegiatan": "2.16.03.1.02.0001",
+                                "nama_kegiatan": "Penatalaksanaan dan Pengawasan E-government dalam Penyelenggaraan Pemerintahan Daerah Provinsi",
+                                "anggaran": 82459400
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1282,
+                                "id_giat": 9149,
+                                "id_sub_giat": 22283,
+                                "kode_kegiatan": "2.16.03.1.02.0002",
+                                "nama_kegiatan": "Sinkronisasi Pengelolaan Rencana Induk dan Anggaran Pemerintahan Berbasis Elektronik",
+                                "anggaran": 42007730
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1282,
+                                "id_giat": 9149,
+                                "id_sub_giat": 22284,
+                                "kode_kegiatan": "2.16.03.1.02.0003",
+                                "nama_kegiatan": "Pengelolaan Pusat Data Pemerintahan Daerah",
+                                "anggaran": 413365400
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1282,
+                                "id_giat": 9149,
+                                "id_sub_giat": 22288,
+                                "kode_kegiatan": "2.16.03.1.02.0007",
+                                "nama_kegiatan": "Pengembangan Aplikasi dan Proses Bisnis Pemerintahan Berbasis Elektronik",
+                                "anggaran": 729570731
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1282,
+                                "id_giat": 9149,
+                                "id_sub_giat": 22289,
+                                "kode_kegiatan": "2.16.03.1.02.0008",
+                                "nama_kegiatan": "Penyelenggaran Sistem Penghubung Layanan Pemerintah",
+                                "anggaran": 0
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1282,
+                                "id_giat": 9149,
+                                "id_sub_giat": 22291,
+                                "kode_kegiatan": "2.16.03.1.02.0010",
+                                "nama_kegiatan": "Pengembangan dan Pengelolaan Sumber Daya Teknologi Informasi dan Komunikasi Pemerintah Daerah",
+                                "anggaran": 43279300
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id_skpd": 2618,
+                "id_program": 1397,
+                "kode_program": "2.21.01",
+                "nama_program": "PROGRAM PENUNJANG URUSAN PEMERINTAHAN DAERAH PROVINSI",
+                "anggaran": 15516423406,
+                "data_kegiatan": [
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1397,
+                        "id_giat": 9699,
+                        "kode_kegiatan": "2.21.01.1.01",
+                        "nama_kegiatan": "Perencanaan, Penganggaran, dan Evaluasi Kinerja Perangkat Daerah",
+                        "anggaran": 234166900,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9699,
+                                "id_sub_giat": 24250,
+                                "kode_kegiatan": "2.21.01.1.01.0001",
+                                "nama_kegiatan": "Penyusunan Dokumen Perencanaan Perangkat Daerah",
+                                "anggaran": 132404000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9699,
+                                "id_sub_giat": 24255,
+                                "kode_kegiatan": "2.21.01.1.01.0006",
+                                "nama_kegiatan": "Koordinasi dan Penyusunan Laporan Capaian Kinerja dan Ikhtisar Realisasi Kinerja SKPD",
+                                "anggaran": 32641200
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9699,
+                                "id_sub_giat": 24256,
+                                "kode_kegiatan": "2.21.01.1.01.0007",
+                                "nama_kegiatan": "Evaluasi Kinerja Perangkat Daerah",
+                                "anggaran": 69121700
+                            }
+                        ]
+                    },
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1397,
+                        "id_giat": 9700,
+                        "kode_kegiatan": "2.21.01.1.02",
+                        "nama_kegiatan": "Administrasi Keuangan Perangkat Daerah",
+                        "anggaran": 9720578150,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9700,
+                                "id_sub_giat": 24257,
+                                "kode_kegiatan": "2.21.01.1.02.0001",
+                                "nama_kegiatan": "Penyediaan Gaji dan Tunjangan ASN",
+                                "anggaran": 9367941550
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9700,
+                                "id_sub_giat": 24259,
+                                "kode_kegiatan": "2.21.01.1.02.0003",
+                                "nama_kegiatan": "Pelaksanaan Penatausahaan dan Pengujian\/Verifikasi Keuangan SKPD",
+                                "anggaran": 338698600
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9700,
+                                "id_sub_giat": 24263,
+                                "kode_kegiatan": "2.21.01.1.02.0007",
+                                "nama_kegiatan": "Koordinasi dan Penyusunan Laporan Keuangan Bulanan\/ Triwulanan\/Semesteran SKPD",
+                                "anggaran": 13938000
+                            }
+                        ]
+                    },
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1397,
+                        "id_giat": 9701,
+                        "kode_kegiatan": "2.21.01.1.03",
+                        "nama_kegiatan": "Administrasi Barang Milik Daerah pada Perangkat Daerah",
+                        "anggaran": 205390485,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9701,
+                                "id_sub_giat": 24266,
+                                "kode_kegiatan": "2.21.01.1.03.0002",
+                                "nama_kegiatan": "Pengamanan Barang Milik Daerah SKPD",
+                                "anggaran": 182557735
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9701,
+                                "id_sub_giat": 24270,
+                                "kode_kegiatan": "2.21.01.1.03.0006",
+                                "nama_kegiatan": "Penatausahaan Barang Milik Daerah pada SKPD",
+                                "anggaran": 22832750
+                            }
+                        ]
+                    },
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1397,
+                        "id_giat": 9703,
+                        "kode_kegiatan": "2.21.01.1.05",
+                        "nama_kegiatan": "Administrasi Kepegawaian Perangkat Daerah",
+                        "anggaran": 171476000,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9703,
+                                "id_sub_giat": 24280,
+                                "kode_kegiatan": "2.21.01.1.05.0002",
+                                "nama_kegiatan": "Pengadaan Pakaian Dinas Beserta Atribut Kelengkapannya",
+                                "anggaran": 106500000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9703,
+                                "id_sub_giat": 24287,
+                                "kode_kegiatan": "2.21.01.1.05.0009",
+                                "nama_kegiatan": "Pendidikan dan Pelatihan Pegawai Berdasarkan Tugas dan Fungsi",
+                                "anggaran": 64976000
+                            }
+                        ]
+                    },
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1397,
+                        "id_giat": 9704,
+                        "kode_kegiatan": "2.21.01.1.06",
+                        "nama_kegiatan": "Administrasi Umum Perangkat Daerah",
+                        "anggaran": 2308132632,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9704,
+                                "id_sub_giat": 24290,
+                                "kode_kegiatan": "2.21.01.1.06.0001",
+                                "nama_kegiatan": "Penyediaan Komponen Instalasi Listrik\/Penerangan Bangunan Kantor",
+                                "anggaran": 25682945
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9704,
+                                "id_sub_giat": 24291,
+                                "kode_kegiatan": "2.21.01.1.06.0002",
+                                "nama_kegiatan": "Penyediaan Peralatan dan Perlengkapan Kantor",
+                                "anggaran": 57516890
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9704,
+                                "id_sub_giat": 24293,
+                                "kode_kegiatan": "2.21.01.1.06.0004",
+                                "nama_kegiatan": "Penyediaan Bahan Logistik Kantor",
+                                "anggaran": 26549000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9704,
+                                "id_sub_giat": 24294,
+                                "kode_kegiatan": "2.21.01.1.06.0005",
+                                "nama_kegiatan": "Penyediaan Barang Cetakan dan Penggandaan",
+                                "anggaran": 20479800
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9704,
+                                "id_sub_giat": 24295,
+                                "kode_kegiatan": "2.21.01.1.06.0006",
+                                "nama_kegiatan": "Penyediaan Bahan Bacaan dan Peraturan Perundang-Undangan",
+                                "anggaran": 22860000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9704,
+                                "id_sub_giat": 24298,
+                                "kode_kegiatan": "2.21.01.1.06.0009",
+                                "nama_kegiatan": "Penyelenggaraan Rapat Koordinasi dan Konsultasi SKPD",
+                                "anggaran": 2155043997
+                            }
+                        ]
+                    },
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1397,
+                        "id_giat": 9705,
+                        "kode_kegiatan": "2.21.01.1.07",
+                        "nama_kegiatan": "Pengadaan Barang Milik Daerah Penunjang Urusan Pemerintah Daerah",
+                        "anggaran": 380220000,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9705,
+                                "id_sub_giat": 24305,
+                                "kode_kegiatan": "2.21.01.1.07.0005",
+                                "nama_kegiatan": "Pengadaan Mebel",
+                                "anggaran": 83745400
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9705,
+                                "id_sub_giat": 24306,
+                                "kode_kegiatan": "2.21.01.1.07.0006",
+                                "nama_kegiatan": "Pengadaan Peralatan dan Mesin Lainnya",
+                                "anggaran": 296474600
+                            }
+                        ]
+                    },
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1397,
+                        "id_giat": 9706,
+                        "kode_kegiatan": "2.21.01.1.08",
+                        "nama_kegiatan": "Penyediaan Jasa Penunjang Urusan Pemerintahan Daerah",
+                        "anggaran": 1791145411,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9706,
+                                "id_sub_giat": 24312,
+                                "kode_kegiatan": "2.21.01.1.08.0001",
+                                "nama_kegiatan": "Penyediaan Jasa Surat Menyurat",
+                                "anggaran": 5000000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9706,
+                                "id_sub_giat": 24313,
+                                "kode_kegiatan": "2.21.01.1.08.0002",
+                                "nama_kegiatan": "Penyediaan Jasa Komunikasi, Sumber Daya Air dan Listrik",
+                                "anggaran": 993001500
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9706,
+                                "id_sub_giat": 24315,
+                                "kode_kegiatan": "2.21.01.1.08.0004",
+                                "nama_kegiatan": "Penyediaan Jasa Pelayanan Umum Kantor",
+                                "anggaran": 793143911
+                            }
+                        ]
+                    },
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1397,
+                        "id_giat": 9707,
+                        "kode_kegiatan": "2.21.01.1.09",
+                        "nama_kegiatan": "Pemeliharaan Barang Milik Daerah Penunjang Urusan Pemerintahan Daerah",
+                        "anggaran": 705313828,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9707,
+                                "id_sub_giat": 24317,
+                                "kode_kegiatan": "2.21.01.1.09.0002",
+                                "nama_kegiatan": "Penyediaan Jasa Pemeliharaan, Biaya Pemeliharaan, Pajak dan Perizinan Kendaraan Dinas Operasional atau Lapangan",
+                                "anggaran": 266559828
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9707,
+                                "id_sub_giat": 24321,
+                                "kode_kegiatan": "2.21.01.1.09.0006",
+                                "nama_kegiatan": "Pemeliharaan Peralatan dan Mesin Lainnya",
+                                "anggaran": 109080000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9707,
+                                "id_sub_giat": 24324,
+                                "kode_kegiatan": "2.21.01.1.09.0009",
+                                "nama_kegiatan": "Pemeliharaan\/Rehabilitasi Gedung Kantor dan Bangunan Lainnya",
+                                "anggaran": 242484000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1397,
+                                "id_giat": 9707,
+                                "id_sub_giat": 24327,
+                                "kode_kegiatan": "2.21.01.1.09.0012",
+                                "nama_kegiatan": "Pemeliharaan\/Rehabilitasi Tanah",
+                                "anggaran": 87190000
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id_skpd": 2618,
+                "id_program": 1300,
+                "kode_program": "2.20.02",
+                "nama_program": "PROGRAM PENYELENGGARAAN STATISTIK SEKTORAL",
+                "anggaran": 373198700,
+                "data_kegiatan": [
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1300,
+                        "id_giat": 9205,
+                        "kode_kegiatan": "2.20.02.1.01",
+                        "nama_kegiatan": "Penyelenggaraan Statistik Sektoral di Lingkup Daerah Provinsi",
+                        "anggaran": 373198700,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1300,
+                                "id_giat": 9205,
+                                "id_sub_giat": 22424,
+                                "kode_kegiatan": "2.20.02.1.01.0001",
+                                "nama_kegiatan": "Koordinasi dan Sinkronisasi Pengumpulan, Pengolahan, Analisis dan Diseminasi Data Statistik Sektoral",
+                                "anggaran": 93200000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1300,
+                                "id_giat": 9205,
+                                "id_sub_giat": 22425,
+                                "kode_kegiatan": "2.20.02.1.01.0002",
+                                "nama_kegiatan": "Peningkatan Kapasitas SDM Pemerintah Daerah dalam Peningkatan Mutu Statistik Daerah yang Terintegrasi",
+                                "anggaran": 0
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1300,
+                                "id_giat": 9205,
+                                "id_sub_giat": 22426,
+                                "kode_kegiatan": "2.20.02.1.01.0003",
+                                "nama_kegiatan": "Membangun Metadata Statistik Sektoral",
+                                "anggaran": 22047000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1300,
+                                "id_giat": 9205,
+                                "id_sub_giat": 22427,
+                                "kode_kegiatan": "2.20.02.1.01.0004",
+                                "nama_kegiatan": "Peningkatan Kapasitas Kelembagaan Statistik Sektoral",
+                                "anggaran": 177661700
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1300,
+                                "id_giat": 9205,
+                                "id_sub_giat": 22428,
+                                "kode_kegiatan": "2.20.02.1.01.0005",
+                                "nama_kegiatan": "Pengembangan Infrastruktur",
+                                "anggaran": 0
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1300,
+                                "id_giat": 9205,
+                                "id_sub_giat": 22429,
+                                "kode_kegiatan": "2.20.02.1.01.0006",
+                                "nama_kegiatan": "Penyelenggaraan Otorisasi Statistik Sektoral di Daerah",
+                                "anggaran": 80290000
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id_skpd": 2618,
+                "id_program": 1301,
+                "kode_program": "2.21.02",
+                "nama_program": "PROGRAM PENYELENGGARAAN PERSANDIAN UNTUK PENGAMANAN INFORMASI",
+                "anggaran": 329788694,
+                "data_kegiatan": [
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1301,
+                        "id_giat": 9206,
+                        "kode_kegiatan": "2.21.02.1.01",
+                        "nama_kegiatan": "Penyelenggaraan Persandian untuk Pengamanan Informasi Pemerintah Daerah Provinsi",
+                        "anggaran": 322738694,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1301,
+                                "id_giat": 9206,
+                                "id_sub_giat": 22430,
+                                "kode_kegiatan": "2.21.02.1.01.0001",
+                                "nama_kegiatan": "Penetapan Kebijakan Tata Kelola Keamanan Informasi dan Jaring Komunikasi Sandi Pemerintah Daerah Provinsi ",
+                                "anggaran": 50500000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1301,
+                                "id_giat": 9206,
+                                "id_sub_giat": 22431,
+                                "kode_kegiatan": "2.21.02.1.01.0002",
+                                "nama_kegiatan": "Pelaksanaan Analisis Kebutuhan dan Pengelolaan Sumber Daya Keamanan Informasi Pemerintah Daerah Provinsi ",
+                                "anggaran": 71938694
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1301,
+                                "id_giat": 9206,
+                                "id_sub_giat": 22432,
+                                "kode_kegiatan": "2.21.02.1.01.0003",
+                                "nama_kegiatan": "Pelaksanaan Keamanan Informasi Pemerintahan Daerah Provinsi Berbasis Elektronik dan Non Elektronik",
+                                "anggaran": 114750000
+                            },
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1301,
+                                "id_giat": 9206,
+                                "id_sub_giat": 22433,
+                                "kode_kegiatan": "2.21.02.1.01.0004",
+                                "nama_kegiatan": "Penyediaan Layanan Keamanan Informasi Pemerintah Daerah Provinsi ",
+                                "anggaran": 85550000
+                            }
+                        ]
+                    },
+                    {
+                        "id_skpd": 2618,
+                        "id_program": 1301,
+                        "id_giat": 9207,
+                        "kode_kegiatan": "2.21.02.1.02",
+                        "nama_kegiatan": "Penetapan Pola Hubungan Komunikasi Sandi antar Perangkat Daerah Provinsi",
+                        "anggaran": 7050000,
+                        "data_sub_kegiatan": [
+                            {
+                                "id_skpd": 2618,
+                                "id_program": 1301,
+                                "id_giat": 9207,
+                                "id_sub_giat": 22434,
+                                "kode_kegiatan": "2.21.02.1.02.0001",
+                                "nama_kegiatan": "Operasionalisasi Jaring Komunikasi Sandi Pemerintah Daerah Provinsi ",
+                                "anggaran": 7050000
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

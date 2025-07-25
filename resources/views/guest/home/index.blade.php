@@ -62,7 +62,7 @@
                                     <div class="row d-flex align-items-center">
                                         <div class="col-lg-4 col-12">
                                             <div>
-                                                <img src="{{asset('assets_global/icon_svg/011-computer.svg')}}" alt="" class="w-lg-100 img-fluid" style="max-width: 200px;">
+                                                <img src="{{asset('logo/DASHBOARD.png')}}" alt="" class="w-lg-100 img-fluid" style="max-width: 200px;">
                                             </div>
                                         </div>
                                         <div class="col-lg-8 col-12 text-lg-start">
@@ -84,7 +84,7 @@
                                     <div class="row d-flex align-items-center">
                                         <div class="col-lg-4 col-12">
                                             <div>
-                                                <img src="{{asset('assets_global/icon_svg/022-suitcase.svg')}}" alt="" class="w-100 img-fluid" style="max-width: 200px;">
+                                                <img src="{{asset('logo/SUMBAR2045.png')}}" alt="" class="w-100 img-fluid" style="max-width: 200px;">
                                             </div>
                                         </div>
                                         <div class="col-lg-8 col-12 text-lg-start">
@@ -105,7 +105,7 @@
                                     <div class="row d-flex align-items-center">
                                         <div class="col-lg-4 col-12">
                                             <div>
-                                                <img src="{{asset('assets_global/icon_svg/027-bar graph.svg')}}" alt="" class="w-100 img-fluid" style="max-width: 200px;">
+                                                <img src="{{asset('logo/SAKATOPLAN.png')}}" alt="" class="w-100 img-fluid" style="max-width: 200px;">
                                             </div>
                                         </div>
                                         <div class="col-lg-8 col-12 text-lg-start">
