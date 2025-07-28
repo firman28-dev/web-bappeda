@@ -39,6 +39,26 @@
          </div>
          <div class="nav-right col-xxl-7 col-xl-6 col-md-7 col-8 pull-right right-header p-0 ms-auto">
              <ul class="nav-menus">
+                 <li class="tahun-nav">
+                    <div class="translate_wrapper">
+                        <div class="current_lang">
+                            <div class="lang">
+                                <i class="fa fa-calendar"></i>
+                                <span class="lang-txt" id="current-year">{{ session('tahun_terpilih', date('Y')) }}</span>
+                            </div>
+                        </div>
+                        <div class="more_lang">
+                            @for ($tahun = date('Y'); $tahun >= 2024; $tahun--)
+                                <div class="lang tahun-option {{ session('tahun_terpilih') == $tahun ? 'selected' : '' }}" data-value="{{ $tahun }}">
+                                    <i class="fa fa-calendar"></i>
+                                    <span class="lang-txt">{{ $tahun }}</span>
+                                </div>
+                            @endfor
+                        </div>
+                    </div>
+                </li>
+
+
                  <li class="fullscreen-body"> 
                     <span>
                          <svg id="maximize-screen">
@@ -54,7 +74,8 @@
                          </svg>
                      </div>
                  </li>
-                
+                 
+
                  <li class="profile-nav onhover-dropdown pe-0 py-0">
                      <div class="d-flex profile-media">
                         @if (auth()->user()->photo)

@@ -65,3 +65,35 @@
     // console.log(lastActivity);
     
 </script>
+<script>
+    $(document).on('click', '.tahun-option', function () {
+        let tahun = $(this).data('value');
+        
+        // Set session via AJAX
+        $.ajax({
+            url: '/set-tahun-session',
+            method: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                tahun: tahun
+            },
+            beforeSend: function () {
+                $('#loading-overlay').fadeIn(); // Tampilkan loading sebelum AJAX jalan
+            },
+            success: function (response) {
+                $('#current-year').text(response.tahun);
+                location.reload(); // Reload halaman
+            },
+            complete: function () {
+                $('#loading-overlay').fadeOut(); // Sembunyikan loading saat selesai
+            },
+            error: function () {
+                $('#loading-overlay').fadeOut(); // Tetap sembunyikan jika error
+                alert('Terjadi kesalahan. Coba lagi.');
+            }
+        });
+
+    });
+
+</script>
+

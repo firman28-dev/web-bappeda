@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\MaintenanceController;
 use App\Http\Controllers\Admin\Menu_Public_Controller;
 use App\Http\Controllers\Admin\News_Controller;
 use App\Http\Controllers\Admin\Page_System_Controller;
+use App\Http\Controllers\Admin\PegawaiTerbaikController;
 use App\Http\Controllers\Admin\Pejabat_Controller;
 use App\Http\Controllers\Admin\PengaduanController;
 use App\Http\Controllers\Admin\PermohonanInformasiController;
@@ -115,6 +116,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('pejabat', Pejabat_Controller::class);
         Route::resource('category', Category_Controller::class);
         Route::resource('faq', FAQ_Controller::class);
+        Route::resource('pegawai-terbaik', PegawaiTerbaikController::class);
+        Route::get('/pegawai-terbaik/tahun/{tahun}', [PegawaiTerbaikController::class, 'byTahun']);
+
+        Route::post('/set-tahun-session', function (\Illuminate\Http\Request $request) {
+            session(['tahun_terpilih' => $request->tahun]);
+            return response()->json(['tahun' => $request->tahun]);
+        });
 
 
         Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
