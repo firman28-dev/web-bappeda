@@ -31,8 +31,9 @@
                             @endif
                         </div>
                         <h2>{{$kaban->name}}</h2>
-                        <a href="{{ asset('lhkpn/LHKPN_KABAN.pdf') }}"target="_blank" class="text-dark">
-                            <p>{{$kaban->_group->ket}}</p>
+                        <p>{{$kaban->_group->ket}}</p>
+                        <a href="{{ asset('lhkpn/LHKPN_KABAN.pdf') }}"target="_blank">
+                            Lihat LHKPN
                         </a>
                     </div>
                 </div>
