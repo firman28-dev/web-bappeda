@@ -206,108 +206,106 @@
 	<script src="{{asset('assets_global/plugins/custom/datatables/datatables.bundle.js')}}"></script>
 	@yield('script')
 
-	Ini update script diatas tag
-</body> kak bagian terbawah footer
-<script>
-	let currentUtterance = null;
+	<script>
+		let currentUtterance = null;
 
-	function speakText(text) {
-		if (!text.trim()) return;
+		function speakText(text) {
+			if (!text.trim()) return;
 
-		window.speechSynthesis.cancel();
+			window.speechSynthesis.cancel();
 
-		const msg = new SpeechSynthesisUtterance(text.trim());
-		msg.lang = 'id-ID'; // Bahasa Indonesia
-		msg.rate = 1; // Kecepatan bicara (1 normal)
-		window.speechSynthesis.speak(msg);
+			const msg = new SpeechSynthesisUtterance(text.trim());
+			msg.lang = 'id-ID'; // Bahasa Indonesia
+			msg.rate = 1; // Kecepatan bicara (1 normal)
+			window.speechSynthesis.speak(msg);
 
-		currentUtterance = msg;
-	}
-
-	function isSpeakableTag(tag) {
-		return ['p', 'a', 'span'].includes(tag);
-	}
-
-	document.body.addEventListener('mouseover', function (e) {
-		const tag = e.target.tagName.toLowerCase();
-
-		if (isSpeakableTag(tag)) {
-			e.target.classList.add('highlight');
-			const text = e.target.innerText || e.target.textContent || '';
-			speakText(text);
+			currentUtterance = msg;
 		}
-	});
 
-	document.body.addEventListener('mouseout', function (e) {
-		const tag = e.target.tagName.toLowerCase();
+		function isSpeakableTag(tag) {
+			return ['p', 'a', 'span'].includes(tag);
+		}
 
-		if (isSpeakableTag(tag)) {
-			e.target.classList.remove('highlight');
+		document.body.addEventListener('mouseover', function (e) {
+			const tag = e.target.tagName.toLowerCase();
+
+			if (isSpeakableTag(tag)) {
+				e.target.classList.add('highlight');
+				const text = e.target.innerText || e.target.textContent || '';
+				speakText(text);
+			}
+		});
+
+		document.body.addEventListener('mouseout', function (e) {
+			const tag = e.target.tagName.toLowerCase();
+
+			if (isSpeakableTag(tag)) {
+				e.target.classList.remove('highlight');
+				window.speechSynthesis.cancel();
+			}
+		});
+
+		function togglePanel() {
+			const panel = document.getElementById('accessPanel');
+			panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+		}
+
+		function toggleClass(className) {
+			document.body.classList.toggle(className);
+		}
+
+		function resizeText(factor) {
+			const body = document.body;
+			const currentSize = parseFloat(getComputedStyle(body).fontSize);
+			body.style.fontSize = (currentSize * factor) + 'px';
+		}
+
+		function resetAccessibility() {
+			document.body.className = '';
+			document.body.style.fontSize = '';
 			window.speechSynthesis.cancel();
 		}
-	});
 
-	function togglePanel() {
-		const panel = document.getElementById('accessPanel');
-		panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
-	}
-
-	function toggleClass(className) {
-		document.body.classList.toggle(className);
-	}
-
-	function resizeText(factor) {
-		const body = document.body;
-		const currentSize = parseFloat(getComputedStyle(body).fontSize);
-		body.style.fontSize = (currentSize * factor) + 'px';
-	}
-
-	function resetAccessibility() {
-		document.body.className = '';
-		document.body.style.fontSize = '';
-		window.speechSynthesis.cancel();
-	}
-
-	document.addEventListener('contextmenu', function (e) {
-		e.preventDefault();
-	});
-
-	// Disable common devtools keys
-	document.addEventListener('keydown', function (e) {
-
-		if (e.key === 'F12') {
+		document.addEventListener('contextmenu', function (e) {
 			e.preventDefault();
-		}
+		});
+
+		// Disable common devtools keys
+		document.addEventListener('keydown', function (e) {
+
+			if (e.key === 'F12') {
+				e.preventDefault();
+			}
 
 
-		if ((e.ctrlKey || e.metaKey) && e.shiftKey &&
-			(e.key === 'I' || e.key === 'J' || e.key === 'C')) {
-			e.preventDefault();
-		}
+			if ((e.ctrlKey || e.metaKey) && e.shiftKey &&
+				(e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+				e.preventDefault();
+			}
 
 
-		if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
-			e.preventDefault();
-		}
+			if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
+				e.preventDefault();
+			}
 
 
-		if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-			e.preventDefault();
-		}
-	});
+			if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+				e.preventDefault();
+			}
+		});
 
-	// Optional: Detect DevTools open (basic check via debugger)
-	setInterval(function () {
-		const start = performance.now();
-		debugger;
-		const end = performance.now();
-		if (end - start > 100) {
-			window.location.href = "about:blank"; // atau redirect lain
-		}
-	}, 1000);
-</script>
-
+		// Optional: Detect DevTools open (basic check via debugger)
+		setInterval(function () {
+			const start = performance.now();
+			debugger;
+			const end = performance.now();
+			if (end - start > 100) {
+				window.location.href = "about:blank"; // atau redirect lain
+			}
+		}, 1000);
+	</script>
 </body>
+
 
 
 
