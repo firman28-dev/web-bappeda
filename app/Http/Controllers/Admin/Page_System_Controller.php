@@ -164,21 +164,46 @@ class Page_System_Controller extends Controller
 
     public function uploadFileEditor(Request $request)
     {
-        if ($request->hasFile('file')) {
+        try {
+            // Cek apakah file dikirim
+            if (!$request->hasFile('file')) {
+                Log::error('Upload gagal: file tidak ditemukan.');
+                return response()->json(['error' => 'No file uploaded'], 400);
+            }
+
             $file = $request->file('file');
+
+            // Validasi file (opsional tapi disarankan)
+            $request->validate([
+                'file' => 'required|file|max:5120', // 5MB
+            ]);
+
             $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $originalName = Str::slug($originalName); // hasil: "surat-pernyataan-non-pkp"
+            $originalName = Str::slug($originalName); // misal: "surat-pernyataan-non-pkp"
             $extension = $file->getClientOriginalExtension();
 
             $filename = $originalName . '_' . Str::random(8) . '.' . $extension;
 
-            // $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-            $destination = $_SERVER['DOCUMENT_ROOT'] .  '/uploads/page_system/file';
-            $file->move($destination, $filename);
-            $url = asset('/uploads/page_system/file/' . $filename);
-            return response()->json(['location' => $url]);
-        }
+            // Simpan ke public path
+            $destinationPath = public_path('uploads/page_system/file');
 
-        return response()->json(['error' => 'No file uploaded'], 400);
+            // Buat folder jika belum ada
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+
+            // Pindahkan file ke folder tujuan
+            $file->move($destinationPath, $filename);
+
+            // Buat URL file
+            $url = asset('uploads/page_system/file/' . $filename);
+
+            return response()->json(['location' => $url]);
+
+        } catch (\Exception $e) {
+            // Tangkap semua error dan log
+            Log::error('Upload gagal: ' . $e->getMessage());
+            return response()->json(['error' => 'Upload gagal: ' . $e->getMessage()], 500);
+        }
     }
 }
