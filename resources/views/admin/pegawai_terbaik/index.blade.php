@@ -52,36 +52,67 @@
                             <th>No</th>
                             <th>Nama Pegawai</th>
                             <th>NIP</th>
+                            <th>Jabatan</th>
                             <th>Bulan</th>
                             <th>Foto</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $namaBulan = [
-                                1 => 'Januari',
-                                2 => 'Februari',
-                                3 => 'Maret',
-                                4 => 'April',
-                                5 => 'Mei',
-                                6 => 'Juni',
-                                7 => 'Juli',
-                                8 => 'Agustus',
-                                9 => 'September',
-                                10 => 'Oktober',
-                                11 => 'November',
-                                12 => 'Desember',
-                            ];
-                        @endphp 
+                        
                         @foreach ($pegawai as $item)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td>{{ $item->nama_pegawai ?? '-' }}</td>
-                                <td>{{ $item->nip ?? '-' }}</td>
+                                <td>{{ $item->_pegawai->nama_pns ?? '-' }}</td>
+                                <td>{{ $item->_pegawai->nip ?? '-' }}</td>
+                                <td>{{ $item->_pegawai->jabatan_nm ?? '-' }}</td>
                                 <td>{{ $item->nama_bulan }}</td>
-                                <td>{{ $item->foto ?? '-' }}</td>
-                                <td></td>
+                                <td class="text-center" id="aniimated-thumbnials" itemscope="">
+                                    @if ($item->path)
+                                        <figure itemprop="associatedMedia" itemscope="">
+                                            <a href="{{ asset('uploads/pegawai_terbaik/' . $item->path) }}" itemprop="contentUrl" data-size="1600x950">
+                                                <img class="img-thumbnail w-50" src="{{ asset('uploads/pegawai_terbaik/' . $item->path) }}" itemprop="thumbnail" alt="Image description">
+                                            </a>
+                                        </figure>
+                                    @else
+                                        <p>-</p>
+                                    @endif
+                                </td>
+                                <td>
+                                    <ul class="action">
+                                        <li class="edit"> 
+                                            <a href="">
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
+                                        </li>
+                                        <li class="delete">
+                                            <a href="" data-bs-target="#confirmDelete{{ $item->id }}" data-bs-toggle="modal">
+                                                <i class="fa-solid fa-trash-can" ></i>
+                                            </a>
+                                            <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="confirmDelete{{ $item->id }}">
+                                                <form action="{{ route('pegawai-terbaik.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Apakah yakin ingin menghapus data?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                <button type="submmit" class="btn btn-danger">Hapus</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

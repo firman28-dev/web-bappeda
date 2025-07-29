@@ -71,4 +71,17 @@ class PegawaiTerbaikController extends Controller
         }
     }
 
+    public function destroy($id){
+        $pegawai = PegawaiTerbaik::findOrFail($id);
+        // return $page_system;
+        if($pegawai->path){
+            $oldPhotoPath = $_SERVER['DOCUMENT_ROOT']. '/uploads/pegawai_terbaik/' .$pegawai->path;
+            if (file_exists($oldPhotoPath)) {
+                unlink($oldPhotoPath);
+            }
+        }
+        $pegawai->delete();
+        return redirect()->back()->with('success', 'Berhasil Menghapus Data');
+    }
+
 }

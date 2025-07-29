@@ -53,8 +53,6 @@ class Page_System_Controller extends Controller
             $page_system->hits = 0;
 
             if ($file) {
-                // dd($_SERVER['DOCUMENT_ROOT']);
-                return $_SERVER['DOCUMENT_ROOT'];
                 $unique = uniqid();
 
                 $fileName = $unique.'_'.time(). '_' . $file->getClientOriginalName();

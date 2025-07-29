@@ -27,6 +27,12 @@ class PegawaiTerbaik extends Model
         return $this->bulan ? $bulan[$this->bulan] : '-';
     }
 
+    public function _pegawai()
+    {
+        return $this->belongsTo(PegawaiBappeda::class, 'pegawai_id', 'id');
+    }
+
+
     protected $table = 'pegawai_terbaik';
 
 }
