@@ -51,13 +51,14 @@ class Page_System_Controller extends Controller
             $page_system->hits = 0;
 
             if ($file) {
+                // dd($_SERVER['DOCUMENT_ROOT']);
+                return $_SERVER['DOCUMENT_ROOT'];
                 $unique = uniqid();
 
                 $fileName = $unique.'_'.time(). '_' . $file->getClientOriginalName();
                 //untuk server
                 // $path = $file->storeAs('uploads/list_link', $fileName, 'public');
                 $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/page_system/', $fileName);
-                dd($_SERVER['DOCUMENT_ROOT']);
                 $page_system->image = $fileName;
             }
             $page_system->save();
