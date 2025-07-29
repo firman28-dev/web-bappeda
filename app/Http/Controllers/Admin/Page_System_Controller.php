@@ -24,8 +24,8 @@ class Page_System_Controller extends Controller
     }
 
     public function create(){
-        return $_SERVER['DOCUMENT_ROOT'];
-        
+        // return $_SERVER['DOCUMENT_ROOT'];
+
         $status = Status::whereIn('id', [4,5])->get();
         $sent = [
             'status' => $status
