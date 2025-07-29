@@ -57,6 +57,7 @@ class Page_System_Controller extends Controller
                 //untuk server
                 // $path = $file->storeAs('uploads/list_link', $fileName, 'public');
                 $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/page_system/', $fileName);
+                dd($_SERVER['DOCUMENT_ROOT']);
                 $page_system->image = $fileName;
             }
             $page_system->save();
