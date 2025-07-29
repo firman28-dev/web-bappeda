@@ -104,13 +104,13 @@
                                         <div class="mb-3">
                                             <label class="form-label">Unduh Template Permohonan</label>
                                             <br>
-                                            <a href="{{ asset('pelayanan/Form Permohonan Informasi - Bappeda.pdf') }}" class="btn btn-success btn-sm" download>
+                                            <a href="{{ asset('pelayanan/') }}" class="btn btn-success btn-sm" download>
                                                 <i class="fa-solid fa-print"></i>
                                                 Unduh Template Permohonan Informasi
                                             </a>
                                         </div>
                                     </div>
-                                        <div class="col-lg-12">
+                                    <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="surat_pengantar" class="form-label required">Upload Surat Permohonan Sesuai Template (PDF)</label>
                                             <input type="file" class="form-control form-control-solid" id="path" name="path" required accept=".pdf">
