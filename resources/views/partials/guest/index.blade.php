@@ -32,7 +32,69 @@
 	<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 	<link href="{{asset('assets_global/custom/custom.css')}}" rel="stylesheet" type="text/css" />
 	@yield('css')
-	
+	<style>
+		body.access-high-contrast {
+			filter: contrast(200%);
+		}
+
+		body.access-dark-mode {
+			background-color: #000;
+			color: #fff;
+		}
+
+		body.access-light-mode {
+			background-color: #fff;
+			color: #000;
+		}
+
+		body.access-readable-font {
+			font-family: Arial, sans-serif;
+			font-size: 1.1em;
+		}
+
+		body.access-grey-scale {
+			filter: grayscale(100%);
+		}
+
+		body.access-underline-links a {
+			text-decoration: underline;
+		}
+
+		body.access-text-left {
+			text-align: left;
+		}
+
+		.access-btn {
+			position: fixed;
+			top: 100px;
+			right: 0;
+			background: #003399;
+			color: white;
+			padding: 15px;
+			border-radius: 5px 0 0 5px;
+			cursor: pointer;
+			z-index: 9999;
+		}
+
+		.access-panel {
+			position: fixed;
+			top: 100px;
+			right: 60px;
+			background: #fff;
+			border: 1px solid #ccc;
+			width: 250px;
+			display: none;
+			z-index: 9998;
+			padding: 10px;
+		}
+
+		.access-panel button {
+			display: block;
+			width: 100%;
+			margin: 5px 0;
+		}
+	</style>
+
 </head>
 
 <body id="kt_app_body" data-kt-app-layout="light-header" data-kt-app-header-fixed="true"
@@ -124,14 +186,128 @@
 		<i class="fa fa-wheelchair"></i>
 	</div>
 
+	<div class="access-panel" id="accessPanel">
+		<button onclick="speakText()">Moda Suara</button>
+		<button onclick="resizeText(1.1)">Perbesar Teks</button>
+		<button onclick="resizeText(0.9)">Perkecil Teks</button>
+		<button onclick="toggleClass('access-grey-scale')">Skala Abu - Abu</button>
+		<button onclick="toggleClass('access-high-contrast')">Kontras Tinggi</button>
+		<button onclick="toggleClass('access-dark-mode')">Latar Gelap</button>
+		<button onclick="toggleClass('access-light-mode')">Latar Terang</button>
+		<button onclick="toggleClass('access-readable-font')">Tulisan Dapat Dibaca</button>
+		<button onclick="toggleClass('access-underline-links')">Garis Bawah Tautan</button>
+		<button onclick="toggleClass('access-text-left')">Rata Tulisan</button>
+		<button onclick="resetAccessibility()">Atur Ulang</button>
+	</div>
+
 
 	<script src="{{asset('assets_global/plugins/global/plugins.bundle.js')}}"></script>
 	<script src="{{asset('assets_global/js/scripts.bundle.js')}}"></script>
 	<script src="{{asset('assets_global/plugins/custom/datatables/datatables.bundle.js')}}"></script>
 	@yield('script')
-	
-	
-</body> 
+
+	Ini update script diatas tag
+</body> kak bagian terbawah footer
+<script>
+	let currentUtterance = null;
+
+	function speakText(text) {
+		if (!text.trim()) return;
+
+		window.speechSynthesis.cancel();
+
+		const msg = new SpeechSynthesisUtterance(text.trim());
+		msg.lang = 'id-ID'; // Bahasa Indonesia
+		msg.rate = 1; // Kecepatan bicara (1 normal)
+		window.speechSynthesis.speak(msg);
+
+		currentUtterance = msg;
+	}
+
+	function isSpeakableTag(tag) {
+		return ['p', 'a', 'span'].includes(tag);
+	}
+
+	document.body.addEventListener('mouseover', function (e) {
+		const tag = e.target.tagName.toLowerCase();
+
+		if (isSpeakableTag(tag)) {
+			e.target.classList.add('highlight');
+			const text = e.target.innerText || e.target.textContent || '';
+			speakText(text);
+		}
+	});
+
+	document.body.addEventListener('mouseout', function (e) {
+		const tag = e.target.tagName.toLowerCase();
+
+		if (isSpeakableTag(tag)) {
+			e.target.classList.remove('highlight');
+			window.speechSynthesis.cancel();
+		}
+	});
+
+	function togglePanel() {
+		const panel = document.getElementById('accessPanel');
+		panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+	}
+
+	function toggleClass(className) {
+		document.body.classList.toggle(className);
+	}
+
+	function resizeText(factor) {
+		const body = document.body;
+		const currentSize = parseFloat(getComputedStyle(body).fontSize);
+		body.style.fontSize = (currentSize * factor) + 'px';
+	}
+
+	function resetAccessibility() {
+		document.body.className = '';
+		document.body.style.fontSize = '';
+		window.speechSynthesis.cancel();
+	}
+
+	document.addEventListener('contextmenu', function (e) {
+		e.preventDefault();
+	});
+
+	// Disable common devtools keys
+	document.addEventListener('keydown', function (e) {
+
+		if (e.key === 'F12') {
+			e.preventDefault();
+		}
+
+
+		if ((e.ctrlKey || e.metaKey) && e.shiftKey &&
+			(e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+			e.preventDefault();
+		}
+
+
+		if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
+			e.preventDefault();
+		}
+
+
+		if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+			e.preventDefault();
+		}
+	});
+
+	// Optional: Detect DevTools open (basic check via debugger)
+	setInterval(function () {
+		const start = performance.now();
+		debugger;
+		const end = performance.now();
+		if (end - start > 100) {
+			window.location.href = "about:blank"; // atau redirect lain
+		}
+	}, 1000);
+</script>
+
+</body>
 
 
 
