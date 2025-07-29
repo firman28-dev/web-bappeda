@@ -332,7 +332,6 @@ Berita Bappeda
                         <ul class="modal-img">
                             <li> 
                                 <img src="{{asset('assets/images/gif/danger.gif')}}" alt="error">
-                                {{-- <img src="http://127.0.0.1:8001/assets/images/gif/danger.gif" alt="error"> --}}
                             </li>
                         </ul>
                         <h4 class="text-center pb-2">Terjadi Kesalahan Upload</h4>
