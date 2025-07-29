@@ -381,14 +381,21 @@ Halaman Informasi
 
             input.onchange = function () {
                 const file = this.files[0];
+                console.log('File selected:', file);
+
                 const formData = new FormData();
                 formData.append('file', file);
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+                console.log('CSRF Token:', csrfToken);
 
                 const xhr = new XMLHttpRequest();
                 xhr.open('POST', '/upload-file-information');
-                xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+                xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
 
                 xhr.onload = () => {
+                    console.log('XHR Status:', xhr.status); 
+                    console.log('XHR Response:', xhr.responseText);
+
                     if (xhr.status >= 200 && xhr.status < 300) {
                         const json = JSON.parse(xhr.responseText);
                         // Menambahkan link ke PDF
@@ -397,7 +404,9 @@ Halaman Informasi
                         alert('Upload gagal: ' + xhr.status);
                     }
                 };
-
+                xhr.onerror = () => {
+                    console.error('XHR Error occurred'); 
+                };
                 xhr.send(formData);
             };
 

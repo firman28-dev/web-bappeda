@@ -9,9 +9,8 @@ class PegawaiTerbaik extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama_pegawai',
-        'nip',
-        'foto',
+        'pegawai_id',
+        'path',
         'tahun',
         'bulan',
         'created_by',

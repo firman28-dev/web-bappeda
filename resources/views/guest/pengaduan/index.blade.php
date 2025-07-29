@@ -580,5 +580,25 @@
             "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
             ">"
     });
+
+    document.querySelectorAll('input[type="file"]').forEach(function(input) {
+        input.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const maxSize = 2 * 1024 * 1024; // 8 MB
+
+            if (file && file.type !== 'application/pdf') {
+                alert('File harus berformat PDF.');
+                e.target.value = ''; // Reset input
+            } else if (file && file.size > maxSize) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Ukuran file terlalu besar',
+                    text: 'Ukuran maksimal file adalah 2 MB.',
+                    confirmButtonText: 'Oke',
+                });
+                e.target.value = ''; // Reset input
+            }
+        });
+    });
 </script>
 @endsection

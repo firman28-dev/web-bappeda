@@ -79,7 +79,42 @@
 		</span>
 	</div>
 
+	<button id="kt_drawer_example_dismiss_button" class="btn btn-primary tombol_contact_us rounded-pill hover-elevate-down btn-icon">
+		<i class="fa-solid fa-circle-user"></i>
+	</button>
 
+	<div
+		id="kt_drawer_example_dismiss"
+		class="bg-white"
+		data-kt-drawer="true"
+		data-kt-drawer-activate="true"
+		data-kt-drawer-toggle="#kt_drawer_example_dismiss_button"
+		data-kt-drawer-close="#kt_drawer_example_dismiss_close"
+		data-kt-drawer-overlay="true"
+		data-kt-drawer-width="{default:'250px', 'md': '500px'}"
+	>
+		<div class="card rounded-0 w-100">
+			<div class="card-header pe-5">
+				<div class="card-title">
+					<div class="d-flex justify-content-center flex-column me-3">
+						<a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 lh-1">Pegawai Terbaik</a>
+					</div>
+				</div>
+				<div class="card-toolbar">
+					<div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_example_dismiss_close">
+						<i class="fa-solid fa-square-xmark fs-3"></i>
+					</div>
+				</div>
+			</div>
+			<div class="card-body hover-scroll-overlay-y">
+
+			</div>
+
+			<div class="card-footer">
+				<button class="btn btn-light-danger" data-kt-drawer-dismiss="true">Tutup</button>
+			</div>
+		</div>
+	</div>
   
   	<script src="{{asset('assets_global/plugins/global/plugins.bundle.js')}}"></script>
 	<script src="{{asset('assets_global/js/scripts.bundle.js')}}"></script>
