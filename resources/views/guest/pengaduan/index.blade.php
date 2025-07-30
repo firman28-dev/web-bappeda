@@ -232,7 +232,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Unduh Template Permohonan</label>
                                             <br>
-                                            <a href="{{ asset('pelayanan/Form Permohonan Informasi.docx') }}" class="btn btn-success btn-sm" download>
+                                            <a href="{{ asset('pelayanan/Form Permohonan Informasi - Bappeda.pdf') }}" class="btn btn-success btn-sm" download>
                                                 <i class="fa-solid fa-print"></i>
                                                 Unduh Template Permohonan Informasi
                                             </a>
@@ -406,7 +406,7 @@
                             </p>
                             <img src="{{asset('assets_global/media/illustration/chart-graph.png')}}" alt="" class="w-25">
                             <br>
-                            <a href="{{ asset('pelayanan/Form Keberatan Bappeda Prov. Sumbar.docx') }}" class="btn btn-success btn-sm" download>
+                            <a href="{{ asset('pelayanan/Form Keberatan - Bappeda.docx') }}" class="btn btn-success btn-sm" download>
                                 <i class="fa-solid fa-print"></i>
                                 Unduh Template Keberatan Informasi
                             </a>
