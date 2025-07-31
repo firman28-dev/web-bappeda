@@ -2,7 +2,7 @@
 
 @extends('partials.admin.master')
 
-@section('title', 'Pegawai Terbai')
+@section('title', 'Pegawai Terbaik')
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/select2.css') }}">
