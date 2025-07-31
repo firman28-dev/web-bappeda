@@ -101,7 +101,8 @@ class Pejabat_Controller extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
+            // 'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
+            'path' => 'required|image|max:3072',
             'bidang_id' => 'nullable',
             'group_id' => 'required',
         ],);

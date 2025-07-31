@@ -35,7 +35,8 @@ class PegawaiTerbaikController extends Controller
     public function store(Request $request){
         $request->validate([
             'pegawai_id' => 'required|int',
-            'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
+            // 'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
+            'path' => 'required|image|max:3072',
             'bulan' => 'required|int',
             'tahun' => 'required|int'
         ],);
