@@ -128,7 +128,7 @@
      <div class="modal-body"> 
        <div class="modal-toggle-wrapper">  
          <ul class="modal-img">
-           <li> <img src="http://127.0.0.1:8001/assets/images/gif/danger.gif" alt="error"></li>
+           <li> <img src="{{asset('assets/images/gif/danger.gif')}}" alt="error"></li>
          </ul>
          <h4 class="text-center pb-2">Terjadi Kesalahan Upload</h4>
          <p class="text-center c-light">Ukuran File yang kamu upload maksimal 3 MB. Silahkan diulangi kembali uploadnya</p>

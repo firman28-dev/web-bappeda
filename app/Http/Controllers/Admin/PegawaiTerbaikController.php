@@ -38,7 +38,7 @@ class PegawaiTerbaikController extends Controller
             // 'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
             'path' => 'required',
             'bulan' => 'required|int',
-            'tahun' => 'required|int',
+            'tahun' => 'required|int'
         ]);
 
         $existing = PegawaiTerbaik::where('bulan', $request->bulan)
