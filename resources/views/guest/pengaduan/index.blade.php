@@ -270,6 +270,7 @@
                                 <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Permohonan</button>
                             </form>
                             <div class="row mt-10">
+                                <h4>Statistik Permohonan Tahun {{$year}}</h4>
                                 <div class="col-lg-4">
                                     <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
                                         <div class="card-body">
@@ -282,10 +283,10 @@
                                                     </div>
                                                     <div class="col-xl-8 col-12 text-xl-start">
                                                         <p class="">
-                                                            DIAJUKAN
+                                                            Jumlah Permohonan
                                                         </p>
                                                         <h1 class="display-6">
-                                                            {{$total1_}}
+                                                            {{$jumlahPInfo}}
                                                         </h1>
                                                     </div>
                                                 </div>
@@ -305,10 +306,10 @@
                                                     </div>
                                                     <div class="col-xl-8 col-12 text-xl-start">
                                                         <p class="">
-                                                            DITOLAK
+                                                            Permohonan Ditolak
                                                         </p>
                                                         <h1 class="display-6">
-                                                            {{$total2_}}
+                                                            {{$total1_}}
                                                         </h1>
                                                     </div>
                                                 </div>
@@ -328,10 +329,10 @@
                                                     </div>
                                                     <div class="col-xl-8 col-12 text-xl-start">
                                                         <p class="">
-                                                            DITERIMA
+                                                            Permohonan Ditindaklanjuti
                                                         </p>
                                                         <h1 class="display-6">
-                                                            {{$total3_}}
+                                                            {{$total2_}}
                                                         </h1>
                                                     </div>
                                                 </div>
@@ -399,6 +400,7 @@
                                 <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Permohonan</button>
                             </form>
                             <div class="row mt-10">
+                                <h4 class="text-center mb-4">Statistik Pengaduan Tahun {{$year}}</h4>
                                 <div class="col-lg-4">
                                     <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
                                         <div class="card-body">
@@ -411,10 +413,10 @@
                                                     </div>
                                                     <div class="col-xl-8 col-12 text-xl-start">
                                                         <p class="">
-                                                            BELUM DITINDAKLANJUTI
+                                                            Jumlah Pengaduan
                                                         </p>
                                                         <h1 class="display-6">
-                                                            {{$total1}}
+                                                            {{$jumlahPengaduan}}
                                                         </h1>
                                                     </div>
                                                 </div>
@@ -434,10 +436,10 @@
                                                     </div>
                                                     <div class="col-xl-8 col-12 text-xl-start">
                                                         <p class="">
-                                                            SEDANG DITINDAKLANJUTI
+                                                            Sedang ditindaklanjuti
                                                         </p>
                                                         <h1 class="display-6">
-                                                            {{$total2}}
+                                                            {{$total1}}
                                                         </h1>
                                                     </div>
                                                 </div>
@@ -457,10 +459,10 @@
                                                     </div>
                                                     <div class="col-xl-8 col-12 text-xl-start">
                                                         <p class="">
-                                                            SUDAH DITINDAKLANJUTI
+                                                            Selesai Ditindaklanjuti
                                                         </p>
                                                         <h1 class="display-6">
-                                                            {{$total3}}
+                                                            {{$total2}}
                                                         </h1>
                                                     </div>
                                                 </div>

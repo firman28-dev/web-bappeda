@@ -14,6 +14,7 @@ use App\Models\News;
 use App\Models\Pengaduan;
 use App\Models\PermohonanInformasi;
 use App\Models\SosialMedia;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -22,22 +23,30 @@ use Illuminate\Support\Facades\Http;
 class Home_Controller extends Controller
 {
     public function indexPengaduan(){
-        $pengaduan = Pengaduan::orderBy('id', 'desc')->get();
-        $total1 = Pengaduan::where('status', 1)->count();
-        $total2 = Pengaduan::where('status', 2)->count();
-        $total3 = Pengaduan::where('status', 3)->count();
+        $year = Carbon::now()->year;
+        $jumlahPengaduan = Pengaduan::whereYear('created_at', $year)->count();
+        $total1 = Pengaduan::where('status', 2)
+            ->whereYear('created_at', $year)
+            ->count();
+        $total2 = Pengaduan::where('status', 3)
+            ->whereYear('created_at', $year)
+            ->count();
 
-        $total1_ = PermohonanInformasi::where('status', 1)->count();
-        $total2_ = PermohonanInformasi::where('status', 2)->count();
-        $total3_ = PermohonanInformasi::where('status', 3)->count();
+        $jumlahPInfo = PermohonanInformasi::whereYear('created_at', $year)->count();
+        $total1_ = PermohonanInformasi::where('status', 2)
+            ->whereYear('created_at', $year)
+            ->count();
+        $total2_ = PermohonanInformasi::where('status', 3)
+            ->whereYear('created_at', $year)
+            ->count();
         $sent = [
-            'pengaduan' => $pengaduan,
+            'jumlahPengaduan' => $jumlahPengaduan,
+            'jumlahPInfo' => $jumlahPInfo,
             'total1' => $total1,
             'total2' => $total2,
-            'total3' => $total3,
             'total1_' => $total1_,
             'total2_' => $total2_,
-            'total3_' => $total3_
+            'year' => $year
         ];
         return view('guest.pengaduan.index', $sent);
     }
