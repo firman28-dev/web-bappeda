@@ -3,11 +3,10 @@
 @section('content') 
 
     <div class="bg-content-news py-20 justify-content-center text-center">
-        <h1 class="text-center display-6 text-dark">Berita Bappeda</h1>
-        {{-- <h1 class="text-center text-white">Bidang {{$bidang->name}}</h1> --}}
-        {{-- <h1 class="display-6">{{ $page_system->title }}</h1> --}}
+        <h1 class="text-center display-6 text-white">Berita Bappeda</h1>
+        
     </div>
-    <div class="container mt-5">
+    <div class="container mt-10">
         {{-- <div class="card shadow-sm mb-10">
             <div class="card-body">
                 <div class="d-flex flex-row align-items-center gap-3">
