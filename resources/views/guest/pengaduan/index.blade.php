@@ -269,6 +269,77 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Permohonan</button>
                             </form>
+                            <div class="row mt-10">
+                                <div class="col-lg-4">
+                                    <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
+                                        <div class="card-body">
+                                            <div class="container text-center">
+                                                <div class="row d-flex align-items-center">
+                                                    <div class="col-xl-4 col-12">
+                                                        <div>
+                                                            <img src="{{asset('assets_global/icon_svg/039-bookmark.svg')}}" alt="" class="w-75">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-8 col-12 text-xl-start">
+                                                        <p class="">
+                                                            DIAJUKAN
+                                                        </p>
+                                                        <h1 class="display-6">
+                                                            {{$total1_}}
+                                                        </h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
+                                        <div class="card-body">
+                                            <div class="container text-center">
+                                                <div class="row d-flex align-items-center">
+                                                    <div class="col-xl-4 col-12">
+                                                        <div>
+                                                            <img src="{{asset('assets_global/icon_svg/048-search.svg')}}" alt="" class="w-75">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-8 col-12 text-xl-start">
+                                                        <p class="">
+                                                            DITOLAK
+                                                        </p>
+                                                        <h1 class="display-6">
+                                                            {{$total2_}}
+                                                        </h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
+                                        <div class="card-body">
+                                            <div class="container text-center">
+                                                <div class="row d-flex align-items-center">
+                                                    <div class="col-xl-4 col-12">
+                                                        <div>
+                                                            <img src="{{asset('assets_global/icon_svg/072-upload.svg')}}" alt="" class="w-75">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-8 col-12 text-xl-start">
+                                                        <p class="">
+                                                            DITERIMA
+                                                        </p>
+                                                        <h1 class="display-6">
+                                                            {{$total3_}}
+                                                        </h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="tab2">
                             <h4>Pengaduan</h4>
@@ -327,7 +398,7 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Permohonan</button>
                             </form>
-                             <div class="row mt-10">
+                            <div class="row mt-10">
                                 <div class="col-lg-4">
                                     <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
                                         <div class="card-body">

@@ -66,12 +66,12 @@
 
 		.access-btn {
 			position: fixed;
-			top: 30%;
-			right: 0;
+			top: 20%;
+			left: 0;
 			background: #003399;
 			color: white;
 			padding: 15px;
-			border-radius: 5px 0 0 5px;
+			border-radius: 0 7px 7px 0;
 			cursor: pointer;
 			z-index: 9999;
 		}
@@ -79,7 +79,7 @@
 		.access-panel {
 			position: fixed;
 			top: 100px;
-			right: 60px;
+			left: 60px;
 			background: #fff;
 			border: 1px solid #ccc;
 			width: 250px;
@@ -152,7 +152,7 @@
 
 	<button id="kt_drawer_example_dismiss_button"
 		class="btn btn-primary tombol_contact_us rounded-pill hover-elevate-down btn-icon">
-		<i class="fa-solid fa-circle-user"></i>
+		<i class="fa-solid fa-circle-user fs-2hx"></i>
 	</button>
 
 	<div id="kt_drawer_example_dismiss" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
@@ -173,6 +173,78 @@
 				</div>
 			</div>
 			<div class="card-body hover-scroll-overlay-y">
+				@php
+					$data = \App\Models\PegawaiTerbaik::orderBy('tahun')->orderBy('bulan')->get()->groupBy('tahun');
+				@endphp
+
+				<ul class="nav nav-tabs" id="tahunTabs" role="tablist">
+					@foreach ($data as $tahun => $bulans)
+						<li class="nav-item" role="presentation">
+							<button class="nav-link @if ($loop->first) active @endif" data-bs-toggle="tab" data-bs-target="#tahun-{{ $tahun }}" type="button" role="tab">
+								{{ $tahun }}
+							</button>
+						</li>
+					@endforeach
+				</ul>
+
+				<div class="tab-content mt-4" id="tahunTabsContent">
+					@foreach ($data as $tahun => $bulans)
+						<div class="tab-pane fade @if ($loop->first) show active @endif" id="tahun-{{ $tahun }}" role="tabpanel">
+							{{-- Tab Bulanan --}}
+							<ul class="nav nav-pills mb-3" id="bulanTabs-{{ $tahun }}" role="tablist">
+								@foreach ($bulans->groupBy('bulan') as $bulan => $items)
+									<li class="nav-item" role="presentation">
+										<button class="nav-link @if ($loop->first) active @endif" data-bs-toggle="pill" data-bs-target="#bulan-{{ $tahun }}-{{ $bulan }}" type="button" role="tab">
+											{{ \Carbon\Carbon::create()->month($bulan)->translatedFormat('F') }}
+										</button>
+									</li>
+								@endforeach
+							</ul>
+
+							<div class="tab-content" id="bulanTabsContent-{{ $tahun }}">
+								@foreach ($bulans->groupBy('bulan') as $bulan => $items)
+									<div class="tab-pane fade @if ($loop->first) show active @endif" id="bulan-{{ $tahun }}-{{ $bulan }}" role="tabpanel">
+										@foreach ($items as $item)
+											<div class="card mb-3">
+												<div class="card-body">
+													<table class="table table-borderless text-start mb-2">
+														<tbody>
+															<tr>
+																<th class="fw-bold text-gray-800">
+																	<span>Nama</span>
+																</th>
+																<td class="text-uppercase"><span>{{ $item->_pegawai->nama_pns ?? '' }}</span> </td>
+															</tr>
+															<tr>
+																<th class="fw-bold text-gray-800"><span>NIP</span></th>
+																<td>
+																	<span>
+																		{{ $item->_pegawai->nip ?? '' }}
+																	</span>
+																</td>
+															</tr>
+															<tr>
+																<th class="fw-bold text-gray-800">
+																	<span>
+																		Jabatan
+																	</span>
+																</th>
+																<td><span>{{ $item->_pegawai->jabatan_nm ?? '' }}</span> </td>
+															</tr>
+														</tbody>
+													</table>
+													@if($item->path)
+														<img src="{{ asset('uploads/pegawai_terbaik/' . $item->path) }}" width="250" />
+													@endif
+												</div>
+											</div>
+										@endforeach
+									</div>
+								@endforeach
+							</div>
+						</div>
+					@endforeach
+				</div>
 
 			</div>
 

@@ -2,20 +2,26 @@
 
 @section('content') 
 
+    <div class="bg-content-news py-20 justify-content-center text-center">
+        <h1 class="text-center display-6 text-dark">Berita Bappeda</h1>
+        {{-- <h1 class="text-center text-white">Bidang {{$bidang->name}}</h1> --}}
+        {{-- <h1 class="display-6">{{ $page_system->title }}</h1> --}}
+    </div>
     <div class="container mt-5">
-        <div class="card shadow-sm mb-10">
+        {{-- <div class="card shadow-sm mb-10">
             <div class="card-body">
                 <div class="d-flex flex-row align-items-center gap-3">
                     <div class="w-10px h-50px bg-purple" style="border-radius: 25%" ></div>
                     <h1 class="text-center display-6 pb-0">Berita Bappeda</h1>
                 </div>
             </div>
-        </div>
+        </div> --}}
+        
         <div class="row">
             <div class="col-lg-8 mb-2 content-description">
                 <div class="card rounded-custom shadow-sm mb-5 border-0">
                     <div class="card-body p-8">
-                        <div class="page-content text-custom content-description">
+                        <div class="page-content text-custom content-description mb-10">
                             @php
                                 $content = $news->description;
 
@@ -68,6 +74,7 @@
                             </div>
                             {!! $contentWithPdf !!}
                         </div>
+                        <p>Ditulis Oleh : {{$news->_user->username ?? 'Admin'}}</p>
                     </div>
                 </div>
             </div>

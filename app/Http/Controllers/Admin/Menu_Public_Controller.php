@@ -104,7 +104,7 @@ class Menu_Public_Controller extends Controller
             $menu->order_no = $request->order_no;
             $menu->save();
             // Alert::success('Success!', 'Berhasil Mengubah Data');
-            return redirect()->route('menu-public.index')->with('success', 'Berhasil Menambahkan data');
+            return redirect()->route('menu-public.index')->with('success', 'Berhasil Mengubah data');
 
         } catch (\Throwable $th) {
             throw $th;

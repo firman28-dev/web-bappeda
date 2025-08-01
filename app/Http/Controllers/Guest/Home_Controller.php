@@ -26,11 +26,18 @@ class Home_Controller extends Controller
         $total1 = Pengaduan::where('status', 1)->count();
         $total2 = Pengaduan::where('status', 2)->count();
         $total3 = Pengaduan::where('status', 3)->count();
+
+        $total1_ = PermohonanInformasi::where('status', 1)->count();
+        $total2_ = PermohonanInformasi::where('status', 2)->count();
+        $total3_ = PermohonanInformasi::where('status', 3)->count();
         $sent = [
             'pengaduan' => $pengaduan,
             'total1' => $total1,
             'total2' => $total2,
-            'total3' => $total3
+            'total3' => $total3,
+            'total1_' => $total1_,
+            'total2_' => $total2_,
+            'total3_' => $total3_
         ];
         return view('guest.pengaduan.index', $sent);
     }
