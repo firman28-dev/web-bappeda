@@ -145,7 +145,7 @@
                             <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-150px h-85px active" 
                                 id="kt_stats_widget_16_tab_link_1" 
                                 data-bs-toggle="pill" 
-                                href="#tab1">
+                                href="#tab_permohonan_infomasi">
                                 <div class="nav-icon mb-3">
                                     <i class="fa-solid fa-file-lines fs-2x"></i>
                                 </div>
@@ -157,7 +157,7 @@
                             <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-150px h-85px" 
                                 id="kt_stats_widget_16_tab_link_2" 
                                 data-bs-toggle="pill" 
-                                href="#tab2">
+                                href="#tab_pengaduan">
                                 <div class="nav-icon mb-3">
                                     <i class="fa-solid fa-triangle-exclamation fs-2x"></i>
                                 </div>
@@ -170,7 +170,7 @@
                             <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-150px h-85px" 
                                 id="kt_stats_widget_16_tab_link_4" 
                                 data-bs-toggle="pill" 
-                                href="#tab4">
+                                href="#tab_keberatan">
                                 <div class="nav-icon mb-3">
                                     <i class="fa-solid fa-circle-question fs-2x"></i>
                                 </div>
@@ -182,7 +182,7 @@
                             <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-150px h-85px" 
                                 id="kt_stats_widget_16_tab_link_3" 
                                 data-bs-toggle="pill" 
-                                href="#tab3">
+                                href="#tab_magang">
                                 <div class="nav-icon mb-3">
                                     <i class="fa-solid fa-user-graduate fs-2x"></i>
                                 </div>
@@ -193,7 +193,7 @@
                     </ul>
                     <hr>
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="tab1">
+                        <div class="tab-pane fade show active" id="tab_permohonan_infomasi">
                             <h4 class="mb-5">Permohonan Informasi</h4>
                             <form action="/laporan-permohonan-informasi" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -270,7 +270,7 @@
                                 <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Permohonan</button>
                             </form>
                             <div class="row mt-10">
-                                <h4>Statistik Permohonan Tahun {{$year}}</h4>
+                                <h4 class="text-center mb-4">Statistik Permohonan Tahun {{$year}}</h4>
                                 <div class="col-lg-4">
                                     <div class="card rounded-4 shadow-sm hover-elevate-up bg-backdrop2">
                                         <div class="card-body">
@@ -342,7 +342,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="tab2">
+                        <div class="tab-pane fade" id="tab_pengaduan">
                             <h4>Pengaduan</h4>
                             <form action="/laporan-pengaduan" method="POST">
                                 @csrf
@@ -472,7 +472,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="tab4">
+                        <div class="tab-pane fade" id="tab_keberatan">
                             <h4>Keberatan Atas Permohonan Informasi</h4>
                             <p>
                                 Untuk pengajuan keberatan silahkan mengisi form pada link dibawah ini dan menyampaikannya secara tertulis ke PPID pelaksana Bppeda Provinsi Sumatera Barat
@@ -484,7 +484,7 @@
                                 Unduh Template Keberatan Informasi
                             </a>
                         </div>
-                        <div class="tab-pane fade" id="tab3">
+                        <div class="tab-pane fade" id="tab_magang">
                             <h4>Magang</h4>
                             <form action="/pengajuan-magang" method="POST" enctype="multipart/form-data">
                                 @csrf
