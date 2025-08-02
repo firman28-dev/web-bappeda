@@ -59,7 +59,7 @@
                                         <img src="{{ asset('uploads/page_system/'.$page_system->image) }}" 
                                             class="card-img-top w-100" 
                                             alt="News Image" 
-                                            style="object-fit: cover; max-height: 400px;">
+                                            style="object-fit: cover;">
                                     </a>
                                 @endif
                                 {!! $contentWithPdf !!}
