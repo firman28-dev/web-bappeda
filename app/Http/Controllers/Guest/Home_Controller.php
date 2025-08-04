@@ -100,7 +100,7 @@ class Home_Controller extends Controller
             'captcha_magang' => 'required|numeric',
             'a' => 'required|numeric',
             'b' => 'required|numeric',
-            'path' => 'required|mimes:pdf|max:2048',
+            'path' => 'nullable|mimes:pdf|max:2048',
         ]);
 
         // return $request->started_at;
@@ -143,7 +143,7 @@ class Home_Controller extends Controller
             'instansi' => 'required|string|max:255',
             'phone' => 'required|max:15',
             'tujuan' => 'required|string',
-            'path' => 'required|mimes:pdf|max:2048',
+            'path' => 'nullable|mimes:pdf|max:2048',
             'captcha_permohonan' => 'required|numeric',
             'a' => 'required|numeric',
             'b' => 'required|numeric',
