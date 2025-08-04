@@ -3,8 +3,17 @@
 @section('content') 
 
     <div class="bg-content-news py-20 justify-content-center text-center">
-        <h1 class="text-center display-6 text-white">Bappeda Menulis</h1>
-        
+        <h1 class="text-center display-6 text-white">Berita Bappeda</h1>
+        <ul class="breadcrumb breadcrumb-dot m-auto fs-6 fw-semibold justify-content-center">
+            <a href="/" class="text-dark pe-2">Beranda</a>
+            <li class="breadcrumb-item text-dark"></li>
+            <a href="{{ route('guest.category-news', $news->category_id) }}" class="text-dark pe-3">{{ $news->_category->title ?? '-' }}</a>
+            <li class="breadcrumb-item text-dark"></li>
+            <span class="text-dark">
+                {{ $news->title }}
+            </span>
+            
+        </ul>
     </div>
     <div class="container mt-10">
         {{-- <div class="card shadow-sm mb-10">
