@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Category_Controller;
 use App\Http\Controllers\Admin\Dashboard_Controller;
 use App\Http\Controllers\Admin\FAQ_Controller;
 use App\Http\Controllers\Admin\Image_Controller;
+use App\Http\Controllers\Admin\KritikSaran_Controller;
 use App\Http\Controllers\Admin\List_Link_Controller;
 use App\Http\Controllers\Admin\MagangController;
 use App\Http\Controllers\Admin\MaintenanceController;
@@ -138,6 +139,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('indikator', IndikatorMakroSurveyController::class);
         Route::resource('pengaduan', PengaduanController::class);
         Route::resource('magang', MagangController::class);
+        Route::resource('kritiksaran', KritikSaran_Controller::class);
         Route::resource('permohonan-informasi', PermohonanInformasiController::class);
 
 

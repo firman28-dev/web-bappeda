@@ -129,6 +129,7 @@
                             <li><a href="{{ route('pengaduan.index') }}">Pengaduan</a></li>
                             <li><a href="{{ route('magang.index') }}">Pengajuan Magang</a></li>
                             <li><a href="{{ route('permohonan-informasi.index') }}">Permohonan Informasi</a></li>
+                            <li><a href="{{ route('permohonan-informasi.index') }}">Kritik dan Saran</a></li>
 
 
 

@@ -260,7 +260,7 @@ class Home_Controller extends Controller
 
         $jumlahHalamanDikunjungi = DB::table('visitor_stats')->count();
         $socials = SosialMedia::all();
-        $bappeda_menulis = News::where('category_id', 8)
+        $bappeda_menulis = News::where('category_id', 121)
             ->orderBy('id', 'desc')
             ->first();
         
