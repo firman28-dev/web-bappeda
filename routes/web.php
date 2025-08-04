@@ -73,6 +73,11 @@ Route::post('/pengajuan-magang', [Home_Controller::class, 'storeMagang'])->middl
 Route::post('/laporan-permohonan-informasi', [Home_Controller::class, 'storePermohonanInformasi'])->middleware('throttle:5,1');
 Route::post('/laporan-permohonan-informasi', [Home_Controller::class, 'storePermohonanInformasi'])->middleware('throttle:5,1');
 
+Route::get('/kritik-saran', function () {
+    return view('guest.pengaduan.saran_kritik');
+});
+Route::post('/kritik-saran', [Home_Controller::class, 'storeKritikSaran'])->middleware('throttle:5,1');
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/unauthorized', function () {

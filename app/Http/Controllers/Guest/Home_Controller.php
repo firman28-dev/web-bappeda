@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\Bidang;
 use App\Models\FAQ;
 use App\Models\IndikatorMakroSurvey;
+use App\Models\KritikSaran;
 use App\Models\List_Link;
 use App\Models\Magang;
 use App\Models\Menu_Public;
@@ -173,6 +174,36 @@ class Home_Controller extends Controller
         ]);
 
         return back()->with('success', 'Pengajuan permohonan informasi berhasil dikirim.');
+    }
+
+    public function storeKritikSaran(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|max:30',
+            'judul' => 'required|string|max:255',
+            'pesan' => 'required|string',
+            'a' => 'required|numeric',
+            'b' => 'required|numeric',
+        ]);
+
+        $expected = (int)$request->a + (int)$request->b;
+
+        if ((int)$request->captcha_saran_kritik !== $expected) {
+            return back()->withErrors(['captcha_saran_kritik' => 'Jawaban captcha salah.'])->withInput();
+        }
+
+        // Simpan pengaduan ke database
+        KritikSaran::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'judul' => $request->judul,
+            'pesan' => $request->pesan,
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
+        ]);
+
+        return back()->with('success', 'Kritik dan Saran berhasil dikirim.');
     }
     
 
