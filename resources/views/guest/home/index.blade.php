@@ -421,6 +421,12 @@
             <div class="col-lg-6">
                 <h1 class="text-center display-6 font-custom">BAPPEDA MENULIS</h1>
                 @if ($bappeda_menulis)
+                    <div class="text-end mb-3">
+                        <a href="{{ route('guest.category-news', 121) }}" class="text-decoration-none">
+                            <i class="fa-solid fa-share me-2 fs-4"></i>
+                            <span>Lebih banyak tulisan</span>
+                        </a>
+                    </div>
                     @php
                         $allowedExtensions = ['png', 'jpg', 'jpeg'];
                         $extension = strtolower(pathinfo($bappeda_menulis->image, PATHINFO_EXTENSION));
@@ -458,7 +464,7 @@
                         </div>
                     </div>
                 @else
-                    <p>Tidak ada artikel menulis terbaru.</p>
+                    <p class="text-center">Tidak ada artikel menulis terbaru.</p>
                 @endif
             </div>
         </div>

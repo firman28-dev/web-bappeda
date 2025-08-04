@@ -3,7 +3,7 @@
 @section('content') 
 
     <div class="bg-content-news py-20 justify-content-center text-center">
-        <h1 class="text-center display-6 text-white">Berita Bappeda</h1>
+        <h1 class="text-center display-6 text-white">Bappeda Menulis</h1>
         
     </div>
     <div class="container mt-10">
