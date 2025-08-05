@@ -117,7 +117,7 @@
                             <div class="col-lg-6 mb-lg-0 mb-2">
                                 <label>Pendidikan S2</label>
                                 <input class="form-control" type="text" placeholder="Pendidikan S2" name="s2" id="s2"
-                                    autocomplete="s2" required value="{{$pejabat->s2}}">
+                                    autocomplete="s2" value="{{$pejabat->s2}}">
                                 @error('s2')
                                     <div class="is-invalid">
                                         <span class="text-danger">
