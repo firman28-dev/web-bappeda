@@ -7,12 +7,12 @@
 @section('content') 
 
     <div class="bg-content-page py-20 justify-content-center text-center">
-        <h1 class="text-center display-6 text-white">Kategori {{$category->title}}</h1>
+        <h1 class="text-center display-6 text-white">{{$category->title}}</h1>
     </div>
     <div class="container mt-7">
         <div class="row">
             <div class="col-md-7 col-12">
-                <h2 class="mb-3">Kategory Berita</h2>
+                {{-- <h2 class="mb-3">Kategory Berita</h2> --}}
                 @forelse ($news as $item)
                 <div class="card shadow-sm mb-5 hover-elevate-up">
                     <div class="card-body">
