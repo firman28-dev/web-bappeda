@@ -15,4 +15,12 @@ class Guest_Profile_Controller extends Controller
         ];
         return view('guest.profile.index', $sent);
     }
+    public function show($id){
+        $pejabat = Pejabat::find($id);
+        // return $pejabat;
+        $sent = [
+            'pejabat' => $pejabat
+        ];
+        return view('guest.profile.detail', $sent);
+    }
 }

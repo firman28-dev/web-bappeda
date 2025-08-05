@@ -126,13 +126,26 @@
                             <li><a href="{{ route('pegawai-terbaik.index') }}">Pegawai Terbaik</a></li>
                             <li><a href="{{ route('banner.index') }}">Infografis</a></li>
                             <li><a href="{{ route('sosial-media.index') }}">Sosial Media</a></li>
+                            <li><a href="{{ route('sosial-media.index') }}">Gallery</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="sidebar-list">
+                        <i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-gallery') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-gallery') }}"></use>
+                            </svg>
+                            <span >Interaksi General</span>
+                        </a>
+                        <ul class="sidebar-submenu">
                             <li><a href="{{ route('pengaduan.index') }}">Pengaduan</a></li>
                             <li><a href="{{ route('magang.index') }}">Pengajuan Magang</a></li>
                             <li><a href="{{ route('permohonan-informasi.index') }}">Permohonan Informasi</a></li>
-                            <li><a href="{{ route('permohonan-informasi.index') }}">Kritik dan Saran</a></li>
-
-
-
+                            <li><a href="{{ route('kritiksaran.index') }}">Kritik dan Saran</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>

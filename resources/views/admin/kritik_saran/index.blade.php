@@ -35,7 +35,7 @@
 <div class="container-fluid datatable-init">
     <div class="card">
         <div class="card-header pb-0 card-no-border">
-            <h5>Daftar Pengajuan Magang</h5>
+            <h5>Daftar Kritik dan Saran</h5>
         </div>
         <div class="card-body">
             <div class="table-responsive custom-scrollbar">
@@ -45,14 +45,14 @@
                             <th style="width: 80px" class="text-center"> <span class="c-o-light f-w-600">No</span></th>
                             <th class="text-start"> <span class="c-o-light f-w-600">Nama </span></th>
                             <th class="w-25 text-start"> <span class="c-o-light f-w-600">Email</span></th>
-                            <th class="text-center"> <span class="c-o-light f-w-600">Judul</span></th>
-                            <th class="text-center"> <span class="c-o-light f-w-600">Isi Saran/Kritikan</span></th>
+                            <th> <span class="c-o-light f-w-600">Judul</span></th>
+                            <th > <span class="c-o-light f-w-600">Isi Saran/Kritikan</span></th>
                             <th class="text-center"> <span class="c-o-light f-w-600">Actions</span></th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($magang as $item)
+                        @foreach ($kritik as $item)
                              <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama??'' }}</td>
