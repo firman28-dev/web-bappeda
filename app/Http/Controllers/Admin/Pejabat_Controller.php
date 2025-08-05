@@ -104,8 +104,8 @@ class Pejabat_Controller extends Controller
             'path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
             // 'path' => 'required',
             'bidang_id' => 'nullable',
-            's1' => 'required|string|max:100',
-            's2' => 'nullable|string|max:100',
+            's1' => 'required|string|max:255',
+            's2' => 'nullable|string|max:255',
             'email' => 'required|string|max:50',
             'group_id' => 'required',
         ],);
