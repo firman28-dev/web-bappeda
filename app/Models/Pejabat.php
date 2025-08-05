@@ -10,6 +10,9 @@ class Pejabat extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'email',
+        's1',
+        's2',
         'group_id',
         'bidang_id',
         'created_by',

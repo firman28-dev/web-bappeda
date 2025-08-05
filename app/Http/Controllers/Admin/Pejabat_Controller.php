@@ -101,9 +101,12 @@ class Pejabat_Controller extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            // 'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
-            'path' => 'required',
+            'path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
+            // 'path' => 'required',
             'bidang_id' => 'nullable',
+            's1' => 'required|string|max:100',
+            's2' => 'required|string|max:100',
+            'email' => 'required|string|max:50',
             'group_id' => 'required',
         ],);
         $user = Auth::user();
@@ -112,6 +115,9 @@ class Pejabat_Controller extends Controller
         try {
             $pejabat = Pejabat::find($id);
             $pejabat->name = $request->name;
+            $pejabat->email = $request->email;
+            $pejabat->s1 = $request->s1;
+            $pejabat->s2 = $request->s2;
             $pejabat->bidang_id = $request->bidang_id;
             $pejabat->group_id = $request->group_id;
             $pejabat->updated_by = $user->id;

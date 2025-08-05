@@ -47,12 +47,14 @@
                     <thead>
                         <tr>
                             <th style="width: 90px"> <span class="c-o-light f-w-600">No</span></th>
-                            <th class="text-start"> <span class="c-o-light f-w-600">Nama Pejabat</span></th>
+                            <th class="text-start" style="width: 300px"> <span class="c-o-light f-w-600">Nama Pejabat</span></th>
                             <th> <span class="c-o-light f-w-600">Foto</span></th>
                             <th> <span class="c-o-light f-w-600">Jabatan</span></th>
                             <th> <span class="c-o-light f-w-600">Bidang</span></th>
+                            <th> <span class="c-o-light f-w-600">Pendidikan S1</span></th>
+                            <th> <span class="c-o-light f-w-600">Pendidikan S2</span></th>
+                            <th> <span class="c-o-light f-w-600">Email</span></th>
                             <th> <span class="c-o-light f-w-600">Actions</span></th>
-                            
                         </tr>
                     </thead>
                     <tbody>
@@ -75,6 +77,9 @@
                                 </td>
                                 <td>{{ $item->_group->ket ?? '-' }}</td>
                                 <td>{{ $item->_bidang->name ?? '-' }}</td>
+                                <td>{{ $item->s1 ?? '-' }}</td>
+                                <td>{{ $item->s2 ?? '-' }}</td>
+                                <td>{{ $item->email ?? '-' }}</td>
                                 <td>
                                     <ul class="action">
                                         <li class="edit"> 
