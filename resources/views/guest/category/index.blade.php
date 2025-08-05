@@ -32,7 +32,7 @@
                                 <div class="d-flex align-items-center mt-2 mb-2 text-muted">
                                     <i class="fas fa-calendar px-2"></i>{{ $date }}
                                     <span class="px-2">|</span>
-                                    <i class="fas fa-user px-2"></i>{{ $item->created_by ?? '-' }}
+                                    <i class="fas fa-user px-2"></i>{{ $item->created_by ?? 'Admin' }}
                                     <span class="px-2">|</span>
                                     <i class="fa-solid fa-eye px-2"></i>{{ $item->hits ?? '-' }}
                                 </div>
