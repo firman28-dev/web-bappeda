@@ -51,9 +51,18 @@
             @endforeach
 
             <div class="d-lg-none py-3 px-4">
-                <a href="#" class="btn rounded-4 btn-outline-primary btn-outline py-4">
-                    <i class="fa-solid fa-bell"></i>
+                <a href="{{route('guest.index')}}">
+                    <img alt="Logo" src="{{asset('assets_global/icon/berakhlak.png')}}"
+                    class="text-black h-35px app-sidebar-logo-default theme-light-show" />
                 </a>
+                &nbsp;
+                <a href="{{route('guest.index')}}">
+                    <img alt="Logo" src="{{asset('assets_global/icon/bangga.png')}}"
+                    class="text-black h-35px app-sidebar-logo-default theme-light-show" />
+                </a>
+                {{-- <a href="#" class="btn rounded-4 btn-outline-primary btn-outline py-4">
+                    <i class="fa-solid fa-bell"></i>
+                </a> --}}
             </div>
             
             </div>
@@ -61,9 +70,18 @@
 
         <div class="app-navbar">
             <div class="app-navbar-item ms-1 ms-lg-3 d-none d-lg-block d-md-block d-sm-block m-auto" id="kt_app_header_menu">
-                <a href="#" class="btn rounded-4 btn-outline-primary btn-outline btn-icon">
-                    <i class="fa-solid fa-bell"></i>
+                <a href="{{route('guest.index')}}">
+                    <img alt="Logo" src="{{asset('assets_global/icon/berakhlak.png')}}"
+                    class="text-black h-35px app-sidebar-logo-default theme-light-show" />
                 </a>
+                &nbsp;
+                <a href="{{route('guest.index')}}">
+                    <img alt="Logo" src="{{asset('assets_global/icon/bangga.png')}}"
+                    class="text-black h-35px app-sidebar-logo-default theme-light-show" />
+                </a>
+                {{-- <a href="#" class="btn rounded-4 btn-outline-primary btn-outline btn-icon">
+                    <i class="fa-solid fa-bell"></i>
+                </a> --}}
             </div>
 
             <div class="app-navbar-item d-lg-none ms-2 me-n3" title="Show header menu">
