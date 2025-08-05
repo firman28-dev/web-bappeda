@@ -32,6 +32,9 @@
                         </div>
                         <h2>{{$kaban->name}}</h2>
                         <p>{{$kaban->_group->ket}}</p>
+                        <p>Pendidikan S2 : {{$kaban->s2 ?? ''}}</p>
+                        <p>Pendidikan S1 :  {{$kaban->s1 ?? ''}}</p>
+                        <p>Email : {{$kaban->email ?? ''}}</p>
                         <a href="{{ asset('lhkpn/LHKPN_KABAN.pdf') }}"target="_blank">
                             Lihat LHKPN
                         </a>
@@ -64,6 +67,9 @@
                                         </div>
                                         <h2>{{$item->name}}</h2>
                                         <p>{{$item->_group->ket}} {{$item->_bidang->name}} </p>
+                                        <p>Pendidikan S2 :  {{$item->s2 ?? ''}}</p>
+                                        <p>Pendidikan S1 :  {{$item->s1 ?? ''}}</p>
+                                        <p>Email : {{$item->email ?? ''}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -99,6 +105,16 @@
                                         </div>
                                         <h1>{{$item->name}}</h1>
                                         <p class="lead">{{$item->_group->ket}} {{$item->subid}}</p>
+                                        <table>
+                                            <thead>
+                                                <tr></tr>
+                                            </thead>
+                                        </table>
+                                        @if ($item->s2)
+                                        <p>Pendidikan S2 : {{$item->s2 ?? ''}}</p>
+                                        @endif
+                                        <p>Pendidikan S1 :  {{$item->s1 ?? ''}}</p>
+                                        <p>Email : {{$item->email ?? ''}}</p>
                                     </div>
                                 </div>
                             </div>

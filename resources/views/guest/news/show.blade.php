@@ -89,8 +89,9 @@
             <div class="col-lg-4 mb-2">
                 <div class="row">
                     @php
-                        $newsAllV2 = $newsAll->take(3);
+                        $newsAllV2 = $newsAll->take(4);
                     @endphp
+                    <h2 class="mb-3">Berita Terbaru</h2>
                     @foreach ($newsAllV2 as $item)
                         <div class="col-lg-12 mb-5">
                             <div class="card shadow-sm rounded-4 overflow-hidden mb-4 h-100 border-0 d-flex flex-column mb-3" >
@@ -193,7 +194,7 @@
                     @endforeach
                 </div>
 
-                @if ($newsAll->count() > 3)
+                @if ($newsAll->count() > 4)
                     <div class="text-end mb-3">
                         <a href="{{ route('guest.get-category', $news->bidang_id) }}" class="d-inline-flex align-items-center">
                             <i class="fa-solid fa-share me-2 fs-4"></i>

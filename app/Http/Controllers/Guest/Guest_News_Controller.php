@@ -38,9 +38,7 @@ class Guest_News_Controller extends Controller
         $news = News::find($id);
         if($news){
             $news->increment('hits');
-            $newsAll = News::where('bidang_id', $news->bidang_id)
-            // ->whereNot('id', $news->id)
-            ->get();
+            $newsAll = News::orderBy('id', 'desc')->get();
             // return $news;
             $sent = [
                 'news' => $news,

@@ -32,68 +32,6 @@
 	<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 	<link href="{{asset('assets_global/custom/custom.css')}}" rel="stylesheet" type="text/css" />
 	@yield('css')
-	<style>
-		body.access-high-contrast {
-			filter: contrast(200%);
-		}
-
-		body.access-dark-mode {
-			background-color: #000;
-			color: #fff;
-		}
-
-		body.access-light-mode {
-			background-color: #fff;
-			color: #000;
-		}
-
-		body.access-readable-font {
-			font-family: Arial, sans-serif;
-			font-size: 1.1em;
-		}
-
-		body.access-grey-scale {
-			filter: grayscale(100%);
-		}
-
-		body.access-underline-links a {
-			text-decoration: underline;
-		}
-
-		body.access-text-left {
-			text-align: left;
-		}
-
-		.access-btn {
-			position: fixed;
-			top: 20%;
-			left: 0;
-			background: #003399;
-			color: white;
-			padding: 15px;
-			border-radius: 0 7px 7px 0;
-			cursor: pointer;
-			z-index: 9999;
-		}
-
-		.access-panel {
-			position: fixed;
-			top: 100px;
-			left: 60px;
-			background: #fff;
-			border: 1px solid #ccc;
-			width: 250px;
-			display: none;
-			z-index: 9998;
-			padding: 10px;
-		}
-
-		.access-panel button {
-			display: block;
-			width: 100%;
-			margin: 5px 0;
-		}
-	</style>
 
 </head>
 
@@ -150,14 +88,22 @@
 		</span>
 	</div>
 
-	<button id="kt_drawer_example_dismiss_button"
-		class="btn btn-primary tombol_contact_us rounded-pill hover-elevate-down btn-icon">
-		<i class="fa-solid fa-circle-user fs-2hx"></i>
-	</button>
+	{{-- <button id="kt_drawer_example_dismiss_button" class="btn btn-primary d-flex align-items-center gap-3 px-5 py-3 rounded-pill shadow-sm tombol_contact_us">
+		<i class="fa-solid fa-circle-user fs-1"></i>Pegawai Terbaik
+	</button> --}}
+
+	<div id="kt_drawer_example_dismiss_button" class="btn btn-primary position-fixed bottom-0 start-0 m-6 d-flex align-items-center gap-2 px-4 py-3 rounded-pill shadow-lg z-index-1030" style="z-index: 1030;">
+		<i class="fa-solid fa-circle-user text-white fs-2"></i>
+		<span class="fs-4 fw-bold text-white">Pegawai Terbaik</span>
+	</div>
+	{{-- <div class="access-btn-contact-us" id="kt_drawer_example_dismiss_button">
+		<i class="fa-solid fa-circle-user pe-2 text-white"></i> Pegawai Terbaik
+	</div> --}}
 
 	<div id="kt_drawer_example_dismiss" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
 		data-kt-drawer-toggle="#kt_drawer_example_dismiss_button"
 		data-kt-drawer-close="#kt_drawer_example_dismiss_close" data-kt-drawer-overlay="true"
+		data-kt-drawer-direction="start"
 		data-kt-drawer-width="{default:'250px', 'md': '500px'}">
 		<div class="card rounded-0 w-100">
 			<div class="card-header pe-5">
@@ -253,9 +199,12 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="access-btn" onclick="togglePanel()">
 		<i class="fa fa-wheelchair text-white"></i> Akses
 	</div>
+
+	
 
 	<!-- Panel Aksesibilitas -->
 	<div class="access-panel" id="accessPanel">

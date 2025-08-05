@@ -7,7 +7,11 @@
 @section('content') 
 
     <div class="bg-content-page py-20 justify-content-center text-center">
-        <h1 class="text-center display-6 text-white">{{$category->title}}</h1>
+        <h1 class="display-6 text-white text-center fw-bold position-relative d-inline-block"
+            style="padding-bottom: 0.5rem;">
+            {{$category->title}}
+            <span class="span-custom"></span>
+        </h1>
     </div>
     <div class="container mt-7">
         <div class="row">

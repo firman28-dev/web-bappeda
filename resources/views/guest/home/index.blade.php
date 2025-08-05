@@ -624,14 +624,16 @@
             <h1 class="display-6 pb-10">Dokumen Publik</h1>
             <div class="row align-items-stretch">
                 <div class="col-lg-4 mb-8">
-                    <div class="card rounded-custom2 shadow-sm">
-                        <div class="card-body">
-                            <div class="d-flex flex-row gap-5 align-items-center">
-                                <img src="{{asset('assets_global/icon/no1.png')}}" alt="">
-                                <h3 class="lh-sm">Rencana Kerja Pemerintah Daerah</h3>
+                    <a href="/home/category/91">
+                        <div class="card rounded-custom2 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex flex-row gap-5 align-items-center">
+                                    <img src="{{asset('assets_global/icon/no1.png')}}" alt="">
+                                    <h3 class="lh-sm">Rencana Kerja Pemerintah Daerah</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-4 mb-8">
                     <div class="card rounded-custom2 shadow-sm">
@@ -644,34 +646,40 @@
                     </div>
                 </div>
                 <div class="col-lg-4 mb-8">
-                    <div class="card rounded-custom2 shadow-sm">
-                        <div class="card-body">
-                            <div class="d-flex flex-row gap-5 align-items-center">
-                                <img src="{{asset('assets_global/icon/no3.png')}}" alt="">
-                                <h3 class="lh-sm">Rencana Pembangunan Jangka Panjang Daerah</h3>
+                    <a href="/home/category/127">
+                        <div class="card rounded-custom2 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex flex-row gap-5 align-items-center">
+                                    <img src="{{asset('assets_global/icon/no3.png')}}" alt="">
+                                    <h3 class="lh-sm">Rencana Pembangunan Jangka Panjang Daerah</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-4 mb-8">
-                    <div class="card rounded-custom2 shadow-sm">
-                        <div class="card-body">
-                            <div class="d-flex flex-row gap-5 align-items-center">
-                                <img src="{{asset('assets_global/icon/no4.png')}}" alt="">
-                                <h3 class="lh-sm">Rencana Pembangunan Jangka Menegah Daerah</h3>
+                    <a href="/home/category/90">
+                        <div class="card rounded-custom2 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex flex-row gap-5 align-items-center">
+                                    <img src="{{asset('assets_global/icon/no4.png')}}" alt="">
+                                    <h3 class="lh-sm">Rencana Pembangunan Jangka Menegah Daerah</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-4 mb-8">
-                    <div class="card rounded-custom2 shadow-sm">
-                        <div class="card-body">
-                            <div class="d-flex flex-row gap-5 align-items-center">
-                                <img src="{{asset('assets_global/icon/no5.png')}}" alt="">
-                                <h3 class="lh-sm">Laporan Keterangan Pertanggungjawaban</h3>
+                    <a href="/home/category/108">
+                        <div class="card rounded-custom2 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex flex-row gap-5 align-items-center">
+                                    <img src="{{asset('assets_global/icon/no5.png')}}" alt="">
+                                    <h3 class="lh-sm">Laporan Keterangan Pertanggungjawaban</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-4 mb-8">
                     <div class="card rounded-custom2 shadow-sm">
