@@ -572,6 +572,41 @@
             xhr.send(formData);
         });
 
+        // const file_upload_handler = (callback, value, meta) => {
+        //     const input = document.createElement('input');
+        //     input.setAttribute('type', 'file');
+
+        //     if (meta.filetype === 'file') {
+        //         input.setAttribute('accept', '.pdf'); // hanya PDF
+        //     } else if (meta.filetype === 'image') {
+        //         input.setAttribute('accept', 'image/*');
+        //     }
+
+        //     input.onchange = function () {
+        //         const file = this.files[0];
+        //         const formData = new FormData();
+        //         formData.append('file', file);
+
+        //         const xhr = new XMLHttpRequest();
+        //         xhr.open('POST', '/upload-pdf-news');
+        //         xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+
+        //         xhr.onload = () => {
+        //             if (xhr.status >= 200 && xhr.status < 300) {
+        //                 const json = JSON.parse(xhr.responseText);
+        //                 // Menambahkan link ke PDF
+        //                 callback(json.location, { text: file.name });
+        //             } else {
+        //                 alert('Upload gagal: ' + xhr.status);
+        //             }
+        //         };
+
+        //         xhr.send(formData);
+        //     };
+
+        //     input.click();
+        // };
+
         const file_upload_handler = (callback, value, meta) => {
             const input = document.createElement('input');
             input.setAttribute('type', 'file');
@@ -588,7 +623,7 @@
                 formData.append('file', file);
 
                 const xhr = new XMLHttpRequest();
-                xhr.open('POST', '/upload-pdf-news');
+                xhr.open('POST', '/upload-file-news');
                 xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
 
                 xhr.onload = () => {
@@ -606,7 +641,6 @@
 
             input.click();
         };
-
         tinymce.init({
             selector: '#description',
             license_key: 'gpl',
