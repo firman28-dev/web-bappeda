@@ -65,7 +65,13 @@
                                                 @endif
                                             </div>
                                             <h2>{{$item->name}}</h2>
-                                            <p>{{$item->_group->ket}} {{$item->_bidang->name}} </p>
+                                            <p>
+                                                @if ($item->bidang_id != 5)
+                                                    {{ $item->_group->ket }}
+                                                @endif
+                                                {{ $item->_bidang->name ?? '' }}
+                                            </p>
+                                            
                                         </div>
                                     </div>
                                 </a>

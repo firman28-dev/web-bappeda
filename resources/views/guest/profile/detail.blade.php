@@ -28,13 +28,18 @@
                 @endif
             </div>
             <div class="col-lg-7">
-                <h2 class="section-title">Informasi</h2>
+                <h2 class="section-title">Informasi Pejabat</h2>
                 <ul class="contact-info-list">
                     <li>
                         <div class="icon-circle"><i class="fas fa-user text-white"></i></div>
                         <div class="info-text">
                             @if (!$pejabat->subid)
-                                <strong>{{ $pejabat->_group->ket }} {{$pejabat->_bidang->name ?? ''}} </strong>
+                                <strong>
+                                    @if ($pejabat->bidang_id != 5)
+                                        {{ $pejabat->_group->ket }}
+                                    @endif
+                                    {{ $pejabat->_bidang->name ?? '' }}
+                                </strong>
                             @else
                                 <strong>{{ $pejabat->_group->ket }} {{$pejabat->subid}}</strong>
                             @endif
