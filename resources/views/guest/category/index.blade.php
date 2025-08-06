@@ -42,8 +42,11 @@
                                 </div>
                                 @php
                                     $desc = $item->description;
+
                                     $containsImageOrPdf = preg_match('/<img|<embed|\.pdf/i', $desc);
-                                    $descText = !$containsImageOrPdf ? Str::limit(strip_tags($desc), 250) : null;
+
+                                    // decode HTML entities sebelum di-strip dan dibatasi
+                                    $descText = !$containsImageOrPdf ? Str::limit(strip_tags(html_entity_decode($desc)), 250) : null;
                                 @endphp
 
                                 @if ($descText)
