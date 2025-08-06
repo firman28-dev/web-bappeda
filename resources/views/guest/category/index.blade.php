@@ -40,6 +40,16 @@
                                     <span class="px-2">|</span>
                                     <i class="fa-solid fa-eye px-2"></i>{{ $item->hits ?? '-' }}
                                 </div>
+                                @php
+                                    $desc = $item->description;
+                                    $containsImageOrPdf = preg_match('/<img|<embed|\.pdf/i', $desc);
+                                    $descText = !$containsImageOrPdf ? Str::limit(strip_tags($desc), 250) : null;
+                                @endphp
+
+                                @if ($descText)
+                                    <p class="mt-2">{{ $descText }}</p>
+                                @endif
+
                                 <a href="{{ route('guest.news', $item->id) }}" class="w-50 btn btn-outline btn-outline-primary rounded-4 btn-sm">Lihat</a>
                             </div>
                         </div>
