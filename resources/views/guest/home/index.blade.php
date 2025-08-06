@@ -988,7 +988,7 @@
                         Tooltip on top
                     </button> --}}
                     <a href="{{$item->url}}" target="_blank" class="d-flex align-items-stretch w-100" >
-                        <div class="card w-100 d-flex align-items-center shadow-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $item->desc ?? 'Deskripsi tidak tersedia' }}">
+                        <div class="card w-100 d-flex align-items-center shadow-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $item->description ?? 'Deskripsi tidak tersedia' }}">
                             <div class="card-body d-flex align-items-center justify-content-center">
                                 <p>{{$item->name}}</p>
                                 <img src="{{ asset('uploads/list_link/' . $item->path) }}" alt="File Image" class="w-50">
