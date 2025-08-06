@@ -102,14 +102,15 @@
                                 <div class="card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between text-muted small mb-2">
                                         <span><i class="fa-solid fa-eye"></i> {{$item->hits}} Viewers</span>
-                                        <span>{{ $item->_user->username ?? ' Admin' }}</span>
+                                        {{-- <span>{{ $item->_user->username ?? ' Admin' }}</span> --}}
+                                        <span>Admin</span>
+                                        
                                     </div>
                                 
                                     <p class="card-title fw-bold mb-3">
                                         {{ $item->title }}
                                     </p>
                                 
-                                    <!-- Tombol baca selengkapnya dipaksa ke bawah -->
                                     <div class="mt-auto d-flex justify-content-between">
                                         <span>Bidang: <div class="badge badge-light-danger">{{$item->_bidang->label}}</div></span>
                                         <a href="{{ route('guest.news', $item->id) }}" class="text-decoration-none d-inline-flex align-items-center text-orange fw-semibold">

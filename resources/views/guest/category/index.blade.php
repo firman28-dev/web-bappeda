@@ -89,7 +89,9 @@
                             <div class="card-body d-flex flex-column">
                                 <div class="d-flex justify-content-between text-muted small mb-2">
                                     <span><i class="fa-solid fa-eye"></i> {{$item->hits}} Viewers</span>
-                                    <span>{{ $item->_user->username ?? ' Admin' }}</span>
+                                    {{-- <span>{{ $item->_user->username ?? ' Admin' }}</span> --}}
+                                    <span>Admin</span>
+
                                 </div>
                             
                                 <p class="card-title fw-bold mb-3">

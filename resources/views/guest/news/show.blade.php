@@ -82,7 +82,6 @@
                             </div>
                             {!! $contentWithPdf !!}
                         </div>
-                        {{-- <p>Ditulis Oleh : {{$news->_user->username ?? 'Admin'}}</p> --}}
                     </div>
                 </div>
             </div>
@@ -96,16 +95,7 @@
                         <div class="col-lg-12 mb-5">
                             <div class="card shadow-sm rounded-4 overflow-hidden mb-4 h-100 border-0 d-flex flex-column mb-3" >
                                 <div class="position-relative">
-                                    {{-- @php
-                                        $allowedExtensions = ['png', 'jpg', 'jpeg'];
-                                        $imagePath = public_path('uploads/news/' . $item->image);
-                                        $extension = strtolower(pathinfo($item->image, PATHINFO_EXTENSION));
-                                        $imageUrl = (isset($item->image) &&
-                                                    file_exists($imagePath) &&
-                                                    in_array($extension, $allowedExtensions))
-                                                    ? asset('uploads/news/' . $item->image)
-                                                    : asset('uploads/news/default.jpg');
-                                    @endphp --}}
+                                    
 
                                     @php
                                         $allowedExtensions = ['png', 'jpg', 'jpeg'];
@@ -136,7 +126,8 @@
                                 <div class="card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between text-muted small mb-2">
                                         <span><i class="fa-solid fa-eye"></i> {{$item->hits}} Viewers</span>
-                                        <span>{{ $item->_user->username ?? ' Admin' }}</span>
+                                        {{-- <span>{{ $item->_user->username ?? ' Admin' }}</span> --}}
+                                        <span>Admin</span>
                                     </div>
                                 
                                     <p class="card-title fw-bold mb-3">
@@ -157,39 +148,6 @@
                                 
                             </div>
 
-                            {{-- <div class="card rounded-custom2 shadow-sm" >
-                                <div class="card-header p-3">
-                                    @php
-                                        $allowedExtensions = ['png', 'jpg', 'jpeg'];
-                                        $imagePath = public_path('uploads/news/' . $item->image);
-                                        $extension = strtolower(pathinfo($item->image, PATHINFO_EXTENSION));
-
-                                        $imageUrl = (isset($item->image) &&
-                                                    file_exists($imagePath) &&
-                                                    in_array($extension, $allowedExtensions))
-                                                    ? asset('uploads/news/' . $item->image)
-                                                    : asset('uploads/news/default.jpg');
-                                    @endphp
-
-                                    <img src="{{ $imageUrl }}"
-                                        alt="File Image"
-                                        class="w-100 rounded-custom2"
-                                        style="max-height: 150px">
-                                </div>
-                                <div class="card-body">
-                                    <p>
-                                        {{ $item->title }}
-                                    </p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="flex d-flex flex-row justify-content-between">
-                                        <span>Bidang: <div class="badge badge-light-danger">{{$item->_bidang->label}}</div></span>
-                                        <a href="{{route('guest.news', $item->id)}}" >
-                                            Baca Selengkapnya →
-                                        </a>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                     @endforeach
                 </div>
@@ -202,9 +160,6 @@
                         </a>
                     </div>
                 @endif
-                {{-- <div class="text-center mt-4">
-                    <a href="" class="justify-content-center">Lihat lainnya</a>
-                </div> --}}
             </div>
         </div>
 
