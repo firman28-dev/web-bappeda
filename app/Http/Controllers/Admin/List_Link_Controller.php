@@ -33,12 +33,12 @@ class List_Link_Controller extends Controller
             'url' => 'required|string|max:255',
             'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
             'status_id' => 'required',
-            'desc' => 'required|string'
+            'description' => 'required|string'
 
         ],[
             'name.required' => 'Nama wajib diisi.',
             'status_id.required' => 'Status wajib diisi.',
-            'desc.required' => 'Deskripsi wajib diisi.',
+            'description.required' => 'Deskripsi wajib diisi.',
             'url.required' => 'URL wajib diisi.',
             'path.required' => 'Foto wajib diunggah.',
             'path.image' => 'Foto yang diunggah harus berupa gambar.',
@@ -57,7 +57,7 @@ class List_Link_Controller extends Controller
 
             $list_link = new List_Link();
             $list_link->name = $request->name;
-            $list_link->desc = $request->desc;
+            $list_link->description = $request->description;
             $list_link->url = $request->url;
             $list_link->path = $fileName;
             $list_link->status_id = $request->status_id;
@@ -90,12 +90,12 @@ class List_Link_Controller extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'url' => 'required|string|max:255',
-            'desc' => 'required|string',
+            'description' => 'required|string',
             'path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
         ],[
             'name.required' => 'Nama wajib diisi.',
             'url.required' => 'URL wajib diisi.',
-            'desc.required' => 'Deskripsi wajib diisi.',
+            'description.required' => 'Deskripsi wajib diisi.',
             'path.image' => 'Foto yang diunggah harus berupa gambar.',
             'path.mimes' => 'Foto harus berformat jpeg, png, jpg, atau gif.',
             'path.max' => 'Ukuran foto maksimal 2MB.',
@@ -108,7 +108,7 @@ class List_Link_Controller extends Controller
 
             $list_link = List_Link::find($id);
             $list_link->name = $request->name;
-            $list_link->desc = $request->desc;
+            $list_link->description = $request->description;
             $list_link->url = $request->url;
             if ($file) {
                 $oldFile = $_SERVER['DOCUMENT_ROOT'] . '/uploads/list_link/' . $list_link->path;

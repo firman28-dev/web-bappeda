@@ -222,7 +222,7 @@ class Home_Controller extends Controller
             ->get();
         // return $data;
         $list_link = Cache::remember('list_link', 30, function () {
-            return List_Link::where('status_id', 4)->get(['path','url','id','desc']);
+            return List_Link::where('status_id', 4)->get(['path','url','id','description']);
         });
         $bidang = Bidang::where('status_id', 1)
             ->with(['_news:id,title,description,bidang_id,image,created_at,hits,created_by,hits']) 

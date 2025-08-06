@@ -65,7 +65,7 @@
                                 <td class="border border-1 text-center">
                                     <img src="{{ asset('uploads/list_link/' . $item->path) }}" alt="File Image" class="img-50">
                                 </td>
-                                <td>{{ $item->desc ?? '-' }}</td>
+                                <td>{{ $item->description ?? '-' }}</td>
                                 <td> 
                                     <span class="badge {{ $item->_status->id == 4 ? 'badge-light-success' : 'badge-light-danger' }}"> {{ $item->_status->name }}</span>
                                 <td>

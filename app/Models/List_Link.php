@@ -12,7 +12,7 @@ class List_Link extends Model
         'name',
         'url',
         'path',
-        'desc',
+        'description',
         'status_id',
         'created_by',
         'updated_by'

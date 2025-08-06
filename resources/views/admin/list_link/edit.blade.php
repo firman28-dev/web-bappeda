@@ -66,8 +66,8 @@
                         </div>
                         <div class="col-lg-6">
                             <label> Deskripsi Link</label>
-                            <textarea name="desc" id="desc" class="form-control" placeholder="Deskripsi Singkat" required autocomplete="desc">{{$list_link->desc}}</textarea>
-                            @error('desc')
+                            <textarea name="description" id="description" class="form-control" placeholder="Deskripsi Singkat" required autocomplete="description">{{$list_link->description}}</textarea>
+                            @error('description')
                                 <div class="is-invalid">
                                     <span class="text-danger">
                                         {{$message}}
