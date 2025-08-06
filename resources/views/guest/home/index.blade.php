@@ -469,7 +469,7 @@
                                     <div>
                                         <h5 class="fw-bold mb-2">{{ $bappeda_menulis->title }}</h5>
                                         <p class="mb-2" style="margin-bottom: 0 !important;">
-                                            {!! Str::limit(strip_tags($bappeda_menulis->description), 200) !!}
+                                            {!! Str::limit(strip_tags($bappeda_menulis->description), 250) !!}
                                         </p>
                                     </div>
                                     <div>
