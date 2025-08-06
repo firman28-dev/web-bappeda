@@ -92,4 +92,17 @@ class Gallery_Controller extends Controller
             throw $th;
         }
     }
+
+    public function destroy($id){
+        $gallery = Gallery::findOrFail($id);
+        if ($gallery->image) {
+            $imagePath = public_path('uploads/gallery/' . $gallery->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+    
+        $gallery->delete();
+        return redirect()->back()->with('success', 'Berhasil menghapus data');
+    }
 }
