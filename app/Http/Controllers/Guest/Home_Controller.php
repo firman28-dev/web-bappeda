@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Bidang;
 use App\Models\FAQ;
+use App\Models\Gallery;
 use App\Models\IndikatorMakroSurvey;
 use App\Models\KritikSaran;
 use App\Models\List_Link;
@@ -221,7 +222,7 @@ class Home_Controller extends Controller
             ->get();
         // return $data;
         $list_link = Cache::remember('list_link', 30, function () {
-            return List_Link::where('status_id', 4)->get(['path','url','id']);
+            return List_Link::where('status_id', 4)->get(['path','url','id','desc']);
         });
         $bidang = Bidang::where('status_id', 1)
             ->with(['_news:id,title,description,bidang_id,image,created_at,hits,created_by,hits']) 
@@ -319,5 +320,12 @@ class Home_Controller extends Controller
             'nasional' => $data->pluck('nasional'),
         ]);
     }
+
+    public function showGallery(){
+        $galleries = Gallery::orderBy('id','desc')->where('status_id',4)->get();
+        return view('guest.gallery.index', compact('galleries'));
+
+    }
+
 
 }

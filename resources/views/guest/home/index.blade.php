@@ -968,10 +968,29 @@
             {{-- <h1 class="display-6 pb-10">Link Terkait</h1> --}}
             {{-- <span class="d-inline-block position-absolute h-8px bottom-0 end-0 start-0 bg-primary translate rounded"></span> --}}
             @foreach ($list_link as $item)
-                <div class="col-xl-4 col-md-6 mb-4 aos-init aos-animate d-flex align-items-stretch" data-aos="fade-up" data-aos-duration="1000">
-                    <a href="{{$item->url}}" target="_blank" class="d-flex align-items-stretch w-100">
-                        <div class="card w-100 d-flex align-items-center shadow-sm">
+                <div class="col-xl-4 col-md-6 mb-4 aos-init aos-animate d-flex align-items-stretch">
+                    {{-- <a href="{{ $item->url }}" 
+                        target="_blank" 
+                        class="d-flex align-items-stretch w-100"
+                        data-bs-toggle="tooltip" 
+                        data-bs-html="true"
+                        data-bs-placement="top"
+                        title="<strong>{{ $item->desc?? '' }}</strong><br><em>Klik untuk membuka link</em>">
+                        
+                            <div class="card w-100 d-flex align-items-center shadow-sm">
+                                <div class="card-body d-flex align-items-center justify-content-center">
+                                    <img src="{{ asset('uploads/list_link/' . $item->path) }}" alt="File Image" class="w-50">
+                                </div>
+                            </div>
+                    </a> --}}
+
+                    {{-- <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                        Tooltip on top
+                    </button> --}}
+                    <a href="{{$item->url}}" target="_blank" class="d-flex align-items-stretch w-100" >
+                        <div class="card w-100 d-flex align-items-center shadow-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $item->desc ?? 'Deskripsi tidak tersedia' }}">
                             <div class="card-body d-flex align-items-center justify-content-center">
+                                <p>{{$item->name}}</p>
                                 <img src="{{ asset('uploads/list_link/' . $item->path) }}" alt="File Image" class="w-50">
                             </div>
                         </div>
@@ -1502,6 +1521,7 @@
             });
         });
 
+       
     </script>
 
     <script async src="//www.instagram.com/embed.js"></script>

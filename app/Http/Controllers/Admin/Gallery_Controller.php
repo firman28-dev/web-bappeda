@@ -3,24 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Banner;
+use App\Models\Gallery;
 use App\Models\Status;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class Banner_Controller extends Controller
+class Gallery_Controller extends Controller
 {
     public function index(){
-        $banner = Banner::orderBy('id','desc')->get();
+        $gallery = Gallery::orderBy('id','desc')->get();
         $status = Status::whereIn('id', [4, 5])->get();
-
-        $sent = [
-            'banner' => $banner,
-            'status' => $status
-        ];
-
-        return view('admin.banner.index', $sent);
-        
+        return view('admin.gallery.index', compact('gallery','status'));
     }
 
     public function store(Request $request){
@@ -45,15 +37,15 @@ class Banner_Controller extends Controller
                 $fileName = $unique.'_'.time(). '_' . $file->getClientOriginalName();
                 //untuk server
                 // $path = $file->storeAs('uploads/list_link', $fileName, 'public');
-                $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/banner/', $fileName);
+                $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/gallery/', $fileName);
             }
 
-            $banner = new Banner();
+            $banner = new Gallery();
             $banner->name = $request->name;
             $banner->image = $fileName;
             $banner->status_id = $request->status_id;
             $banner->save();
-            return redirect()->route('banner.index')->with('success', 'Berhasil Menambahkan data');
+            return redirect()->route('gallery.index')->with('success', 'Berhasil Menambahkan data');
 
 
         } catch (\Throwable $th) {
@@ -78,65 +70,26 @@ class Banner_Controller extends Controller
         
         try {
             
-            $banner = Banner::find($id);
+            $gallery = Gallery::find($id);
             // return $banner;
-            $banner->name = $request->name;
+            $gallery->name = $request->name;
             if ($file) {
                 $unique = uniqid();
-                $oldFile = $_SERVER['DOCUMENT_ROOT'] . '/uploads/banner/' . $banner->image;
+                $oldFile = $_SERVER['DOCUMENT_ROOT'] . '/uploads/gallery/' . $gallery->image;
                 if (file_exists($oldFile)) {
                     unlink($oldFile); // Hapus file lama
                 }
                 $fileName = $unique.'_'.time() . '_' . $file->getClientOriginalName();
-                $file->move($_SERVER['DOCUMENT_ROOT'] . '/uploads/banner/', $fileName);
-                $banner->image = $fileName;
+                $file->move($_SERVER['DOCUMENT_ROOT'] . '/uploads/gallery/', $fileName);
+                $gallery->image = $fileName;
             }
-            $banner->status_id = $request->status_id;
-            $banner->save();
-            return redirect()->route('banner.index')->with('success', 'Berhasil Mengubah data');
+            $gallery->status_id = $request->status_id;
+            $gallery->save();
+            return redirect()->route('gallery.index')->with('success', 'Berhasil Mengubah data');
 
 
         } catch (\Throwable $th) {
             throw $th;
         }
-    }
-
-    public function create(){
-        $status = Status::whereIn('id', [4, 5])->get();
-        $sent = [
-            'status' => $status
-        ];
-        return view('admin.banner.create', $sent);
-
-    }
-
-    public function edit($id){
-        $banner = Banner::find($id);
-        $status = Status::whereIn('id', [4, 5])->get();
-
-        $sent = [
-            'banner' => $banner,
-            'status' => $status
-        ];
-        if($banner){
-            return view('admin.banner.edit', $sent);
-        }
-        else{
-            return view('error_page.error_404');
-        }
-
-    }
-
-    public function destroy($id){
-        $banner = Banner::findOrFail($id);
-        if ($banner->image) {
-            $imagePath = public_path('uploads/banner/' . $banner->image);
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-            }
-        }
-    
-        $banner->delete();
-        return redirect()->back()->with('success', 'Berhasil menghapus data');
     }
 }

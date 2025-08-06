@@ -126,7 +126,7 @@
                             <li><a href="{{ route('pegawai-terbaik.index') }}">Pegawai Terbaik</a></li>
                             <li><a href="{{ route('banner.index') }}">Infografis</a></li>
                             <li><a href="{{ route('sosial-media.index') }}">Sosial Media</a></li>
-                            <li><a href="{{ route('sosial-media.index') }}">Gallery</a></li>
+                            <li><a href="{{ route('gallery.index') }}">Gallery</a></li>
 
                         </ul>
                     </li>

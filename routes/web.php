@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Bidang_Controller;
 use App\Http\Controllers\Admin\Category_Controller;
 use App\Http\Controllers\Admin\Dashboard_Controller;
 use App\Http\Controllers\Admin\FAQ_Controller;
+use App\Http\Controllers\Admin\Gallery_Controller;
 use App\Http\Controllers\Admin\Image_Controller;
 use App\Http\Controllers\Admin\KritikSaran_Controller;
 use App\Http\Controllers\Admin\List_Link_Controller;
@@ -80,7 +81,7 @@ Route::get('/kritik-saran', function () {
     return view('guest.pengaduan.saran_kritik');
 });
 Route::post('/kritik-saran', [Home_Controller::class, 'storeKritikSaran'])->middleware('throttle:5,1');
-
+Route::get('/show-gallery', [Home_Controller::class, 'showGallery'])->name('guest.showGallery');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/unauthorized', function () {
@@ -143,6 +144,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('magang', MagangController::class);
         Route::resource('kritiksaran', KritikSaran_Controller::class);
         Route::resource('permohonan-informasi', PermohonanInformasiController::class);
+        Route::resource('gallery', Gallery_Controller::class);
 
 
 

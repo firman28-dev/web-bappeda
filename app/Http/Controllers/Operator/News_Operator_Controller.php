@@ -68,6 +68,7 @@ class News_Operator_Controller extends Controller
             $news->category_id = $request->category_id;
             $news->created_by = $user->id;
             $news->updated_by = $user->id;
+            $news->hits = 0;
 
             if ($file) {
                 $unique = uniqid();

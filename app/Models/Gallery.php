@@ -5,24 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class List_Link extends Model
+class Gallery extends Model
 {
     use HasFactory;
     protected $fillable = [
         'name',
-        'url',
-        'path',
-        'desc',
-        'status_id',
+        'image',
         'created_by',
-        'updated_by'
-    ];  
+        'updated_by',
+        'status_id',
 
+    ];  
     public function _status()
     {
         return $this->belongsTo(Status::class, 'status_id', 'id');
     }
-
     
-    protected $table = 'list_link';
+    protected $table = 'gallery';
 }
