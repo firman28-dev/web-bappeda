@@ -82,7 +82,7 @@
                             </div>
                             {!! $contentWithPdf !!}
                         </div>
-                        <p>Ditulis Oleh : {{$news->_user->username ?? 'Admin'}}</p>
+                        {{-- <p>Ditulis Oleh : {{$news->_user->username ?? 'Admin'}}</p> --}}
                     </div>
                 </div>
             </div>

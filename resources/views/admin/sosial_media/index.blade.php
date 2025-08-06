@@ -35,7 +35,7 @@
 <div class="container-fluid datatable-init">
     <div class="card">
         <div class="card-header pb-0 card-no-border">
-            <h5>Daftar Pejabat Bappeda</h5>
+            <h5>Daftar Sosial Media</h5>
         </div>
         <div class="card-body">
             {{-- <a href="{{route('sosial-media.create')}}" class="btn btn-sm btn-primary mb-3">
