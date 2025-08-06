@@ -462,10 +462,10 @@
                             <div class="d-flex" style="min-height: 120px;">
                                 <div class="me-3">
                                     <img src="{{ $imageUrl }}" alt="News Image"
-                                        style="width: 160px; height: 130px; object-fit: cover; border-radius: 8px;">
+                                        style="width: 160px; height: 150px; object-fit: cover; border-radius: 8px;">
                                 </div>
 
-                                <div class="flex-grow-1 d-flex flex-column justify-content-between" style="height: 130px;">
+                                <div class="flex-grow-1 d-flex flex-column justify-content-between" style="height: 150px;">
                                     <div>
                                         <h5 class="fw-bold mb-2">{{ $bappeda_menulis->title }}</h5>
                                         <p class="mb-2" style="margin-bottom: 0 !important;">
