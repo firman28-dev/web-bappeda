@@ -156,7 +156,7 @@
                                                 <i class="fa-solid fa-trash-can" ></i>
                                             </a>
                                             <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="confirmDelete{{ $item->id }}">
-                                                <form action="" method="POST">
+                                                <form action="{{ route('gallery.destroy', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('delete')
                                                     <div class="modal-dialog">
