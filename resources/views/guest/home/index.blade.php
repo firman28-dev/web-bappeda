@@ -442,11 +442,7 @@
                                     : asset('uploads/news/default.jpg');
                     @endphp
                     <div class="card shadow-sm border-0">
-                        <div class="card-body">
-                            {{-- <img src="{{ $imageUrl }}" class="h-100px w-150px" alt="News Image">
-                            <h5 >{{ $bappeda_menulis->title }}</h5>
-                            <p >{!! Str::limit(strip_tags($bappeda_menulis->description,), 200) !!}</p>
-                            <a href="" class="btn btn-sm btn-outline-primary btn-outline text-end">Baca Selengkapnya</a> --}}
+                        {{-- <div class="card-body">
                             <div class="d-flex">
                                 <div class="me-3 align-self-start">
                                     <img src="{{ $imageUrl }}" alt="News Image"
@@ -459,6 +455,28 @@
                                     <a href="{{ route('guest.news', $bappeda_menulis->id) }}" class="btn btn-sm btn-outline btn-outline-primary">
                                         Baca Selengkapnya
                                     </a>
+                                </div>
+                            </div>
+                        </div> --}}
+                        <div class="card-body">
+                            <div class="d-flex" style="min-height: 120px;">
+                                <div class="me-3">
+                                    <img src="{{ $imageUrl }}" alt="News Image"
+                                        style="width: 160px; height: 130px; object-fit: cover; border-radius: 8px;">
+                                </div>
+
+                                <div class="flex-grow-1 d-flex flex-column justify-content-between" style="height: 130px;">
+                                    <div>
+                                        <h5 class="fw-bold mb-2">{{ $bappeda_menulis->title }}</h5>
+                                        <p class="mb-2" style="margin-bottom: 0 !important;">
+                                            {!! Str::limit(strip_tags($bappeda_menulis->description), 200) !!}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('guest.news', $bappeda_menulis->id) }}" class="btn btn-sm btn-outline btn-outline-primary mt-1">
+                                            Baca Selengkapnya
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

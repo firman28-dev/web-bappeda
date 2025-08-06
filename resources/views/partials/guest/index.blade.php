@@ -88,17 +88,12 @@
 		</span>
 	</div>
 
-	{{-- <button id="kt_drawer_example_dismiss_button" class="btn btn-primary d-flex align-items-center gap-3 px-5 py-3 rounded-pill shadow-sm tombol_contact_us">
-		<i class="fa-solid fa-circle-user fs-1"></i>Pegawai Terbaik
-	</button> --}}
 
 	<div id="kt_drawer_example_dismiss_button" class="btn btn-primary position-fixed bottom-0 start-0 m-6 d-flex align-items-center gap-2 px-4 py-3 rounded-pill shadow-lg z-index-1030" style="z-index: 1030;">
 		<i class="fa-solid fa-circle-user text-white fs-2"></i>
 		<span class="fs-4 fw-bold text-white">Pegawai Terbaik</span>
 	</div>
-	{{-- <div class="access-btn-contact-us" id="kt_drawer_example_dismiss_button">
-		<i class="fa-solid fa-circle-user pe-2 text-white"></i> Pegawai Terbaik
-	</div> --}}
+	
 
 	<div id="kt_drawer_example_dismiss" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
 		data-kt-drawer-toggle="#kt_drawer_example_dismiss_button"
@@ -121,12 +116,17 @@
 			<div class="card-body hover-scroll-overlay-y">
 				@php
 					$data = \App\Models\PegawaiTerbaik::orderBy('tahun')->orderBy('bulan')->get()->groupBy('tahun');
+					$latestTahun = $data->keys()->max();
 				@endphp
 
 				<ul class="nav nav-tabs" id="tahunTabs" role="tablist">
 					@foreach ($data as $tahun => $bulans)
 						<li class="nav-item" role="presentation">
-							<button class="nav-link @if ($loop->first) active @endif" data-bs-toggle="tab" data-bs-target="#tahun-{{ $tahun }}" type="button" role="tab">
+							<button class="nav-link @if ($tahun == $latestTahun) active @endif"
+								data-bs-toggle="tab"
+								data-bs-target="#tahun-{{ $tahun }}"
+								type="button"
+								role="tab">
 								{{ $tahun }}
 							</button>
 						</li>
@@ -135,12 +135,23 @@
 
 				<div class="tab-content mt-4" id="tahunTabsContent">
 					@foreach ($data as $tahun => $bulans)
-						<div class="tab-pane fade @if ($loop->first) show active @endif" id="tahun-{{ $tahun }}" role="tabpanel">
-							{{-- Tab Bulanan --}}
+						@php
+							$bulansByMonth = $bulans->sortBy('bulan')->groupBy('bulan'); // urut bulan naik
+							$latestBulan = $bulansByMonth->keys()->max(); // cari bulan terakhir
+						@endphp
+
+						<div class="tab-pane fade @if ($tahun == $latestTahun) show active @endif"
+							id="tahun-{{ $tahun }}"
+							role="tabpanel">
+
 							<ul class="nav nav-pills mb-3" id="bulanTabs-{{ $tahun }}" role="tablist">
-								@foreach ($bulans->groupBy('bulan') as $bulan => $items)
+								@foreach ($bulansByMonth as $bulan => $items)
 									<li class="nav-item" role="presentation">
-										<button class="nav-link @if ($loop->first) active @endif" data-bs-toggle="pill" data-bs-target="#bulan-{{ $tahun }}-{{ $bulan }}" type="button" role="tab">
+										<button class="nav-link @if ($tahun == $latestTahun && $bulan == $latestBulan) active @endif"
+											data-bs-toggle="pill"
+											data-bs-target="#bulan-{{ $tahun }}-{{ $bulan }}"
+											type="button"
+											role="tab">
 											{{ \Carbon\Carbon::create()->month($bulan)->translatedFormat('F') }}
 										</button>
 									</li>
@@ -148,38 +159,30 @@
 							</ul>
 
 							<div class="tab-content" id="bulanTabsContent-{{ $tahun }}">
-								@foreach ($bulans->groupBy('bulan') as $bulan => $items)
-									<div class="tab-pane fade @if ($loop->first) show active @endif" id="bulan-{{ $tahun }}-{{ $bulan }}" role="tabpanel">
+								@foreach ($bulansByMonth as $bulan => $items)
+									<div class="tab-pane fade @if ($tahun == $latestTahun && $bulan == $latestBulan) show active @endif"
+										id="bulan-{{ $tahun }}-{{ $bulan }}"
+										role="tabpanel">
 										@foreach ($items as $item)
 											<div class="card mb-3">
 												<div class="card-body">
 													<table class="table table-borderless text-start mb-2">
 														<tbody>
 															<tr>
-																<th class="fw-bold text-gray-800">
-																	<span>Nama</span>
-																</th>
-																<td class="text-uppercase"><span>{{ $item->_pegawai->nama_pns ?? '' }}</span> </td>
+																<th class="fw-bold text-gray-800">Nama</th>
+																<td class="text-uppercase">{{ $item->_pegawai->nama_pns ?? '' }}</td>
 															</tr>
 															<tr>
-																<th class="fw-bold text-gray-800"><span>NIP</span></th>
-																<td>
-																	<span>
-																		{{ $item->_pegawai->nip ?? '' }}
-																	</span>
-																</td>
+																<th class="fw-bold text-gray-800">NIP</th>
+																<td>{{ $item->_pegawai->nip ?? '' }}</td>
 															</tr>
 															<tr>
-																<th class="fw-bold text-gray-800">
-																	<span>
-																		Jabatan
-																	</span>
-																</th>
-																<td><span>{{ $item->_pegawai->jabatan_nm ?? '' }}</span> </td>
+																<th class="fw-bold text-gray-800">Jabatan</th>
+																<td>{{ $item->_pegawai->jabatan_nm ?? '' }}</td>
 															</tr>
 														</tbody>
 													</table>
-													@if($item->path)
+													@if ($item->path)
 														<img src="{{ asset('uploads/pegawai_terbaik/' . $item->path) }}" width="250" />
 													@endif
 												</div>
@@ -191,6 +194,7 @@
 						</div>
 					@endforeach
 				</div>
+
 
 			</div>
 
