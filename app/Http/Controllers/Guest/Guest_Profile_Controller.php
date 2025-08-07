@@ -17,10 +17,16 @@ class Guest_Profile_Controller extends Controller
     }
     public function show($id){
         $pejabat = Pejabat::find($id);
-        // return $pejabat;
-        $sent = [
-            'pejabat' => $pejabat
-        ];
-        return view('guest.profile.detail', $sent);
+        if ($pejabat) {
+            // return $pejabat;
+            $sent = [
+                'pejabat' => $pejabat
+            ];
+            return view('guest.profile.detail', $sent);
+        }
+        else{
+            return view('guest.error_page.error_404');
+        }
+        
     }
 }

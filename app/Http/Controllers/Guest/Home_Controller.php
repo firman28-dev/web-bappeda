@@ -224,9 +224,18 @@ class Home_Controller extends Controller
         $list_link = Cache::remember('list_link', 30, function () {
             return List_Link::where('status_id', 4)->get(['path','url','id','description']);
         });
+        // $bidang = Bidang::where('status_id', 1)
+        //     ->with(['_news:id,title,description,bidang_id,image,created_at,hits,created_by']) 
+        //     ->get(['id', 'icon', 'label']);
         $bidang = Bidang::where('status_id', 1)
-            ->with(['_news:id,title,description,bidang_id,image,created_at,hits,created_by,hits']) 
+            ->with([
+                '_news' => function ($query) {
+                    $query->select('id', 'title', 'description', 'bidang_id', 'image', 'created_at', 'hits', 'created_by')
+                        ->orderByDesc('id');
+                }
+            ])
             ->get(['id', 'icon', 'label']);
+
             // ->with('_news')
             // ->get();
         $latest_news = News::where('status_id',4)

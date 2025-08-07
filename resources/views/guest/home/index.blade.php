@@ -419,7 +419,7 @@
                 </p>
             </div>
             <div class="col-lg-6">
-                <h1 class="text-center display-6 font-custom">BAPPEDA MENULIS</h1>
+                <h1 class="text-center display-6 font-custom">Bappeda Menulis</h1>
                 @if ($bappeda_menulis)
                     <div class="text-end mb-3">
                         <a href="{{ route('guest.category-news', 121) }}" class="text-decoration-none">
@@ -524,7 +524,6 @@
                         <div class="row d-flex align-items-stretch mb-4">
                             @forelse ($item->_news->slice(0, 3) as $dataNews)
                             <div class="col-lg-4 d-flex align-items-stretch mb-5">
-                                
                                 <div class="card shadow-sm rounded-4 overflow-hidden mb-4 h-100 border-0 d-flex flex-column mb-3 w-100" >
                                     <div class="position-relative">
                                         @php
@@ -541,8 +540,6 @@
                                                         ? asset('uploads/news/' . $dataNews->image)
                                                         : asset('uploads/news/default.jpg');
                                         @endphp
-
-
             
                                         <img src="{{ $imageUrl }}" class="card-img-top img-hover-zoom" alt="News Image" style="height: 200px; object-fit: cover;">
                                 
@@ -615,7 +612,6 @@
                 <div id="kt_carousel_3_carousel" class="carousel carousel-custom slide" data-bs-ride="carousel" data-bs-interval="4000">
                     <div class="d-flex align-items-center justify-content-between flex-wrap">
                         <h1 class="display-6 text-center">Infografis BAPPEDA</h1>
-
                         
                         <ol class="p-0 m-0 carousel-indicators carousel-indicators-bullet carousel-indicators-active-primary">
                             @foreach ($banner as $key => $item)
