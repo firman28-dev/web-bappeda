@@ -9,8 +9,8 @@
 	<meta charset="utf-8" />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link href="{{asset('assets_global/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet"
-		type="text/css" />
+	<meta name="description" content="Bappeda Provinsi Sumatera Barat hadir sebagai pusat perencanaan dan pengembangan daerah. Temukan layanan, dokumen, dan informasi terkini.">
+	<link href="{{asset('assets_global/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('assets_global/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('assets_global/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -184,7 +184,10 @@
 														</tbody>
 													</table>
 													@if ($item->path)
-														<img src="{{ asset('uploads/pegawai_terbaik/' . $item->path) }}" width="250" />
+													<a data-fslightbox="gallery" href="{{ asset('uploads/pegawai_terbaik/' . $item->path) }}">
+															<img src="{{ asset('uploads/pegawai_terbaik/' . $item->path) }}" style="max-width:100%;height:auto;" width="100%">
+													</a>
+														{{-- <img src="{{ asset('uploads/pegawai_terbaik/' . $item->path) }}" width="250" /> --}}
 													@endif
 												</div>
 											</div>
@@ -285,6 +288,8 @@
 			}
 		});
 	</script>
+    <script src="https://cdn.jsdelivr.net/npm/fslightbox/index.js"></script>
+
 </body>
 
 
