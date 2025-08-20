@@ -97,7 +97,7 @@
         <div class="container mb-10">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <canvas id="myChart" width="400" height="130"></canvas>
+                    <canvas id="myChart" style="height: 200px; width: 100%;"></canvas>
                 </div>
             </div>
         </div>

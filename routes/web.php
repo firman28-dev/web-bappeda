@@ -58,6 +58,7 @@ Route::get('/home/pages/{id}', [Guest_Page_System_Controller::class, 'show'])->n
 Route::get('/home/ppid/{id}', [Guest_Page_System_Controller::class, 'showPpid'])->name('guest.showPpid');
 Route::get('/profile/profile-pejabat', [Guest_Profile_Controller::class, 'index'])->name('guest.pejabat');
 Route::get('/profile/profile-pejabat/{id}', [Guest_Profile_Controller::class, 'show'])->name('guest.showpejabat');
+Route::get('/profile/list-pegawai', [Guest_Profile_Controller::class, 'showPegawai'])->name('guest.showPegawai');
 
 Route::get('/home/category/{id}', [Guest_Category_Controller::class, 'index'])->name('guest.category-news');
 Route::get('/laporan-informasi', [Home_Controller::class, 'indexPengaduan'])->name('guest.indexPengaduan');
