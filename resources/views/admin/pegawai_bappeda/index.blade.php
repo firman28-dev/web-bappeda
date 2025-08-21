@@ -42,10 +42,10 @@
 <div class="container-fluid datatable-init">
     <div class="card">
         <div class="card-header pb-0 card-no-border">
-            <h5>Daftar Gallery</h5>
+            <h5>Daftar Pegawai</h5>
         </div>
         <div class="card-body">
-            <button class="btn btn-primary mx-auto mt-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModallogin"><i class="fa-solid fa-plus pe-1"></i>Tambah</button>
+            {{-- <button class="btn btn-primary mx-auto mt-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModallogin"><i class="fa-solid fa-plus pe-1"></i>Tambah</button> --}}
             <div class="table-responsive custom-scrollbar state-saving-table">
                 <table class="display border table-striped" id="basic-9" style="width: 100%;">
                     <thead>
