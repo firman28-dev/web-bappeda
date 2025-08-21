@@ -1200,7 +1200,12 @@
                     create3DPieChart(chartData);
                 },
                 error: function () {
-                    alert("Gagal mengambil data.");
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Gagal mengambil data Pagu Bappeda dari Simbangda!",
+                        confirmButtonColor: "#d33"
+                    });
                 }
             });
         }

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\MaintenanceController;
 use App\Http\Controllers\Admin\Menu_Public_Controller;
 use App\Http\Controllers\Admin\News_Controller;
 use App\Http\Controllers\Admin\Page_System_Controller;
+use App\Http\Controllers\Admin\PegawaiBappedaController;
 use App\Http\Controllers\Admin\PegawaiTerbaikController;
 use App\Http\Controllers\Admin\Pejabat_Controller;
 use App\Http\Controllers\Admin\PengaduanController;
@@ -34,6 +35,7 @@ use App\Http\Controllers\Kabid\News_Kabid_Controller;
 use App\Http\Controllers\Operator\News_Operator_Controller;
 use App\Http\Controllers\UploadController;
 use App\Http\Middleware\MaintenanceMode;
+use App\Models\PegawaiBappeda;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -146,6 +148,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('kritiksaran', KritikSaran_Controller::class);
         Route::resource('permohonan-informasi', PermohonanInformasiController::class);
         Route::resource('gallery', Gallery_Controller::class);
+
+        Route::resource('pegawai-bappeda', PegawaiBappedaController::class);
+
 
 
 

@@ -71,7 +71,7 @@
                         </a>
                     </li>
                     
-                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                    {{-- <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{route('pejabat.index')}}" >
                             <svg class="stroke-icon">
                                 <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-user') }}"></use>
@@ -82,6 +82,18 @@
                             <span>Pejabat Bappeda</span>
                         </a>
                     </li>
+
+                    <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{route('pegawai-bappeda.index')}}" >
+                            <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-user') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-user') }}"></use>
+                            </svg>
+                            <span>Pegawai Bappeda</span>
+                        </a>
+                    </li> --}}
 
                     <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{route('bidang.index')}}" >
@@ -114,6 +126,23 @@
                         <i class="fa-solid fa-thumbtack"></i>
                         <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                             <svg class="stroke-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-user') }}"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-user') }}"></use>
+                            </svg>
+                            <span >Pegawai </span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('pejabat.index') }}">Pejabat Bappeda</a></li>
+                            <li><a href="{{ route('pegawai-terbaik.index') }}">Pegawai Terbaik</a></li>
+                            <li><a href="{{ route('pegawai-bappeda.index') }}">Pegawai Bappeda</a></li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-list">
+                        <i class="fa-solid fa-thumbtack"></i>
+                        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                            <svg class="stroke-icon">
                                 <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-gallery') }}"></use>
                             </svg>
                             <svg class="fill-icon">
@@ -123,7 +152,6 @@
                         </a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('faq.index') }}">FAQ</a></li>
-                            <li><a href="{{ route('pegawai-terbaik.index') }}">Pegawai Terbaik</a></li>
                             <li><a href="{{ route('banner.index') }}">Infografis</a></li>
                             <li><a href="{{ route('sosial-media.index') }}">Sosial Media</a></li>
                             <li><a href="{{ route('gallery.index') }}">Gallery</a></li>

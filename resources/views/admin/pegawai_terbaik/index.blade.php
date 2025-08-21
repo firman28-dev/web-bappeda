@@ -136,8 +136,23 @@
 <script src="{{ asset('assets/js/photoswipe/photoswipe-ui-default.min.js') }}"></script>
 <script src="{{ asset('assets/js/photoswipe/photoswipe.js') }}"></script>
 
+<script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
+<script src="{{ asset('assets/js/select2/select2-custom.js') }}"></script>
 <script>
-    
+    document.querySelectorAll('.image-input').forEach(function(input) {
+        input.addEventListener('change', function () {
+            const file = this.files[0];
+            const maxSize = 3 * 1024 * 1024; // 3 MB
+
+            if (file && file.size > maxSize) {
+                this.value = ''; // reset input
+
+                const modalElement = document.getElementById('exampleModalCenter1');
+                const modal = new bootstrap.Modal(modalElement);
+                modal.show();
+            }
+        });
+    });
 </script>
 
 @endsection

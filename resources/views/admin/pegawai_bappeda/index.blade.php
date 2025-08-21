@@ -1,6 +1,6 @@
 @extends('partials.admin.master')
 
-@section('title', 'Gallery')
+@section('title', 'Pegawai Bappeda')
 
 @section('css')
 
@@ -20,7 +20,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-sm-6">
-                <h3>Gallery</h3>
+                <h3>Pegawai Bappeda</h3>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb">
@@ -46,36 +46,37 @@
         </div>
         <div class="card-body">
             <button class="btn btn-primary mx-auto mt-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModallogin"><i class="fa-solid fa-plus pe-1"></i>Tambah</button>
-            <div class="table-responsive custom-scrollbar">
-                <table class="display border table-striped" id="basic-1" style="width: 100%;">
+            <div class="table-responsive custom-scrollbar state-saving-table">
+                <table class="display border table-striped" id="basic-9" style="width: 100%;">
                     <thead>
                         <tr>
-                            <th style="width: 90px" class="text-center"> <span class="c-o-light f-w-600">No</span></th>
-                            <th class="text-start w-25"> <span class="c-o-light f-w-600">Keterangan Gallery</span></th>
-                            <th class="text-start"> <span class="c-o-light f-w-600">Gambar</span></th>
-                            <th class="w-25"> <span class="c-o-light f-w-600 ">Status</span></th>
-                            <th> <span class="c-o-light f-w-600">Actions</span></th>
+                            <th>No</th>
+                            <th>Nama Pegawai</th>
+                            <th>NIP</th>
+                            <th>Jabatan</th>
+                            <th>Bulan</th>
+                            <th>Foto</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($gallery as $item)
+                        @foreach ($pegawai as $item)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td class="text-start">{{ $item->name }}</td>
-
-                                <td class="text-start">
-                                    @if ($item->image)
+                                <td>{{ $item->nama_pns ?? '-' }}</td>
+                                <td>{{ $item->nip ?? '-' }}</td>
+                                <td>{{ $item->jabatan_nm ?? '-' }}</td>
+                                <td>{{ $item->_bidang->name ?? '-' }}</td>
+                                <td class="text-center" id="aniimated-thumbnials" itemscope="">
+                                    @if ($item->path)
                                         <figure itemprop="associatedMedia" itemscope="">
-                                            <a href="{{ asset('uploads/gallery/' . $item->image) }}" itemprop="contentUrl" data-size="1600x950">
-                                                <img class="img-thumbnail w-50" src="{{ asset('uploads/gallery/' . $item->image) }}" itemprop="thumbnail" alt="Image description">
+                                            <a href="{{ asset('uploads/pegawai_bappeda/' . $item->path) }}" itemprop="contentUrl" data-size="1600x950">
+                                                <img class="img-thumbnail w-50" src="{{ asset('uploads/pegawai_bappeda/' . $item->path) }}" itemprop="thumbnail" alt="Image description">
                                             </a>
                                         </figure>
                                     @else
-                                        <p>-</p>
+                                        <img class="img-thumbnail w-50" src="{{ asset('assets_global/img/blank.png') }}" itemprop="thumbnail" alt="Image description">
                                     @endif
-                                </td>
-                                <td> 
-                                    <span class="badge {{ $item->_status->id == 4 ? 'badge-light-success' : 'badge-light-danger' }}"> {{ $item->_status->name }}</span>
                                 </td>
                                 <td>
                                     <ul class="action">
@@ -91,21 +92,21 @@
                                                 <div class="modal-content dark-sign-up">
                                                     <div class="modal-body social-profile text-start">
                                                         <div class="modal-toggle-wrapper">
-                                                            <h3>Edit Gallery</h3>
+                                                            <h3>Edit Data Pegawai</h3>
                                                             <p class="f-light">Silahkan perbarui gallery dan keterangan.</p>
 
                                                             <form class="row g-3 needs-validation theme-form"
-                                                                action="{{ route('gallery.update', $item->id) }}"
+                                                                action="{{ route('pegawai-bappeda.update', $item->id) }}"
                                                                 method="POST"
                                                                 enctype="multipart/form-data">
                                                                 @csrf
                                                                 @method('PUT')
 
                                                                 <div class="col-md-12">
-                                                                    <label class="form-label" for="keterangan{{ $item->id }}">Keterangan Foto</label>
-                                                                    <input class="form-control" id="keterangan{{ $item->id }}" name="name" type="text"
-                                                                        value="{{ $item->name }}" required>
-                                                                    @error('name')
+                                                                    <label class="form-label" for="nama_pns{{ $item->id }}">Nama Pegawai</label>
+                                                                    <input class="form-control" id="nama_pns{{ $item->id }}" name="nama_pns" type="text"
+                                                                        value="{{ $item->nama_pns }}" required>
+                                                                    @error('nama_pns')
                                                                         <div class="is-invalid">
                                                                             <span class="text-danger">{{ $message }}</span>
                                                                         </div>
@@ -113,10 +114,10 @@
                                                                 </div>
 
                                                                 <div class="col-md-12">
-                                                                    <label class="form-label" for="image{{ $item->id }}">Foto Gallery</label>
-                                                                    <input class="form-control image-input" type="file" name="image" id="image{{ $item->id }}"
+                                                                    <label class="form-label" for="path{{ $item->id }}">Foto</label>
+                                                                    <input class="form-control image-input" type="file" name="path" id="path{{ $item->id }}"
                                                                         accept="image/*">
-                                                                    @error('image')
+                                                                    @error('path')
                                                                         <div class="is-invalid">
                                                                             <span class="text-danger">{{ $message }}</span>
                                                                         </div>
@@ -124,17 +125,17 @@
                                                                 </div>
 
                                                                 <div class="col-md-12">
-                                                                    <label class="form-label" for="status{{ $item->id }}">Pilih Status</label>
-                                                                    <select class="form-select js-example-basic-single col-sm-12" name="status_id" id="status{{ $item->id }}" required>
-                                                                        <option value="" disabled>-- Pilih Status --</option>
-                                                                        @foreach ($status as $st)
+                                                                    <label class="form-label" for="bidang{{ $item->id }}">Pilih Bidang</label>
+                                                                    <select class="form-select js-example-basic-single col-sm-12" name="bidang" id="bidang{{ $item->id }}">
+                                                                        <option value="">-- Pilih Bidang --</option>
+                                                                        @foreach ($bidang as $st)
                                                                             <option value="{{ $st->id }}"
-                                                                                {{ $item->status_id == $st->id ? 'selected' : '' }}>
-                                                                                {{ $st->name }}
+                                                                                {{ $item->bidang == $st->id ? 'selected' : '' }}>
+                                                                                {{ $st->label }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
-                                                                    @error('status_id')
+                                                                    @error('bidang')
                                                                         <div class="is-invalid">
                                                                             <span class="text-danger">{{ $message }}</span>
                                                                         </div>
@@ -191,68 +192,6 @@
 </div>
 
 {{-- Modal --}}
-<div class="modal fade" id="exampleModallogin" tabindex="-1" role="dialog" aria-labelledby="exampleModallogin" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content dark-sign-up">
-        <div class="modal-body social-profile text-start">
-            <div class="modal-toggle-wrapper">
-                <h3>Tambahkan Gallery</h3>
-                <p class="f-light">Silahkan tambahkan gallery dan keterangan.</p>
-                <form class="row g-3 needs-validation theme-form" action="{{ route('gallery.store')}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                    <div class="col-md-12">
-                        <label class="form-label" for="inputEmailEnter">Keterangan Foto</label>
-                        <input class="form-control" id="name" name="name" type="text" placeholder="Keterangan Foto" required>
-                        @error('name')
-                            <div class="is-invalid">
-                                <span class="text-danger">
-                                    {{$message}}
-                                </span>
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="col-md-12">
-                        <label class="form-label" for="inputPasswordEnter">Foto Gallery</label>
-                        <input class="form-control image-input" type="file" placeholder="Nama URL" name="image" id="image"autocomplete="image" accept="image/*" required>
-                        @error('image')
-                            <div class="is-invalid">
-                                <span class="text-danger">
-                                    {{$message}}
-                                </span>
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="col-md-12">
-                        <label class="form-label" for="status">Pilih Status</label>
-                        <select class="form-select js-example-basic-single col-sm-12" name="status_id" id="status_id" required>
-                            <option value="" disabled selected>-- Pilih Status --</option>
-                            @foreach ($status as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('status_id')
-                            <div class="is-invalid">
-                                <span class="text-danger">
-                                    {{$message}}
-                                </span>
-                            </div>
-                        @enderror
-                    </div>
-
-
-                    <div class="col-12">
-                        <button class="btn btn-primary" type="submit">Simpan</button>
-                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    </div>
-</div>
-
-
-
 
 <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter1"
     aria-hidden="true">
