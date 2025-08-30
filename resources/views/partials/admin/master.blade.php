@@ -54,6 +54,29 @@
     </div>
     @include('partials.admin.scripts')
     @include('admin.inc.alerts')
+    {{-- @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            })
+        </script>
+    @endif
+
+    @if(session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Coba Lagi'
+            })
+        </script>
+    @endif --}}
 
   </body>
 </html>

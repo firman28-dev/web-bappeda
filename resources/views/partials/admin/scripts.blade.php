@@ -25,7 +25,7 @@
  <script src="{{ asset('assets/js/script.js') }}"></script>
  <script src="{{ asset('assets/js/script1.js') }}"></script>
  <script src="{{ asset('assets/js/toastr.min.js') }}"></script>
- <script>
+ {{-- <script>
     let lastActivity = Date.now();
     const inactivityLimit = 15 * 60 * 1000; // 10 menit
 
@@ -64,7 +64,49 @@
     setInterval(checkInactivity, 60 * 1000);
     // console.log(lastActivity);
     
+</script> --}}
+<script>
+    let lastActivity = Date.now();
+    const inactivityLimit = 15 * 60 * 1000; // 15 menit
+
+    function checkInactivity() {
+        const currentTime = Date.now();
+        const inactiveTime = currentTime - lastActivity;
+
+        if (inactiveTime > inactivityLimit) {
+            logout();
+        }
+    }
+
+    function logout() {
+        console.log("User has been logged out due to inactivity.");
+
+        $.ajax({
+            url: '/logout',
+            type: 'POST',
+            data: { _token: '{{ csrf_token() }}' },
+            success: function() {
+                window.location.href = '/login';
+            },
+            error: function(xhr, status, error) {
+                console.error("Logout failed:", error);
+            }
+        });
+    }
+
+    function resetTimer() {
+        lastActivity = Date.now();
+    }
+
+    // Tambah event aktivitas
+    ['mousemove','keypress','click','scroll','touchstart'].forEach(evt => {
+        document.addEventListener(evt, resetTimer);
+    });
+
+    // Periksa setiap 5 detik
+    setInterval(checkInactivity, 60 * 1000);
 </script>
+
 <script>
     $(document).on('click', '.tahun-option', function () {
         let tahun = $(this).data('value');
