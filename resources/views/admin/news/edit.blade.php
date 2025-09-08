@@ -629,7 +629,7 @@
                 formData.append('file', file);
 
                 const xhr = new XMLHttpRequest();
-                xhr.open('POST', '/upload-pdf-news');
+                xhr.open('POST', '/upload-file-news');
                 xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
 
                 xhr.onload = () => {
