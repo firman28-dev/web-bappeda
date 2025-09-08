@@ -30,11 +30,11 @@
                                     <img src="https://kemenpar.go.id/_next/image?url=https%3A%2F%2Fapi.kemenpar.go.id%2Fstorage%2Fapp%2Fuploads%2Fpublic%2F679%2F1ca%2Fb06%2F6791cab06b87e394207864.png&w=1920&q=75" class="card-img-top img-hover-zoom" alt="News Image" style="height: 300px; object-fit: cover;">
                                 @endif
                             </div>
-                            <h2>{{$kaban->name}}</h2>
+                            <h2>PLT {{$kaban->name}}</h2>
                             <p>{{$kaban->_group->ket}}</p>
-                            <a href="{{ asset('lhkpn/LHKPN_KABAN.pdf') }}"target="_blank">
+                            {{-- <a href="{{ asset('lhkpn/LHKPN_KABAN.pdf') }}"target="_blank">
                                 Lihat LHKPN
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 </a>
