@@ -21,6 +21,7 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class Home_Controller extends Controller
 {
@@ -156,6 +157,39 @@ class Home_Controller extends Controller
             return back()->withErrors(['captcha_permohonan' => 'Jawaban captcha salah.'])->withInput();
         }
 
+        $filePathSaved = null;
+
+        // if ($request->hasFile('path')) {
+        //     $file = $request->file('path');
+
+        //     // List whitelist dan blacklist
+        //     $HALAL = ['jpg','jpeg','png','gif','pdf','doc','docx','xls','xlsx','ppt','pptx','txt','csv'];
+        //     $HARAM = ['php','phtml','php3','php4','php5','phps','asp','aspx','jsp','jspx','cgi','pl','py','rb',
+        //             'exe','bat','sh','cmd','msi','dll','so','js','json','html','htm','xhtml','xml','svg',
+        //             'env','htaccess','htpasswd','ini','conf','config','log','sql','db','bak'];
+
+        //     $ext = strtolower($file->getClientOriginalExtension());
+
+        //     // ❌ Tolak kalau masuk list haram
+        //     if (in_array($ext, $HARAM)) {
+        //         return back()->withErrors(['path' => 'Ekstensi file tidak diizinkan.'])->withInput();
+        //     }
+
+        //     // ❌ Tolak kalau bukan list halal
+        //     if (!in_array($ext, $HALAL)) {
+        //         return back()->withErrors(['path' => 'Format file tidak sesuai.'])->withInput();
+        //     }
+
+        //     // ✅ Buat nama random supaya tidak bisa ditebak
+        //     $safeName = Str::uuid() . '.' . $ext;
+
+        //     // ✅ Simpan di storage/app/uploads (bukan public_html)
+        //     $filePathSaved = $file->storeAs('uploads/permohonan_informasi', $safeName, 'local');
+            
+        // }
+
+        
+
         // $file = $request->file('path'); 
         // $unique = uniqid();
         // $fileName = $unique. '_' . $file->getClientOriginalName();
@@ -168,7 +202,7 @@ class Home_Controller extends Controller
             'instansi' => $request->instansi,
             'phone' => $request->phone,
             'tujuan' => $request->tujuan,
-            // 'path' => $fileName,
+            // 'path' => $filePathSaved,
             'status' => 1,
             'ip_address' => $request->ip(),
             'user_agent' => $request->header('User-Agent'),

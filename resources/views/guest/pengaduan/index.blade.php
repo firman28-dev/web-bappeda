@@ -178,7 +178,7 @@
                                 <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-orange"></span>
                             </a>
                         </li>
-                        <li class="nav-item mb-3 me-3 me-lg-6">
+                        {{-- <li class="nav-item mb-3 me-3 me-lg-6">
                             <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-150px h-85px" 
                                 id="kt_stats_widget_16_tab_link_3" 
                                 data-bs-toggle="pill" 
@@ -189,7 +189,7 @@
                                 <span class="nav-text text-gray-800 fw-bold fs-6 lh-1 text-uppercase">Magang</span>
                                 <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-orange"></span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                     <hr>
                     <div class="tab-content">
@@ -238,7 +238,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-lg-12">
+                                    <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="surat_pengantar" class="form-label required">Upload Surat Permohonan Sesuai Template (PDF)</label>
                                             <input type="file" class="form-control form-control-solid" id="path" name="path" required accept=".pdf">
@@ -246,7 +246,7 @@
                                                 <span class="text-danger">{{ $errors->first('path') }}</span>
                                             @endif
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     @php
                                         $a = rand(1, 10);
                                         $b = rand(1, 10);
@@ -484,7 +484,7 @@
                                 Unduh Template Keberatan Informasi
                             </a>
                         </div>
-                        <div class="tab-pane fade" id="tab_magang">
+                        {{-- <div class="tab-pane fade" id="tab_magang">
                             <h4>Magang</h4>
                             <form action="/pengajuan-magang" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -534,7 +534,7 @@
                                         <input type="text" name="started_at" id="started_at" hidden/>
                                         <input type="text" name="ended_at" id="ended_at" hidden/>
                                     </div>
-                                    {{-- <div class="col-lg-12">
+                                    <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="surat_pengantar" class="form-label required">Upload Surat Pengantar Magang (PDF) Maksimal 2 MB</label>
                                             <input type="file" class="form-control form-control-solid" id="path" name="path" required accept=".pdf">
@@ -542,7 +542,7 @@
                                                 <span class="text-danger">{{ $errors->first('path') }}</span>
                                             @endif
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="tujuan" class="form-label required">Tujuan Magang</label>
@@ -571,7 +571,7 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-sm text-end">Kirim Pengajuan</button>
                             </form>
-                        </div>
+                        </div> --}}
                         
                     </div>
                 </div>
