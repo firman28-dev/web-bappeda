@@ -101,7 +101,7 @@ class Home_Controller extends Controller
             'captcha_magang' => 'required|numeric',
             'a' => 'required|numeric',
             'b' => 'required|numeric',
-            'path' => 'nullable|mimes:pdf|max:2048',
+            // 'path' => 'nullable|mimes:pdf|max:2048',
         ]);
 
         // return $request->started_at;
@@ -112,10 +112,10 @@ class Home_Controller extends Controller
             return back()->withErrors(['captcha_magang' => 'Jawaban captcha salah.'])->withInput();
         }
 
-        $file = $request->file('path'); 
-        $unique = uniqid();
-        $fileName = $unique. '_' . $file->getClientOriginalName();
-        $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/magang/', $fileName);
+        // $file = $request->file('path'); 
+        // $unique = uniqid();
+        // $fileName = $unique. '_' . $file->getClientOriginalName();
+        // $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/magang/', $fileName);
 
         // Simpan pengaduan ke database
         Magang::create([
@@ -125,7 +125,7 @@ class Home_Controller extends Controller
             'tujuan' => $request->tujuan,
             'phone' => $request->phone,
             'email' => $request->email,
-            'path' => $fileName,
+            // 'path' => $fileName,
             'status' => 1,
             'start' => $request->started_at,
             'end' => $request->ended_at,
@@ -144,7 +144,7 @@ class Home_Controller extends Controller
             'instansi' => 'required|string|max:255',
             'phone' => 'required|max:15',
             'tujuan' => 'required|string',
-            'path' => 'nullable|mimes:pdf|max:2048',
+            // 'path' => 'nullable|mimes:pdf|max:2048',
             'captcha_permohonan' => 'required|numeric',
             'a' => 'required|numeric',
             'b' => 'required|numeric',
@@ -156,10 +156,10 @@ class Home_Controller extends Controller
             return back()->withErrors(['captcha_permohonan' => 'Jawaban captcha salah.'])->withInput();
         }
 
-        $file = $request->file('path'); 
-        $unique = uniqid();
-        $fileName = $unique. '_' . $file->getClientOriginalName();
-        $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/permohonan_informasi/', $fileName);
+        // $file = $request->file('path'); 
+        // $unique = uniqid();
+        // $fileName = $unique. '_' . $file->getClientOriginalName();
+        // $file->move($_SERVER['DOCUMENT_ROOT']. '/uploads/permohonan_informasi/', $fileName);
 
         // Simpan pengaduan ke database
         PermohonanInformasi::create([
@@ -168,7 +168,7 @@ class Home_Controller extends Controller
             'instansi' => $request->instansi,
             'phone' => $request->phone,
             'tujuan' => $request->tujuan,
-            'path' => $fileName,
+            // 'path' => $fileName,
             'status' => 1,
             'ip_address' => $request->ip(),
             'user_agent' => $request->header('User-Agent'),
