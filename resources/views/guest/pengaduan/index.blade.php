@@ -238,7 +238,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
+                                    {{-- <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="surat_pengantar" class="form-label required">Upload Surat Permohonan Sesuai Template (PDF)</label>
                                             <input type="file" class="form-control form-control-solid" id="path" name="path" required accept=".pdf">
@@ -246,7 +246,7 @@
                                                 <span class="text-danger">{{ $errors->first('path') }}</span>
                                             @endif
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     @php
                                         $a = rand(1, 10);
                                         $b = rand(1, 10);
