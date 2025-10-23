@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\MaintenanceMode::class,
         \App\Http\Middleware\BlockBadBots::class,
+        \App\Http\Middleware\ShieldBotsMiddleware::class,
 
     ];
 
@@ -73,5 +74,6 @@ class Kernel extends HttpKernel
         'operator' =>\App\Http\Middleware\OperatorMiddleware::class,
         'kaban' =>\App\Http\Middleware\KabanMiddleware::class,
         'kabid' =>\App\Http\Middleware\KabidMiddleware::class,
+        'shield.bots' => \App\Http\Middleware\ShieldBotsMiddleware::class,
     ];
 }
