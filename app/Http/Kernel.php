@@ -22,6 +22,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\MaintenanceMode::class,
+        \App\Http\Middleware\BlockBadBots::class,
 
     ];
 
@@ -40,6 +41,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\TrackVisitor::class,
             \App\Http\Middleware\MaintenanceMode::class,
+            \App\Http\Middleware\BlockBadBots::class,
         ],
 
         'api' => [

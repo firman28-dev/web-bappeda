@@ -15,8 +15,7 @@ class LogoutController extends Controller
 
         
         if ($user) {
-            $user->session = null; // Hapus token
-            $user->save(); // Simpan perubahan
+            $user->session = null; 
         }
 
         Session::flush();
